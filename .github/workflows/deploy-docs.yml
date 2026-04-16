@@ -1,0 +1,138 @@
+name: Deploy Docs
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
+    paths:
+      - 'docs/**'
+      - 'assets/**'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: false
+        type: choice
+        options:
+          - production
+          - staging
+          - preview
+      pr_number:
+        description: 'PR number for preview deployment (required if preview)'
+        required: false
+        type: string
+
+permissions: {}
+
+jobs:
+  trigger-preview:
+    if: >-
+      github.event_name == 'pull_request_target' &&
+      github.event.action != 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger preview deployment
+        uses: peter-evans/repository-dispatch@v4
+        with:
+          event-type: docs-preview
+          repository: ${{ secrets.DISPATCH_TARGET_REPOSITORY }}
+          token: ${{ secrets.REPOSITORY_DISPATCH_TOKEN }}
+          client-payload: |
+            {
+              "action": "${{ github.event.action }}",
+              "branch": "${{ github.head_ref }}",
+              "pr_number": "${{ github.event.pull_request.number }}",
+              "repo": "${{ github.repository }}",
+              "sha": "${{ github.event.pull_request.head.sha }}"
+            }
+
+  notify-preview-closed:
+    if: >-
+      github.event_name == 'pull_request_target' &&
+      github.event.action == 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger preview cleanup
+        uses: peter-evans/repository-dispatch@v4
+        with:
+          event-type: docs-preview
+          repository: ${{ secrets.DISPATCH_TARGET_REPOSITORY }}
+          token: ${{ secrets.REPOSITORY_DISPATCH_TOKEN }}
+          client-payload: |
+            {
+              "action": "closed",
+              "branch": "${{ github.head_ref }}",
+              "pr_number": "${{ github.event.pull_request.number }}",
+              "repo": "${{ github.repository }}",
+              "sha": "${{ github.event.pull_request.head.sha }}"
+            }
+
+  trigger-manual:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      (github.event.inputs.environment == 'production' || github.event.inputs.environment == 'staging')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger deployment
+        uses: peter-evans/repository-dispatch@v4
+        with:
+          event-type: docs-production
+          repository: ${{ secrets.DISPATCH_TARGET_REPOSITORY }}
+          token: ${{ secrets.REPOSITORY_DISPATCH_TOKEN }}
+          client-payload: |
+            {
+              "branch": "${{ github.ref_name }}",
+              "environment": "${{ github.event.inputs.environment }}",
+              "repo": "${{ github.repository }}",
+              "sha": "${{ github.sha }}"
+            }
+
+  trigger-manual-preview:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.event.inputs.environment == 'preview'
+    permissions:
+      pull-requests: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Load PR details
+        id: pr
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const prNumber = Number('${{ github.event.inputs.pr_number }}')
+            if (!prNumber) {
+              core.setFailed('pr_number is required when environment is preview')
+              return
+            }
+
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            })
+
+            core.setOutput('branch', pr.head.ref)
+            core.setOutput('pr_number', String(pr.number))
+            core.setOutput('repo', pr.head.repo.full_name)
+            core.setOutput('sha', pr.head.sha)
+
+      - name: Trigger manual preview deployment
+        uses: peter-evans/repository-dispatch@v4
+        with:
+          event-type: docs-preview
+          repository: ${{ secrets.DISPATCH_TARGET_REPOSITORY }}
+          token: ${{ secrets.REPOSITORY_DISPATCH_TOKEN }}
+          client-payload: |
+            {
+              "action": "opened",
+              "branch": "${{ steps.pr.outputs.branch }}",
+              "pr_number": "${{ steps.pr.outputs.pr_number }}",
+              "repo": "${{ steps.pr.outputs.repo }}",
+              "sha": "${{ steps.pr.outputs.sha }}"
+            }
