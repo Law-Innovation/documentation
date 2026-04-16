@@ -1,0 +1,82 @@
+---
+title: Hotjar Configuration
+---
+
+How to configure [Hotjar](https://www.hotjar.com/de/uber-uns/) and properly map these configurations within the customer panel to ensure users are clearly informed about the use of this Third Party Provider (TPP). The tables below outline how different configurations of Hotjar affect the privacy risks for users.
+
+## Privacy relevant configurations (Parameters)
+
+This table shows features which can be enabled or disabled within **Hotjar**. Use this overview to ensure your Hotjar setup and Consenter Manager settings stay consistent.
+
+Each row represents a feature that can be disabled or enabled in various ways when configuring your TPP for your website. The left-hand column describes the feature, while the right-hand column provides guidance on where to find it in the **Consenter Manager** and how to configure it to accurately reflect your TPP setup.
+
+<Callout type="info">
+  Some functions or data categories may be named differently between TPPs or in
+  our overview due to the lack of standardization. **As the data controller, you
+  are responsible for informing users in a clear and comprehensible manner**.
+  This guide supports you by offering uniform, established terminology that
+  helps users understand how their personal data is processed, thereby fostering
+  trust in your brand.
+</Callout>
+
+| **Parameters**            | **➡️ TPP Config Low risk (consent)**                             | **➡️ TPP Config Higher risk (consent)**                                            | **➡️ Consenter Manager Config** How to map your Hotjar configurations in Consenter Manager                                                                                                                      |
+| ------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Consent                   | Yes (Opt-In)                                                     | Yes (Opt-In)                                                                       | Select Hotjar if consent is required                                                                                                                                                                            |
+| Data sharing              | No (Hotjar is processor only)                                    | Export to third parties (integration with other platforms)                         | Before exporting data, verify if it includes personal data. If so, ensure proper legal basis and potentially specify an additional processing purpose, such as marketing analytics or personalized advertising. |
+| Data processing agreement | Yes, Hotjar acts as processor (DPA included in Terms of Service) | Yes, Hotjar acts as processor (DPA included in Terms of Service)                   | Select respective legal role of data recipient.                                                                                                                                                                 |
+| Tracking method           | First party cross-session with cookies                           | First party cross-session with cookies and cross-device (User ID via Identify API) | Select respective tracking method                                                                                                                                                                               |
+| Identifier                | Device Identifier (Cookie: \_hjid) + UUID                        | Device Identifier (Cookie: \_hjid) + UUID + User ID (customer-provided)            | Select respective data category, e.g. Device identifier; Authentication-derived identifiers                                                                                                                     |
+| User ID features          | No                                                               | Yes (via Identify API, customer-provided)                                          | 1. Select respective data categories: Authentication-derived identifiers, Direct identifiers, Users' profiles<br/>2. Select personalization model                                                               |
+| Retention Period          | < 12 months (365 days standard)                                  | 12+ months                                                                         | Indicate maximum storage duration                                                                                                                                                                               |
+| Processing location       | EU (Ireland, AWS eu-west-1)                                      | EU (Ireland, AWS eu-west-1); some sub-processors in USA                            | Indicate processing location: EU (Ireland) with potential US sub-processors                                                                                                                                     |
+| Advertising Features      | Recordings, Heatmaps (suppressed data)                           | Recordings, Heatmaps, Surveys, Feedback (full data with consent)                   | If ad features are enabled, select additional marketing purpose (e.g. marketing analytics).                                                                                                                     |
+
+### Data categories
+
+This table details the categories of data collected by **Hotjar**. Use this overview to ensure your Hotjar setup and Consenter Manager settings stay consistent.
+
+Each row represents a **data category** that can be disabled or enabled in various ways when configuring your TPP for your website. The left-hand column describes the data category, while the right-hand column provides guidance on where to find it in the Consenter Manager and how to configure it to accurately reflect your TPP setup.
+
+<Callout type="info">
+  Some functions or data categories may be named differently between TPPs or in
+  our overview due to the lack of standardization. **As the data controller, you
+  are responsible for informing users in a clear and comprehensible manner**.
+  This guide supports you by offering uniform, established terminology that
+  helps users understand how their personal data is processed, thereby fostering
+  trust in your brand.
+</Callout>
+
+| **Collected data categories**                                | **➡️ TPP Config Lower risk (consent)**                   | **➡️ TPP Config Higher risk (consent)**                        | **➡️ Consenter Manager Config** How to map your Hotjar configurations in Consenter Manager                                 |
+| ------------------------------------------------------------ | -------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| IP Address                                                   | Anonymized (last octet removed, stored as x.x.x.0)       | Anonymized (last octet removed, stored as x.x.x.0)             | Select data category: IP-Address (anonymized)                                                                              |
+| Technical data: Device characteristics, Browser/OS data etc. | Yes                                                      | Yes                                                            | Select data category: Device characteristics                                                                               |
+| Aggregated site statistics                                   | Yes                                                      | Yes                                                            | Select data category: Aggregated site statistics                                                                           |
+| Enhanced Measurement                                         | Full (Heatmaps, Recordings with suppression)             | Full (Heatmaps, Recordings, Surveys, Feedback, Form Analytics) | Select data category: Browsing and interaction data                                                                        |
+| Geo-location info                                            | Country-level only                                       | Country-level only                                             | Select data category: Non-precise location data                                                                            |
+| eCommerce Activity                                           | No                                                       | Yes (if tracked via custom events)                             | Select respective data category                                                                                            |
+| Visitor logs / profiles                                      | Yes (session recordings with suppressed PII)             | Yes (full recordings, User ID profiles)                        | 1. Select data category: Users' profiles<br/>2. Select respective Identifier                                               |
+| Device identifiers                                           | Yes (cookies: \_hjid, \_hjSessionUser, etc.)             | Yes (cookies: \_hjid, \_hjSessionUser, etc.)                   | Select respective data category                                                                                            |
+| Authentication derived Identifiers                           | No                                                       | Yes (User ID via Identify API)                                 | Select respective data category                                                                                            |
+| Probabilistic identifiers                                    | Limited (UUID for session continuity)                    | Limited (UUID for session continuity)                          | -                                                                                                                          |
+| Special categories of personal data                          | No                                                       | No                                                             | -                                                                                                                          |
+| Privacy choices                                              | No                                                       | No                                                             | -                                                                                                                          |
+| Custom events / variables                                    | No personal data (with proper suppression configuration) | May contain additional personal data categories                | If tracking custom events and/or variables, ensure transparency, e.g. by selecting additional purposes and data categories |
+
+### Notes on Hotjar Configuration
+
+<Callout type="info">
+  - **IP Anonymization**: Automatic; last octet removed before storage (e.g.
+  1.2.3.4 becomes 1.2.3.0). Full IP never persisted to disk - **Data
+  Suppression**: Mandatory configuration for GDPR compliance: - **Automatic**:
+  Keystroke data suppressed by default on all input fields - **Manual
+  configuration required**: Suppress text, images, and user input in Site
+  Settings for heatmaps/recordings - Suppression occurs client-side (browser)
+  before data reaches Hotjar servers - **Data Processing Agreement**:
+  Automatically included in Hotjar Terms of Service upon account creation -
+  **Hotjar acts as**: Data Processor
+</Callout>
+
+<Callout type="info">
+  For technical integration guides (code implementation), see{" "}
+  <a href="/integration-guides/hotjar">Hotjar Integration Guide →</a>
+</Callout>

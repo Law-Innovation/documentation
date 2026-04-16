@@ -1,0 +1,79 @@
+---
+title: Google Analytics (GA4) Configuration
+---
+
+How to configure [Google Analytics (GA4)](https://analytics.google.com/analytics/web/provision/#/provision) and properly map these configurations within the customer panel to ensure users are clearly informed about the use of this Third Party Provider (TPP). The tables below outline how different configurations of GA4 affect the privacy risks for users.
+
+## Privacy relevant configurations (Parameters)
+
+This table shows features which can be enabled or disabled within **Google Analytics (GA4)**. Use this overview to ensure your GA4 setup and Consenter Manager settings stay consistent.
+
+Each row represents a feature that can be disabled or enabled in various ways when configuring your TPP for your website. The left-hand column describes the feature, while the right-hand column provides guidance on where to find it in the **Consenter Manager** and how to configure it to accurately reflect your TPP setup.
+
+<Callout type="info">
+  Some functions or data categories may be named differently between TPPs or in
+  our overview due to the lack of standardization. **As the data controller, you
+  are responsible for informing users in a clear and comprehensible manner**.
+  This guide supports you by offering uniform, established terminology that
+  helps users understand how their personal data is processed, thereby fostering
+  trust in your brand.
+</Callout>
+
+| **Parameters**                | **➡️** TPP Config **Low risk (consent)**                    | **➡️** TPP Config **Low risk (consent)**       | **➡️** TPP Config **Higher risk (consent)** | **➡️** TPP Config **High risk (consent)**                               | **➡️ Consenter Manager Config** How to map your GA4 configurations in Consenter Manager                                                                                                                                                                        |
+| ----------------------------- | ----------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Consent**                   | Yes (Opt-In)                                                | Yes (Opt-In)                                   | Yes (Opt-In)                                | Yes (Opt-In)                                                            | Select GA4 if consent is required                                                                                                                                                                                                                              |
+| **Data sharing**              | Disabled (also for Google products & services)              | Disabled (also for Google products & services) | Enabled                                     | Enabled                                                                 | If data sharing with Google products & services is enabled, Google acts as Joint Controller or Controller, which must be indicated in Consenter Manager accordingly.                                                                                           |
+| **Data processing agreement** | Yes                                                         | Yes                                            | No (Independent Controller)                 | No (Independent Controller)                                             | Select respective legal role of data recipient.                                                                                                                                                                                                                |
+| **Tracking method**           | Pageview Tracking on a single website session (First party) | First party cross-session                      | First party cross-session, cross-domain     | Third party, cross-session, cross-domain, cross-device (Google Signals) | Select respective tracking method                                                                                                                                                                                                                              |
+| **Identifier**                | Device Identifier                                           | Device Identifier                              | User ID (set by you)                        | Google Signals: account data                                            | Select respective data category, e.g.<br/>- Device identifier<br/>- Direct identifier<br/>- User provided data                                                                                                                                                 |
+| **User ID features**          | No                                                          | No                                             | Yes                                         | Yes                                                                     | **1. Select respective data categories:**<br/>- Authentication-derived identifiers<br/>- Direct identifiers<br/>- User profile<br/>**2. Select personalization model**                                                                                         |
+| **Retention Period**          | < 2 months                                                  | < 14 months                                    | < 14 months                                 | 14+ months                                                              | Indicate maximum storage duration                                                                                                                                                                                                                              |
+| **Processing location**       | US/EU (Standard)                                            | US/EU (Standard)                               | US/EU (Standard)                            | US/EU (Standard)                                                        | **❗Attention:** Also in case of sole EU hosting, always indicate the USA as a data processing location as well, since US legislation such as the CLOUD Act permits the US government to access data of US-based enterprises, even when stored outside the US. |
+| **Advertising Features**      | Disabled                                                    | Disabled                                       | Disabled                                    | Enabled                                                                 | If ad features are enabled, select additional marketing purpose.                                                                                                                                                                                               |
+
+### Data categories
+
+This table details the categories of data collected by **Google Analytics (GA4)**. Use this overview to ensure your GA4 setup and Consenter Manager settings stay consistent.
+
+Each row represents a **data category** that can be disabled or enabled in various ways when configuring your TPP for your website. The left-hand column describes the data category, while the right-hand column provides guidance on where to find it in the Consenter Manager and how to configure it to accurately reflect your TPP setup.
+
+<Callout type="info">
+  Some functions or data categories may be named differently between TPPs or in
+  our overview due to the lack of standardization. **As the data controller, you
+  are responsible for informing users in a clear and comprehensible manner**.
+  This guide supports you by offering uniform, established terminology that
+  helps users understand how their personal data is processed, thereby fostering
+  trust in your brand.
+</Callout>
+
+| **Collected data categories**                                              | **➡️** TPP Config **Low risk (No consent)** | **➡️** TPP Config **Low risk (consent)** | **➡️** TPP Config **Higher risk (consent)** | **➡️** TPP Config **High risk (consent)** | **➡️ Consenter Manager Config** How to map your GA4 configurations in Consenter Manager                                                                                                                           |
+| -------------------------------------------------------------------------- | ------------------------------------------- | ---------------------------------------- | ------------------------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **IP Address**                                                             | Anonymized (automatic)                      | Anonymized (automatic)                   | Anonymized (automatic)                      | Full IP (if configured)                   | Select respective data category                                                                                                                                                                                   |
+| **Technical data**<br/>- Device characteristics<br/>- Browser/OS data etc. | Yes                                         | Yes                                      | Yes                                         | Yes                                       | **Select data category:**<br/>Device characteristics                                                                                                                                                              |
+| **Aggregated site statistics**                                             | Yes                                         | Yes                                      | Yes                                         | Yes                                       | **Select data category:**<br/>Aggregated site statistics                                                                                                                                                          |
+| **Enhanced Measurement**                                                   | Minimal (pageviews only)                    | Basic (scrolls, outbound)                | Full (video, file downloads)                | Full (video, file downloads)              | **Select data category:**<br/>- Browsing and interaction data                                                                                                                                                     |
+| **Geo-location info**                                                      | Country-level only                          | Country-level only                       | City-level                                  | City-level                                | **Select data category:**<br/>Non-precise location data                                                                                                                                                           |
+| **e-Commerce Activity**                                                    | No                                          | No                                       | Yes                                         | Yes                                       | Select respective data category                                                                                                                                                                                   |
+| **User Properties**                                                        | No                                          | No                                       | Limited (demographics)                      | Yes (custom properties)                   | **1. Select data category** (depending on which data is collected as "user property"):<br/>- Device characteristics<br/>- Non-precise location data<br/>- Users' profiles<br/>**2. Select respective Identifier** |
+| **Device identifiers**                                                     | Yes                                         | Yes                                      | Yes                                         | Yes                                       | Select respective data category                                                                                                                                                                                   |
+| **Probabilistic identifiers**                                              | Yes                                         | Yes                                      | Yes                                         | Yes                                       | Select respective data category                                                                                                                                                                                   |
+| **Special categories of personal data**                                    | No                                          | No                                       | No                                          | No                                        | -                                                                                                                                                                                                                 |
+| **Privacy choices**                                                        | No                                          | No                                       | Yes                                         | Yes                                       | Select respective data category                                                                                                                                                                                   |
+
+<Callout type="info">
+**Notes on GA4 Configuration:**
+
+- **IP Anonymization:** In GA4, IP anonymization occurs automatically and cannot be disabled
+- **Google Signals:** Enables Cross-Device Tracking, but requires explicit consent
+- **Data Retention:** Maximum 14 months for user and event data can be set
+- **Server Location:** Data processing occurs primarily in the USA, EU hosting not available
+- **Consent Mode:** Implementation of Google Consent Mode v2 recommended for legally compliant operation
+
+</Callout>
+
+<Callout type="info">
+  For technical integration guides (code implementation), see{" "}
+  <a href="/integration-guides/google-analytics">
+    Google Analytics Integration Guide →
+  </a>
+</Callout>

@@ -1,0 +1,66 @@
+---
+title: eTracker Configuration
+---
+
+How to configure [eTracker](https://www.etracker.com/) and properly map these configurations within the customer panel to ensure users are clearly informed about the use of this Third Party Provider (TPP). The tables below outline how different configurations of eTracker affect the privacy risks for users.
+
+## Privacy relevant configurations (Parameters)
+
+This table shows features which can be enabled or disabled within **eTracker**. Use this overview to ensure your eTracker setup and Consenter Manager settings stay consistent.
+
+Each row represents a feature that can be disabled or enabled in various ways when configuring your TPP for your website. The left-hand column describes the feature, while the right-hand column provides guidance on where to find it in the **Consenter Manager** and how to configure it to accurately reflect your TPP setup.
+
+<Callout type="info">
+  Some functions or data categories may be named differently between TPPs or in
+  our overview due to the lack of standardization. **As the data controller, you
+  are responsible for informing users in a clear and comprehensible manner**.
+  This guide supports you by offering uniform, established terminology that
+  helps users understand how their personal data is processed, thereby fostering
+  trust in your brand.
+</Callout>
+
+| **Parameters**            | **➡️ TPP Config Low risk (no consent)**   | **➡️ TPP Config Low risk (consent)**   | **➡️ TPP Config Higher risk (consent)**                | **➡️ Consenter Manager Config** How to map your eTracker configurations in Consenter Manager                                                                                        |
+| ------------------------- | ----------------------------------------- | -------------------------------------- | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Consent                   | No (Opt-Out only)                         | Yes (Opt-In)                           | Yes (Opt-In)                                           | Select eTracker if consent is required                                                                                                                                              |
+| Data sharing              | No (eTracker is processor only)           | No (eTracker is processor only)        | Only aggregated reporting data                         | Before exporting data, verify if it includes personal data. If so, ensure proper legal basis and potentially specify an additional processing purpose, such as marketing analytics. |
+| Data processing agreement | Yes (automatic upon account creation)     | Yes (automatic upon account creation)  | Yes (automatic upon account creation)                  | Select Processor as legal role of data recipient                                                                                                                                    |
+| Tracking method           | Cookieless single session (first party)   | First party cross-session with cookies | First party cross-session with cross-device identifier | Select respective tracking method                                                                                                                                                   |
+| Identifier                | Pseudonymized session token (server-side) | Device Identifier (Cookie)             | Cross-Device Identifier (User ID, hashed)              | Select respective data category, e.g. Probabilistic identifiers; Device identifier; Authentication-derived identifiers                                                              |
+| User ID features          | No                                        | No                                     | Yes (Customer-provided, hashed)                        | 1. Select respective data categories: Authentication-derived identifiers, Direct identifiers, Users' profiles<br/>2. Select personalization model                                   |
+| Retention Period          | 13 months (raw data)                      | 13 months (raw data)                   | 13 months (raw data)                                   | Indicate maximum storage duration                                                                                                                                                   |
+| Processing location       | EU only (Germany)                         | EU only (Germany)                      | EU only (Germany)                                      | Indicate Germany/EU as data processing location                                                                                                                                     |
+| Advertising Features      | Disabled                                  | Disabled                               | Enabled                                                | If ad features are enabled, select additional marketing purpose (e.g. marketing analytics).                                                                                         |
+
+### Data categories
+
+This table details the categories of data collected by **eTracker**. Use this overview to ensure your eTracker setup and Consenter Manager settings stay consistent.
+
+Each row represents a **data category** that can be disabled or enabled in various ways when configuring your TPP for your website. The left-hand column describes the data category, while the right-hand column provides guidance on where to find it in the Consenter Manager and how to configure it to accurately reflect your TPP setup.
+
+<Callout type="info">
+  Some functions or data categories may be named differently between TPPs or in
+  our overview due to the lack of standardization. **As the data controller, you
+  are responsible for informing users in a clear and comprehensible manner**.
+  This guide supports you by offering uniform, established terminology that
+  helps users understand how their personal data is processed, thereby fostering
+  trust in your brand.
+</Callout>
+
+| **Collected data categories**                                | **➡️ TPP Config Low risk (no consent)**   | **➡️ TPP Config Low risk (consent)**      | **➡️ TPP Config Higher risk (consent)**   | **➡️ Consenter Manager Config** How to map your eTracker configurations in Consenter Manager |
+| ------------------------------------------------------------ | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------- |
+| IP Address                                                   | Anonymized (automatic, server-side)       | Anonymized (automatic, server-side)       | Anonymized (automatic, server-side)       | Select data category: IP-Address (anonymized)                                                |
+| Technical data: Device characteristics, Browser/OS data etc. | Yes                                       | Yes                                       | Yes                                       | Select data category: Device characteristics                                                 |
+| Aggregated site statistics                                   | Yes                                       | Yes                                       | Yes                                       | Select data category: Aggregated site statistics                                             |
+| Enhanced Measurement                                         | Basic (pageviews, clicks, scrolls)        | Full (all events)                         | Full (all events, eCommerce)              | Select data category: Browsing and interaction data                                          |
+| Geo-location info                                            | Country-level only                        | Country-level only                        | Country-level only                        | Select data category: Non-precise location data                                              |
+| eCommerce Activity                                           | No                                        | Optional                                  | Yes                                       | Select respective data category                                                              |
+| User Properties                                              | No                                        | Limited (anonymous segments)              | Yes (cross-device profiles)               | 1. Select data category: Users' profiles<br/>2. Select respective Identifier                 |
+| Device identifiers                                           | No (cookieless mode)                      | Yes (with cookies)                        | Yes (with cookies)                        | Select respective data category                                                              |
+| Probabilistic identifiers                                    | Very limited (server-side session tokens) | Very limited (server-side session tokens) | Very limited (server-side session tokens) | -                                                                                            |
+| Special categories of personal data                          | No                                        | No                                        | No                                        | -                                                                                            |
+| Privacy choices                                              | No                                        | No                                        | No                                        | -                                                                                            |
+
+<Callout type="info">
+  For technical integration guides (code implementation), see{" "}
+  <a href="/integration-guides/etracker">eTracker Integration Guide →</a>
+</Callout>

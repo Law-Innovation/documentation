@@ -1,0 +1,93 @@
+---
+title: YouTube Configuration
+---
+
+How to embed [YouTube](https://support.google.com/youtube/answer/171780?hl=de) on your website and properly map these configurations within the customer panel to ensure users are clearly informed about the use of this Third Party Provider (TPP). The tables below outline how embedding YouTube on your website affects the privacy risks for users.
+
+<Callout type="warn">
+  **High Privacy Risk:** YouTube embeds create direct connections to Google
+  servers, enabling comprehensive tracking across Google's entire ecosystem
+  (Search, Gmail, Maps, Android, etc.).
+</Callout>
+
+<Callout type="warn">
+  **Consent Requirement:** Always obtain explicit opt-in consent before loading
+  YouTube content.
+</Callout>
+
+<Callout type="info">
+  **youtube-nocookie.com Alternative:** Instead of using the standard YouTube embed code with the domain "youtube.com", you can use the embed code with the domain "youtube-nocookie.com". This way, cookies are only set and data transferred to YouTube/Google when users actively play the video (click-to-play principle).
+
+You can enable this mode by checking "Enable privacy-enhanced mode" in the YouTube embed options or manually replacing "youtube.com" with "youtube-nocookie.com" in the embed URL.
+
+_While youtube-nocookie.com is often mentioned as privacy-friendly, it still sets cookies after user interaction and requires consent!_
+
+</Callout>
+
+<Callout type="warn">
+  **Joint Controller Considerations:** Depending on implementation, you may have
+  joint controller responsibilities with Google.
+</Callout>
+
+## Privacy relevant configurations (Parameters)
+
+This table shows features which are enabled or disabled within **YouTube**. Use this overview to ensure your YouTube setup and Consenter Manager settings stay consistent.
+
+Each row represents a feature that can be disabled or enabled in various ways when configuring your TPP for your website. The left-hand column describes the feature, while the right-hand column provides guidance on where to find it in the **Consenter Manager** and how to configure it to accurately reflect your TPP setup.
+
+<Callout type="info">
+  Some functions or data categories may be named differently between TPPs or in
+  our overview due to the lack of standardization. **As the data controller, you
+  are responsible for informing users in a clear and comprehensible manner**.
+  This guide supports you by offering uniform, established terminology that
+  helps users understand how their personal data is processed, thereby fostering
+  trust in your brand.
+</Callout>
+
+| **Parameters**                | **➡️ YouTube Config High risk (Consent)**                                                 | **➡️ Consenter Manager Config** What to indicate in Consenter Manager when embedding YouTube videos on your website                                            |
+| ----------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Consent**                   | Yes (Opt-In) - Required before loading YouTube embed                                      | Select YouTube/Google if consent is required                                                                                                                   |
+| **Data processing agreement** | No (Controllership) - Google acts as independent controller                               | **Select:** Independent Controller as legal role of data recipient                                                                                             |
+| **Tracking method**           | Cross session, cross domain, cross device (Google Signals & YouTube integration)          | **Select:** Cross-session, cross-domain, cross-device tracking                                                                                                 |
+| **Identifier**                | Google account data, YouTube cookies, device fingerprinting                               | **Select respective data categories:**<br/>- Direct identifiers (if logged into Google)<br/>- Device identifiers<br/>- Probabilistic identifiers               |
+| **Retention Period**          | 18+ months (Google's standard retention)                                                  | Indicate maximum storage duration: 18+ months                                                                                                                  |
+| **Processing location**       | US/Global (Google servers worldwide)                                                      | **❗Attention:** Always indicate USA as primary data processing location. Google is a US-based company subject to US legislation including CLOUD Act and FISA. |
+| **Advertising Features**      | Enabled - Data used for Google advertising network (including personalized ads on videos) | **Select additional marketing purposes:**<br/>Personalized advertising                                                                                         |
+
+### Data categories
+
+This table details the categories of data collected by **YouTube**. Use this overview to ensure your YouTube setup and Consenter Manager settings stay consistent.
+
+Each row represents a **data category** that can be disabled or enabled in various ways when configuring your TPP for your website. The left-hand column describes the data category, while the right-hand column provides guidance on where to find it in the Consenter Manager and how to configure it to accurately reflect your TPP setup.
+
+<Callout type="info">
+  Some functions or data categories may be named differently between TPPs or in
+  our overview due to the lack of standardization. **As the data controller, you
+  are responsible for informing users in a clear and comprehensible manner**.
+  This guide supports you by offering uniform, established terminology that
+  helps users understand how their personal data is processed, thereby fostering
+  trust in your brand.
+</Callout>
+
+| **Collected Data Categories**                                         | **➡️ YouTube High Risk Configuration (Consent Required)**                                     | **➡️ Consenter Manager Config** What to indicate in Consenter Manager when embedding YouTube videos on your website   |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **IP Address**                                                        | IP address (plain)                                                                            | Select respective data category.                                                                                      |
+| **Technical data**<br/>- Device characteristics<br/>- Browser/OS data | Yes                                                                                           | **Select data category:**<br/>Device characteristics                                                                  |
+| **Video interaction data**                                            | Yes - Play, pause, seek, volume, quality changes, watch time, completion rate                 | **Select data category:**<br/>Browsing and interaction data                                                           |
+| **Geo-location info**                                                 | Precise location (if device permissions granted)                                              | **Select data category:**<br/>- Precise location data<br/>- Non-precise location data                                 |
+| **User Authentication Data**                                          | Yes - Google/YouTube account information if logged in                                         | **Select data category:**<br/>- Authentication-derived identifiers<br/>- Google account data<br/>- User provided data |
+| **Device identifiers**                                                | Yes - Multiple identifiers (cookies, device IDs, fingerprints)                                | **Select data category:**<br/>Device identifiers                                                                      |
+| **Probabilistic identifiers**                                         | Yes - Device fingerprinting, browser fingerprints                                             | **Select data category:** Probabilistic identifiers                                                                   |
+| **Video recommendation data**                                         | Yes - Data used to generate personalized video recommendations                                | **Select data category:**<br/>- Browsing and interaction data<br/>- Users' profiles                                   |
+| **Search and browsing history**                                       | Yes - If logged into Google, contributes to broader Google profile                            | **Select data category:**<br/>Browsing and interaction data                                                           |
+| **Engagement metrics**                                                | Yes - Likes, dislikes (if enabled), comments, subscriptions, shares                           | **Select data category:**<br/>- Browsing and interaction data<br/>- Social media interaction data                     |
+| **Special categories of personal data**                               | Potentially - Depending on YouTube content shown (e.g., health, political, religious content) | Assess content risk and select if applicable                                                                          |
+| **Privacy choices**                                                   | Yes - Google privacy settings, ad preferences, personalization settings                       | **Select data category:**<br/>Privacy choices                                                                         |
+
+<Callout type="info">
+  For technical integration guides (code implementation), see the{" "}
+  <a href="/integration-guides/contextual-consent">
+    Contextual consent guide →
+  </a>
+  .
+</Callout>
