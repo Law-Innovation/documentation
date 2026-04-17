@@ -81,7 +81,7 @@ jobs:
       - name: Trigger deployment
         uses: peter-evans/repository-dispatch@v4
         with:
-          event-type: docs-production
+          event-type: docs-environment
           repository: ${{ secrets.DISPATCH_TARGET_REPOSITORY }}
           token: ${{ secrets.REPOSITORY_DISPATCH_TOKEN }}
           client-payload: |
