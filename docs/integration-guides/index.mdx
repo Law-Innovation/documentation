@@ -33,7 +33,10 @@ If your service is not listed above, you can integrate it manually using the Con
 Once the Consenter script is loaded, you can use `window.consenter.subscribe()` to listen for consent changes for any service.
 
 <Callout type="warn">
-The Consenter API may not be available immediately when your script runs. Always listen for the `consenter:ready` event on the `document` to know when `window.consenter` is ready. If the API is already loaded, you can call it directly. The code examples below show the recommended pattern.
+  The Consenter API may not be available immediately when your script runs.
+  Always listen for the `consenter:ready` event on the `document` to know when
+  `window.consenter` is ready. If the API is already loaded, you can call it
+  directly. The code examples below show the recommended pattern.
 </Callout>
 
 ```javascript title="index.html" lineNumbers
@@ -120,3 +123,5 @@ Here's a complete example showing how to integrate any service:
 ```
 
 Consult your service's documentation for the specific methods to enable and disable tracking or functionality.
+
+Testing CI
