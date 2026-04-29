@@ -1,20 +1,21 @@
 ---
-title: Criteo Integration
+title: Optimizely
 ---
 
 ## Prerequisites
 
 Before starting, you'll need:
 
-- Your Criteo Partner ID (also called Account ID)
-- Product IDs that match your Criteo product catalog
+- Your Optimizely Project ID
 
 <Callout type="info">
-  Find your Partner ID in your Criteo Commerce Growth Dashboard under Assets →
-  Events Tracking. It's a 5-digit number.
+  To find your Project ID, log in to Optimizely, go to Settings >
+  Implementation, and look for the 8-digit number in your snippet URL. For
+  example, in `https://cdn.optimizely.com/js/12345678.js`, your Project ID is
+  `12345678`.
 </Callout>
 
-## Integrate Criteo with Consenter
+## Integrate Optimizely with Consenter
 
 <Callout type="warn">
   **Important**: Before using this code, verify that the service ID and purpose
@@ -22,66 +23,53 @@ Before starting, you'll need:
   configuration. To find the correct IDs, go to [Consenter
   Manager](https://manager.consenter.eu) → Your Site → Active Banner → Hover
   over the service and purpose labels and click the copy button in the tooltip.
-  See the [Integration Guides](/integration-guides) page for detailed
+  See the [Technical Integration](/technical-integration) page for detailed
   instructions.
 </Callout>
 
 Copy the code below and paste it into your website's `<head>` section.
 Replace the placeholders with your own values:
 
-- `YOUR_SERVICE_ID` → Your Criteo service ID from Consenter Manager
+- `YOUR_SERVICE_ID` → Your Optimizely service ID from Consenter Manager
 - `YOUR_PURPOSE_ID` → Your purpose ID from Consenter Manager
-- `YOUR_PARTNER_ID` → Your 5-digit Criteo Partner/Account ID
+- `YOUR_PROJECT_ID` → Your 8-digit Optimizely Project ID
 
 ```html title="index.html" lineNumbers
 <script>
   var serviceId = "YOUR_SERVICE_ID"; // Replace with your service ID from Consenter Manager [!code highlight]
   var purposeId = "YOUR_PURPOSE_ID"; // Replace with your purpose ID from Consenter Manager [!code highlight]
-  var partnerId = "YOUR_PARTNER_ID"; // [!code highlight]
+  var projectId = "YOUR_PROJECT_ID"; // [!code highlight]
 
-  window.criteo_q = window.criteo_q || [];
-
-  function loadCriteo() {
+  function loadOptimizely() {
     var existingScript = document.querySelector(
-      'script[src*="criteo.com/js/ld/ld.js"]',
+      'script[src*="cdn.optimizely.com"]',
     );
     if (existingScript) return;
 
     var script = document.createElement("script");
-    script.src = "//dynamic.criteo.com/js/ld/ld.js?a=" + partnerId;
-    script.async = true;
+    script.src = "https://cdn.optimizely.com/js/" + projectId + ".js";
     document.head.appendChild(script);
-
-    var deviceType = /iPad/.test(navigator.userAgent)
-      ? "t"
-      : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile/.test(
-            navigator.userAgent,
-          )
-        ? "m"
-        : "d";
-
-    window.criteo_q.push(
-      { event: "setAccount", account: partnerId },
-      { event: "setSiteType", type: deviceType },
-      { event: "viewHome" },
-    );
   }
 
-  function removeCriteo() {
-    var scripts = document.querySelectorAll('script[src*="criteo.com"]');
+  function removeOptimizely() {
+    window.optimizely = window.optimizely || [];
+    window.optimizely.push({ type: "disable" });
+    var scripts = document.querySelectorAll(
+      'script[src*="cdn.optimizely.com"]',
+    );
     scripts.forEach(function (script) {
       script.remove();
     });
-    window.criteo_q = [];
+    window.optimizely = [];
   }
 
   function subscribeToConsenter() {
     window.consenter.subscribe(
       function (hasConsent) {
         if (hasConsent) {
-          loadCriteo();
+          loadOptimizely();
         } else {
-          removeCriteo();
+          removeOptimizely();
         }
       },
       serviceId, // [!code highlight]
@@ -97,4 +85,4 @@ Replace the placeholders with your own values:
 </script>
 ```
 
-Criteo is now connected to Consenter.
+Optimizely is now connected to Consenter.

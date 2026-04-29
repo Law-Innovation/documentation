@@ -1,13 +1,13 @@
 {
   "pages": [
-    "getting-started/common-questions",
-    "getting-started/purposes",
+    "getting-started/consenter",
+    "getting-started/legal-context",
     "getting-started/risk-assessment",
     "---",
-    "configuration-guides",
-    "getting-started/creating-banner",
-    "integration-guides",
+    "configuration",
+    "technical-integration",
     "---",
-    "getting-started/maintaining-banner"
+    "maintenance",
+    "faq"
   ]
 }

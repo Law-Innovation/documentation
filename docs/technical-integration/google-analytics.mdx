@@ -1,5 +1,5 @@
 ---
-title: Google Analytics 4 Integration
+title: Google Analytics 4
 ---
 
 ## Prerequisites
@@ -21,7 +21,7 @@ Before starting, you'll need:
   configuration. To find the correct IDs, go to [Consenter
   Manager](https://manager.consenter.eu) → Your Site → Active Banner → Hover
   over the service and purpose labels and click the copy button in the tooltip.
-  See the [Integration Guides](/integration-guides) page for detailed
+  See the [Technical Integration](/technical-integration) page for detailed
   instructions.
 </Callout>
 
@@ -33,10 +33,6 @@ Replace the placeholders with your own values:
 - `G-XXXXXXXXXX` → Your Google Analytics 4 Measurement ID
 
 ```html title="index.html" lineNumbers
-<script
-  async
-  src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag() {
@@ -51,8 +47,20 @@ Replace the placeholders with your own values:
     analytics_storage: "denied",
   });
 
-  gtag("js", new Date());
-  gtag("config", measurementId);
+  function loadGoogleAnalytics() {
+    var existingScript = document.querySelector(
+      'script[src*="googletagmanager.com/gtag/js"]',
+    );
+    if (!existingScript) {
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
+      document.head.appendChild(script);
+    }
+
+    gtag("js", new Date());
+    gtag("config", measurementId);
+  }
 
   function subscribeToConsenter() {
     window.consenter.subscribe(
@@ -61,6 +69,7 @@ Replace the placeholders with your own values:
           gtag("consent", "update", {
             analytics_storage: "granted",
           });
+          loadGoogleAnalytics();
         } else {
           gtag("consent", "update", {
             analytics_storage: "denied",

@@ -1,77 +1,81 @@
 ---
-title: Welcome to Consenter Docs
+title: Consenter Documentation
 ---
 
-<div className="mt-4 flex gap-4">
-  <div>
-      Turn compliance into a competitive advantage
+**Turn compliance into informed consent.**
 
-      Exploit the full potential of data-driven innovation, minimizing your
-      end-users' data protection risks.
+Configure your banner, assess data protection risks, integrate third-party tools, and keep consent valid as your website changes.
 
+## Learn the Framework
 
-      Consenter helps you find your optimal balance between business
-      opportunities and risk control.
-
-  </div>
-  <div className="flex justify-center">
-    <img
-      className="size-40"
-      src="/assets/welcome.png"
-      alt="Welcome to Consenter Docs"
-    />
-  </div>
-</div>
+Understand what Consenter does before you configure your banner.
 
 <Cards>
   <Card
-    href="/getting-started/common-questions"
-    title="Common questions about Consenter"
-    description="Who? What? When? Why? How?"
+    href="/getting-started/consenter"
+    title="What is Consenter?"
+    description="Learn how Consenter combines banner configuration, risk assessment, and consent-agent support."
     className="col-span-full"
   />
   <Card
-    href="/getting-started/purposes"
-    title="Consenter purposes"
-    description="Which processing purposes you may ask your users for their consent?"
+    href="/getting-started/legal-context"
+    title="Legal context"
+    description="Understand the GDPR and ePrivacy requirements behind informed consent."
   />
   <Card
     href="/getting-started/risk-assessment"
-    title="Consenter risk assessment"
-    description="How to decrease the risks to increase their trust and, thus, your consent rate?"
+    title="Risk assessment"
+    description="See how configuration choices affect risk, transparency, and consent decisions."
   />
 </Cards>
 
-## Set up your Consenter Banner in 3 steps
+## Set Up Consenter
+
+Follow the implementation path from configuration to technical integration.
 
 <Cards>
   <Card
-    href="/configuration-guides"
-    title="Step 1: Configuration Guides"
-    description="Configure your tools in their respective applications & sync them with Consenter Manager."
+    href="/configuration"
+    title="1. Configure the cookie banner"
+    description="Define purposes, service providers, data categories, storage details, and risk information in Consenter Manager."
     className="col-span-full"
   />
   <Card
-    href="/getting-started/creating-banner"
-    title="Step 2: Banner Implementation Guide"
-    description="Enable Consenter Banner on your site."
-    className="col-span-full"
-  />
-  <Card
-    href="/integration-guides"
-    title="Step 3: Technical Integration Guides"
-    description="Ensure your tools only load after the user gives consent."
+    href="/technical-integration"
+    title="2. Integrate the banner and tools"
+    description="Embed the Consenter script and block third-party tools until the correct consent exists."
     className="col-span-full"
   />
 </Cards>
 
-## Maintain and improve your Consenter Banner
+## Connect Your Tools
+
+Use service-specific integration guides when available.
+
+<Cards>
+  <Card href="/technical-integration/matomo" title="Matomo" />
+  <Card
+    href="/technical-integration/google-analytics"
+    title="Google Analytics 4"
+  />
+  <Card href="/technical-integration/etracker" title="eTracker" />
+  <Card href="/technical-integration/optimizely" title="Optimizely" />
+  <Card href="/technical-integration/criteo" title="Criteo" />
+</Cards>
+
+## Keep It Current
+
+Consent is not a one-time setup. Review your banner whenever your purposes, tools, or risk profile change.
 
 <Cards>
   <Card
-    href="/getting-started/maintaining-banner"
-    title="Banner maintenance"
-    description="Keep your Consenter Banner up to date as your website evolves."
-    className="col-span-full"
+    href="/maintenance"
+    title="Maintenance and updates"
+    description="Use Consenter’s trigger system to handle changed purposes, changed tools, and changed risk levels."
+  />
+  <Card
+    href="/faq"
+    title="FAQ"
+    description="Find quick answers about banners, contextual consent, consent agents, and implementation details."
   />
 </Cards>
