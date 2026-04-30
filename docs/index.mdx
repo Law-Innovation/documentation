@@ -2,30 +2,32 @@
 title: Consenter Documentation
 ---
 
-**Turn compliance into informed consent.**
+**Implement state of the art consent management**
 
-Configure your banner, assess data protection risks, integrate third-party tools, and keep consent valid as your website changes.
+Configure your banner, assess data protection risks, integrate third-party tools, and keep consent valid as your website changes. This way you create trust with users and get rid of consent fatigue.
 
 ## Learn the Framework
 
-Understand what Consenter does before you configure your banner.
+This documentation explains the data protection framework underlying the Consenter cookie banner and guides you through its setup, configuration, and ongoing management in the Consenter Manager.
+
+At the core of the Consenter cookie banner—alongside its ability to communicate with the Consenter consent agent—is its integrated risk assessment. This assessment provides the methodological foundation for a legally compliant configuration. Unlike conventional cookie banners, Consenter goes beyond the mere technical collection of consent by systematically evaluating the data protection implications of your specific settings. In combination with the consent agent, this enables genuinely informed consent. As such, Consenter represents a new state of the art that website operators must consider, particularly in light of Articles 25 and 32 GDPR (see the [Risk Assessment](./risk-assessment#legal-basis) section for details).
+
+The Consenter Risk Assessment illustrates how the use of specific technologies on your website, as well as their configuration, affects the fundamental rights of your visitors. The results are displayed in the Consenter Manager and form the basis for transparent communication within the banner. This allows users to make an informed decision about whether the benefits of consenting are proportionate to the associated risks.
+
 
 <Cards>
   <Card
     href="/getting-started/consenter"
-    title="What is Consenter?"
-    description="Learn how Consenter combines banner configuration, risk assessment, and consent-agent support."
+    title="The Legal Architecture Behind Consenter?"
+    description="Learn how Consenter works, why it is teh legally required state of the art for informed consent and how to generate a conpetetive advantage."
     className="col-span-full"
   />
-  <Card
-    href="/getting-started/legal-context"
-    title="Legal context"
-    description="Understand the GDPR and ePrivacy requirements behind informed consent."
-  />
+
   <Card
     href="/getting-started/risk-assessment"
-    title="Risk assessment"
-    description="See how configuration choices affect risk, transparency, and consent decisions."
+    title="Consenter Risk Assessment"
+    description="See how your configuration choices affect data protection risks, transparency requirements and user trust."
+    className="col-span-full"
   />
 </Cards>
 
@@ -42,8 +44,8 @@ Follow the implementation path from configuration to technical integration.
   />
   <Card
     href="/technical-integration"
-    title="2. Integrate the banner and tools"
-    description="Embed the Consenter script and block third-party tools until the correct consent exists."
+    title="2. Integrate the Banner and Third Party Tools"
+    description="Embed the Consenter script and block third-party tools until valid consent has been obtained."
     className="col-span-full"
   />
 </Cards>
@@ -63,19 +65,21 @@ Use service-specific integration guides when available.
   <Card href="/technical-integration/criteo" title="Criteo" />
 </Cards>
 
-## Keep It Current
+## Keep It Up to Date
 
-Consent is not a one-time setup. Review your banner whenever your purposes, tools, or risk profile change.
+Consent Management is not a one-time setup. Review your banner whenever your purposes, tools, or risk profile change.
 
 <Cards>
   <Card
     href="/maintenance"
     title="Maintenance and updates"
-    description="Use Consenter’s trigger system to handle changed purposes, changed tools, and changed risk levels."
+    description="Use Consenter’s trigger system to handle changed purposes, tools, and risk levels."
   />
   <Card
     href="/faq"
     title="FAQ"
-    description="Find quick answers about banners, contextual consent, consent agents, and implementation details."
+    description="Find quick answers about consent agents, cookie banners, contextual consent, and implementation details."
   />
 </Cards>
+
+This documentation is continuously updated to reflect legal, technical, and functional developments.
