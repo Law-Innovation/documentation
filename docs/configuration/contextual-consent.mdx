@@ -1,0 +1,208 @@
+---
+title: Contextual Consent
+---
+
+If you embed third-party content—such as maps, videos, or social media features—on your website, you must ensure that these providers do not collect personal data from visitors before consent has been obtained. To achieve this, you should implement our contextual consent solution when integrating such content.
+
+Our contextual consent mechanism:
+
+1\. Blocks third-party content until the user has given consent.  
+2\. Allows users to provide consent directly within the embedded content, thereby unblocking it.  
+3\. Automatically unblocks content for users who have already consented to the purpose “Unlock additional website features.”
+
+To implement contextual consent for any third-party provider (TPP), follow the steps below.
+
+<Callout type="info">
+  <ul className="list-disc space-y-1 pl-5">
+    <li>Select the correct contextual consent type</li>
+    <li>Copy-paste the respective code snippet</li>
+    <li>Replace TPP-specific placeholders</li>
+  </ul>
+</Callout>
+
+## Contextual consent types
+
+Some third-party integrations process personal data solely to provide their service, while others also use data for their own additional purposes (e.g. advertising). This means you’ll need to collect different consents depending on the specific third-party provider you want to embed on your website.
+
+Shown below are the three scenarios for embedding third party content and guidance on which type of contextual consent to implement (type 1 and type 2).
+
+<Accordions type="multiple">
+  <Accordion title="Scenario 1: No-consent required">
+    **When does this apply?**
+
+    In a very limited number of cases, third-party content can be embedded on
+    your website without requiring visitor consent. This is possible within
+    the EU only where:
+
+    No consent is required according to the **ePrivacy Directive**, because
+
+    - no data is stored or accessed on the visitors’ device
+    - or this is “strictly necessary” for the provision of your website
+
+    **AND**
+
+    No consent is required according to the **GDPR**, because any processing of
+    personal data can be based on legitimate interests (Art. 6 (1)(f) GDPR) or
+    another legal basis.
+
+    <Callout type="info">
+      No action is required in these scenarios. Refer to our{" "}
+      <a href="/configuration/provider-guides">
+        configuration guide
+      </a>{" "}
+      for third party providers, to find out where consent-free embedding is
+      possible.
+    </Callout>
+
+  </Accordion>
+
+  <Accordion title="Scenario 2: Contextual consent with simple unblock button (type 1)">
+    **When to choose this?**
+
+    If you want to embed content from a third party provider which processes
+    data solely to **deliver the content** to your website visitors (and not
+    other purposes), this typically still involves
+
+    - storing or accessing information on visitors&apos; devices
+    - very limited personal data processing.
+
+    In these common scenarios, you must **block** the content by default,
+    allowing visitors to decide whether to transmit data to the third party by
+    means of a simple “unblock” button.
+
+    <div className="mt-4 flex justify-center">
+      <img
+        src="/assets/contextual-consent-4.png"
+        alt="Contextual consent type 1 with simple unblock button"
+      />
+    </div>
+
+  </Accordion>
+
+  <Accordion title="Scenario 3: Contextual consent for additional purposes (type 2)">
+    **When to choose this?**
+
+    If you want to embed content from a third party provider which processes
+    data also for **other purposes** beyond delivering the content to your
+    website visitors, you must acquire user consent for these additional
+    purposes through the contextual consent.
+
+    If this is the case, you must
+
+    - block the content by default,
+    - specify the additional purposes, and
+    - allow visitors to decide whether they consent to these additional
+      purposes.
+
+    <div className="mt-4 flex justify-center">
+      <img
+        src="/assets/contextual-consent-5.png"
+        alt="Contextual consent type 2 with additional purposes"
+      />
+    </div>
+
+  </Accordion>
+</Accordions>
+
+## Technical integration
+
+<Callout type="warn">
+  Contextual consent only works if your{" "}
+  <strong>Consenter Banner is configured correctly</strong> in the Consenter
+  Manager. Make sure the{" "}
+  <strong>
+    purposes used by the third-party provider match the purposes enabled in your
+    banner
+  </strong>
+  . If the purposes do not match, contextual consent cannot be applied.
+</Callout>
+
+1. **Add the contextual consent scripts**
+
+   Place the contextual consent script **at the top of the `<head>` section**:
+
+   ```html title="index.html" lineNumbers
+   <!-- Integrate Consenter contextual consent -->
+   <!-- Paste the contextual consent script inside the <head> section -->
+   <script src="https://banner.consenter.eu/contextual-consent.js"></script>
+   <script src="https://banner.consenter.eu/YOUR_DOMAIN_ID/cb.js" async></script>
+   ```
+
+2. **Add Consenter attributes to your embed**
+
+   Remove the original `src` attribute, and add Consenter data attributes inside
+   of the `<iframe>` where you want to enable contextual consent. Put the URL
+   that should load after consent into `data-consenter-content-url`, then replace
+   the placeholders with your own values:
+   - **For type 1 (simple unblock)**
+
+     ```html title="iframe"
+     <!-- Enable Consenter contextual consent for a service -->
+     <iframe
+       width="560"
+       height="315"
+       data-consenter-language="DE"
+       data-consenter-tpp-id="YOUR_SERVICE_ID"
+       data-consenter-tpp-label="YOUR-SERVICE-NAME"
+       data-consenter-content-label="YOUR-CONTENT-DESCRIPTION"
+       data-consenter-content-url="YOUR_SERVICE_URL"
+     >
+       ...
+     </iframe>
+     ```
+
+   - **For type 2 (additional purposes)**
+
+     Add the required purpose flags:
+
+     <Callout type="info">
+       When using contextual consent, you can choose from the following
+       additional purposes:
+       <br />
+       - Improve the service
+       <br />
+       - Support marketing analytics
+       <br />
+       - Customise online ads
+       <br />
+       Find out which purposes to select for your TPP in our{" "}
+       <a href="/configuration/provider-guides">TPP configuration guides</a> or the privacy
+       policy and documentation of the respective TPP.
+     </Callout>
+
+     ```html title="iframe with additional purposes"
+     <!-- Enable Consenter contextual consent for a service -->
+     <iframe
+       width="560"
+       height="315"
+       data-consenter-language="DE"
+       data-consenter-tpp-id="YOUR_SERVICE_ID"
+       data-consenter-tpp-label="YOUR-SERVICE-NAME"
+       data-consenter-content-label="YOUR-CONTENT-DESCRIPTION"
+       data-consenter-content-url="YOUR_SERVICE_URL"
+       data-consenter-tpp-purpose-improve-the-service="true"
+       data-consenter-tpp-purpose-marketing-analytics="true"
+       data-consenter-tpp-purpose-customise-ads="true"
+     >
+       ...
+     </iframe>
+     ```
+
+**What each attribute does (quick reference)?**
+
+| Attribute                                        | What it does                                                             | Where to find it?                                                                                                                                                                               |
+| ------------------------------------------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`data-consenter-tpp-id`**                      | Tells Consenter which TPP this embed belongs to.                         | Always required. Find the TPP/service ID in [**Consenter Manager**](https://manager.consenter.eu/) → Your Site → Active Banner → Hover over the service and click the copy button in the tooltip. |
+| **`data-consenter-tpp-label`**                   | Display name shown to the user (e.g., “YouTube video”).                  | Required. Use something users immediately understand.                                                                                                                                           |
+| **`data-consenter-content-url`**                 | The URL that loads _after_ the user unblocks / consents.                 | Required. Usually the original iframe/embed `src`. Remove the original `src` attribute so the content is blocked before consent.                                                                 |
+| **`data-consenter-content-label`**               | Short description of the specific content (e.g., “Product Demo”).        | Required. Helps users understand what they are enabling.                                                                                                                                        |
+| **`data-consenter-language`**                    | Sets the language of the contextual consent UI.                          | Optional. Supports `EN` and `DE`. If missing, the browser language is used when it is English; otherwise German is used.                                                                         |
+| `data-consenter-tpp-purpose-improve-the-service` | Declares that the service uses data for **Improve the service**.         | Required only if the TPP needs this purpose legally. Set to `true`.                                                                                                                             |
+| `data-consenter-tpp-purpose-marketing-analytics` | Declares that the service uses data for **Support marketing analytics**. | Required only if the TPP needs this purpose legally. Set to `true`.                                                                                                                             |
+| `data-consenter-tpp-purpose-customise-ads`       | Declares that the service uses data for **Customised online ads**.       | Required only if the TPP needs this purpose legally. Set to `true`.                                                                                                                             |
+
+<Callout type="info">
+  If unsure whether your TPP requires contextual consent of type 1 or type 2,
+  check out our <a href="/configuration/provider-guides">TPP configuration guides</a> or refer
+  to the privacy policy or documentation of the TPP.
+</Callout>
