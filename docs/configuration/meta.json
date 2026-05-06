@@ -6,5 +6,6 @@
     "privacy-policy",
     "contextual-consent",
     "provider-guides"
-  ]
+  ],
+  "defaultOpen": true
 }
