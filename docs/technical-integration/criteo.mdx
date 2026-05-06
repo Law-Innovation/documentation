@@ -1,0 +1,100 @@
+---
+title: Criteo
+---
+
+## Prerequisites
+
+Before starting, you'll need:
+
+- Your Criteo Partner ID (also called Account ID)
+- Product IDs that match your Criteo product catalog
+
+<Callout type="info">
+  Find your Partner ID in your Criteo Commerce Growth Dashboard under Assets →
+  Events Tracking. It's a 5-digit number.
+</Callout>
+
+## Integrate Criteo with Consenter
+
+<Callout type="warn">
+  **Important**: Before using this code, verify that the service ID and purpose
+  ID values are up to date. These IDs are specific to your Consenter
+  configuration. To find the correct IDs, go to [Consenter
+  Manager](https://manager.consenter.eu) → Your Site → Active Banner → Hover
+  over the service and purpose labels and click the copy button in the tooltip.
+  See the [Technical Integration](/technical-integration) page for detailed
+  instructions.
+</Callout>
+
+Copy the code below and paste it into your website's `<head>` section.
+Replace the placeholders with your own values:
+
+- `YOUR_SERVICE_ID` → Your Criteo service ID from Consenter Manager
+- `YOUR_PURPOSE_ID` → Your purpose ID from Consenter Manager
+- `YOUR_PARTNER_ID` → Your 5-digit Criteo Partner/Account ID
+
+```html title="index.html" lineNumbers
+<script>
+  var serviceId = "YOUR_SERVICE_ID"; // Replace with your service ID from Consenter Manager [!code highlight]
+  var purposeId = "YOUR_PURPOSE_ID"; // Replace with your purpose ID from Consenter Manager [!code highlight]
+  var partnerId = "YOUR_PARTNER_ID"; // [!code highlight]
+
+  window.criteo_q = window.criteo_q || [];
+
+  function loadCriteo() {
+    var existingScript = document.querySelector(
+      'script[src*="criteo.com/js/ld/ld.js"]',
+    );
+    if (existingScript) return;
+
+    var script = document.createElement("script");
+    script.src = "//dynamic.criteo.com/js/ld/ld.js?a=" + partnerId;
+    script.async = true;
+    document.head.appendChild(script);
+
+    var deviceType = /iPad/.test(navigator.userAgent)
+      ? "t"
+      : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile/.test(
+            navigator.userAgent,
+          )
+        ? "m"
+        : "d";
+
+    window.criteo_q.push(
+      { event: "setAccount", account: partnerId },
+      { event: "setSiteType", type: deviceType },
+      { event: "viewHome" },
+    );
+  }
+
+  function removeCriteo() {
+    var scripts = document.querySelectorAll('script[src*="criteo.com"]');
+    scripts.forEach(function (script) {
+      script.remove();
+    });
+    window.criteo_q = [];
+  }
+
+  function subscribeToConsenter() {
+    window.consenter.subscribe(
+      function (hasConsent) {
+        if (hasConsent) {
+          loadCriteo();
+        } else {
+          removeCriteo();
+        }
+      },
+      serviceId, // [!code highlight]
+      purposeId, // [!code highlight]
+    );
+  }
+
+  if (window.consenter) {
+    subscribeToConsenter();
+  } else {
+    document.addEventListener("consenter:ready", subscribeToConsenter);
+  }
+</script>
+```
+
+Criteo is now connected to Consenter.

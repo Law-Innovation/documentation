@@ -1,237 +1,94 @@
 ---
-title: Consenter risk assessment
+title: Consenter Risk-Assessment
 ---
 
-![Consenter risk assessment](/assets/consenter-risk-assessment-intro.png)
+Consenter Risk Assessment provides the methodological basis for evaluating your website configuration—more specifically, the configuration of the technologies used to operate your website.
 
-## Why is the Consenter risk assessment trustworthy?
+## Purpose of the risk assessment
 
-The Consenter risk assessment corresponds to the data protection risk assessment pursuant to Articles 25 and 35 of the GDPR. The methodology of this risk assessment is based on a research and development process spanning more than 10 years within and between numerous European research institutions and data protection authorities.
+As a key management tool within Consenter Manager, the Consenter Risk Assessment shows you how your specific website configuration affects
 
-Data protection risk assessment involves examining various factors to determine which fundamental rights of the users of your service are at risk when you process their personal data. To this end, we examine the specific processing procedure, amongst other aspects, with regard to the type of data, the purposes and nature of its processing, the context of its collection, and the social roles of the actors involved.
+- the data protection risks for your website visitors,
+- your legal compliance and
+- your website visitors’ willingness to give consent.
 
-Over the last decade, we have conducted numerous research projects to determine which typical processing procedures pose which fundamental rights risks, how these risks can best be controlled, and how they can be communicated most clearly to laypeople so that they can adapt to them in the best possible way.
+Within the Consenter Manager, you can systematically assess, compare and optimise the data protection-related settings of your website technologies.
 
-To make this risk assessment as effective and efficient as possible for service providers, such as you as a website operators, we have automated the risk assessment process. To this aim, we examine each individual third-party tool and its configuration options with regard to the factors mentioned above.
+## Legal basis
 
-On this basis, you can now configure the tools according to your needs and observe the effects of your respective configuration on the risk-benefit ratio in near real time, which is then communicated to your end users. This feedback loop gives you immediate control over the risks these tools pose to your end users, your own compliance risk and, ultimately, your consent rate.
+The risk assessment methodology is based on Article 25 of the GDPR (data protection by design and data protection by default) and Article 35 of the GDPR (data protection impact assessment). Both provisions require an assessment of the risks to the rights and freedoms of data subjects.
 
-<Callout type="info">
+The implementation of this risk assessment methodology is based on a research and development process spanning over ten years, carried out in collaboration with European research institutions and data protection authorities. It combines data protection risk assessments with considerations on technical feasibility and clear communication.
 
-**Third party (service) provider**
+## Assessed Factors
 
-Technologies from third party service providers (TPPs), such as Matomo or Google Analytics, are essential for successfully operating, maintaining, and improving websites. Different tools carry varying risks based on factors like the provider's location and the data they process by default for specific purposes. TPPs thus play a key role in determining—and potentially reducing—risks to users' fundamental rights.
+The risk assessment takes into account, in particular:
 
-Common alternative terms include third party providers, vendors, external providers, technology providers, and external vendors. For simplicity, we refer to them as **third party providers** or **TPPs**
+- tracking methods used
+- categories of personal data
+- storage period
+- storage location
+- legal roles of third-party providers involved
+- use and type of personalisation models
+- purposes and specific nature of the processing
+- context of data collection
 
-</Callout>
+Each selection option is assigned a weighted score. This weighting is based on its potential impact on fundamental rights such as privacy and informational self-determination, and is grounded in our research findings.
 
-## How to decrease the risks to increase your consent rate?
+## Role of third-party providers
 
-As promised, Consenter Manager gives you complete control over the risks associated, especially, with integrating third-party tools for your users and, consequently, your legal compliance. For this purpose, we provide you with [specific configuration guides](/configuration-guides) for third party technology providers (TPPs). In these guides, we show you
+Third-party technologies – such as Matomo or Google Analytics – are often central to the operation and further development of websites. However, different tools and configurations lead to different data protection implications. These depend, amongst other things, on the provider’s place of business, the data processed by default, and the respective purposes of processing.
 
-- on the one hand, how to configure the respective third-party technology so that you can find the optimal balance between the functionalities that the tool offers and the data protection risk that these functionalities pose to your end users; and
-- on the other hand, how to configure your consent banner in your Consenter Manager so that you not only comply with your information duties, but can also advertise the increased level of data protection on your website to your users (see above under 'How to create a consent banner with Consenter').
+## Automated assessment in Consenter Manager
 
-For this purpose, each TPP guide contains a table that typically lists four different risk configurations: lowest risk, low risk, high risk, highest risk. These risk configurations run in columns across several rows from top to bottom.
+The assessment process is fully integrated into the Consenter Manager.
 
-<Callout type="info">
-  **What is the TPP configuration guide for?**
+Each configuration change has an immediate impact on the calculated risk–benefit ratio, which is visualised in the Risk Benefit Wheel—a graphical representation of this ratio. This allows you to see in real time how your settings influence the data protection assessment.
 
-With these risk configurations, we help you gain in advance an overview of the potential overall risk when configuring the third-party technology.
+Many risks arise from the interaction of multiple factors and only become significant once certain thresholds are reached. These interdependencies are also reflected in the Risk Benefit Wheel.
 
-Of course, if you represent, in a second step, your TPP configuration in the Consenter Manager accordingly, we will automatically map the associated risk with each singular entry. The Risk Benefit Wheel on the left-hand side of Consenter Manager also shows you the respective interim risk in real time.
+## Third-Party Configuration Guides
 
-However, many of the risks associated with the individual settings must first accumulate until they reach a certain threshold, which is indicated by the Risk Benefit Wheel. The TPP guides will therefore help you to plan ahead, according to our four risk configurations.
+For commonly used third-party technologies, we provide specific configuration guides. These typically include three levels of risk configurations:
 
-</Callout>
+- Low risk
+- Medium risk
+- High risk
 
-![General structure of a TPP configuration guide, taking the example of Matomo Analytics](/assets/tpp-configuration-guide-table.png)
+These configurations span multiple settings and parameters. The guides give you a structured overview of the overall risk associated with different configuration options. When you implement your chosen settings in the Consenter Manager, the system automatically assigns the corresponding risk level to each individual option.
 
-<Callout type="info">
-  **Recommendation**
+## Configuration Recommendations
 
-We recommend choosing the low-risk setup because it affects overall privacy impact shown to your users in the Consenter banner, which influences your consent rates.
+As a general rule, we recommend choosing a low-risk configuration. This has a positive effect on the overall assessment displayed in the cookie banner and can also improve your consent rates.
 
-However, every website is different. Lower-risk setups often offer fewer features or require more manual work, while higher-risk setups unlock more functionality (see above "How to create a consent banner with Consenter?"). This guide simply helps you understand that trade-off so you can choose the configuration that best fits your needs.
+However, lower risk may come at the cost of reduced functionality or increased manual effort when configuring third-party technologies. If you wish to use the full functionality of these technologies, this is often associated with higher risks to the fundamental rights of your users.
 
-</Callout>
+The guides are designed to support you in making this trade-off consciously and transparently. You may follow the recommended configurations or deviate from them—they are intended as guidance only.
 
-If you follow one of our suggested risk configurations, you can now transfer the configuration suggestions from our guide line by line into the settings of the third-party technology and then into the Consent Manager. (As mentioned, you can deviate from the recommendations at any time; they are only intended to provide you with a forward-looking overview.)
+## Communicating the Risk–Benefit Ratio
 
-<div className="grid gap-4 md:grid-cols-2">
-  <figure>
-    <img
-      src="/assets/matomo-analytics-settings.png"
-      alt="Example of Matomo Analytics settings"
-    />
-    <figcaption className="text-muted-foreground mt-2 text-sm">
-      Example of Matomo Analytics settings
-    </figcaption>
-  </figure>
-  <figure>
-    <img
-      src="/assets/consenter-manager-settings.png"
-      alt="Accordingly, settings in Consenter Manager"
-    />
-    <figcaption className="text-muted-foreground mt-2 text-sm">
-      Accordingly, settings in Consenter Manager
-    </figcaption>
-  </figure>
-</div>
+At the end of each configuration process, the Consenter Manager provides an overview of the resulting risk–benefit ratio for each processing purpose. The Consenter cookie banner communicates this ratio transparently to your website visitors.
 
-## How does Consenter communicate the risk to you and your users?
+Many websites currently operate with a below-average level of data protection. Therefore, the consent agent initially assumes such a baseline and explains the typical risks and benefits associated with each purpose. If you configure your third-party technologies in a more privacy-friendly way than other operators, this will be communicated to your visitors.
 
-As mentioned above, how you configure the third-party provider technology has an impact on your users – and your consent rate. In Consenter Manager, you can therefore view an overview of the final risk-benefit ratio at the end of each configuration process for a specific purpose.
+Transparent and privacy-friendly configurations help build user trust and have a positive impact on users’ willingness to give consent.
 
-Most websites have a fairly mediocre to poor level of data protection. This is not usually the fault of the website providers, but is generally due to a lack of knowledge. For this reason, we also assume a fairly mediocre to poor level of data protection in the consent agent, where we explain to users the risks and benefits typically associated with the various processing purposes in a general way. If you configure your third-party tool better than most other website providers do, we can communicate this to your website visitors. This increases their trust and thus tends to increase your consent rate.
+## Changes in the Risk–Benefit Ratio (Trigger System)
 
-<div className="grid gap-4 md:grid-cols-3">
-  <figure>
-    <img
-      src="/assets/consent-agent-poor-protection.png"
-      alt="Consent Agent showing poor level of protection in general"
-    />
-    <figcaption className="text-muted-foreground mt-2 text-sm">
-      Consent Agent showing poor level of protection in general
-    </figcaption>
-  </figure>
-  <figure>
-    <img
-      src="/assets/handover-notice-risk.png"
-      alt="Specific risk-benefit ratio on handover notice (often better)"
-    />
-    <figcaption className="text-muted-foreground mt-2 text-sm">
-      Specific risk-benefit ratio on handover notice (often better)
-    </figcaption>
-  </figure>
-  <figure>
-    <img
-      src="/assets/consent-banner-risk.png"
-      alt="Specific risk-benefit ratio on consent banner (often better)"
-    />
-    <figcaption className="text-muted-foreground mt-2 text-sm">
-      Specific risk-benefit ratio on consent banner (often better)
-    </figcaption>
-  </figure>
-</div>
+If you make changes to your system, this may affect the level of risk for your website visitors. To comply with the GDPR’s transparency requirements, you must therefore keep your cookie banner up to date at all times.
 
-<div className="grid gap-4 md:grid-cols-2">
-  <figure>
-    <img
-      src="/assets/better-risk-ratio.png"
-      alt="Better risk-benefit ratio than usual"
-    />
-    <figcaption className="text-muted-foreground mt-2 text-sm">
-      Better risk-benefit ratio than usual
-    </figcaption>
-  </figure>
-  <figure>
-    <img
-      src="/assets/worse-risk-ratio.png"
-      alt="Worse risk-benefit ratio than usual"
-    />
-    <figcaption className="text-muted-foreground mt-2 text-sm">
-      Worse risk-benefit ratio than usual
-    </figcaption>
-  </figure>
-</div>
+When you create a new version of your cookie banner in the Consenter Manager, the system automatically compares the risks of your previous configuration with those of the new one and allows you to inform your website visitors about any changes.
 
-Depending on whether your users had already made a decision for or against giving their consent, they will now be shown the new risk-benefit ratio when they visit your website again and will have the opportunity to reconsider their previous decision.
+If the risks increase in the new configuration (for example, due to the transfer of personal data to a third country such as the United States), you will be notified. By selecting the corresponding option, you can trigger a notification that will be shown to returning visitors the next time they access your website.
 
-## How does the risk assessment work in detail?
+![Risk increase trigger notification](/assets/risk-increase-trigger-notification.png)
 
-When configuring the consent banner in the Consenter customer panel, each change you make directly affects the associated fundamental rights risk for your website visitors. This impact is visualised in the risk-benefit wheel displayed in the left-hand column of the Consenter Manager.
+If, on the other hand, the risks are reduced, this changes the basis on which website visitors previously decided whether or not to consent to data processing. If users had refused consent under a higher-risk configuration, you may—by selecting the corresponding option—request their consent again (“again-consent”).
 
-<div className="grid gap-4 md:grid-cols-2">
-  <figure>
-    <img src="/assets/consenter-manager-settings.png" alt="Consenter Manager" />
-    <figcaption className="text-muted-foreground mt-2 text-sm">
-      Consenter Manager
-    </figcaption>
-  </figure>
-  <div className="grid gap-4">
-    <figure>
-      <img
-        src="/assets/risk-assessment-detail-1.png"
-        alt="Risk assessment detail"
-      />
-    </figure>
-    <figure>
-      <img
-        src="/assets/risk-assessment-detail-2.png"
-        alt="Risk assessment detail"
-      />
-    </figure>
-  </div>
-</div>
+In this case, the cookie banner or, for users of a consent agent, the handover notice will be displayed again the next time they visit the website.
 
-### What influences the risk score
+![Risk reduction again-consent trigger](/assets/risk-reduction-again-consent.png)
 
-The following parameters determine the risk calculation and contribute to the overall risk score of your specific configuration (see below for a more detailed listing):
+The versioning and trigger system operating in the background ensures that notifications are delivered only to the relevant users. Notifications about increased risks are shown only to users who previously gave consent, while notifications about reduced risks are shown only to users who previously refused consent.
 
-- Tracking methods used, if any
-- Categories of personal data processed
-- Data storage duration
-- Data storage location
-- Legal roles of third-party providers involved in processing
-- Use of personalisation and the type of personalisation model applied
-
-<Callout type="info">
-  Each selection option within these parameters is assigned a weighted **score**
-  based on its potential impact on fundamental rights such as privacy and
-  autonomy, derived from our research results.
-</Callout>
-
-### How configuration changes affect the score
-
-As a result, every combination of third-party providers, data categories, tracking technologies, and other configuration settings produces a unique risk score. This score is reflected in the risk-benefit wheel and transparently communicated to your website visitors.
-
-If your configuration achieves a more favourable risk-benefit ratio than the default settings, your website visitors will be informed of this improvement, which may positively influence their willingness to consent to data processing for a specified purpose.
-
-Should you later adopt more privacy-friendly technologies, these changes will automatically update the risk-benefit wheel. This update enables you to re-engage visitors and ask for consent again based on the improved configuration.
-
-### Specific risk parameters:
-
-Each option in the right-hand column carries an individual score that represents its relevance to fundamental rights like privacy.
-
-| **Storage location** | EU                                                              |
-| -------------------- | --------------------------------------------------------------- |
-|                      | Adequacy decision                                               |
-|                      | Appropriate safeguards                                          |
-|                      | Risk reduction per additional safeguard                         |
-|                      | No legal basis                                                  |
-| **Data category**    | Aggregated site statistics                                      |
-|                      | Non-precise location data                                       |
-|                      | Device characteristics                                          |
-|                      | IP-Adress anonymised                                            |
-|                      | IP address                                                      |
-|                      | Privacy choices                                                 |
-|                      | Authentication-derived identifiers                              |
-|                      | Browsing and interaction data                                   |
-|                      | Device identifiers                                              |
-|                      | User-provided data                                              |
-|                      | Precise location data                                           |
-|                      | Probabilistic identifiers                                       |
-|                      | e-commerce Activity                                             |
-|                      | Direct identifiers                                              |
-|                      | Social media interaction data                                   |
-|                      | Special categories Art. 9 GDPR                                  |
-|                      | Users' profiles                                                 |
-| **Storage duration** | < 1 year                                                        |
-|                      | > 1 year                                                        |
-| **Legal role**       | Self-hosted                                                     |
-|                      | Processor                                                       |
-|                      | Joint Controller                                                |
-|                      | Controller                                                      |
-| **Personalisation**  | No personalisation                                              |
-|                      | Group based (properties)                                        |
-|                      | Group based (behaviour)                                         |
-|                      | Profile based                                                   |
-| **Tracking method**  | No tracking                                                     |
-|                      | First party tracking / single session cookieless                |
-|                      | First party tracking / cross session                            |
-|                      | First party / Cross session tracking                            |
-|                      | Third Party (Cross website/single session) tracking             |
-|                      | Third Party (Cross website/cross Session) tracking              |
-|                      | Third Party (Cross website/cross Session/cross device) tracking |
+In addition, users can access the cookie banner at any time to manually review the current risk information.

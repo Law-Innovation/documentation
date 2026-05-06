@@ -1,0 +1,182 @@
+---
+title: Technical Integration
+---
+
+## Integrate the Cookie Banner Into Your Website
+
+Before your Consenter Banner can appear on your website, you need to add a small script to your site. This script loads the banner.
+
+<Callout type="info">
+  **Attention: Do you want to integrate a consent banner or contextual consent?**
+
+For some purposes, it is better to ask your end users for their consent via contextual consent rather than a consent banner. This applies in particular to additional website features, such as maps, videos or social media feeds, which you want to integrate into your website and which process your end users' data. <a href="/configuration/contextual-consent">See contextual consent guide →</a>
+
+</Callout>
+
+### Step 1: Get your embed code
+
+Once your banner version is "active", the "Embed Code" button becomes available.
+
+Click **Embed Code → Embed Consenter Banner** to find your embed code snippet.
+
+It will look similar to this:
+
+```html title="index.html" lineNumbers
+<script
+  src="https://banner.consenter.eu/YOUR_DOMAIN_ID/cb.js"
+  async
+></script>
+```
+
+Replace the placeholder with your own value:
+
+`YOUR_DOMAIN_ID` → your Consenter domain ID (from **Sites → Your Site** in Consenter Manager)
+
+### Step 2: Add the script to your website
+
+Copy the embed code snippet and paste it into the `<head>` section of your website.
+
+<Callout type="info">
+  Make sure it is placed before any third-party script that requires user
+  consent.
+</Callout>
+
+```html
+<!-- Embed Consenter banner -->
+<head>
+  ...
+  <!-- Paste the embed code inside the <head> section -->
+  <script
+    src="https://banner.consenter.eu/YOUR_DOMAIN_ID/cb.js"
+    async
+  ></script>
+</head>
+```
+
+<Callout type="info">
+  **Next step: Set up your TPP integrations**
+
+The embed script does **not** automatically block or enable third-party tools. For each TPP you use, you must add the TPP integration snippet (including the contextual consent snippet when needed) so it checks the banner's consent state before running. <a href="#integration-guides">See TPP integration guide →</a>
+
+</Callout>
+
+## Block Third Party Tools
+
+You must ensure that no personal data is transmitted to service providers and no cookies are set before website visitors have given consent. Since most third-party tools collect personal data by default, this requires blocking their scripts from running until visitors have provided consent via the cookie banner.
+
+To integrate these tools in a compliant way, please follow the integration guides below. For some services, we offer specific guides to simplify implementation and pre-consent blocking. For all other tools, a general integration guide is provided.
+
+## Integration Guides
+
+For the following services, we provide step-by-step integration guides:
+
+<Cards>
+  <Card href="/technical-integration/matomo" title="Matomo" />
+  <Card
+    href="/technical-integration/google-analytics"
+    title="Google Analytics 4"
+  />
+  <Card href="/technical-integration/etracker" title="eTracker" />
+  <Card href="/technical-integration/optimizely" title="Optimizely" />
+  <Card href="/technical-integration/criteo" title="Criteo" />
+</Cards>
+
+## Custom Integration
+
+If your service is not listed above, you can integrate it manually using the Consenter API.
+
+### How It Works
+
+Once the Consenter script is loaded, you can use `window.consenter.subscribe()` to listen for consent changes for any service.
+
+<Callout type="warn">
+  The Consenter API may not be available immediately when your script runs.
+  Always listen for the `consenter:ready` event on the `document` to know when
+  `window.consenter` is ready. If the API is already loaded, you can call it
+  directly. The code examples below show the recommended pattern.
+</Callout>
+
+```javascript title="index.html" lineNumbers
+function subscribeToConsenter() {
+  window.consenter.subscribe(
+    function (hasConsent) {
+      if (hasConsent) {
+        // Enable the service
+      } else {
+        // Disable the service
+      }
+    },
+    "SERVICE_ID", // The service ID [!code highlight]
+    "PURPOSE_ID", // The purpose ID [!code highlight]
+  );
+}
+
+if (window.consenter) {
+  subscribeToConsenter();
+} else {
+  document.addEventListener("consenter:ready", subscribeToConsenter);
+}
+```
+
+**Parameters:**
+
+- **Callback function**: Receives `true` when user grants consent, `false` when consent is withdrawn
+- **Service ID**: The unique identifier for the third-party service
+- **Purpose ID**: The purpose identifier
+
+### Finding Your Service and Purpose IDs
+
+To find the correct IDs for your integration:
+
+1. Go to [Consenter Manager](https://manager.consenter.eu)
+2. Select your website
+3. Click on your **active** banner version in the table
+4. You'll see the **Technologies Configuration** page with all your configured purposes, services, and data categories
+5. **To find the Purpose ID**: Hover over the purpose label (e.g., "Improve the website") and click the copy button in the tooltip
+6. **To find the Service ID**: Hover over the service label (e.g., "Google Analytics") and click the copy button in the tooltip
+7. Use both IDs in your integration code
+
+### Example
+
+Here's a complete example showing how to integrate any service:
+
+```html title="index.html" lineNumbers
+<script>
+  var serviceApiKey = "YOUR_API_KEY"; // [!code highlight]
+  var serviceId = "YOUR_SERVICE_ID"; // [!code highlight]
+  var purposeId = "YOUR_PURPOSE_ID"; // [!code highlight]
+
+  // Initialize your service with consent requirement
+  // (Each service has its own initialization method)
+  initializeService({
+    apiKey: serviceApiKey,
+    requireConsent: true, // Prevent loading without consent
+  });
+
+  // Subscribe to consent changes
+  function subscribeToConsenter() {
+    window.consenter.subscribe(
+      function (hasConsent) {
+        if (hasConsent) {
+          // User granted consent - enable the service
+          enableService();
+        } else {
+          // User rejected or withdrew consent - disable the service
+          disableService();
+          removeServiceData();
+        }
+      },
+      serviceId,
+      purposeId,
+    );
+  }
+
+  if (window.consenter) {
+    subscribeToConsenter();
+  } else {
+    document.addEventListener("consenter:ready", subscribeToConsenter);
+  }
+</script>
+```
+
+Consult your service's documentation for the specific methods to enable and disable tracking or functionality.

@@ -4,7 +4,7 @@ Everything you need to know to edit or add content to the Consenter documentatio
 
 ## How content is organized
 
-All documentation lives in the `docs/` directory as `.mdx` files. The URL of each page is determined by its file path. For example, `docs/getting-started/purposes.mdx` becomes `/getting-started/purposes` on the site.
+All documentation lives in the `docs/` directory as `.mdx` files. The URL of each page is determined by its file path. For example, `docs/configuration.mdx` becomes `/configuration` on the site.
 
 A few things worth knowing about file naming:
 
@@ -47,9 +47,9 @@ The `type` can be `info`, `warn`, `error`, `success`, or `idea`.
 ```mdx
 <Cards>
   <Card
-    href="/getting-started/purposes"
-    title="Consenter Purposes"
-    description="What you can ask users for."
+    href="/configuration"
+    title="Configuring the Cookie-Banner"
+    description="Set up purposes, service providers, and data categories."
   />
 </Cards>
 ```
@@ -78,7 +78,7 @@ console.log("hello world");
 Internal links use standard Markdown syntax and are automatically optimized by the framework. External links get security attributes added automatically.
 
 ```mdx
-[Go to purposes](/getting-started/purposes)
+[Go to configuration](/configuration)
 [Fumadocs](https://fumadocs.dev)
 ```
 

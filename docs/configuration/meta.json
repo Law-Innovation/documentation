@@ -1,0 +1,11 @@
+{
+  "title": "Cookie-Banner Configuration",
+  "pages": [
+    "step-by-step",
+    "risk-overview",
+    "privacy-policy",
+    "contextual-consent",
+    "provider-guides"
+  ],
+  "defaultOpen": true
+}
