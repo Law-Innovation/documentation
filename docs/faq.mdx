@@ -3,7 +3,7 @@ title: FAQ
 ---
 
 <Accordions type="single">
-  <Accordion title="What is a consent banner and when do you need it?">
+  <Accordion id="what-is-a-consent-banner" title="What is a consent banner and when do you need it?">
     A consent banner is a visual interface through which end users can actively indicate that they agree to the processing of their data. On a consent banner you should explain for what purposes you collect what kind of data from your users, with whom you share the data, where they are stored, and other aspects. For consent to be legally valid, it is important that you obtain consent **before** collecting and processing data from your users (so-called opt-in).
 
     <Callout type="info">
@@ -16,7 +16,7 @@ title: FAQ
 
   </Accordion>
 
-  <Accordion title="Why using a consent banner from Consenter?">
+  <Accordion id="why-consenter" title="Why using a consent banner from Consenter?">
     Consenter works completely differently from previous consent management. Consenter provides you with a product addressing your legitimate need to achieve a
 
     - legally required cookie banner
@@ -55,7 +55,7 @@ title: FAQ
 
   </Accordion>
 
-  <Accordion title="Who should set up the Consenter Banner in your team?">
+  <Accordion id="who-should-set-up" title="Who should set up the Consenter Banner in your team?">
     You don't need to be a privacy expert to set up the Consenter Banner. It's meant for:
 
     - Anyone responsible for marketing (and wants to turn privacy into a competitive advantage)
@@ -65,6 +65,15 @@ title: FAQ
     <Callout type="info">
       Ideally, the person maintaining your website's tools should help set up the Consenter Banner.
     </Callout>
+
+  </Accordion>
+
+  <Accordion id="z-index-overlap" title="The Consenter Banner overlaps an element on my website (or an element overlaps the banner)">
+    This is a `z-index` issue in your website's CSS — we can't change how your elements are layered.
+
+    To figure out what's going on, right-click the element that's overlapping (or being overlapped) and open your browser's developer tools. Check its `z-index` and `position` values, then compare with the Consenter Banner's host element (`#consenter-host`). Adjusting the `z-index` on your elements will fix it.
+
+    Worth knowing: `z-index` only works on positioned elements (`position: relative`, `absolute`, `fixed`, or `sticky`), and only compares elements in the same [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Stacking_context). Properties like `transform`, `filter`, or `opacity` create new stacking contexts, which is usually why things end up in front of or behind something when you don't expect them to.
 
   </Accordion>
 </Accordions>
