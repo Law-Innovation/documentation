@@ -69,9 +69,9 @@ title: FAQ
   </Accordion>
 
   <Accordion id="z-index-overlap" title="The Consenter Banner overlaps an element on my website (or an element overlaps the banner)">
-    This is a `z-index` issue in your website's CSS — we can't change how your elements are layered.
+    This is a `z-index` issue in your website's CSS. We can't change how your elements are layered. However, we can show you how to adjust the order yourself in your website’s CSS.
 
-    To figure out what's going on, right-click the element that's overlapping (or being overlapped) and open your browser's developer tools. Check its `z-index` and `position` values, then compare with the Consenter Banner's host element (`#consenter-host`). Adjusting the `z-index` on your elements will fix it.
+    To do this, right-click the element that's overlapping (or being overlapped) and open your browser's developer tools. Check its `z-index` and `position` values, then compare with the Consenter Banner's host element (`#consenter-host`). Adjusting the `z-index` on your elements will fix it.
 
     Worth knowing: `z-index` only works on positioned elements (`position: relative`, `absolute`, `fixed`, or `sticky`), and only compares elements in the same [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Stacking_context). Properties like `transform`, `filter`, or `opacity` create new stacking contexts, which is usually why things end up in front of or behind something when you don't expect them to.
 
