@@ -1,5 +1,7 @@
 {
   "pages": [
+    "index",
+    "---",
     "getting-started/consenter",
     "getting-started/legal-context",
     "getting-started/risk-assessment",
