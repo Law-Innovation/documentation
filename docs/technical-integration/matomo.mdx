@@ -76,8 +76,7 @@ Then replace the following placeholders with your own values:
           _paq.push(["forgetCookieConsentGiven"]);
         }
       },
-      serviceId, // [!code highlight]
-      purposeId, // [!code highlight]
+      { serviceId: serviceId, purposeIds: purposeId }, // [!code highlight]
     );
   }
 

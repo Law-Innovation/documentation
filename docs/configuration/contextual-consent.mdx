@@ -125,84 +125,154 @@ Shown below are the three scenarios for embedding third party content and guidan
    <!-- Integrate Consenter contextual consent -->
    <!-- Paste the contextual consent script inside the <head> section -->
    <script src="https://banner.consenter.eu/contextual-consent.js"></script>
-   <script src="https://banner.consenter.eu/YOUR_DOMAIN_ID/cb.js" async></script>
+   <script
+     src="https://banner.consenter.eu/YOUR_DOMAIN_ID/cb.js"
+     async
+   ></script>
    ```
 
 2. **Add Consenter attributes to your embed**
 
    Remove the original `src` attribute, and add Consenter data attributes inside
-   of the `<iframe>` where you want to enable contextual consent. Put the URL
-   that should load after consent into `data-consenter-content-url`, then replace
-   the placeholders with your own values:
-   - **For type 1 (simple unblock)**
+   the `<iframe>` where you want to enable contextual consent. Put the URL that
+   should load after consent into `data-consenter-content-url`, and in
+   `data-consenter-purpose-ids` list the purpose IDs this service needs consent
+   for — the same purposes you configured for it when you set up the banner.
+   Replace the placeholders with your own values:
 
-     ```html title="iframe"
-     <!-- Enable Consenter contextual consent for a service -->
-     <iframe
-       width="560"
-       height="315"
-       data-consenter-language="DE"
-       data-consenter-tpp-id="YOUR_SERVICE_ID"
-       data-consenter-tpp-label="YOUR-SERVICE-NAME"
-       data-consenter-content-label="YOUR-CONTENT-DESCRIPTION"
-       data-consenter-content-url="YOUR_SERVICE_URL"
-     >
-       ...
-     </iframe>
-     ```
+   ```html title="iframe"
+   <!-- Enable Consenter contextual consent for a service -->
+   <iframe
+     width="560"
+     height="315"
+     data-consenter-language="DE"
+     data-consenter-tpp-id="YOUR_SERVICE_ID"
+     data-consenter-tpp-label="YOUR-SERVICE-NAME"
+     data-consenter-content-label="YOUR-CONTENT-DESCRIPTION"
+     data-consenter-content-url="YOUR_SERVICE_URL"
+     data-consenter-purpose-ids="additional-features,service-improvement,customise-ads"
+   >
+     ...
+   </iframe>
+   ```
 
-   - **For type 2 (additional purposes)**
-
-     Add the required purpose flags:
-
-     <Callout type="info">
-       When using contextual consent, you can choose from the following
-       additional purposes:
-       <br />
-       - Improve the service
-       <br />
-       - Support marketing analytics
-       <br />
-       - Customise online ads
-       <br />
-       Find out which purposes to select for your TPP in our{" "}
-       <a href="/configuration/provider-guides">TPP configuration guides</a> or the privacy
-       policy and documentation of the respective TPP.
-     </Callout>
-
-     ```html title="iframe with additional purposes"
-     <!-- Enable Consenter contextual consent for a service -->
-     <iframe
-       width="560"
-       height="315"
-       data-consenter-language="DE"
-       data-consenter-tpp-id="YOUR_SERVICE_ID"
-       data-consenter-tpp-label="YOUR-SERVICE-NAME"
-       data-consenter-content-label="YOUR-CONTENT-DESCRIPTION"
-       data-consenter-content-url="YOUR_SERVICE_URL"
-       data-consenter-tpp-purpose-improve-the-service="true"
-       data-consenter-tpp-purpose-marketing-analytics="true"
-       data-consenter-tpp-purpose-customise-ads="true"
-     >
-       ...
-     </iframe>
-     ```
+   <Callout type="warn">
+     The older per-purpose attributes
+     (`data-consenter-tpp-purpose-improve-the-service`,
+     `data-consenter-tpp-purpose-marketing-analytics`,
+     `data-consenter-tpp-purpose-customise-ads`) still work but are deprecated
+     and log a console warning. Migrate to a single `data-consenter-purpose-ids`
+     attribute.
+   </Callout>
 
 **What each attribute does (quick reference)?**
 
-| Attribute                                        | What it does                                                             | Where to find it?                                                                                                                                                                               |
-| ------------------------------------------------ | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`data-consenter-tpp-id`**                      | Tells Consenter which TPP this embed belongs to.                         | Always required. Find the TPP/service ID in [**Consenter Manager**](https://manager.consenter.eu/) → Your Site → Active Banner → Hover over the service and click the copy button in the tooltip. |
-| **`data-consenter-tpp-label`**                   | Display name shown to the user (e.g., “YouTube video”).                  | Required. Use something users immediately understand.                                                                                                                                           |
-| **`data-consenter-content-url`**                 | The URL that loads _after_ the user unblocks / consents.                 | Required. Usually the original iframe/embed `src`. Remove the original `src` attribute so the content is blocked before consent.                                                                 |
-| **`data-consenter-content-label`**               | Short description of the specific content (e.g., “Product Demo”).        | Required. Helps users understand what they are enabling.                                                                                                                                        |
-| **`data-consenter-language`**                    | Sets the language of the contextual consent UI.                          | Optional. Supports `EN` and `DE`. If missing, the browser language is used when it is English; otherwise German is used.                                                                         |
-| `data-consenter-tpp-purpose-improve-the-service` | Declares that the service uses data for **Improve the service**.         | Required only if the TPP needs this purpose legally. Set to `true`.                                                                                                                             |
-| `data-consenter-tpp-purpose-marketing-analytics` | Declares that the service uses data for **Support marketing analytics**. | Required only if the TPP needs this purpose legally. Set to `true`.                                                                                                                             |
-| `data-consenter-tpp-purpose-customise-ads`       | Declares that the service uses data for **Customised online ads**.       | Required only if the TPP needs this purpose legally. Set to `true`.                                                                                                                             |
+| Attribute                          | What it does                                                         | Where to find it?                                                                                                                                                                                 |
+| ---------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`data-consenter-tpp-id`**        | Tells Consenter which TPP this embed belongs to.                     | Always required. Find the TPP/service ID in [**Consenter Manager**](https://manager.consenter.eu/) → Your Site → Active Banner → Hover over the service and click the copy button in the tooltip. |
+| **`data-consenter-tpp-label`**     | Display name shown to the user (e.g., “YouTube video”).              | Required. Use something users immediately understand.                                                                                                                                             |
+| **`data-consenter-content-url`**   | The URL that loads _after_ the user unblocks / consents.             | Required. Usually the original iframe/embed `src`. Remove the original `src` attribute so the content is blocked before consent.                                                                  |
+| **`data-consenter-content-label`** | Short description of the specific content (e.g., “Product Demo”).    | Required. Helps users understand what they are enabling.                                                                                                                                          |
+| **`data-consenter-language`**      | Sets the language of the contextual consent UI.                      | Optional. Supports `EN` and `DE`. If missing, the browser language is used when it is English; otherwise German is used.                                                                          |
+| **`data-consenter-purpose-ids`**   | Comma-separated list of the purpose IDs this flow needs consent for. | Required. Declare exactly the purpose(s) your case needs — one or several. See the purpose-ID reference below.                                                                                    |
+
+**Purpose IDs**
+
+Use the purpose IDs you configured for the service in the banner. The standard
+purpose IDs are:
+
+| Purpose                            | Purpose ID            |
+| ---------------------------------- | --------------------- |
+| Unlock additional website features | `additional-features` |
+| Improve the service                | `service-improvement` |
+| Support marketing analytics        | `marketing-analytics` |
+| Customise online ads               | `customise-ads`       |
+
+You can copy any purpose’s ID from the [Consenter Manager](https://manager.consenter.eu/).
 
 <Callout type="info">
   If unsure whether your TPP requires contextual consent of type 1 or type 2,
-  check out our <a href="/configuration/provider-guides">TPP configuration guides</a> or refer
+  check out our{" "}
+  <a href="/configuration/provider-guides">TPP configuration guides</a> or refer
   to the privacy policy or documentation of the TPP.
 </Callout>
+
+## Custom Integration
+
+The ready-made contextual consent script renders our own gate over blocked
+content. If you want full control over the look and feel — your own “show the
+content” button, styling, and layout — you can build the gate yourself and drive
+consent through the Consenter API instead.
+
+In this mode you load **only** the banner script (not `contextual-consent.js`),
+block the third-party content yourself, then:
+
+- call [`grantContextualConsent(tppId, purposeIds)`](/javascript-api#grantcontextualconsenttppid-purposeids)
+  when the user opts in, and
+- [`subscribe`](/javascript-api#subscribecallback-selector) (or
+  [`has`](/javascript-api#hasselector)) to reveal the content once it is consented.
+
+See the [JavaScript API](/javascript-api) for the full method reference.
+
+```html title="index.html" lineNumbers
+<script src="https://banner.consenter.eu/YOUR_DOMAIN_ID/cb.js" async></script>
+```
+
+### Example
+
+This example keeps a video blocked behind a custom button, grants consent on
+click, and reveals the content once consent is saved. The same `subscribe`
+callback also reveals the content immediately for visitors who have already
+consented.
+
+```html title="index.html" lineNumbers
+<div id="video-gate">
+  <p>This video is provided by Vimeo and may process your data.</p>
+  <button id="enable-video">Show the video</button>
+</div>
+
+<script>
+  // Vimeo uses data for its own purposes, so it needs all three.
+  var tppId = "YOUR_SERVICE_ID"; // [!code highlight]
+  var purposeIds = [
+    "additional-features",
+    "service-improvement",
+    "customise-ads",
+  ]; // [!code highlight]
+
+  function revealVideo() {
+    document.getElementById("video-gate").innerHTML =
+      '<iframe src="https://player.vimeo.com/video/VIDEO_ID" allow="autoplay"></iframe>';
+  }
+
+  function wireUp() {
+    // state is an object keyed by purpose ID; fires now and on every change.
+    window.consenter.subscribe(
+      function (state) {
+        var granted = Object.keys(state).every(function (id) {
+          return state[id];
+        });
+        if (granted) revealVideo();
+      },
+      { serviceId: tppId, purposeIds: purposeIds },
+    );
+
+    document
+      .getElementById("enable-video")
+      .addEventListener("click", function () {
+        var result = window.consenter.grantContextualConsent(tppId, purposeIds);
+        if (result !== "success") console.error("Consenter:", result);
+      });
+  }
+
+  if (window.consenter) {
+    wireUp();
+  } else {
+    document.addEventListener("consenter:ready", wireUp);
+  }
+</script>
+```
+
+Use the same Service ID and Purpose IDs you would use for the attribute-based
+integration above. See [Finding Your Service and Purpose IDs](/technical-integration#finding-your-service-and-purpose-ids)
+for where to copy them in the Consenter Manager.
