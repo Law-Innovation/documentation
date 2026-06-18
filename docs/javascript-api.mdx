@@ -11,7 +11,7 @@ consent, reacting to changes, and granting contextual consent from your own UI.
 `window.consenter` is set once the banner script has loaded, which may be after
 your own code runs. Guard with the `consenter:ready` event:
 
-```js
+```js lineNumbers
 function start() {
   // window.consenter is ready here
 }
@@ -74,7 +74,7 @@ The shape of `purposeIds` decides what the callback receives:
   `Record<string, boolean>`, e.g.
   `{ "service-improvement": true, "customise-ads": false }`.
 
-```js
+```js lineNumbers
 const unsubscribe = window.consenter.subscribe(
   function (granted) {
     if (granted) showContent();
@@ -107,7 +107,7 @@ synchronously, against the current state:
 **Returns** what `subscribe` would pass to its callback: `boolean` for a single
 purpose ID, `Record<string, boolean>` for an array.
 
-```js
+```js lineNumbers
 if (
   window.consenter.has({
     serviceId: "YOUR_SERVICE_ID",
