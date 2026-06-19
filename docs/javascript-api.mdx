@@ -1,10 +1,11 @@
 ---
 title: JavaScript API
-description: Read consent, subscribe to changes, and grant contextual consent with window.consenter
+description: A small browser API on window.consenter for working with consent programmatically
 ---
 
 The Consenter banner exposes a small browser API on `window.consenter` for reading
-consent, reacting to changes, and granting contextual consent from your own UI.
+consent, reacting to changes, granting contextual consent, and opening the banner
+from your own UI.
 
 ## Waiting for the API
 
@@ -142,6 +143,18 @@ for the full custom-UI flow.
 
 **Returns** `"success"`, or a validation error string. The consent is saved
 asynchronously — use `subscribe` or `has` to react once it lands.
+
+## banner.open()
+
+Opens the cookie banner from your own UI — typically a "Cookie settings" link
+in your footer that gives visitors a route back into their consent choices.
+Takes no arguments:
+
+```html
+<button type="button" onclick="window.consenter.banner.open();">
+  Cookie settings
+</button>
+```
 
 ## consenter:ready
 
