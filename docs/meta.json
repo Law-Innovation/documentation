@@ -7,9 +7,10 @@
     "getting-started/risk-assessment",
     "---",
     "./configuration",
+    "provider-guides",
     "technical-integration",
-    "---",
     "maintenance",
+    "---",
     "faq"
   ]
 }
