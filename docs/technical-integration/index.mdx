@@ -1,5 +1,6 @@
 ---
 title: Technical Integration
+description: Embed the Consenter banner and gate third-party tools behind consent
 ---
 
 ## Integrate the Cookie Banner Into Your Website
@@ -41,11 +42,9 @@ Copy the embed code snippet and paste it into the `<head>` section of your websi
   consent.
 </Callout>
 
-```html
-<!-- Embed Consenter banner -->
+```html title="index.html" lineNumbers
 <head>
   ...
-  <!-- Paste the embed code inside the <head> section -->
   <script
     src="https://banner.consenter.eu/YOUR_DOMAIN_ID/cb.js"
     async
@@ -106,8 +105,7 @@ function subscribeToConsenter() {
         // Disable the service
       }
     },
-    "SERVICE_ID", // The service ID [!code highlight]
-    "PURPOSE_ID", // The purpose ID [!code highlight]
+    { serviceId: "SERVICE_ID", purposeIds: "PURPOSE_ID" }, // [!code highlight]
   );
 }
 
@@ -120,9 +118,16 @@ if (window.consenter) {
 
 **Parameters:**
 
-- **Callback function**: Receives `true` when user grants consent, `false` when consent is withdrawn
-- **Service ID**: The unique identifier for the third-party service
-- **Purpose ID**: The purpose identifier
+- **Callback function**: Runs with the current consent state right away and again
+  on every change — `true` when the service is granted for the selected
+  purpose(s), `false` otherwise
+- **Selector**: Anchors the subscription to your service. `purposeIds` takes
+  one purpose ID as a string, or several as an array — with an array the
+  callback receives an object keyed by purpose ID instead of a boolean
+
+`subscribe` returns a function that removes the subscription, and
+`window.consenter.has(selector)` answers the same question once, synchronously.
+See the [JavaScript API](/javascript-api) for the full reference.
 
 ### Finding Your Service and Purpose IDs
 
@@ -166,8 +171,7 @@ Here's a complete example showing how to integrate any service:
           removeServiceData();
         }
       },
-      serviceId,
-      purposeId,
+      { serviceId: serviceId, purposeIds: purposeId },
     );
   }
 
