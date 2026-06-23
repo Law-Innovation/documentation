@@ -7,8 +7,8 @@
     "risk-assessment",
     "---",
     "./configuration",
-    "provider-guides",
-    "technical-integration",
+    "tools-configuration",
+    "./technical-integration",
     "maintenance",
     "---",
     "faq"
