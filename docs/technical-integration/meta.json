@@ -1,0 +1,11 @@
+{
+  "title": "Integrate Your Banner and Tools",
+  "pages": [
+    "banner-integration",
+    "block-tools",
+    "contextual-consent",
+    "privacy-policy",
+    "imprint"
+  ],
+  "defaultOpen": true
+}
