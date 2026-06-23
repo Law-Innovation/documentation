@@ -1,0 +1,40 @@
+---
+title: Update Privacy Policy
+description: Add required Consenter information to your privacy policy.
+---
+
+## Text snippet for your privacy policy
+
+When using our consent banner, you must inform your website visitors about how their consent decisions are being processed. We therefore advise you to include the following textblock into your privacy policy:
+
+```text
+Consenter Cookie Banner by Law & Innovation Technology GmbH
+
+To collect and process your data protection consents, we use the Consenter Cookie Banner service provided by Law & Innovation Technology GmbH (L&I). Your consents are stored:
+
+1. in your browser as a cookie to check whether you have already given us your consent, so that we no longer need to display the cookie banner to you, and
+2. in our consent store provided by L&I, in order to prove the lawfulness of processing your personal data.
+
+1. Collected Data
+
+Your consent record contains:
+
+- The build version of the consent banner at the time of consent.
+- The domain you have consented to "example.com" along with a randomly generated domain ID.
+- Date and time of consent.
+- A randomly generated consent record ID (no user ID!) and, if consents change, the prior record ID. This way we make sure that no processing is based on your "expired" consent, for example if you have withdrawn prior consent.
+- The purposes and respective third party services for which consent has been given or withdrawn.
+- "Trigger" in order to monitor whether risks have increased or decreased when you revisit the website compared to the time you originally gave consent. This ensures that your consent is invalidated if the website begins to use more privacy-intrusive technologies.
+
+2. Processing & Storage
+
+Consent records are stored as encrypted, origin-bound cookies (SameSite=Strict) in your browser, accessible only by this website via JavaScript. No third-party access. L&I also stores consent records centrally on AWS (sub-processor) solely for proof of lawful processing. No user IDs or refusals are retained, preventing user profiling. Data is secured against unauthorised access.
+
+3. Retention
+
+Cookies expire after 400 days or upon browser cache clearance.
+
+4. Identifiability
+
+The data is weakly identifying across visits, as Consent IDs and timestamps could in theory allow a user to be recognised across multiple visits to one single website (never across multiple websites). The link is provided here for the benefit of the user, as we, as the website provider, must recognise that your previous consent records are obsolete and no longer valid. The consent records themselves provide only minimal insight into your private life (visiting a single website at a single point in time), as they are not tied to a user ID. They are never used for anything beyond managing your consent.
+```
