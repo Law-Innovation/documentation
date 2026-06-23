@@ -1,0 +1,59 @@
+---
+title: Consenter Risk-Assessment
+description: Understand how Consenter evaluates privacy risks and configurations.
+---
+
+Consenter Risk Assessment provides the methodological basis for evaluating your website configuration—more specifically, the configuration of the technologies used to operate your website.
+
+## Goal of the risk assessment
+
+As a key management tool within Consenter Manager, the Consenter Risk Assessment shows you how your specific website configuration affects
+
+- the data protection risks for your website visitors,
+- your legal compliance and
+- your website visitors’ willingness to give consent.
+
+Within the Consenter Manager, you can systematically assess, compare and optimise the data protection-related settings of your website technologies.
+
+## Legal grounding
+
+The risk assessment methodology is based on Article 25 of the GDPR (data protection by design and data protection by default) and Article 35 of the GDPR (data protection impact assessment). Both provisions require an assessment of the risks to the rights and freedoms of data subjects.
+
+The implementation of this risk assessment methodology is based on a research and development process spanning over ten years, carried out in collaboration with European research institutions and data protection authorities. It combines data protection risk assessments with considerations on technical feasibility and clear communication.
+
+## Assessed risk factors
+
+The risk assessment takes into account, in particular:
+
+- tracking methods used
+- categories of personal data
+- storage period
+- storage location
+- legal roles of third-party providers involved
+- use and type of personalisation models
+- purposes and specific nature of the processing
+- context of data collection
+
+Each selection option is assigned a weighted score. This weighting is based on its potential impact on fundamental rights such as privacy and informational self-determination, and is grounded in our research findings.
+
+## Role of third-party providers
+
+Third-party technologies – such as Matomo or Google Analytics – are often central to the operation and further development of websites. However, different tools and configurations lead to different data protection implications. These depend, amongst other things, on the provider’s place of business, the data processed by default, and the respective purposes of processing.
+
+## Automated assessment in Consenter Manager
+
+The assessment process is fully integrated into the Consenter Manager.
+
+Each configuration change has an immediate impact on the calculated risk–benefit ratio, which is visualised in the Risk Benefit Wheel—a graphical representation of this ratio. This allows you to see in real time how your settings influence the data protection assessment.
+
+Many risks arise from the interaction of multiple factors and only become significant once certain thresholds are reached. These interdependencies are also reflected in the Risk Benefit Wheel.
+
+## Risk configuration guides
+
+For commonly used third-party technologies, we provide specific configuration guides. These typically include three levels of risk configurations:
+
+- Low risk
+- Medium risk
+- High risk
+
+These configurations span multiple settings and parameters. The guides give you a structured overview of the overall risk associated with different configuration options. When you implement your chosen settings in the Consenter Manager, the system automatically assigns the corresponding risk level to each individual option.
