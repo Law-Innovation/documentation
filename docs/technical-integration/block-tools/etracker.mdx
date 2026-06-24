@@ -28,7 +28,7 @@ Before starting, you'll need:
   configuration. To find the correct IDs, go to [Consenter
   Manager](https://manager.consenter.eu) → Your Site → Active Banner → Hover
   over the service and purpose labels and click the copy button in the tooltip.
-  See the [Technical Integration](/technical-integration) page for detailed
+  See the [Block Third Party Tools](/technical-integration/block-tools) page for detailed
   instructions.
 </Callout>
 
@@ -65,8 +65,7 @@ Replace the placeholders with your own values:
           });
         }
       },
-      serviceId, // [!code highlight]
-      purposeId // [!code highlight]
+      { serviceId: serviceId, purposeIds: purposeId } // [!code highlight]
     );
   }
 

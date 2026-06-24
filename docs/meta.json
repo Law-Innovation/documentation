@@ -1,16 +1,13 @@
 {
   "pages": [
     "index",
-    "---",
     "consenter",
     "legal-requirements",
     "risk-assessment",
-    "---",
     "./configuration",
     "tools-configuration",
     "./technical-integration",
     "maintenance",
-    "---",
     "faq"
   ]
 }

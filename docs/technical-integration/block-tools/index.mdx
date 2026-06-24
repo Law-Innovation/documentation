@@ -12,14 +12,14 @@ To integrate these tools in a compliant way, please follow the integration guide
 For the following services, we provide step-by-step integration guides:
 
 <Cards>
-  <Card href="/technical-integration/matomo" title="Matomo" />
+  <Card href="/technical-integration/block-tools/matomo" title="Matomo" />
   <Card
-    href="/technical-integration/google-analytics"
+    href="/technical-integration/block-tools/google-analytics"
     title="Google Analytics 4"
   />
-  <Card href="/technical-integration/etracker" title="eTracker" />
-  <Card href="/technical-integration/optimizely" title="Optimizely" />
-  <Card href="/technical-integration/criteo" title="Criteo" />
+  <Card href="/technical-integration/block-tools/etracker" title="eTracker" />
+  <Card href="/technical-integration/block-tools/optimizely" title="Optimizely" />
+  <Card href="/technical-integration/block-tools/criteo" title="Criteo" />
 </Cards>
 
 ## Custom integration
@@ -47,8 +47,7 @@ function subscribeToConsenter() {
         // Disable the service
       }
     },
-    "SERVICE_ID", // The service ID [!code highlight]
-    "PURPOSE_ID", // The purpose ID [!code highlight]
+    { serviceId: "SERVICE_ID", purposeIds: "PURPOSE_ID" }, // [!code highlight]
   );
 }
 
@@ -61,9 +60,16 @@ if (window.consenter) {
 
 **Parameters:**
 
-- **Callback function**: Receives `true` when user grants consent, `false` when consent is withdrawn
-- **Service ID**: The unique identifier for the third-party service
-- **Purpose ID**: The purpose identifier
+- **Callback function**: Runs with the current consent state right away and again
+  on every change — `true` when the service is granted for the selected
+  purpose(s), `false` otherwise
+- **Selector**: Anchors the subscription to your service. `purposeIds` takes
+  one purpose ID as a string, or several as an array — with an array the
+  callback receives an object keyed by purpose ID instead of a boolean
+
+`subscribe` returns a function that removes the subscription, and
+`window.consenter.has(selector)` answers the same question once, synchronously.
+See the [JavaScript API](/technical-integration/javascript-api) for the full reference.
 
 ### Finding your service and purpose IDs
 
@@ -107,8 +113,7 @@ Here's a complete example showing how to integrate any service:
           removeServiceData();
         }
       },
-      serviceId,
-      purposeId,
+      { serviceId: serviceId, purposeIds: purposeId },
     );
   }
 

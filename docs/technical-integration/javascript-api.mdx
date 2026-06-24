@@ -1,0 +1,179 @@
+---
+title: JavaScript API
+description: A small browser API on window.consenter for working with consent programmatically
+---
+
+The Consenter banner exposes a small browser API on `window.consenter` for reading
+consent, reacting to changes, granting contextual consent, and opening the banner
+from your own UI.
+
+## Waiting for the API
+
+`window.consenter` is set once the banner script has loaded, which may be after
+your own code runs. Guard with the `consenter:ready` event:
+
+```js lineNumbers
+function start() {
+  // window.consenter is ready here
+}
+
+if (window.consenter) {
+  start();
+} else {
+  document.addEventListener("consenter:ready", start);
+}
+```
+
+## get()
+
+Takes no arguments and returns the current consent state synchronously:
+
+<TypeTable
+  type={{
+    status: {
+      type: '"pending" | "no_consent" | "has_consent"',
+      description:
+        "Whether consent has loaded, and whether any consent exists.",
+    },
+    data: {
+      type: "ConsentRecord",
+      description:
+        'The full consent record, present when status is "has_consent".',
+    },
+  }}
+/>
+
+## subscribe(callback, selector?)
+
+Runs `callback` with the current state and again on every change, and returns
+a function that removes the subscription.
+
+Omit the `selector` to receive the full `ConsentRecord`. Pass one to watch a
+single service instead:
+
+<TypeTable
+  type={{
+    serviceId: {
+      type: "string",
+      required: true,
+      description: "The service (TPP) ID consent is checked for.",
+    },
+    purposeIds: {
+      type: "string | string[]",
+      required: true,
+      description:
+        "The purpose ID(s) the service needs, as configured in the banner.",
+    },
+  }}
+/>
+
+The shape of `purposeIds` decides what the callback receives:
+
+- `purposeIds: "service-improvement"` → `boolean`, `true` only when that
+  purpose is granted for the service.
+- `purposeIds: ["service-improvement", "customise-ads"]` →
+  `Record<string, boolean>`, e.g.
+  `{ "service-improvement": true, "customise-ads": false }`.
+
+```js lineNumbers
+const unsubscribe = window.consenter.subscribe(
+  function (granted) {
+    if (granted) showContent();
+  },
+  { serviceId: "YOUR_SERVICE_ID", purposeIds: "YOUR_PURPOSE_ID" },
+);
+```
+
+## has(selector)
+
+The one-shot version of `subscribe`: evaluates the selector once,
+synchronously, against the current state:
+
+<TypeTable
+  type={{
+    serviceId: {
+      type: "string",
+      required: true,
+      description: "The service (TPP) ID consent is checked for.",
+    },
+    purposeIds: {
+      type: "string | string[]",
+      required: true,
+      description:
+        "The purpose ID(s) the service needs, as configured in the banner.",
+    },
+  }}
+/>
+
+**Returns** what `subscribe` would pass to its callback: `boolean` for a single
+purpose ID, `Record<string, boolean>` for an array.
+
+```js lineNumbers
+if (
+  window.consenter.has({
+    serviceId: "YOUR_SERVICE_ID",
+    purposeIds: "YOUR_PURPOSE_ID",
+  })
+) {
+  showContent();
+}
+```
+
+## grantContextualConsent(tppId, purposeIds)
+
+Grants consent for a single service across the given purposes, without
+re-opening the banner. See [Contextual Consent](/technical-integration/contextual-consent#custom-integration)
+for the full custom-UI flow.
+
+<TypeTable
+  type={{
+    tppId: {
+      type: "string",
+      required: true,
+      description: "The service (TPP) ID the embedded content belongs to.",
+    },
+    purposeIds: {
+      type: "string | string[]",
+      required: true,
+      description:
+        "The purpose ID(s) to grant — exactly the purposes the content requires.",
+    },
+  }}
+/>
+
+**Returns** `"success"`, or a validation error string. The consent is saved
+asynchronously — use `subscribe` or `has` to react once it lands.
+
+## banner.open()
+
+Opens the cookie banner from your own UI — typically a "Cookie settings" link
+in your footer that gives visitors a route back into their consent choices.
+Takes no arguments:
+
+```html
+<button type="button" onclick="window.consenter.banner.open();">
+  Cookie settings
+</button>
+```
+
+## consenter:ready
+
+Dispatched on `document` once `window.consenter` is available — see
+[Waiting for the API](#waiting-for-the-api).
+
+## Deprecated
+
+Everything here keeps working but logs a console warning and will be removed in
+a future major release.
+
+- **`subscribe(callback, identifier[, purposeId])`** — the string-argument
+  forms. Use a selector instead: `subscribe(callback)` for the full record, or
+  `subscribe(callback, { serviceId, purposeIds })` for a service. The string
+  forms still return `"success"` instead of an unsubscribe function.
+- **`unsubscribe(identifier)`** — only removes string-identifier
+  subscriptions. Call the function returned by `subscribe` instead.
+- **`data-consenter-tpp-purpose-*` attributes** — the per-purpose flags on
+  [contextual consent](/technical-integration/contextual-consent) embeds
+  (`…-improve-the-service`, `…-marketing-analytics`, `…-customise-ads`).
+  List the purposes in a single `data-consenter-purpose-ids="id1,id2"`
+  attribute instead.

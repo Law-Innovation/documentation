@@ -5,7 +5,8 @@
     "block-tools",
     "contextual-consent",
     "privacy-policy",
-    "imprint"
+    "imprint",
+    "javascript-api"
   ],
   "defaultOpen": true
 }
