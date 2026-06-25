@@ -2,7 +2,7 @@
   "pages": [
     "consenter",
     "legal-requirements",
-    "risk-assessment",
+    "./risk-assessments",
     "./configuration",
     "tools-configuration",
     "./technical-integration",
