@@ -1,0 +1,57 @@
+name: Documentation update
+description: Propose a new guide, an update, or a correction to the Consenter documentation.
+title: '[Docs]: '
+labels: ['documentation']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the Consenter documentation! You don't need any coding
+        experience — if you'd like to edit a page directly, see the
+        [Writing Guide](https://github.com/Law-Innovation/documentation/blob/main/WRITING_GUIDE.md).
+        Otherwise, just fill in this form and we'll take it from there.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What would you like to do?
+      options:
+        - Add/update an integration guide
+        - Add/update a risk configuration guide
+        - Report an error or suggest an improvement
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Which tool or service does this concern?
+      placeholder: e.g. Matomo, Google Analytics 4, HubSpot
+    validations:
+      required: false
+  - type: input
+    id: page
+    attributes:
+      label: Affected page (URL or file path)
+      placeholder: e.g. /technical-integration/third-party-tools or docs/tools-configuration.mdx
+    validations:
+      required: false
+  - type: textarea
+    id: details
+    attributes:
+      label: What's missing, incorrect, or worth adding?
+      description: Describe the change. For corrections, tell us what's wrong and what it should say instead.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed content (optional)
+      description: If you already have text, a configuration, or step-by-step instructions to share, paste them here.
+    validations:
+      required: false
+  - type: checkboxes
+    id: license
+    attributes:
+      label: Licensing
+      options:
+        - label: I agree that my contribution may be published under the repository's Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0) licence.
+          required: true

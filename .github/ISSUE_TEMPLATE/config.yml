@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Share a guide by email
+    url: mailto:info@law-innovation.tech
+    about: Prefer not to use GitHub? Send your configuration or integration guide to us directly.
