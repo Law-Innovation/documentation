@@ -1,19 +1,7 @@
 ---
-title: The Legal Architecture Behind Consenter
+title: Legal Requirements
+description: Understand the legal framework for consent and cookie banners.
 ---
-## What is Consenter?
-
-By presenting both risks and benefits transparently, you can build greater trust with your visitors compared to conventional banners—especially when technologies are configured in a privacy-friendly way. Research conducted by our team, in collaboration with other institutions, shows that this approach significantly improves user experience and increases the likelihood that users will consent to data processing.
-
-This documentation explains how the risk assessment works, which factors are taken into account, and how to use the provided configuration guides to achieve an appropriate balance between functionality and data protection.
-
-In principle, any member of your team can set up the Consenter cookie banner. However, depending on the configuration step, it may be advisable to involve:
-
-- Someone who can assess the necessity of the technologies’ functionality (typically marketing).
-- Someone who can evaluate legal requirements (typically data protection or legal).
-- Someone responsible for technical implementation and integrations (typically IT or web development).
-
-We will indicate at relevant points which roles should be involved.
 
 ## What is a cookie banner and when is it required?
 
@@ -21,15 +9,19 @@ A cookie banner is a user interface that enables end users to actively provide c
 
 For consent to serve as a valid legal basis, it must be obtained before any personal data is collected or processed (“opt-in”).
 
-**Contextual consent**  
-For certain purposes, it is advisable to complement the cookie banner with [contextual consent](/configuration#implement-contextual-consent). Unlike a cookie banner, contextual consent is not shown when users first visit a website, but only when they interact with specific content. A common example is the activation of “additional features” such as maps, videos, or social media content.
+<Callout type="info" title="Contextual consent">
+For certain purposes, it is advisable to complement the cookie banner with [contextual consent](/technical-integration/contextual-consent). Unlike a cookie banner, contextual consent is not shown when users first visit a website, but only when they interact with specific content. A common example is the activation of “additional features” such as maps, videos, or social media content.
 
-Because such services often involve the processing of personal data, users may only access them after giving consent. Contextual consent helps users better understand the specific purpose of the processing and allows risks to be communicated in a more intuitive and situation-specific way.
+Because such services often involve the processing of personal data, users may only access them after giving consent. 
 
-**Opt-out instead of opt-in**  
+Contextual consent helps users better understand the specific purpose of the processing and allows risks to be communicated in a more intuitive and situation-specific way.
+</Callout>
+
+<Callout type="info" title="Opt-out instead of opt-in">
 For some purposes, it may be sufficient to offer users the option to object to the processing of their data (“opt-out”). In this case, personal data may be processed unless and until the user objects. This differs from the opt-in model, where processing is only permitted after consent has been given.
 
 Whether an opt-in or opt-out mechanism is appropriate depends on the level of risk associated with the processing and the applicable legal requirements.
+</Callout>
 
 ## Key legal provisions
 

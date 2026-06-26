@@ -1,15 +1,11 @@
 {
   "pages": [
-    "index",
-    "---",
-    "getting-started/consenter",
-    "getting-started/legal-context",
-    "getting-started/risk-assessment",
-    "---",
+    "consenter",
+    "legal-requirements",
+    "./risk-assessments",
     "./configuration",
-    "technical-integration",
-    "javascript-api",
-    "---",
+    "tools-configuration",
+    "./technical-integration",
     "maintenance",
     "faq"
   ]

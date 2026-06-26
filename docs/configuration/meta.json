@@ -1,11 +1,11 @@
 {
-  "title": "Cookie-Banner Configuration",
+  "title": "Configure Your Banner",
   "pages": [
-    "step-by-step",
+    "purposes",
+    "tools",
+    "data-categories",
     "risk-overview",
-    "privacy-policy",
-    "contextual-consent",
-    "provider-guides"
+    "subject-rights"
   ],
   "defaultOpen": true
 }

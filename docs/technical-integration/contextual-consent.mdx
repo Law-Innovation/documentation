@@ -1,5 +1,6 @@
 ---
-title: Contextual Consent
+title: Add Contextual Consent (optional)
+description: Block third-party content until consent is obtained and implement contextual consent for embedded services such as videos, maps, and social media features.
 ---
 
 Third-party content—such as maps, videos, or social media features—often transmits your visitors’ personal data to the provider the moment it loads. You must prevent this until the visitor has consented. Contextual consent does exactly that: instead of asking for everything up front in the cookie banner, you keep a specific embed blocked and ask for consent right where the content appears, at the moment the visitor wants to use it.
@@ -43,7 +44,7 @@ to use (type 1 or type 2).
 
     <Callout type="info">
       No action is required in these scenarios. Refer to our [configuration
-      guide](/configuration/provider-guides) for third party providers, to find
+      guide](/tools-configuration) for third party providers, to find
       out where consent-free embedding is possible.
     </Callout>
 
@@ -99,7 +100,7 @@ to use (type 1 or type 2).
 
 <Callout type="info">
   If unsure whether your TPP requires contextual consent of type 1 or type 2,
-  check out our [TPP configuration guides](/configuration/provider-guides) or
+  check out our [TPP configuration guides](/tools-configuration) or
   refer to the privacy policy or documentation of the TPP.
 </Callout>
 
@@ -198,12 +199,12 @@ the Consenter API instead.
 In this mode you load **only** the banner script (not `contextual-consent.js`),
 block the third-party content yourself, then:
 
-- call [`grantContextualConsent(tppId, purposeIds)`](/javascript-api#grantcontextualconsenttppid-purposeids)
+- call [`grantContextualConsent(tppId, purposeIds)`](/technical-integration/javascript-api#grantcontextualconsenttppid-purposeids)
   when the user opts in, and
-- [`subscribe`](/javascript-api#subscribecallback-selector) (or
-  [`has`](/javascript-api#hasselector)) to reveal the content once it is consented.
+- [`subscribe`](/technical-integration/javascript-api#subscribecallback-selector) (or
+  [`has`](/technical-integration/javascript-api#hasselector)) to reveal the content once it is consented.
 
-See the [JavaScript API](/javascript-api) for the full method reference.
+See the [JavaScript API](/technical-integration/javascript-api) for the full method reference.
 
 ```html title="index.html" lineNumbers
 <script src="https://banner.consenter.eu/YOUR_DOMAIN_ID/cb.js" async></script>

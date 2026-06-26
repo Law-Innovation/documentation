@@ -122,7 +122,7 @@ if (
 ## grantContextualConsent(tppId, purposeIds)
 
 Grants consent for a single service across the given purposes, without
-re-opening the banner. See [Contextual Consent](/configuration/contextual-consent#custom-integration)
+re-opening the banner. See [Contextual Consent](/technical-integration/contextual-consent#custom-integration)
 for the full custom-UI flow.
 
 <TypeTable
@@ -173,7 +173,7 @@ a future major release.
 - **`unsubscribe(identifier)`** — only removes string-identifier
   subscriptions. Call the function returned by `subscribe` instead.
 - **`data-consenter-tpp-purpose-*` attributes** — the per-purpose flags on
-  [contextual consent](/configuration/contextual-consent) embeds
+  [contextual consent](/technical-integration/contextual-consent) embeds
   (`…-improve-the-service`, `…-marketing-analytics`, `…-customise-ads`).
   List the purposes in a single `data-consenter-purpose-ids="id1,id2"`
   attribute instead.
