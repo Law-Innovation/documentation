@@ -144,17 +144,51 @@ for the full custom-UI flow.
 **Returns** `"success"`, or a validation error string. The consent is saved
 asynchronously — use `subscribe` or `has` to react once it lands.
 
-## banner.open()
+## banner.open(options?)
 
 Opens the cookie banner from your own UI — typically a "Cookie settings" link
 in your footer that gives visitors a route back into their consent choices.
-Takes no arguments:
+
+Called with no arguments, it opens the banner at the top level:
 
 ```html
 <button type="button" onclick="window.consenter.banner.open();">
   Cookie settings
 </button>
 ```
+
+Pass a target to deep-link straight into a purpose, or to a specific service
+within a purpose:
+
+<TypeTable
+  type={{
+    purposeId: {
+      type: "string",
+      description:
+        "Opens the banner on this purpose's detail view, as configured in the banner.",
+    },
+    tppId: {
+      type: "string",
+      description:
+        "Expands this service (TPP) inside the purpose and scrolls it into view. Requires purposeId.",
+    },
+  }}
+/>
+
+```js lineNumbers
+// Open on a purpose's detail view
+window.consenter.banner.open({ purposeId: "YOUR_PURPOSE_ID" });
+
+// Open with a specific service expanded inside that purpose
+window.consenter.banner.open({
+  purposeId: "YOUR_PURPOSE_ID",
+  tppId: "YOUR_SERVICE_ID",
+});
+```
+
+<Callout type="info">
+  A `tppId` always needs a `purposeId`: the same service can belong to several purposes, so on its own it has no unambiguous target. Targets are checked against the banner's configuration — an unknown purpose, an unknown service, a service that is not part of the given purpose, or a `tppId` with no `purposeId` are ignored, leaving the banner closed, and logged as a console warning. A target is likewise ignored while the banner is already open or a handover notice is showing.
+</Callout>
 
 ## consenter:ready
 
