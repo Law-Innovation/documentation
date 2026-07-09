@@ -3,17 +3,16 @@ title: Configure Your Tools
 description: Risk configuration guides for third-party tools.
 ---
 
-Below you will find configuration guides to help you set up third-party tools and map these configurations within the Consenter Manager when configuring your consent banner. We will continue to expand this collection with additional guides over time.
+Below you will find configuration guides to help you set up third-party tools and map these configurations within the Consenter Manager when configuring your consent banner. We will continue to expand this collection with additional guides over time. Each guide typically offers three configuration profiles, reflecting the level of risk associated with the functionality you enable:
 
-<Callout type="info" title="Help us improve the Risk Configuration Guides">
+- Low risk
+- Medium risk
+- High risk
 
-Consenter builds on an open and participatory development process, based on an open standard (see the Consent Standard ConStand, available at [www.tinyurl.com/ConStand](https://tinyurl.com/ConStand)).\*
+As a general rule, we recommend choosing a low-risk configuration. This has a positive effect on the overall assessment displayed in the cookie banner and can also improve your consent rates. However, lower risk may come at the cost of reduced functionality. If you want the full functionality of these technologies, you must choose a higher risk configuration.
 
-One key area where we build on the involvement of our community is the creation and maintenance of the Risk Configuration Guides.
+The guides are designed to support you in making this trade-off consciously and transparently. You may follow the recommended configurations or deviate from them—they are intended as guidance only.
 
-If no Risk Configuration Guide yet exists for a tool you use or provide, or if you believe any of our existing guides contain inaccuracies, please help improve this documentation using the contribution buttons below or on our website.
-
-</Callout>
 ### Analytics
 
 <Cards>
@@ -28,12 +27,7 @@ If no Risk Configuration Guide yet exists for a tool you use or provide, or if y
   />
   <Card
     href="https://law-innovation-tech.notion.site/Google-Analytics-4-GA4-364a5962dbd08064ac77cef4a581cfe3?pvs=74"
-    title={
-      <span className="flex items-center">
-        Google Analytics (GA4)
-        <PrivacyBadge variant="caution" className="ms-auto" />
-      </span>
-    }
+    title="Google Analytics (GA4)"
   />
   <Card
     href="https://law-innovation-tech.notion.site/Hotjar-364a5962dbd0808a9264e0956bb3da57?pvs=74"
@@ -48,33 +42,13 @@ If no Risk Configuration Guide yet exists for a tool you use or provide, or if y
       </span>
     }
   />
-
   <Card
     href="https://law-innovation-tech.notion.site/LinkedIn-Insight-Tag-383a5962dbd0807bb243f801962ba6c1?pvs=73"
-    title={
-      <span className="flex items-center">
-        LinkedIn Insight Tag
-        <PrivacyBadge variant="caution" className="ms-auto" />
-      </span>
-    }
+ title="LinkedIn Insight Tag"
   />
     <Card
     href="https://law-innovation-tech.notion.site/Meta-Pixel-Facebook-Pixel-383a5962dbd0803aa890e5b704d2b26b"
-    title={
-      <span className="flex items-center">
-        Meta Pixel (Facebook Pixel)
-        <PrivacyBadge variant="caution" className="ms-auto" />
-      </span>
-    }
-  />
-  <Card
-    href="https://law-innovation-tech.notion.site/LinkedIn-Insight-Tag-383a5962dbd0807bb243f801962ba6c1?pvs=73"
-    title="LinkedIn Insight Tag"
-  />
-  <Card
-    href="https://law-innovation-tech.notion.site/Meta-Pixel-Facebook-Pixel-383a5962dbd0803aa890e5b704d2b26b"
     title="Meta Pixel (Facebook Pixel)"
-  />
 </Cards>
 
 ### Audio and Video Content
@@ -91,20 +65,19 @@ If no Risk Configuration Guide yet exists for a tool you use or provide, or if y
   />
   <Card
     href="https://law-innovation-tech.notion.site/Movingimage-35fa5962dbd080dbacaff2d18dd16713?pvs=74"
-    title="Movingimage"
-  />
+    title={
+      <span className="flex items-center">
+        Movingimage
+        <PrivacyBadge variant="privacy-plus" className="ms-auto" />
+      </span>
+    }
   <Card
     href="https://law-innovation-tech.notion.site/Vimeo-35fa5962dbd0808a85d3f1d7d965f13e"
     title="Vimeo"
   />
   <Card
     href="https://law-innovation-tech.notion.site/YouTube-Video-Embedding-311a5962dbd0808cb204ddca4e6fbae0"
-    title={
-      <span className="flex items-center">
-        YouTube
-        <PrivacyBadge variant="caution" className="ms-auto" />
-      </span>
-    }
+    title="YouTube"
   />
 </Cards>
 
@@ -113,13 +86,7 @@ If no Risk Configuration Guide yet exists for a tool you use or provide, or if y
 <Cards>
   <Card
     href="https://law-innovation-tech.notion.site/Google-Maps-Embedding-35fa5962dbd08001a88ededdadae00ea"
-    title={
-      <span className="flex items-center">
-        Google Maps
-        <PrivacyBadge variant="caution" className="ms-auto" />
-      </span>
-    }
-  />
+    title="Google Maps"
   <Card
     href="https://law-innovation-tech.notion.site/OpenStreetMap-OSM-Embedding-364a5962dbd0809bb7e7d209af442f96"
     title="OpenStreetMap"
@@ -135,12 +102,7 @@ If no Risk Configuration Guide yet exists for a tool you use or provide, or if y
   />
   <Card
     href="https://law-innovation-tech.notion.site/Instagram-37ca5962dbd080dab231db4868241e7d"
-    title={
-      <span className="flex items-center">
-        Instagram
-        <PrivacyBadge variant="caution" className="ms-auto" />
-      </span>
-    }
+    title="Instagram"
   />
   <Card
     href="https://law-innovation-tech.notion.site/Mastodon-37ba5962dbd080d682dffc78b451b567?pvs=73"
@@ -148,36 +110,13 @@ If no Risk Configuration Guide yet exists for a tool you use or provide, or if y
   />
   <Card
     href="https://law-innovation-tech.notion.site/Twitter-X-37ba5962dbd080b1bb90ede4d96648fe?pvs=73"
-    title={
-      <span className="flex items-center">
-        Twitter/X
-        <PrivacyBadge variant="caution" className="ms-auto" />
-      </span>
-    }
-  />
-  <Card
-    href="https://law-innovation-tech.notion.site/Facebook-Social-Plugins-383a5962dbd08086b8a3eca4e1b6f584?pvs=74"
-    title={
-      <span className="flex items-center">
-        Facebook Social Plugins
-        <PrivacyBadge variant="caution" className="ms-auto" />
-      </span>
-    }
-  />
-    <Card
-    href="https://law-innovation-tech.notion.site/Pinterest-383a5962dbd0803b9db5ffb1cd4a80e2?source=copy_link"
-    title={
-      <span className="flex items-center">
-        Pinterest
-        <PrivacyBadge variant="caution" className="ms-auto" />
-      </span>
-    }
+    title="Twitter/X"
   />
   <Card
     href="https://law-innovation-tech.notion.site/Facebook-Social-Plugins-383a5962dbd08086b8a3eca4e1b6f584?pvs=74"
     title="Facebook Social Plugins"
   />
-  <Card
+    <Card
     href="https://law-innovation-tech.notion.site/Pinterest-383a5962dbd0803b9db5ffb1cd4a80e2?source=copy_link"
     title="Pinterest"
   />
@@ -192,13 +131,7 @@ If no Risk Configuration Guide yet exists for a tool you use or provide, or if y
   />
   <Card
     href="https://law-innovation-tech.notion.site/Google-Ads-37ca5962dbd0806cb82bd674b718d8ed?pvs=73"
-    title={
-      <span className="flex items-center">
-        Google Ads
-        <PrivacyBadge variant="caution" className="ms-auto" />
-      </span>
-    }
-  />
+    title="Google Ads"
   <Card
     href="https://law-innovation-tech.notion.site/HubSpot-311a5962dbd08029bfacec4ff9cdd3b8"
     title="HubSpot"
@@ -213,7 +146,7 @@ If no Risk Configuration Guide yet exists for a tool you use or provide, or if y
 
 <Cards>
   <Card
-    href="https://law-innovation-tech.notion.site/Facebook-Social-Plugins-383a5962dbd08086b8a3eca4e1b6f584?pvs=74"
+    href="https://law-innovation-tech.notion.site/AWIN-383a5962dbd080d395a0d5302fce7af9?pvs=74"
     title="AWIN"
   />
   <Card
@@ -222,18 +155,15 @@ If no Risk Configuration Guide yet exists for a tool you use or provide, or if y
   />
 </Cards>
 
-### Other Tools
+<Callout type="info" title="Help us improve the Risk Configuration Guides">
 
-<Cards>
-  <Card
-    href="https://law-innovation-tech.notion.site/Facebook-Social-Plugins-383a5962dbd08086b8a3eca4e1b6f584?pvs=74"
-    title="AWIN"
-  />
-  <Card
-    href="https://law-innovation-tech.notion.site/JENTIS-38aa5962dbd08040941fe4357cabe0f5"
-    title="JENTIS"
-  />
-</Cards>
+Consenter builds on an open and participatory development process, based on an open standard (see the Consent Standard ConStand, available at [www.tinyurl.com/ConStand](https://tinyurl.com/ConStand)).\*
+
+One key area where we build on the involvement of our community is the creation and maintenance of the Risk Configuration Guides.
+
+If no Risk Configuration Guide yet exists for a tool you use or provide, or if you believe any of our existing guides contain inaccuracies, please help improve this documentation using the contribution buttons below or on our website.
+
+</Callout>
 
 If you would like to contribute your own configuration guides or risk assessments for tools not yet covered, we encourage you to get in touch. We are working towards opening this documentation to the community, with the aim of sharing knowledge on data protection–friendly configurations of third-party technologies.
 
