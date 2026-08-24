@@ -1,0 +1,107 @@
+---
+title: Matomo
+---
+
+<aside>
+
+ℹ️ This guide provides step-by-step instructions for configuring Matomo in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure Matomo accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use the third party provider in your **privacy policy**
+
+</aside>
+
+# Configuration Guide
+
+Matomo (formerly Piwik) is an open-source web analytics platform available either as a self-hosted solution (Matomo On-Premise) or as a managed cloud service (Matomo Cloud, operated by InnoCraft Ltd). It deploys a JavaScript tracking code on customer websites to collect visitor behaviour, session data, and optionally user identification data. A key privacy advantage of Matomo is its high configurability: it can be operated in a fully cookieless and anonymised mode with minimal personal data processing, or configured to collect detailed individual visitor profiles including cross-device tracking via User ID. The configurations below cover the most privacy-relevant settings and their corresponding mappings in the Customer Panel (CP).
+
+---
+
+## Step 1 — Matomo Configuration
+
+| # | Configuration Area | Where in Matomo | Configuration A — Low Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Consent & tracking activation | Tracking code (`_paq.push(['requireConsent'])`) / Administration → Privacy → Ask for Consent | Consent may not be required if fully cookieless, IP-anonymised, and no User ID is collected (CNIL-exempt configuration in select EU jurisdictions); consent is required in strict ePrivacy jurisdictions (e.g. Germany, UK). Always verify applicable law and include an opt-out mechanism. | Require consent before any tracking request is sent | Require consent before any tracking request is sent |
+| 2 | Cookie usage | Tracking code (`_paq.push(['disableCookies'])`) / Administration → Privacy | Disabled — cookieless tracking only; no persistent visitor cookies are set (`_pk_id`, `_pk_ses`, `_pk_ref` are not created) | Enabled — standard first-party visitor and session cookies (`_pk_id.*` up to 13 months; `_pk_ses.*` 30 minutes; `_pk_ref.*` 6 months) | Enabled — standard first-party visitor and session cookies (`_pk_id.*` up to 13 months; `_pk_ses.*` 30 minutes; `_pk_ref.*` 6 months) |
+| 3 | IP anonymisation | Administration → Privacy → Anonymize Data → Anonymize IP addresses | Full anonymisation — all bytes replaced (e.g. 0.0.0.0); no geographic inference possible | 2 bytes masked — coarse geolocation retained; individual identification not possible from IP alone | Disabled — full IP address collected and stored |
+| 4 | User ID (cross-device tracking) | Tracking code (`_paq.push(['setUserId', 'userID'])`) | Disabled | Disabled | Enabled — authenticated user identifier (e.g. hashed login ID) passed on sign-in, linking sessions across devices |
+| 5 | Data retention | Administration → Privacy → Delete Old Visitors Data | 6 months | 13 months | 24 months |
+| 6 | Processing location | Hosting choice (On-Premise) / Matomo Cloud subscription | Self-hosted on customer-controlled EU server; no third-party data transfer | Self-hosted on customer-controlled EU server; no third-party data transfer | Matomo Cloud: data stored on AWS EMEA SARL infrastructure in Frankfurt (DE) with backups in Dublin (IE); InnoCraft Ltd (NZ) acts as processor; transfer to NZ covered by EU adequacy decision; potential CLOUD Act exposure via AWS US parent group cannot be fully excluded |
+
+### Configuration A — Low Risk
+
+Use this configuration when Matomo is used solely for anonymous, aggregated website analytics with the minimum possible data footprint. Cookies are entirely disabled via `_paq.push(['disableCookies'])`, meaning no persistent visitor identifier is stored on the user's device. Because no cookies are set, each visit is tracked independently and cannot be linked across sessions. Matomo applies a server-side session hash (config_id) derived from browser properties and the anonymised IP address for intra-session deduplication; this does not constitute a persistent identifier and, with full IP anonymisation applied, is not considered personal data under current guidance.
+
+IP addresses are fully anonymised by replacing all bytes, so no geographic or individual inference is possible. User ID is disabled. No ecommerce or advertising integrations are active. Data is retained for 6 months.
+
+With this configuration, in certain EU jurisdictions that recognise a consent exemption for audience measurement tools — most notably France under CNIL guidance — Matomo may be operated without prior tracking consent, provided that: cookies do not persist, no personal data is collected or stored, no cross-site tracking is active, no User ID is set, data is used exclusively for audience measurement, and an opt-out mechanism is offered (e.g. via the Matomo opt-out iframe embedded in the privacy policy). This exemption does **not** apply in strict ePrivacy jurisdictions such as Germany or the UK, where consent remains required for all analytics regardless of anonymisation. Always verify applicable law before operating without a consent banner.
+
+Matomo is self-hosted on a customer-controlled EU server. InnoCraft Ltd has no access to the data in this deployment model; no DPA with InnoCraft is required. The website operator is the sole data controller.
+
+### Configuration B — Medium Risk
+
+Use this configuration when Matomo is used for standard website analytics with cookie-based cross-session visitor tracking. Consent must be obtained before the tracking code fires. Standard first-party Matomo cookies are enabled (`_pk_id.*`, `_pk_ses.*`, `_pk_ref.*`), allowing Matomo to recognise returning visitors across sessions and attribute visits correctly. IP addresses are anonymised by masking 2 bytes, which prevents individual identification from IP alone while retaining coarse geographic data for location reports. User ID is disabled, so no individual user profiles are created and no cross-device tracking is performed. No ecommerce order IDs or advertising integrations are in use. Data is retained for 13 months.
+
+Matomo is self-hosted on a customer-controlled EU server. The website operator is the data controller and InnoCraft Ltd has no access to the data. No DPA with InnoCraft is required for self-hosted deployments. The operator's own server provider should offer a DPA if applicable.
+
+### Configuration C — Higher Risk
+
+Use this configuration when Matomo is used for comprehensive individual visitor analytics including cross-device tracking via User ID. Consent must be obtained before the tracking code fires. Standard first-party Matomo cookies are enabled. IP anonymisation is disabled, so the full IP address is collected and stored. User ID is enabled by passing an authenticated user identifier (e.g. a hashed login ID) via `_paq.push(['setUserId', 'userID'])` at login, which links sessions across different devices to a single visitor profile. This constitutes processing of an authentication-derived identifier and creates individual visitor profiles. Data is retained for 24 months.
+
+Matomo Cloud is used in this configuration. Data is stored on infrastructure operated by Amazon Web Services EMEA SARL (Luxembourg) in Frankfurt, Germany, with backups in Dublin, Ireland. InnoCraft Ltd (InnoCraft Limited, New Zealand) acts as the data processor; a DPA is available at matomo.cloud/dpa and is incorporated into the Matomo Cloud Terms of Service. The transfer of data to InnoCraft in New Zealand is covered by the European Commission's adequacy decision (2013/65/EU). However, as Amazon Web Services EMEA SARL is part of the US-based Amazon group, potential access by US government authorities under the CLOUD Act cannot be fully excluded. This should be disclosed as a potential US data transfer in the consent banner. InnoCraft acts as a data processor; the website operator remains the data controller.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+Using the Matomo configurations defined in Step 1, apply the following mappings in the Customer Panel to ensure the consent banner correctly reflects the data processing activities.
+
+### 2.1 Configuration A — Low Risk
+
+<aside>
+
+ℹ️ Note: If you implement Matomo in the cookieless version and according to the CNIL configuration guide, Consent might not be necessary. In this case you do NOT have to configure Matomo in the Consenter Manager, but only inform users about the data processing in your privacy policy AND provide an easy to access option to object to the processing according to Art. 21 GDPR.
+
+If you want to be sure and still obtain consent for the data processing follow the configuration A guide.
+
+</aside>
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (single session) |
+| Identifier | No identifier |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP-Adress anonymised |
+| Legal role of data recipient | Self-hosted |
+| Personalisation model | No personalisation |
+| Maximum storage duration | 6 months |
+| Processing location | Customer-defined (EU server recommended) |
+
+### 2.2 Configuration B — Medium Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, IP-Adress anonymised, Non-precise location data |
+| Legal role of data recipient | Self-hosted |
+| Personalisation model | No personalisation |
+| Maximum storage duration | 13 months |
+| Processing location | Customer-defined EU server |
+
+### 2.3 Configuration C — Higher Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers, Authentication-derived identifiers, IP address |
+| Data categories | Aggregated site statistics, Authentication-derived identifiers, Browsing and interaction data, Device characteristics, Device identifiers, IP address, Non-precise location data, Users' profiles |
+| Legal role of data recipient | Processor |
+| Personalisation model | Profile based |
+| Maximum storage duration | 24 months |
+| Processing location | EU (AWS Frankfurt/Dublin; InnoCraft Ltd NZ — adequacy decision); potential CLOUD Act exposure via AWS US group connection |
+
+> **Note:** The User ID feature in Matomo Configuration C creates individual visitor profiles that link activity across devices under a single authenticated identifier. Whilst Matomo remains a first-party analytics tool (no cross-website tracking is involved), the profile-based nature of User ID tracking requires that the consent banner accurately reflects the creation of individual user profiles and the use of authentication-derived identifiers. Additionally, as AWS EMEA SARL operates as part of the US-based Amazon group, potential US government access via the CLOUD Act cannot be entirely excluded for Matomo Cloud deployments and should be disclosed accordingly.
+>
