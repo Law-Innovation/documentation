@@ -1,11 +1,11 @@
 {
   "title": "Configure Your Tools",
   "pages": [
-    "matomo"
-    "ga4"
-    "hotjar"
-    "etracker"
-    "youtube"
+    "matomo",
+    "ga4",
+    "hotjar",
+    "etracker",
+    "youtube",
     "hubspot"
   ],
   "defaultOpen": true
