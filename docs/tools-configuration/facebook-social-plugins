@@ -1,0 +1,94 @@
+---
+title: Facebook Social Plugins
+---
+
+# Configuration Guide
+
+<aside>
+💡
+
+This guide provides step-by-step instructions for configuring Facebook (Meta) Social Plugins in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure the Facebook Social Plugin accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use the third party provider in your **privacy policy**
+
+</aside>
+
+Facebook Social Plugins are widgets provided by Meta that website operators can embed to display Facebook content or enable sharing, following, and page promotion directly on third-party websites. Most plugins are loaded via the Facebook JavaScript SDK (`connect.facebook.net`), which establishes a connection to Meta's servers and may set cookies on the visitor's browser. Meta discontinued the Facebook Like button and Facebook Comment button plugins on 10 February 2026, so this guide covers the social plugins that remain available: the Share Button, Follow Button, Page Plugin, and Embedded Posts/Videos. Under the CJEU's Fashion ID ruling, a website operator that embeds a Facebook social plugin is considered a joint controller together with Meta for the collection and transmission stage of the data processing, even where the operator has no access to the data once it reaches Meta. The configurations below cover the most privacy-relevant implementation choices and their corresponding mappings in the Consenter Manager (CM).
+
+---
+
+## Step 1 — Facebook Social Plugin Configuration
+
+| # | Configuration Area | Where in Meta for Developers | Configuration A — Low Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Implementation method | Embed code | Plain hyperlink to Facebook's share dialogue (`facebook.com/sharer/sharer.php?u=...`); no SDK, no `fb-root`, no iframe loaded on your page | Official Share Button or Follow Button plugin via Facebook JavaScript SDK (`fb-root` + `connect.facebook.net/sdk.js`), loaded only after consent | Page Plugin and/or Embedded Posts/Videos via Facebook JavaScript SDK, loaded after consent; multiple plugin instances on the same page |
+| 2 | Consent gating | Consent Management / website implementation | Not applicable — no connection to Meta is made until the visitor actively clicks the link and is redirected to facebook.com | Required — SDK only loads for visitors who have consented via the consent banner | Required — SDK only loads for visitors who have consented via the consent banner |
+| 3 | Friend facepile / account-linked display | Page Plugin attribute `data-show-facepile` | Not applicable | Disabled | Enabled (`data-show-facepile="true"`) — shows real profile photos of the visitor's Facebook friends who like the Page, if the visitor is logged into Facebook |
+| 4 | Cookies set on load | Meta Cookies Policy | None set by the embed itself; cookies are only set if the visitor proceeds to facebook.com | Security/functional cookie (`datr`), used to identify the browser independent of login state, persistent for approximately 2 years | Security cookie (`datr`, ~2 years) and advertising-related cookie (`fr`, ~90 days), the latter used for ad measurement and cross-site recognition |
+| 5 | Data transmitted regardless of interaction | Inherent to plugin design (CJEU Fashion ID) | None — IP address and browser data are only sent if the visitor clicks through to Facebook | IP address, browser string, and referring page URL are transmitted to Meta for every consenting visitor upon page load, whether or not they interact with the button | IP address, browser string, referring page URL, and (if logged in) account-linked friend data are transmitted to Meta upon page load for every consenting visitor |
+| 6 | Data controller | Meta entity structure | Meta Platforms Ireland Limited (EU/EEA) or Meta Platforms, Inc. (UK and rest of world), only upon click-through | Joint Controller arrangement between you and Meta for the collection/transmission phase | Joint Controller arrangement between you and Meta for the collection/transmission phase; Meta remains sole controller for any subsequent profile-based processing |
+| 7 | Processing location | Meta data transfer practices | EU (Meta Platforms Ireland Limited) for EU/EEA visitors / US (Meta Platforms, Inc.); CLOUD Act applies | EU (Meta Platforms Ireland Limited) for EU/EEA visitors / US (Meta Platforms, Inc.); CLOUD Act applies | EU (Meta Platforms Ireland Limited) for EU/EEA visitors / US (Meta Platforms, Inc.); CLOUD Act applies |
+
+### Configuration A — Low Risk
+
+Use this configuration when you want to offer Facebook sharing functionality with the smallest possible data footprint. Instead of embedding the official Share Button plugin (which loads the Facebook SDK for every visitor), implement a plain hyperlink that opens Facebook's share dialogue (`facebook.com/sharer/sharer.php?u=YOUR_URL`) in a new tab. This is a documented alternative to the embedded plugin that uses the Facebook Share Dialog without requiring the JavaScript SDK to be loaded on your page. No `fb-root` div, no SDK script, and no iframe are present on your website, meaning no cookies are set and no data is transmitted to Meta unless and until the visitor actively clicks the link and is redirected to Facebook's own domain. At that point, the visitor is interacting directly with Facebook as an independent visit, governed by Facebook's own terms, and your role as joint controller does not arise because no collection or transmission occurs on your site. No consent gate is required for the link itself, though best practice is to label it clearly as an outbound link to Facebook.
+
+### Configuration B — Medium Risk
+
+Use this configuration when you want to embed an interactive Share Button or Follow Button directly on your page. Consent must be obtained via the consent banner before the Facebook JavaScript SDK loads; until consent is given, the plugin should be replaced with a placeholder. Once consent is given and the SDK loads, the plugin is implemented via a `fb-root` div and the Facebook SDK script loaded from `connect.facebook.net`, with the button rendered inside an iframe. As established by the CJEU, you and Meta are joint controllers for the collection and transmission of personal data via the plugin, and you are responsible for informing visitors and obtaining their consent for this collection. Upon loading, Meta receives the IP address, browser string, and referring page URL of every consenting visitor — regardless of whether they actually click the button. The `datr` cookie is set, identifying the browser independent of the visitor's Facebook login state, for a duration of approximately two years. No friend facepile or other account-linked personalisation is shown. A joint controller arrangement (Meta's "Controller Addendum") governs the respective compliance responsibilities for the collection and transmission phase.
+
+### Configuration C — Higher Risk
+
+Use this configuration when you embed the Page Plugin with friend facepile enabled and/or combine it with Embedded Posts or Embedded Videos on the same page. Consent must be obtained before the SDK loads, as in Configuration B. The Page Plugin lets you embed and promote a public Facebook Page on your website, allowing visitors to like and share the Page without leaving your site, and when friend facepile is enabled, it shows real people's profile images of friends who like the Page rather than just a number. This requires Meta to check whether the visitor is logged into Facebook and, if so, to access and display data about their social graph — constituting authentication-derived identification and profile-based personalisation. In addition to the `datr` cookie, the `fr` cookie (typically expiring after 90 days) is set, which Facebook uses to support ad measurement and to recognise users across sessions and across other sites carrying Facebook plugins or the Facebook Pixel. Running multiple plugin instances increases the frequency and volume of data transmitted to Meta on each page load. As with Configuration B, a joint controller arrangement applies for the collection/transmission phase; Meta remains the sole controller for any subsequent processing, such as building advertising profiles from the collected data.
+
+---
+
+## Step 2 — Mapping in the Consenter Manager
+
+Using the Facebook Social Plugin configurations defined in Step 1, apply the following mappings in the Consenter Manager to ensure the consent banner correctly reflects the data processing activities.
+
+### 2.1 Configuration A — Low Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | No tracking (until click-through to facebook.com) |
+| Identifier | No identifier |
+| Data categories | None (only applicable once the visitor clicks through to Facebook's own domain) |
+| Legal role of data recipient | Individual Controller (applies only upon click-through) |
+| Personalisation model | No personalisation |
+| Maximum storage duration | Not applicable — no data collected on your site |
+| Processing location | EU (Meta Platforms Ireland Limited) / US (Meta Platforms, Inc.); potential access via CLOUD Act |
+
+> **Note:** Because no connection to Meta is established until the visitor actively clicks the link, this configuration does not require an entry in the consent banner for tracking purposes. However, it is good practice to disclose in your privacy policy that clicking the link will take the visitor to a third-party website operated by Meta.
+> 
+
+### 2.2 Configuration B — Medium Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers, IP address |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | No personalisation |
+| Maximum storage duration | Up to 24 months (`datr` cookie) |
+| Processing location | EU (Meta Platforms Ireland Limited) / US (Meta Platforms, Inc.); potential access via CLOUD Act |
+
+### 2.3 Configuration C — Higher Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Device identifiers, IP address, Authentication-derived identifiers, Direct identifier |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Authentication-derived identifiers, Users' profiles, Direct identifier, Social media interaction data |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | Profile based |
+| Maximum storage duration | Up to 24 months (`datr` cookie); up to 90 days (`fr` cookie); profile data retained per Meta's standard account retention while the visitor's Facebook account remains active |
+| Processing location | EU (Meta Platforms Ireland Limited) / US (Meta Platforms, Inc.); potential access via CLOUD Act |
+
+> **Note:** Meta requires website operators using its joint-controller plugins to enter into the standard Controller Addendum and to disclose the joint processing arrangement in their privacy policy. Meta Platforms Ireland Limited has previously been fined €1.2 billion by the Irish Data Protection Commission for unlawfully transferring EU/EEA user data to the US, underscoring that data transferred via these plugins — even when initially processed in the EU — may ultimately be processed in or accessed from the United States, which should be clearly disclosed to visitors.
+>

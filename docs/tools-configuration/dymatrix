@@ -1,0 +1,120 @@
+---
+title: DYMATRIX
+---
+
+## Privacy Configuration Guide
+
+<aside>
+ℹ️
+
+This guide provides step-by-step instructions for configuring DYMATRIX in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+</aside>
+
+**Step 1:** Choose which configuration matches your demands and configure DYMATRIX accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use the third party provider in your **privacy policy**
+
+<aside>
+ℹ️
+
+DYMATRIX (formerly ECONDA, "DYMATRIX Web Analytics" / "DYMATRIX Personalization") is a German web analytics and customer data platform used to measure visitor behaviour on websites, apps and online shops, and — via its Audience Relationship Platform (ARP) module — to build cross‑channel visitor profiles for personalised product recommendations. Unlike most analytics or marketing platforms covered in this library, DYMATRIX GmbH is a German company (Stuttgart), hosts exclusively on servers in Germany, and, per its own privacy notice, excludes any transfer of data to third parties or third countries for the core Web Analytics module. As DYMATRIX is not a US enterprise and does not transfer this data to the US, the standard CLOUD Act flag does not apply to the configurations below — this is a deliberate departure from the default pattern used for other guides and should be reviewed if DYMATRIX's ownership, hosting location, or sub‑processor structure changes. The configurations below cover the most privacy-relevant settings and their corresponding mappings in the Consenter Manager (CP).
+
+</aside>
+
+---
+
+### Step 1 — DYMATRIX Configuration
+
+| # | Configuration Area | Where in DYMATRIX | Configuration A — Lower Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Measurement mode | Privacy settings → default measurement mode ("Anonymes Messen" vs. personalised) | Anonymous mode — no cookies, no persistent identifiers | Personalised (opt-in) mode — first-party cookie set | Personalised (opt-in) mode — first-party cookie set |
+| 2 | Consent gating | Consent Management integration (e.g. Data Processing Services "Web Analytics Essential" / "Web Analytics") | Fires without consent (Essential/no-cookie DPS) | Fires only after consent (Marketing-category DPS) | Fires only after consent (Marketing/Functional-category DPS) |
+| 3 | IP address handling | Tracking library configuration | Not collected or stored | Anonymised immediately after receipt | Anonymised immediately after receipt |
+| 4 | Cross-channel profile building (ARP / Personalization) | DYMATRIX Personalization / Audience Relationship Platform (ARP) module | Not used | Not used | Enabled — merges web, app, e-mail and CRM interaction data into per-visitor profiles for personalised recommendations |
+| 5 | Data collected | Tracking library configuration | Device/browser characteristics, pages viewed (session-scoped only) | Device/browser characteristics, pages viewed, order/checkout data, login/customer data (session- and visit-linked) | As Configuration B, plus cross-session, cross-device and cross-channel profile data (CRM, e-mail, ad-server interactions) |
+| 6 | Data retention | Account-level retention settings | Not persisted beyond the current session | Customer-configurable; no platform-enforced maximum — example: 14 months | Customer-configurable; no platform-enforced maximum — example: 24 months |
+| 7 | Processing location | Hosting / subscription contract | Germany (EU); no third-party or third-country transfer | Germany (EU); no third-party or third-country transfer | Germany (EU); no third-party or third-country transfer, unless profiles are additionally exported to connected third-party ad platforms |
+
+#### Configuration A — Lower Risk
+
+Use this configuration when DYMATRIX is used solely for anonymous reach measurement without any form of visitor recognition. In anonymous mode, no visitor cookie is set, no session cookie is used (an externally supplied, non-persistent ID from the host system is used only to group page views within a single visit), and no personal data such as IP address, customer ID or order number is stored. Visitors cannot be recognised on subsequent visits and no profile is created. Because this mode does not involve access to or storage of information on the visitor's device within the meaning of § 25 TTDSG, it can run without prior consent, on the basis of Art. 6(1)(f) GDPR (legitimate interest in reach measurement). Data is collected on the current session only and is not persisted afterwards. Processing takes place exclusively on DYMATRIX's German servers; DYMATRIX GmbH acts as a data processor under an Art. 28 GDPR DPA, and no data is transferred to third parties or third countries.
+
+#### Configuration B — Medium Risk
+
+Use this configuration when DYMATRIX is used for full-featured, cookie-based web analytics, including recognition of returning visitors and (in e-commerce contexts) order and checkout data. Once consent is given, DYMATRIX sets a first-party cookie that allows recognition of the browser across sessions. IP addresses are made unrecognisable (anonymised) immediately after receipt, so usage profiles cannot be linked back to an IP address. Usage profiles are not combined with data identifying the visitor unless the visitor separately and expressly consents to that combination. Data collected can include device/browser information, pages viewed, order-process information, access data, and customer data provided at login. This processing requires consent under Art. 6(1)(a) GDPR and § 25(1) TTDSG. Retention is configurable at account level (DYMATRIX imposes no fixed platform maximum); the operator should document the value actually configured. As with Configuration A, processing takes place solely on DYMATRIX's German servers under an Art. 28 GDPR DPA, with no onward transfer to third parties or third countries.
+
+#### Configuration C — Higher Risk
+
+Use this configuration when the DYMATRIX Personalization / Audience Relationship Platform (ARP) module is activated to build persistent, cross-channel visitor profiles for personalised product recommendations. ARP consolidates data from digital channels — website, app, e-mail campaigns — and, where connected, CRM, order and ad-server systems, into individual visitor or customer profiles that are used to serve AI-driven, personalised recommendations across channels (e.g. website, e-mail, banner advertising). Because this builds detailed behavioural and, where CRM data is linked, identity-linked profiles, opt-in consent is required and is managed through DYMATRIX's Permission Management System. Consent must be captured per channel where the visitor may access the site (e.g. desktop vs. mobile), as profiles can otherwise be built on incomplete consent information. This processing requires consent under Art. 6(1)(a) GDPR and § 25(1) TTDSG; where special categories of data could be inferred from profile attributes, this requires separate legal assessment and is not recommended without DPO sign-off. Retention is customer-configurable with no platform-enforced maximum; profile data used for ongoing personalisation is typically retained longer than plain analytics data. Base processing remains on DYMATRIX's German servers under an Art. 28 GDPR DPA. If the operator additionally exports ARP-generated segments or profiles to third-party advertising platforms (e.g. for retargeting), each connected platform must be configured as a separate entry in the Consenter Manager under its own legal role, as such platforms typically act as independent controllers for their own processing.
+
+---
+
+### Step 2 — Mapping in the Consenter Manager
+
+Using the DYMATRIX configurations defined in Step 1, apply the following mappings in the Consenter Manager to ensure the consent banner correctly reflects the data processing activities.
+
+#### 2.1 Configuration A — Lower Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (single session) |
+| Identifier | No identifier |
+| Data categories | Aggregated site statistics, Device characteristics, Browsing and interaction data |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Maximum storage duration | Not applicable — session-scoped only, no persistent storage |
+| Processing location | Germany (EU) |
+| Processing purposes | Improve the service (if consent-free version is chosen, it is sufficient to describe this in privacy notice only) |
+
+#### 2.2 Configuration B — Medium Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, IP address anonymised, e-commerce Activity, User-provided data |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Maximum storage duration | 14 months (example — customer-configurable) |
+| Processing location | Germany (EU) |
+| Processing purposes | Support marketing analytics |
+
+#### 2.3 Configuration C — Higher Risk
+
+This configuration requires a separate Consenter Manager entry for each third-party advertising platform, if and only if ARP-generated profiles or segments are additionally exported to them.
+
+**DYMATRIX Personalization / ARP (Processor entry):**
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Authentication-derived identifiers, e-commerce Activity, User-provided data, Users' profiles |
+| Legal role of data recipient | Processor |
+| Personalisation model | Profile based |
+| Maximum storage duration | 24 months (example — customer-configurable) |
+| Processing location | Germany (EU) |
+| Processing purposes | Personalise the website, Receive personalised marketing offers |
+
+**Connected third-party ad platforms — only if ARP profiles are exported for retargeting (configure a separate entry per platform):**
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Users' profiles |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Profile based |
+| Processing purposes | Customise online ads (non-TCF) |
+
+> **Note:** DYMATRIX itself does not transfer profile data to third parties by default. This second entry is only required where the operator has actively configured an export of ARP segments to an external advertising platform; if no such export is configured, omit this entry entirely rather than leaving placeholder values.
+> 
+
+---
+
+### Step 3 — Privacy Policy
+
+Reflect the configuration you have chosen in your privacy policy, including the measurement mode used, whether cookies are set, the legal basis relied upon, and — for Configuration C — the scope of cross-channel profile building. For guidance on linking your Consenter cookie banner settings to context-specific consent notices (e.g. only loading personalisation once consent is granted), see the Consenter contextual consent integration guide.

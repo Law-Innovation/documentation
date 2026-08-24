@@ -1,0 +1,95 @@
+---
+title: Optimizely
+---
+
+# Configuration Guide
+
+<aside>
+💡
+
+This guide provides step-by-step instructions for configuring Optimizely Web Experimentation in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure Optimizely accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use the third party provider in your **privacy policy**
+
+</aside>
+
+Optimizely Web Experimentation is an A/B testing, multivariate testing, and personalisation platform that deploys a JavaScript snippet on the customer's website to assign visitors to experiment variations, track behavioural events, and deliver personalised content experiences. Depending on configuration, Optimizely can operate as a purely anonymous split-testing tool or as a full individual-level personalisation platform drawing on CRM and CDP data via its **Dynamic Customer Profiles (DCP)** feature. Optimizely is owned by Episerver Group AB, headquartered in Stockholm, Sweden, but operates significant infrastructure and personnel in the United States. Under Optimizely's Data Processing Agreement (DPA), the customer acts as **Controller** and Optimizely acts as **Processor**. The configurations below cover the most privacy-relevant settings and their corresponding mappings in the Consenter Manager.
+
+---
+
+## Step 1 — Optimizely Configuration
+
+| # | Configuration Area | Where in Optimizely | Configuration A — Low Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Consent & snippet activation | Snippet implementation / tag manager | Snippet blocked until explicit user consent via `optOut` API or conditional tag manager load; no cookies or data sent before consent | Snippet blocked until explicit user consent via `optOut` API or conditional tag manager load; no cookies or data sent before consent | Snippet blocked until explicit user consent via `optOut` API or conditional tag manager load; no cookies or data sent before consent |
+| 2 | Experiment type & scope | Optimizely dashboard → Experiments | A/B or multivariate tests on anonymous visitors; no audience targeting beyond basic URL or device conditions | A/B or multivariate tests with behavioural audience targeting (e.g. pages visited, referral source, session behaviour, geolocation) | A/B tests and personalisation campaigns with individual-level audience targeting via **Dynamic Customer Profiles (DCP)** fed by CRM or CDP data |
+| 3 | Visitor identification | Project Settings → Visitor ID / DCP configuration | Random pseudonymous visitor ID (`optimizelyEndUserId`) only; no external IDs or CRM data linked | Random pseudonymous visitor ID (`optimizelyEndUserId`); audience conditions based on in-session behavioural attributes only; no CRM linkage | Visitor ID aliased to a known customer identifier (e.g. authenticated user ID or hashed email) via DCP; CRM or CDP attributes imported to build individual customer profiles for targeting |
+| 4 | Personalisation campaigns | Optimizely dashboard → Personalisation | None — experimentation only | None — experimentation with behavioural segmentation only | Personalisation campaigns active; content and experiences tailored to individual visitor profiles built from CRM, loyalty, purchase, or browsing history data |
+| 5 | Visitor cookie duration | Project Settings → `setCookieExpiration` API | 30 days | 6 months (platform default) | 6 months (platform default); may be extended via `extendCookieLifetime` API |
+| 6 | Processing location | Optimizely Trust Centre / DPA | EU data hosting available (Optimizely EU Data Hosting); potential US government access via CLOUD Act due to US operations | EU data hosting available; potential US government access via CLOUD Act due to US operations | EU data hosting available; potential US government access via CLOUD Act due to US operations |
+
+---
+
+### Configuration A — Low Risk
+
+Use this configuration when Optimizely is used solely for anonymous A/B or multivariate testing, without behavioural audience segmentation, personalisation, or any linkage to known customer identities. The Optimizely snippet is blocked from loading until the user grants explicit consent, implemented either via the `optOut` API (called with `isOptOut: true` before the snippet loads) or by conditionally loading the snippet through a tag manager. No cookies or data are written to the visitor's browser before consent. Upon consent, Optimizely assigns the visitor a random pseudonymous identifier (`optimizelyEndUserId`), a combination of a timestamp and a random number that contains no personal information in itself, and allocates them to an experiment variation. Audience targeting is limited to non-personal URL or device-type conditions. The visitor cookie is set to a 30-day expiry. No CRM data, external identifiers, or personalisation campaigns are in use. Experiment result data is retained on Optimizely's servers for 18 months (platform policy). Where EU data hosting is selected, data is stored on EU infrastructure; however, as Optimizely operates significant US-based infrastructure and personnel, data may remain potentially subject to access by US government authorities under the CLOUD Act. This should be disclosed as a potential US data transfer in the consent banner. Optimizely acts as Processor under its DPA; a DPA is available at optimizely.com/trust-center.
+
+### Configuration B — Medium Risk
+
+Use this configuration when Optimizely is used for A/B or multivariate testing with behavioural audience segmentation. The snippet is blocked until explicit consent. Upon consent, the visitor receives a pseudonymous `optimizelyEndUserId` cookie and is targeted to experiments or variation groups based on in-session behavioural attributes — such as pages previously visited in the current or prior sessions, referral source, geolocation (derived from IP address), device type, or query parameters. These attributes allow visitors to be grouped and served different experiences based on their observed browsing behaviour across the website, building a behavioural profile scoped to the visitor ID. No CRM data or external customer identifiers are linked to the visitor record. The visitor cookie is set to the platform default of 6 months. EU data hosting is available; CLOUD Act risk applies as above. Optimizely acts as Processor under its DPA.
+
+### Configuration C — Higher Risk
+
+Use this configuration when Optimizely is used for individual-level personalisation powered by **Dynamic Customer Profiles (DCP)**, which combines Optimizely's behavioural visitor data with first-party customer attributes imported from a CRM, data warehouse, or customer data platform. The snippet is blocked until explicit consent. Upon consent, the visitor's Optimizely pseudonymous ID is aliased to a known customer identifier — such as an authenticated user ID, loyalty account number, or hashed email — enabling Optimizely to retrieve that visitor's DCP record, which may include purchase history, loyalty tier, product preferences, lifetime value scores, or other CRM attributes. Personalisation campaigns are active, delivering individually tailored content, product recommendations, or messaging based on this profile. The visitor cookie is set to 6 months and may be extended. DCP data is stored on Optimizely's servers and linked to the visitor ID for the duration of the experiment or personalisation campaign. Experiment result and event data are retained for 18 months. EU data hosting is available; however, CLOUD Act risk applies in all cases and must be disclosed. Optimizely acts as Processor under its DPA.
+
+---
+
+## Step 2 — Mapping in the Consenter Manager
+
+Using the Optimizely configurations defined in Step 1, apply the following mappings in the Consenter Manager to ensure the consent banner correctly reflects the data processing activities.
+
+### 2.1 Configuration A — Low Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Maximum storage duration | 30 days |
+| Processing location | EU (if EU data hosting selected) / US (potential access via CLOUD Act) |
+
+### 2.2 Configuration B — Medium Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, Non-precise location data, Users' profiles |
+| Legal role of data recipient | Processor |
+| Personalisation model | Group based (behaviour) |
+| Maximum storage duration | 6 months |
+| Processing location | EU (if EU data hosting selected) / US (potential access via CLOUD Act) |
+
+> **Note on geolocation:** In Configuration B, audience targeting conditions may include geolocation derived from the visitor's IP address (e.g. targeting by country or region). Although the IP address itself is not persistently stored as a data point by Optimizely, the use of IP-derived location as a targeting attribute warrants the inclusion of **Non-precise location data** in the data categories.
+> 
+
+### 2.3 Configuration C — Higher Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, Non-precise location data, Authentication-derived identifiers, User-provided data, Users' profiles |
+| Legal role of data recipient | Processor |
+| Personalisation model | Profile based |
+| Maximum storage duration | 6 months |
+| Processing location | EU (if EU data hosting selected) / US (potential access via CLOUD Act) |
+
+> **Note on DCP and authentication-derived identifiers:** In Configuration C, the visitor's pseudonymous Optimizely ID is aliased to a known customer identifier — typically an authenticated user ID or similar derived value — enabling Optimizely to retrieve and apply individual customer profile attributes for personalisation. This aliasing constitutes the use of an authentication-derived identifier and must be reflected in both the identifier and data category selections above. The **User-provided data** category is included because DCP profiles are populated with data the customer has actively provided to the operator (e.g. via account registration, purchase history, or loyalty programme enrolment) and which is subsequently imported into Optimizely for targeting purposes. Optimizely acts as Processor throughout; the advertiser as Controller is responsible for ensuring that the DCP data imported into Optimizely has been lawfully collected and that appropriate consent or other legal basis exists for its use in personalisation.
+>

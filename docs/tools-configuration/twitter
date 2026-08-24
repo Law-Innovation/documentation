@@ -1,0 +1,75 @@
+---
+title: Twitter/X
+---
+
+# Configuration Guide
+
+<aside>
+💡
+
+This guide provides step-by-step instructions for embedding X (formerly Twitter) posts on a website and how this configuration must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Review the standard X embed configuration and its privacy implications
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you embed X content in your **privacy policy**
+
+</aside>
+
+X (formerly Twitter) is a US-based microblogging and social networking platform owned and operated by X Corp., a company headquartered in Bastrop, Texas, United States, and a subsidiary of xAI. Website operators may embed public X posts using X's official oEmbed mechanism, which delivers a `<blockquote>` placeholder alongside a JavaScript tag loading `widgets.js` from `platform.twitter.com`. This script transforms the blockquote into a fully rendered, interactive post embed. Unlike purely content-delivery embeds, the X widget script actively sets persistent third-party tracking cookies in the visitor's browser and collects behavioural data used to build advertising profiles — regardless of whether the visitor has an X account or interacts with the embedded post. For EU/EEA users, the data controller is Twitter International Unlimited Company (Dublin, Ireland); however, data is processed in the US and other countries, and X Corp. as a US enterprise is subject to the CLOUD Act, which enables potential access by US government authorities to data held by US-based companies regardless of where that data is processed.
+
+---
+
+## Step 1 — X Embed Configuration
+
+| # | Configuration Area | Where in X / Website Code | Configuration A — Standard Embed |
+| --- | --- | --- | --- |
+| 1 | Embed method | X post → share icon → *Embed Post*; or use `https://publish.x.com/oembed?url=`; paste resulting HTML into website | Standard oEmbed: `<blockquote class="twitter-tweet">` with post text plus `<script async src="https://platform.twitter.com/widgets.js">` which renders the blockquote into a fully interactive post embed |
+| 2 | Tracking cookies set on page load | No configuration option for the embedding website operator; set automatically by `widgets.js` on page render, prior to any visitor interaction | `muc` (third-party, up to 2 years) and `personalization_id` (third-party, up to 2 years) are set in the visitor's browser to identify the browser cross-site and match visitors to X user profiles for advertising purposes |
+| 3 | Authenticated user identification | No configuration option for the embedding website operator; handled automatically by `widgets.js` | If the visitor is logged in to X, the widget script links their authenticated X identity to the website visit, enriching X's user profile with off-platform browsing behaviour |
+| 4 | Advertising and behavioural profiling | No configuration option for the embedding website operator | X uses data collected via embedded widgets to build behavioural advertising profiles, select personalised advertisements, and enable cross-site retargeting; X is registered as IAB TCF Vendor ID 21 |
+| 5 | Data retention | Determined by X Corp.; no configuration option for the embedding website operator | `muc` and `personalization_id` cookies: up to 2 years; cookie-based data: up to 13 months per X's cookie policy; other log data: up to 18 months per X's privacy policy |
+| 6 | Processing location | Fixed; determined by X Corp. and Twitter International Unlimited Company infrastructure | Primary processing in the US (X Corp.); EU/EEA data controller: Twitter International Unlimited Company (Dublin, Ireland); data transferred to the US and other countries; US government access via CLOUD Act applies regardless of storage location |
+
+### Configuration A — Standard Embed
+
+Use this configuration whenever a public X post is embedded on a website using X's official oEmbed method.
+
+The embed is implemented by copying the HTML snippet generated via the X web interface (Post → share icon → *Embed Post*) or by using the oEmbed API endpoint at `https://publish.x.com/oembed`. The resulting snippet consists of a `<blockquote>` element containing a plain-text version of the post and a `<script>` tag loading `widgets.js` from `platform.twitter.com`. When the script executes in the visitor's browser, it renders the full post including media, interactive engagement buttons (like, repost, reply), and live engagement counts.
+
+Critically, `widgets.js` performs active tracking beyond mere content rendering. It sets two persistent third-party cookies — `muc` and `personalization_id` — with a lifetime of up to 2 years, in the visitor's browser as a side effect of loading on page render, prior to any visitor interaction with the embed. These cookies identify the visitor's browser cross-site and are used by X to match website visitors to X user profiles and to build behavioural advertising profiles for cross-site retargeting. This tracking occurs regardless of whether the visitor has an X account.
+
+If the visitor is logged in to X, the widget script additionally associates their authenticated X identity with the website visit, linking their off-platform browsing behaviour to their known X user profile.
+
+X operates a large-scale advertising platform and explicitly uses data collected via embedded widgets for personalised advertising, real-time bidding, and cross-device tracking. X is a registered vendor under the IAB Transparency and Consent Framework (TCF Vendor ID 21), and the processing carried out via embedded widgets falls under TCF Purposes 1, 3, 4, and 7.
+
+For EU/EEA visitors, the data controller is Twitter International Unlimited Company (Dublin, Ireland), which is supervised by the Irish Data Protection Commission as lead supervisory authority. Despite the EU-based data controller, data is processed in the US and other countries. X Corp., as a US enterprise, is subject to the CLOUD Act, meaning US government authorities may compel access to data held by X regardless of where that data is stored. This US government access risk applies in addition to and independently of any other transfer safeguard.
+
+Because `widgets.js` sets tracking cookies and transmits data to X's servers on page render — before any visitor interaction — the embed code must be blocked by the consent management solution until the visitor has given consent. A consent-based lazy-loading or click-to-activate wrapper should be used to ensure the script does not fire prior to consent.
+
+X Corp. and Twitter International Unlimited Company act as Independent Controllers under their own privacy policy for all data collected via the embed.
+
+---
+
+## Step 2 — Mapping in the Consenter Manager
+
+Using the X embed configuration defined in Step 1, apply the following mapping in the Consenter Manager to ensure the consent banner correctly reflects the data processing activity.
+
+### 2.1 Configuration A — Standard Embed
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers, Probabilistic identifiers, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Non-precise location data, Probabilistic identifiers, Users' profiles |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Profile based |
+| Maximum storage duration | 24 months (`muc` and `personalization_id` cookies) |
+| Processing location | EU/Ireland (Twitter International Unlimited Company, lead supervisory authority: Irish DPC) / US (X Corp.); US government access via CLOUD Act applies in all cases |
+
+> **Note on tracking method:** Unlike single-session embeds that only transmit data during the current page visit, X's `widgets.js` sets persistent cross-session cookies (`muc`, `personalization_id`) that enable X to track the visitor across multiple sessions and across all websites that embed X widgets. This constitutes cross-session, cross-website tracking and must be mapped accordingly.
+> 
+
+> **Note on authenticated users:** Where a visitor is logged in to X, their browsing activity on the embedding website is linked to their authenticated X account. This results in authentication-derived identifier processing and should be reflected in the identifier selection above.
+>

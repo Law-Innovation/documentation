@@ -1,0 +1,136 @@
+---
+title: AWIN
+---
+
+# Configuration Guide
+
+<aside>
+💡
+
+ℹ️ This guide provides step-by-step instructions for configuring AWIN in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure AWIN accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use AWIN in your **privacy policy**
+
+</aside>
+
+AWIN is an affiliate marketing network that connects advertisers (merchants) with publishers (affiliates, such as content sites, voucher-code sites, or cashback platforms) and attributes sales or leads to the publisher who referred the customer, so that the publisher can be paid a commission. Tracking is implemented via a hybrid client-side and server-side suite: the Advertiser MasterTag (a JavaScript library placed sitewide), the Conversion Tag (fired on the order confirmation page), and a server-to-server tracking request. When a consumer clicks a publisher's tracking link, they are briefly redirected via AWIN's domain, which sets a first-party cookie on the advertiser's site recording a click identifier; this identifier is later matched against a conversion to attribute the sale to the referring publisher and calculate their commission. Unlike the analytics and advertising tools covered in earlier guides, AWIN does not build behavioural profiles or personalise content or ads — its processing is limited to attributing transactions to the correct publisher. The configurations below cover the most privacy-relevant settings and their corresponding mappings in the Customer Panel (CP).
+
+> **Note on legal basis vs. cookie consent:** AWIN relies on legitimate interest as its GDPR Article 6 legal basis for its own joint-controller tracking activities, meaning AWIN does not require advertisers or publishers to obtain "data consent" specifically for AWIN's processing. However, this is separate from **cookie consent** under the ePrivacy rules: if the AWIN cookie is not strictly necessary to deliver a service the consumer has requested, cookie consent must still be obtained before the cookie is set, regardless of AWIN's GDPR legal basis. This means the Consent Banner gate described in row 1 below is an ePrivacy requirement, not a GDPR-consent requirement — but it is mandatory all the same for standard affiliate tracking (see Configuration D for the one documented exception).
+> 
+
+> **Note on data processing without consent:** AWIN does offer a genuine configuration in which tracking cookies are processed without prior consent: cookies used for cashback, loyalty, reward, or certain voucher-code activity may, depending on your own assessment, be categorised as "strictly necessary" because they are needed to deliver the service the consumer has actively requested (e.g. receiving cashback). Both the UK ICO and the French CNIL have confirmed this exemption can apply to such cookies. Where this applies, AWIN will set and read the relevant cookie even in the absence of prior cookie consent. This is addressed separately in Configuration D below, since it is not a "higher risk" tier but a distinct, narrower use case.
+> 
+
+> **Note on data retention:** AWIN's documented default policy is to delete tracking data after 36 months, via automated deletion routines, unless a longer period is required by law. This is a fixed platform-wide default rather than a per-program configurable setting, so it is not reflected as a separate row in the table below. Separately, the **cookie period** (commission attribution window) is set per advertiser programme — industry standard, and AWIN's own default, is 30 days, though this can be set differently under your contractual terms.
+> 
+
+---
+
+## Step 1 — AWIN Configuration
+
+| # | Configuration Area | Where in AWIN | Configuration A — Low Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Consent & cookie activation | MasterTag → `AWIN.Tracking.AdvertiserConsent` property (custom implementation or via the Awin GTM Consent Tag); or IAB TCF integration (AWIN AG is a registered TCF Vendor, ID 907) | Cookie is not set/read until consent is signalled to the MasterTag | Cookie is not set/read until consent is signalled to the MasterTag | Cookie is not set/read until consent is signalled to the MasterTag |
+| 2 | Cross Device Tracking | Activated by default for new advertisers using the MasterTag with unconditional tracking; can be opted out via your AWIN technical contact. Requires passing AWIN an encrypted "user-id" (typically the consumer's login email) | Disabled — only single-device, cookie-based attribution is used | Enabled — AWIN builds a pseudonymous cross-device profile using the encrypted login identifier and device-fingerprint attributes (e.g. screen size/resolution, device configuration) to attribute sales that start on one device and complete on another | Enabled — as in Configuration B |
+| 3 | Lead Generation data capture | Configured per advertiser Lead Generation programme together with your AWIN account team; consumer name and contact information are captured via conversion tracking on behalf of the advertiser's lead-generation activity | Not used | Not used | Used — consumer names and contact information (e.g. submitted via a lead form) are captured and transmitted to AWIN as part of the conversion event, in addition to standard tracking and Cross Device Tracking |
+| 4 | Processing location | Not configurable — fixed by AWIN's infrastructure | AWIN AG (Berlin, Germany; EU joint controller); co-located data centres at Equinix (London/Slough, UK); cloud infrastructure via AWS (Ireland, Germany, US West, Brazil) and Azure (Netherlands) | Same as Configuration A | Same as Configuration A |
+
+---
+
+### Configuration A — Low Risk
+
+Use this configuration when AWIN is used solely for standard, single-device affiliate sale or lead tracking, without Cross Device Tracking or Lead Generation data capture. The MasterTag is placed sitewide and reads the `AdvertiserConsent` property (or the equivalent TCF signal) before setting or reading the AWIN click-identifier cookie; if consent has not been signalled, no cookie is set on the landing page and no first- or third-party cookies are read on the checkout page. Where consent has been signalled, a click identifier set when the consumer followed a publisher's link is matched against the Conversion Tag fired on the order confirmation page, allowing AWIN to attribute the sale to the correct publisher and calculate their commission. No cross-device profile is built, and no consumer name or contact information is captured for lead-generation purposes.
+
+AWIN and the website operator are Joint Controllers (Article 26 GDPR) for this tracking, reporting, and transaction-query processing, as set out in AWIN's Data Processing Addendum. AWIN AG is headquartered and primarily processes data within the EU (Germany), but also relies on cloud infrastructure including AWS's US West region as one of several hosting locations. Where data is processed via this US-based infrastructure, it remains potentially subject to access by US government authorities under the CLOUD Act, since AWS is a US enterprise, even though AWIN AG itself is an EU company. This should be disclosed as a potential US data transfer in the consent banner.
+
+---
+
+### Configuration B — Medium Risk
+
+Use this configuration when AWIN is used for standard affiliate tracking with Cross Device Tracking additionally enabled, allowing sales to be attributed to a publisher even when the consumer clicked the affiliate link on one device and completed the purchase on another. To support this, the advertiser's site passes AWIN an encrypted "user-id" — normally the email address the consumer enters to log in — which AWIN uses, together with device-fingerprint attributes such as screen size and device configuration, to build a pseudonymous profile linking the consumer's devices. As in Configuration A, the cookie is not set or read until consent has been signalled, and no consumer name or contact information is captured.
+
+Cross Device Tracking is explicitly listed in AWIN's Data Processing Addendum as one of the purposes for which AWIN and the website operator act as Joint Controllers, so the same Joint Controller status, EU/US infrastructure split, and CLOUD Act consideration described in Configuration A apply here. This should be disclosed as a potential US data transfer in the consent banner.
+
+---
+
+### Configuration C — Higher Risk
+
+Use this configuration when AWIN is additionally used for Lead Generation tracking — that is, capturing a consumer's name and contact information (such as that submitted via a lead form) on behalf of the advertiser's lead-generation activity, in combination with Cross Device Tracking. As in Configurations A and B, the cookie is not set or read until consent has been signalled.
+
+For the standard tracking, reporting, and Cross Device Tracking elements, AWIN and the website operator remain Joint Controllers. However, AWIN's Data Processing Addendum specifically carves out the capturing of consumer names and contact information on behalf of the advertiser's Lead Generation as a separate processing purpose for which **the advertiser acts as Controller and AWIN acts as Processor** — this is a meaningfully different legal relationship from the Joint Controller arrangement that applies to the rest of AWIN's tracking. The same EU/US infrastructure split and CLOUD Act consideration described in Configuration A apply to all of this data. This should be disclosed as a potential US data transfer in the consent banner.
+
+---
+
+### Configuration D — Special Case: Cashback/Reward Publisher Tracking (No Consent Required)
+
+Use this configuration for publishers whose cookies you have assessed as "strictly necessary" — namely cashback, loyalty, reward, or certain voucher-code publishers, where the cookie is needed to deliver the specific service the consumer has actively requested (e.g. receiving their cashback on a purchase). This categorisation decision rests with you as the website operator, taking into account the relevant aspects of the activity in question; AWIN does not make this determination on your behalf. Where you have made this assessment, the MasterTag should be installed unconditionally (i.e. without gating it behind a consent signal) for the relevant publisher activity, and AWIN's MasterTag will automatically recognise partners conducting cashback/reward activity and set the cookie even in the absence of cookie consent. Technically, this configuration is otherwise identical to Configuration A: single-device, cookie-based attribution only, with no cross-device profiling and no lead-generation data capture.
+
+The same Joint Controller relationship and EU/US infrastructure split described in Configuration A apply here. The key distinction from Configurations A–C is that the underlying cookie is processed **without prior consent**, on the basis of the ePrivacy "strictly necessary" exemption rather than a consent-gated implementation. This must be clearly and separately reflected in the consent banner, since it represents data processing that occurs regardless of the visitor's cookie choice for marketing/affiliate categories generally.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+Using the AWIN configurations defined in Step 1, apply the following mappings in the Customer Panel to ensure the consent banner correctly reflects the data processing activities.
+
+---
+
+### 2.1 Configuration A — Low Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, e-commerce Activity, IP address |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | No personalisation |
+| Processing location | EU (AWIN AG, Berlin, Germany) / US (AWS US West cloud infrastructure; potential access via CLOUD Act) |
+
+---
+
+### 2.2 Configuration B — Medium Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Authentication-derived identifiers, Device identifiers, Probabilistic identifiers |
+| Data categories | Authentication-derived identifiers, Browsing and interaction data, Device identifiers, e-commerce Activity, IP address, Probabilistic identifiers, Users' profiles |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | No personalisation |
+| Processing location | EU (AWIN AG, Berlin, Germany) / US (AWS US West cloud infrastructure; potential access via CLOUD Act) |
+
+---
+
+### 2.3 Configuration C — Higher Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Authentication-derived identifiers, Device identifiers, Direct identifier, Probabilistic identifiers |
+| Data categories | Authentication-derived identifiers, Browsing and interaction data, Device identifiers, Direct identifier, e-commerce Activity, IP address, Probabilistic identifiers, User-provided data, Users' profiles |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Processing location | EU (AWIN AG, Berlin, Germany) / US (AWS US West cloud infrastructure; potential access via CLOUD Act) |
+
+> **Note:** The `Processor` role reflects AWIN's documented status specifically for the Lead Generation data-capture purpose in this configuration, which is the most data-sensitive element introduced here. The base tracking, reporting, and Cross Device Tracking elements remain governed by the Joint Controller relationship described in Configurations A and B; if your CP setup requires a single role per recipient entry, `Processor` is recommended for this configuration since it reflects the more stringent of the two obligations sets applicable to the personal data being processed.
+> 
+
+---
+
+### 2.4 Configuration D — Special Case: Cashback/Reward Publisher Tracking
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, e-commerce Activity, IP address |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | No personalisation |
+| Processing location | EU (AWIN AG, Berlin, Germany) / US (AWS US West cloud infrastructure; potential access via CLOUD Act) |
+
+> **Note:** This entry should be flagged in the Consenter Manager as processing that occurs independent of the visitor's consent choice, since the underlying cookie qualifies (subject to your own legal assessment) for the ePrivacy "strictly necessary" exemption. Where your affiliate programme includes both standard publishers (Configurations A–C) and cashback/reward publishers (Configuration D), both should be reflected as separate entries in the Customer Panel, since they differ in whether consent gates the processing at all.
+>

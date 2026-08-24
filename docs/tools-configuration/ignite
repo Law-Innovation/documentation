@@ -1,0 +1,81 @@
+---
+title: Ignite
+---
+
+# Configuration Guide
+
+<aside>
+💡
+
+ℹ️ This guide provides step-by-step instructions for configuring Ignite Video in different configurations and explains their respective privacy implications. Because Ignite does not process personal data of website visitors, **no configuration in the Consenter Manager is required or applicable.**
+
+**Step 1:** Choose which configuration matches your requirements and configure Ignite accordingly.
+
+**Step 2:** No configuration in the Consenter Manager is required. Ignite does not need to be registered as a data recipient in your consent banner.
+
+**Step 3:** Explain how you use Ignite in your **privacy policy**.
+
+</aside>
+
+<aside>
+💡
+
+⚠️ **No Consent Banner Required**
+
+Ignite Video is designed from the ground up as a privacy-first, cookie-free, and consent-free video hosting platform. When delivering video content on your website, **Ignite does not collect, store, or process any personal data from your website visitors.**
+
+**As a result, no entry for Ignite needs to be created in the Consenter Manager, and no consent banner configuration is required for Ignite.** Ignite-embedded videos are displayed to all visitors regardless of their consent status, including those who have declined all cookies.
+
+</aside>
+
+Ignite Video (ignite.video) is a European video hosting and streaming platform operated by Ignite Video GmbH, headquartered in Düsseldorf, Germany. It allows website operators to embed and deliver video content directly on their websites without setting cookies or processing personal data of visitors. Unlike platforms such as YouTube or Vimeo, Ignite is built on a privacy-by-design architecture: no tracking scripts are loaded, no fingerprinting takes place, and no identifiers are assigned to viewers. All infrastructure — including the video encoding pipeline and CDN — is hosted in Europe (Germany and France). An optional first-party domain feature (available from the "Grow" package onwards) allows videos to be delivered via the operator's own subdomain, making Ignite's involvement entirely invisible to the end user and to ad blockers.
+
+---
+
+## Step 1 — Ignite Configuration
+
+| # | Configuration Area | Where in Ignite | Configuration A — Standard (Third-Party Domain) | Configuration B — First-Party Domain |
+| --- | --- | --- | --- | --- |
+| 1 | Video delivery domain | Account Settings → Custom Domain | Videos delivered via Ignite's own CDN domain (e.g. `play.ignite.video`) | Videos delivered via operator's own subdomain (e.g. `videos.yourdomain.com`) via DNS entry |
+| 2 | Cookie usage | Platform-level (not configurable by operator) | No cookies set — by design | No cookies set — by design |
+| 3 | Personal data collection from viewers | Platform-level (not configurable by operator) | None — no IP addresses, no fingerprinting, no behavioural data collected or stored | None — no IP addresses, no fingerprinting, no behavioural data collected or stored |
+| 4 | Video analytics | Account Settings → Analytics | Aggregate, anonymised video statistics (play counts, completion rates) — no personal data | Aggregate, anonymised video statistics (play counts, completion rates) — no personal data |
+| 5 | Processing location | Platform-level | EU (Germany/France) — Scalingo SAS (Strasbourg) and 3DS OUTSCALE SAS (Saint-Cloud) as sub-processors | EU (Germany/France) — Scalingo SAS (Strasbourg) and 3DS OUTSCALE SAS (Saint-Cloud) as sub-processors; CDN delivery via operator's own domain |
+| 6 | Data processing agreement (DPA) | Available on request from Ignite | Available — contact hallo@ignite.video | Available — contact hallo@ignite.video |
+
+### Configuration A — Standard (Third-Party Domain)
+
+Use this configuration when embedding Ignite videos on your website using the default Ignite CDN domain (`play.ignite.video` or similar). In this configuration, Ignite handles all video delivery from its own infrastructure. No cookies are set on your visitors' browsers, and no personal data is collected from viewers at any point — not even temporarily. The video player loads and streams content without performing any fingerprinting, storing any identifiers, or logging IP addresses. Video analytics provided within the Ignite dashboard are fully anonymised and aggregated (e.g. total play counts and completion rates); they cannot be used to identify individual viewers. All processing takes place in the EU (Germany and France), with Scalingo SAS and 3DS OUTSCALE SAS acting as sub-processors under their respective DPAs. Because no personal data of website visitors is processed, no legal basis for processing under the GDPR is required, and no consent banner entry for Ignite is needed.
+
+Note that although some server-level log data (such as IP addresses used for CDN delivery) may be processed transiently in the course of delivering the video stream, Ignite explicitly states that it does not store or retain any such data. This position has been confirmed in Ignite's legal review by Heidrich Lawyers.
+
+### Configuration B — First-Party Domain
+
+Use this configuration when delivering Ignite videos via your own subdomain (e.g. `videos.yourdomain.com`), which requires a one-time DNS entry in your domain settings. Available from Ignite's "Grow" package onwards. In this configuration, the Ignite infrastructure is entirely invisible to your visitors, to search engines, and to ad blockers, as all video content appears to originate from your own domain. From a privacy perspective, this configuration is equivalent to Configuration A: no cookies are set, no personal data is collected from viewers, and all processing remains in the EU. The first-party domain setup provides additional practical benefits — such as improved SEO, bypassing corporate firewalls, and preventing ad-blocker interference — but it does not alter the underlying data protection position. No consent banner entry is required.
+
+---
+
+## Step 2 — Mapping in the Consenter Manager
+
+**No configuration in the Consenter Manager is required for Ignite Video.**
+
+Because Ignite does not process any personal data of your website visitors, there is no data processing activity that would require consent under the GDPR or the ePrivacy Directive. Ignite does not set cookies or comparable tracking technologies, and no personal data is transferred to Ignite as a result of a visitor viewing a video on your website.
+
+This assessment is supported by a legal review conducted by Heidrich Lawyers, which concluded: *"no data protection consent or documentation obligations are required in relation to cookies. Since no technically necessary cookies are required, there is no need to inform the user about the use of cookies or to use corresponding cookie banners."*
+
+As a result, Ignite should not be listed as a data recipient in your consent banner, and no tracking, identifier, or data category selections need to be made in the Consenter Manager for this service.
+
+---
+
+## Step 3 — Privacy Policy
+
+Although no consent banner entry is required, you should briefly reference Ignite in your website's privacy policy for the sake of transparency. Ignite provides GDPR text templates for this purpose (available from your Ignite account or on request). The following information should be included:
+
+- The name of the service (Ignite Video) and the operator (Ignite Video GmbH, Düsseldorf, Germany)
+- The purpose of use (video hosting and delivery)
+- A statement that Ignite does not set cookies and does not collect personal data from visitors
+- The processing location (EU — Germany/France)
+- A reference to Ignite's privacy policy: https://www.ignite.video/en/privacy
+
+> **Note:** If you also use Ignite's optional video analytics feature, you may wish to mention that aggregated, anonymised viewing statistics are generated. As these do not involve personal data, no legal basis or consent is required for this either.
+>

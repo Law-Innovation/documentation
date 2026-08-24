@@ -1,0 +1,81 @@
+---
+title: Wysistat
+---
+
+# Privacy Configuration Guide
+
+<aside>
+💡
+
+This guide explains how Wysistat processes data and how this must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+</aside>
+
+<aside>
+💡
+
+**Note on the consent banner:** Because Wysistat's fixed configuration is designed to meet the ePrivacy/CNIL audience-measurement exemption natively, this entry can be excluded from the consent-required list in the banner **for French visitors**, provided your own review confirms the exemption criteria are still met under the current CNIL self-assessment framework. 
+
+If you want to be sure and nevertheless want to collect consent from your users, you can configure Wysistat, as described above and like all other Third Party Services.
+
+</aside>
+
+**Step 1:** Understand Wysistat's fixed data processing behaviour (no configuration is required or possible)
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use Wysistat in your **privacy policy**
+
+Wysistat is a French web and mobile audience-measurement (analytics) tool, published and operated by IDfr (SARL, Besançon, France). It measures traffic on websites, intranets/extranets, mobile apps (iOS/Android), AMP pages, and newsletters, providing metrics such as page views, visits, visitors, traffic source, page/URL groupings, and département-level (French administrative region) location. Wysistat also offers an optional ACPM (Alliance pour les Chiffres de la Presse et des Médias) certification service used by press publishers for officially audited audience figures, including for legal notice publication.
+
+<aside>
+💡
+
+**Why this guide has no configuration options:** Wysistat's privacy-relevant behaviour is fixed by design and does not vary between accounts, contract tiers, or customer settings. There is no setting that increases or decreases the personal data processed, no consent-based "enhanced" mode, and no separate contact-identification, CRM, or advertising feature to configure. The Business, Premium, and ACPM/Enterprise pricing tiers differ only in traffic volume, data granularity (e.g. hourly reporting, API access), and optional ACPM certification — not in the underlying privacy posture. Accordingly, this guide skips the usual multi-configuration comparison and states directly what Wysistat does and how to reflect it in the Consenter Manager.
+
+</aside>
+
+---
+
+## Step 1 — What Wysistat Processes
+
+Wysistat's tracking script was assessed by the CNIL and has held the ePrivacy/French Data Protection Act consent exemption for audience-measurement tools since 2021, natively and without any specific account or client-side configuration required to qualify.
+
+| Aspect | Fixed behaviour |
+| --- | --- |
+| Consent requirement | None — no configuration is needed or possible to trigger or waive this |
+| IP address | Never stored, in full or masked form |
+| Location data | Département level only (French administrative region), aggregated daily |
+| Identifiers | First-party cookie with no nominative information; no fingerprinting or persistent cross-site identifier |
+| Data retention | Cookie: max. 13 months, not auto-renewed. Raw data: max. 3 months. Aggregated statistics: contract duration + 1 month |
+| Data sharing | Used exclusively for the customer's own audience measurement; never disclosed in raw form, pooled into a cross-site panel, or shared with third parties |
+| Visitor opt-out | Available at all times via a dedicated opt-out link |
+| Processing location | France exclusively (OVH and Gandi data centres); no CLOUD Act exposure per vendor representation (IDfr states its full value chain is EU-based with no US-governed subprocessors) |
+
+<aside>
+💡
+
+**Important limitation:** The CNIL's audience-measurement exemption is a French-specific interpretation of the ePrivacy Directive. Since 1 January 2026, the CNIL's formal evaluation and public list have been replaced by a self-assessment framework; IDfr's documentation states Wysistat continues to meet the underlying substantive criteria. For visitors from other EU/EEA member states, confirm whether the equivalent local exemption applies, as other supervisory authorities have not uniformly adopted the same position.
+
+</aside>
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (single session) |
+| Identifier | No identifier |
+| Data categories | Aggregated site statistics, Non-precise location data |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Maximum storage duration | 13 months (cookie) / 3 months (raw data) / contract duration + 1 month (aggregated statistics) |
+| Processing location | France (IDfr, Besançon; OVH and Gandi data centres; no CLOUD Act exposure per vendor representation) |
+| Processing purposes | Audience measurement / analytics (strictly necessary) |
+
+---
+
+## Step 3 — Privacy Policy
+
+Reflect Wysistat in your privacy policy: the categories of data collected (aggregated traffic statistics and département-level location), the retention periods, the legal basis relied upon (the ePrivacy/CNIL strictly-necessary audience-measurement exemption), and the opt-out mechanism available to visitors. For guidance on aligning contextual consent language with your privacy policy, see the Consenter contextual consent integration guide.

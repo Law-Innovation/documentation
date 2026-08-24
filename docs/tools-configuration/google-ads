@@ -1,0 +1,95 @@
+---
+title: Google Ads
+---
+
+# Configuration Guide
+
+<aside>
+💡
+
+This guide provides step-by-step instructions for configuring Google Ads in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure Google Ads accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use the third party provider in your **privacy policy**
+
+</aside>
+
+Google Ads is Google's advertising platform, enabling advertisers to run search, display, shopping, and video campaigns across Google's properties and the broader Google Display Network. It deploys a JavaScript tracking tag — the **Google tag (gtag.js)** — on advertiser websites to measure conversions, build remarketing audiences, and enable personalised ad targeting. Depending on configuration, Google Ads can operate as a basic conversion measurement tool or a comprehensive cross-device, cross-site advertising platform leveraging hashed first-party identity matching via **Enhanced Conversions** and **Customer Match**. Google LLC is headquartered in Mountain View, California, USA. For Google Ads, Google and the advertiser each operate as **Independent Controllers** of personal data under Google's Controller-Controller Data Protection Terms, in accordance with Article 4(7) GDPR. The configurations below cover the most privacy-relevant settings and their corresponding mappings in the Consenter Manager.
+
+---
+
+## Step 1 — Google Ads Configuration
+
+| # | Configuration Area | Where in Google Ads | Configuration A — Lower Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Consent mode implementation | Google tag / Tag Manager → Consent Mode settings | **Basic Consent Mode**: Google tag is fully blocked until explicit user consent is granted; no data sent to Google prior to consent interaction | **Basic Consent Mode**: Google tag blocked until consent; no data sent to Google prior to consent interaction | **Advanced Consent Mode v2**: Google tag loads with all consent signals set to `denied` by default; anonymous, cookieless pings sent to Google before consent; full tag fires only after consent is granted |
+| 2 | Conversion tracking | Google Ads → Goals → Conversions | Standard conversion tracking (GCLID-based) only; fires only after consent; no Enhanced Conversions | Standard conversion tracking (GCLID-based) plus **Enhanced Conversions for Web** (hashed email/phone collected on-site at point of conversion) | Standard conversion tracking plus **Enhanced Conversions for Web** and **Enhanced Conversions for Leads** (hashed CRM data uploaded offline); conversion modelling active via Advanced Consent Mode |
+| 3 | Remarketing audiences | Google Ads → Shared Library → Audience Manager | No remarketing audiences created; tag used for conversion measurement only | Website visitor remarketing lists created; membership duration set to 30 days | Website visitor remarketing lists plus **Customer Match** audiences (hashed email/phone/address uploaded from CRM); membership duration set to 540 days (platform maximum) |
+| 4 | Ad personalisation | Google tag `ad_personalization` consent parameter | Not applicable (Basic Consent Mode; no tag fires without consent) | Not applicable (Basic Consent Mode; no tag fires without consent) | Configured via `ad_personalization` signal in Advanced Consent Mode; denied by default, granted only upon explicit user consent |
+| 5 | Data retention (remarketing lists) | Google Ads → Audience Manager → Membership duration | Not applicable (no audiences) | 30 days membership duration | 540 days membership duration (platform maximum) |
+| 6 | Processing location | Google infrastructure / Controller-Controller Terms | US (Google LLC); SCCs in place via Google's Controller-Controller Data Protection Terms; US government access via CLOUD Act | US (Google LLC); SCCs in place; US government access via CLOUD Act | US (Google LLC); SCCs in place; US government access via CLOUD Act |
+
+---
+
+### Configuration A — Lower Risk
+
+Use this configuration when Google Ads is used solely for basic conversion measurement, without remarketing, audience building, or Enhanced Conversions. **Basic Consent Mode** is implemented: the Google tag is entirely blocked from loading until the user grants explicit consent. No data whatsoever is transmitted to Google prior to the user's consent interaction. Once consent is granted, the tag fires and standard GCLID-based conversion tracking is active, attributing conversions to the ad click that brought the user to the site. No remarketing audiences are built, and no hashed personal data is passed to Google. Processing occurs on Google's US infrastructure. As Google LLC is a US-based enterprise, data is subject to potential US government access under the CLOUD Act regardless of any technical routing. SCCs are included in Google's Controller-Controller Data Protection Terms. Google and the advertiser each act as Independent Controllers.
+
+### Configuration B — Medium Risk
+
+Use this configuration when Google Ads is used for conversion tracking combined with **Enhanced Conversions for Web** and basic website visitor remarketing. **Basic Consent Mode** is implemented: the Google tag is entirely blocked from loading until the user grants explicit consent. No data is transmitted to Google prior to the user's consent interaction. Once consent is granted, the tag fires and standard GCLID-based conversion tracking is active. Enhanced Conversions for Web supplements this by capturing hashed first-party data — typically a customer's email address or phone number — directly from a website form at the point of conversion. The data is hashed using SHA-256 before transmission; Google uses the hash to match the conversion event against signed-in Google accounts, enabling attribution in privacy-restricted environments (e.g. Safari, Firefox, cross-device journeys) where the GCLID cookie may no longer be present. Website visitor remarketing lists are created with a 30-day membership duration, enabling ads to be shown to recent site visitors across Google's networks. No Customer Match upload is in use. Processing occurs on Google's US infrastructure; SCCs are included in Google's Controller-Controller Data Protection Terms, but as Google LLC is a US-based enterprise, data remains subject to potential US government access under the CLOUD Act regardless of any technical routing. Google and the advertiser each act as Independent Controllers.
+
+### Configuration C — Higher Risk
+
+Use this configuration when Google Ads is deployed as a full-funnel advertising and measurement platform, combining Advanced Consent Mode v2, Enhanced Conversions, Customer Match audiences, and extended remarketing reach. **Advanced Consent Mode v2** is implemented: the Google tag loads immediately with all consent signals (`ad_storage`, `ad_user_data`, `ad_personalization`, `analytics_storage`) set to `denied` by default. Even before consent is granted, anonymous, cookieless pings are sent to Google, communicating the consent state and key page-level events to enable **conversion modelling** — Google's machine-learning-based estimation of conversions that cannot be directly observed due to consent refusal. When consent is granted, the full tag fires. **Enhanced Conversions for Web** collects hashed email addresses or phone numbers from on-site form submissions; **Enhanced Conversions for Leads** additionally allows hashed CRM records to be uploaded offline to match leads to ad interactions. **Customer Match** audiences are built from hashed email addresses, phone numbers, or postal addresses uploaded from the advertiser's CRM, enabling ad targeting to known contacts across Google Search, Display, YouTube, and Gmail. Remarketing lists are set to the platform maximum of 540 days' membership duration. Data processing occurs on Google's US infrastructure; SCCs are in place via Google's Controller-Controller Terms, but US government access via the CLOUD Act applies in all cases. Google and the advertiser each act as Independent Controllers.
+
+---
+
+## Step 2 — Mapping in the Consenter Manager
+
+Using the Google Ads configurations defined in Step 1, apply the following mappings in the Consenter Manager to ensure the consent banner correctly reflects the data processing activities.
+
+### 2.1 Configuration A — Lower Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, Non-precise location data |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | No personalisation |
+| Maximum storage duration | Session (no persistent audiences) |
+| Processing location | US (Google LLC); SCCs in place; US government access via CLOUD Act |
+
+### 2.2 Configuration B — Medium Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, Non-precise location data, Authentication-derived identifiers, Users' profiles |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Group based (behaviour) |
+| Maximum storage duration | 30 days |
+| Processing location | US (Google LLC); SCCs in place; US government access via CLOUD Act |
+
+> **Note on Enhanced Conversions:** The hashed email or phone number captured at the point of conversion constitutes an authentication-derived identifier, as it enables matching against signed-in Google accounts to link a conversion event to a specific individual across devices and browsers. This must be reflected in both the identifier and data category selections above, even though the data is transmitted in hashed form.
+> 
+
+### 2.3 Configuration C — Higher Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Device identifiers, Authentication-derived identifiers, Direct identifier |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, Non-precise location data, Authentication-derived identifiers, Direct identifier, Users' profiles, e-commerce Activity, Privacy choices |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Profile based |
+| Maximum storage duration | 540 days |
+| Processing location | US (Google LLC); SCCs in place; US government access via CLOUD Act |
+
+> **Note on Advanced Consent Mode and Privacy choices:** In Configuration C, Advanced Consent Mode v2 transmits anonymous pings to Google even before the user has granted consent. These pings communicate the user's consent state (`denied`) and enable Google to apply conversion modelling. The `ad_personalization` and `ad_user_data` consent signals are passed directly to Google as part of this mechanism, meaning the management of personalisation consent is partly delegated to Google's infrastructure. This warrants the inclusion of **Privacy choices** in the data categories. **Direct identifier** is selected because Customer Match uploads — containing hashed email addresses, phone numbers, or postal addresses — represent derived forms of directly identifying information, even in hashed form, since they are matched against Google's own account database to identify individuals. As Google LLC is a US-based enterprise, US government access via the CLOUD Act applies in all cases and must be disclosed to users in the consent banner.
+>
