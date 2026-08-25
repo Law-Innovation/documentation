@@ -20,17 +20,20 @@ SmartProfile is a unified data marketing platform developed and published by Net
 The three configurations below reflect the most privacy-relevant use patterns and correspond to meaningfully different risk levels and legal bases for processing.
 
 <aside>
-💡 **Note on the CNIL consent exemption for audience measurement (Configuration A):** SmartProfile is publicly named among the tools favourably assessed under the CNIL's former audience-measurement exemption evaluation programme, alongside tools such as Analytics Suite Delta (AT Internet) and Wysistat Business. **This programme changed materially as of 1 January 2026:** the CNIL replaced its formal evaluation and published list with a self-assessment framework, under which providers and website operators are now responsible for verifying and documenting that a given configuration meets the exemption criteria set out in the CNIL's "cookies and other trackers" guidelines, rather than relying on a CNIL-issued approval. The underlying substantive conditions (cookie lifetime capped at 13 months without automatic renewal, raw data retention capped at 25 months, strict use limited to audience measurement, no cross-referencing with other data sources, periodic review of retention periods) remain materially the same. Before relying on Configuration A, confirm your specific SmartProfile setup against the current CNIL guidelines and retain your own compliance documentation, since the CNIL no longer issues or maintains a public list of "approved" tools.
+>💡 **Note on the CNIL consent exemption for audience measurement (Configuration A):** SmartProfile is publicly named among the tools favourably assessed under the CNIL's former audience-measurement exemption evaluation programme, alongside tools such as Analytics Suite Delta (AT Internet) and Wysistat Business. **This programme changed materially as of 1 January 2026:** the CNIL replaced its formal evaluation and published list with a self-assessment framework, under which providers and website operators are now responsible for verifying and documenting that a given configuration meets the exemption criteria set out in the CNIL's "cookies and other trackers" guidelines, rather than relying on a CNIL-issued approval. The underlying substantive conditions (cookie lifetime capped at 13 months without automatic renewal, raw data retention capped at 25 months, strict use limited to audience measurement, no cross-referencing with other data sources, periodic review of retention periods) remain materially the same. Before relying on Configuration A, confirm your specific SmartProfile setup against the current CNIL guidelines and retain your own compliance documentation, since the CNIL no longer issues or maintains a public list of "approved" tools.
+>
 
 </aside>
 
 <aside>
-⚖️ **Note on legal role:** Net Solution Partner (NSP) acts as **data processor / subcontractor** in its relationship with the Customer (website operator), who acts as the sole **data controller**. NSP processes data only on the customer's instructions and undertakes never to transmit or communicate customer data to a third party except at the customer's express request (e.g. audience certification with the ACPM). A Data Processing Agreement (DPA) is incorporated into the SmartProfile customer agreement as standard.
+>⚖️ **Note on legal role:** Net Solution Partner (NSP) acts as **data processor / subcontractor** in its relationship with the Customer (website operator), who acts as the sole **data controller**. NSP processes data only on the customer's instructions and undertakes never to transmit or communicate customer data to a third party except at the customer's express request (e.g. audience certification with the ACPM). A Data Processing Agreement (DPA) is incorporated into the SmartProfile customer agreement as standard.
+>
 
 </aside>
 
 <aside>
-📍 **Note on processing location:** Hosted SaaS data is stored on redundant architecture located in France and the European Union, within organisations of European right certified ISO 27001. As NSP is a French company with exclusively EU-based hosting for its SaaS offering, there is **no CLOUD Act risk** for the SmartProfile data processing layer. For on-premise deployments, processing occurs entirely on the customer's own infrastructure, and NSP does not have access to the data.
+>📍 **Note on processing location:** Hosted SaaS data is stored on redundant architecture located in France and the European Union, within organisations of European right certified ISO 27001. As NSP is a French company with exclusively EU-based hosting for its SaaS offering, there is **no CLOUD Act risk** for the SmartProfile data processing layer. For on-premise deployments, processing occurs entirely on the customer's own infrastructure, and NSP does not have access to the data.
+>
 
 </aside>
 
@@ -116,7 +119,8 @@ Using the SmartProfile configurations defined in Step 1, apply the following map
 | Processing purposes | Audience measurement / analytics (strictly necessary) |
 
 <aside>
-💡 **Note on Configuration A and the consent banner:** Because Configuration A is intended to operate under the ePrivacy strictly-necessary/audience-measurement exemption, the SmartProfile entry can be excluded from the consent-required list in the banner **for French visitors**, provided the exemption conditions are met and documented under the current CNIL self-assessment criteria. If your Consenter Manager requires all data processing activities to be listed regardless of consent status, include the above entry with a clear label that this processing occurs on the exemption basis rather than consent. Outside France, or if the self-assessment cannot be confidently documented, configure the banner to gate this tracking on consent instead.
+>💡 **Note on Configuration A and the consent banner:** Because Configuration A is intended to operate under the ePrivacy strictly-necessary/audience-measurement exemption, the SmartProfile entry can be excluded from the consent-required list in the banner **for French visitors**, provided the exemption conditions are met and documented under the current CNIL self-assessment criteria. If your Consenter Manager requires all data processing activities to be listed regardless of consent status, include the above entry with a clear label that this processing occurs on the exemption basis rather than consent. Outside France, or if the self-assessment cannot be confidently documented, configure the banner to gate this tracking on consent instead.
+>
 
 </aside>
 
@@ -151,7 +155,8 @@ Using the SmartProfile configurations defined in Step 1, apply the following map
 | Processing purposes | Audience measurement / analytics, Marketing, Personalisation |
 
 <aside>
-💡 **Note on data categories for Configuration C:** The categories above reflect the full scope of SmartProfile's CDP capabilities. Select only the categories that correspond to the data sources actually connected to your SmartProfile instance — for example, `e-commerce Activity` applies only if an e-commerce platform (product views, cart events, purchases, revenue) is connected, and `Direct identifier` applies where CRM fields such as name, email, or phone number are merged into the CDP profile. The GDPR module provides tooling to document and control which data fields are collected and retained, and for how long, supporting the operator's obligations as data controller.
+>💡 **Note on data categories for Configuration C:** The categories above reflect the full scope of SmartProfile's CDP capabilities. Select only the categories that correspond to the data sources actually connected to your SmartProfile instance — for example, `e-commerce Activity` applies only if an e-commerce platform (product views, cart events, purchases, revenue) is connected, and `Direct identifier` applies where CRM fields such as name, email, or phone number are merged into the CDP profile. The GDPR module provides tooling to document and control which data fields are collected and retained, and for how long, supporting the operator's obligations as data controller.
+>
 
 </aside>
 
