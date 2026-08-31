@@ -5,6 +5,7 @@
     "./risk-assessments",
     "./configuration",
     "tools-configuration",
+    "tpps",
     "./technical-integration",
     "maintenance",
     "faq"
