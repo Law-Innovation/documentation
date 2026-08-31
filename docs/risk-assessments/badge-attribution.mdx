@@ -15,8 +15,6 @@ We want to keep the process as open as possible. If you disagree with parameters
 
 **Criteria for Privacy+, No badge, and Caution attribution to third-party service providers | v2.2 — 31/08/2026**
 
----
-
 ## 1\. Badge model
 
 Each third-party service provider is assigned one of three badges reflecting its **default deployment risk** — the privacy profile presented in a standard integration without special controller action.
@@ -27,8 +25,6 @@ Each third-party service provider is assigned one of three badges reflecting its
 | ⬜ No badge | Mixed or average risk profile. The service can be deployed compliantly through standard controller measures (including a consent banner that gates tracking until consent is given). This is also the default outcome where information is insufficient. | Yes — default outcome |
 | ⚠️ Caution | One or more red flags present (RF1, RF3, or RF4), or elevated privacy risk indicators that cannot be resolved by standard controller measures. Requires heightened due diligence. | No — requires specific findings |
 
----
-
 ## 2\. What constitutes normal tracking behaviour
 
 The following behaviour does **NOT**, by itself, lead to a Caution badge:
@@ -36,8 +32,6 @@ The following behaviour does **NOT**, by itself, lead to a Caution badge:
 > Tracking or data collection that begins on page load before user consent has been obtained, where this behaviour can be fully resolved by deploying a standard consent banner (CMP) that gates the tool until consent is given.
 
 This applies to analytics tools, session recording tools, heatmap tools, A/B testing tools, and any other tracking technology whose entire data collection can be switched off until the user grants consent. Because this issue is **universal across virtually all third-party tracking tools** and **fully resolvable by standard controller measures** (CMP integration), it does not alone constitute an elevated risk indicator warranting a Caution badge.
-
----
 
 ## 3\. Attribution method — decision tree
 
@@ -105,8 +99,6 @@ Are there concrete elevated privacy risk indicators that cannot be resolved by s
 
 - Mixed / average / configurable, no red flags (RF1/RF3/RF4), no unresolvable elevated risk → **No badge** (default).
 
----
-
 ## 4\. Scoring model
 
 Each domain is scored 0–2:
@@ -129,8 +121,6 @@ Each domain is scored 0–2:
 | H — Sub-processors & onward sharing | Is the processing chain transparent, limited, and controlled? | 1.0× |
 
 > **Revised guidance for domain B (v2.1):** A tool that records sessions or collects data before consent fires in its default configuration does NOT automatically score B \= 0\. B \= 0 is reserved for structurally embedded non-essential tracking that cannot be effectively disabled by the controller — such as a retargeting DSP or DMP whose cross-publisher profiling is intrinsic to its function. A session recording or analytics tool that can be fully gated by a CMP scores B \= 1 at minimum.
-
----
 
 ## 5\. Attribution thresholds
 
@@ -165,8 +155,6 @@ Each domain is scored 0–2:
 - Overall picture is mixed / average / configurable  
 - All elevated-risk indicators, if any, are resolvable by standard controller measures
 
----
-
 ## 6\. Red flags
 
 RF1, RF3, and RF4 are hard overrides: any one present results directly in **Caution**. RF2 is a significant risk factor that is reflected in the domain E score but does not alone override the badge.
@@ -193,8 +181,6 @@ Where no formal red flag (RF1, RF3, RF4) is triggered, the following indicators 
 | Opaque onward sharing | Broad sharing with unnamed 'partners' or 'affiliates' for their own purposes without meaningful transparency | Named, disclosed sub-processors processing on the controller's behalf under DPA/SCCs |
 | High-risk international transfers | Transfer to a high-risk third country **without any lawful mechanism**, AND no meaningful supplementary measures; or a specific DPA enforcement finding that this provider's transfers are unlawful | Transfer covered by DPF, SCCs, or adequacy decision — reflected in domain E score (E \= 0 or 1\) but does not alone result in Caution |
 
----
-
 ## 8\. Domain scoring guidance
 
 Full scoring criteria per domain. Consult the provider's privacy policy, DPA, Terms of Service, and supervisory authority decisions.
@@ -218,15 +204,4 @@ Full scoring criteria per domain. Consult the provider's privacy policy, DPA, Te
 Domains A, C, D, F, G, H: scoring criteria unchanged from v1 — see the Consenter Manager Badge Attribution assessment tool (Google Apps Script) for full domain-level scoring rubrics.
 
 ---
-
-## 9\. Change log
-
-| Version | Date | Changes |
-| :---- | :---- | :---- |
-| v1 | 22/06/2026 | Initial badge attribution framework published. |
-| v2.1 | 06/08/2026 | Framework change: default-on tracking / session recording now treated as NORMAL (Section 2). Decision tree Step 2 updated. Section 7 elevated-risk indicators clarified. Domain B scoring guidance revised (B=0 reserved for structurally embedded non-removable tracking; CMP-gatable tools score B=1 minimum). Badge corrections: Hotjar, Mouseflow, Fullstory, Smartlook, Crazy Egg, ContentSquare → No badge. AddToAny: Caution maintained. Factual corrections: econda/DYMATRIX, MediaMath/Mathtag defunct, DataXu/Roku, AddThis defunct, Connexity/Taboola, Xandr/AppNexus history. |
-| v2.2 | 06/08/2026 | RF2 revised: high-risk third-country exposure no longer a standalone Caution trigger. Where a lawful transfer mechanism exists (adequacy decision, DPF, SCCs), GDPR treats the transfer as compliant; RF2 is now reflected in a lower domain E score (E=1 for standard DPF/SCCs; E=0 for transfers without any lawful mechanism) rather than an automatic badge override. Section 3 decision tree restructured (RF2 separated from RF1/RF3/RF4 in Step 1; dedicated Step 2 added for transfer risk). Section 5 thresholds updated. Section 6 red flags table updated with per-flag effect column. Section 7 elevated-risk indicators updated. Domain E scoring criteria added to Section 8\. Badge correction: Google Tag Manager → No badge (RF2 was sole Caution trigger; US transfer covered by DPF/SCCs; no RF1/RF3/RF4). |
-
----
-
-*Consenter Manager | v2.2 — 31/08/2026 | 
+Consenter Manager | v2.2 — 31/08/2026 | 
