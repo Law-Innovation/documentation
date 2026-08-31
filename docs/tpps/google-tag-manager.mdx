@@ -1,0 +1,74 @@
+---
+title: 'Google Tag Manager'
+description: 'Badge: ⬜ No badge'
+---
+
+# Google Tag Manager
+
+| Feld | Wert |
+|---|---|
+| **Gruppe / Parent Service** | Google Tag Manager |
+| **Badge** | ⬜ No badge |
+| **Service-Typ** | Parent service |
+| **Sub-service / Relationship Note** | Parent service |
+| **Infrastructure Only?** | No |
+| **Kontakt (DPO / Privacy)** | privacy@google.com |
+| **Bewertungsdatum** | 06/08/2026 |
+| **Version** | v2 (06/08/2026) \| v1: 22/06/2026 |
+
+---
+
+<details>
+<summary>Badge &amp; Risikobewertung</summary>
+
+- **Badge:** ⬜ No badge
+- **Red Flags:**
+  - Keine
+- **Risk Indicators:**
+  - [nicht dokumentiert]
+
+</details>
+
+<details>
+<summary>Begründung &amp; Quellen</summary>
+
+**Framework Change:**
+Under the revised badge attribution framework (v2.2), RF2 (high-risk third-country exposure) is no longer a standalone Caution trigger. Where a lawful transfer mechanism exists — such as DPF participation or SCCs — GDPR treats the transfer as compliant. RF2 is now reflected in the domain E score rather than an automatic badge override.
+
+**Transfer Risk Assessment:**
+TRANSFER RISK ASSESSMENT (domain E = 1): Google Tag Manager routes tag data through Google US infrastructure. Google is a DPF-certified entity; Standard Contractual Clauses are available via Google's DPA. This is a standard US transfer profile, scored E = 1 (moderate transfer exposure with lawful mechanism in place). A CJEU challenge to the DPF (Case C-703/25 P) is pending, which is noted but does not alone make the transfer unlawful as of the date of this assessment.
+
+**Re-evaluierte Domain-Scores:**
+RE-EVALUATED DOMAIN SCORES: A=1 (some own-purpose analytics of GTM usage by Google), B=1 (TMS container; can be consent-gated; no structural tracking of its own), C=1 (neutral defaults; requires configuration), D=1 (moderate data; depends on tags loaded), E=1 (US transfer; DPF/SCCs), F=1 (documentation available, generic for a TMS), G=1 (consent-compatible with effort), H=1 (Google sub-processors disclosed). Weighted average ≈ 1.0 → above 0.9 threshold; no two core domains at 0. Privacy+ not met (C≠2, E≠2). No badge is the correct outcome.
+
+**Key Facts:**
+NO OTHER RED FLAGS: GTM does not profile visitors for its own advertising (no RF1). It does not share data broadly with unnamed partners for their own purposes (no RF3). Documentation is publicly available (no RF4). Google Tag Manager is a tag management system (TMS). It does not independently track users — it deploys and fires other tags on the controller's instruction. The transfer risk relates to the GTM container script itself loading from Google US servers (googletagmanager.com, googletagservices.com), transmitting visitor IP and basic HTTP headers to Google on each page load. This is analogous to other CDN-loaded scripts. Server-side GTM deployment on EU infrastructure can eliminate this transfer risk entirely.
+
+**Quellen:**
+- Google Tag Manager Terms of Service (marketingplatform.google.com/about/analytics/terms)
+- Google Privacy Policy (policies.google.com/privacy)
+- Google Ads Data Processing Terms (DPA, incorporating SCCs)
+- Google DPF certification (privacyshield.gov / DPF.gov).
+
+</details>
+
+<details>
+<summary>Verarbeitungszwecke (Consenter)</summary>
+
+- Support marketing analytics
+- Receive personalised marketing offers
+- Customise online ads (non-TCF)
+
+</details>
+
+<details>
+<summary>Benachrichtigungs- &amp; Widerspruchsstatus</summary>
+
+- **TPP Notified?:** Not yet notified
+- **Decision Contested?:** [nicht dokumentiert]
+
+</details>
+
+## Prüfbedarf
+
+_Kein Prüfbedarf identifiziert._
