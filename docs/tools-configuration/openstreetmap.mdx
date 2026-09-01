@@ -1,0 +1,57 @@
+---
+title: OpenStreetMap
+---
+
+# Configuration Guide
+
+OpenStreetMap is a free, open-source mapping project operated by the OpenStreetMap Foundation (OSMF), a non-profit organisation incorporated in the United Kingdom. When an OSM map is embedded on a website — whether via a simple iframe or via a JavaScript mapping library such as Leaflet.js loading map tiles from OSMF's tile servers — the visitor's browser establishes a direct connection to OSMF infrastructure at page load. OSM does not set tracking cookies in the traditional sense; however, the visitor's IP address, device type, browser information, and tile request details are transmitted to OSMF servers and logged as part of standard network access records. Unlike Google Maps, no persistent cross-session user identifier is assigned and no advertising or profiling data is collected.
+
+There are no privacy-relevant configuration options at the OSM embed level that would materially alter this data processing profile. The only alternative — self-hosting a tile server proxy — is an infrastructure measure rather than an embed-level configuration and falls outside the scope of this guide. Map tiles are delivered via the Fastly content delivery network; Fastly, Inc. is a US-based company and is therefore subject to the CLOUD Act. OSMF itself explicitly states that no Data Controller–Data Processor relationship exists between website operators and the OSMF: the OSMF operates as an Independent Controller in its own right, and no Data Processing Agreement is available.
+
+---
+
+## Summary Overview
+
+| Step | Action |
+| --- | --- |
+| **Step 1 — Configuration** | Embed the OSM map via iframe or a JavaScript tile library (e.g. Leaflet.js) loading tiles from OSMF tile servers. No tracking cookies are set; however, IP address, device and browser data are transmitted at page load. No further privacy-relevant configuration options exist at the embed level. |
+| **Step 2 — Mapping** | Map as third-party tracking, single session; IP address identifier; IP address, device characteristics, browsing and interaction data, non-precise location data; Independent Controller; no personalisation; UK and EU processing via OSMF, with US processing via Fastly CDN. |
+| **Step 3 — Contextual Consent** | Implement contextual consent to mask the map until the visitor has given consent, in accordance with the Consenter integration guide. |
+
+---
+
+## Step 1 — OpenStreetMap Embed Configuration
+
+| # | Configuration Area | Where to Configure | Configuration — Standard |
+| --- | --- | --- | --- |
+| 1 | Embed method | In the website source code | Embed the map either via an iframe (`https://www.openstreetmap.org/export/embed.html?...`) or via a JavaScript tile library such as Leaflet.js loading tiles from `https://{s}.tile.openstreetmap.org/`. In both cases, the visitor's browser connects directly to OSMF tile servers at page load, transmitting IP address and device data. No cookies beyond technically necessary session cookies for OSMF account functionality are set. No privacy-enhanced embed variant exists. |
+
+### Configuration — Standard
+
+Embedding an OSM map causes the visitor's browser to send tile requests directly to OSMF's infrastructure, which is distributed across servers in the United Kingdom, Ireland, and the Netherlands. These requests include the visitor's IP address, browser and device type, operating system, and the specific tiles requested. According to the OSMF's own Services and Tile Users Privacy FAQ, the OSMF operates as an Independent Data Controller and does not process personal data on the website operator's behalf; no DPA can be concluded. Unlike Google Maps, no tracking cookies or persistent cross-session identifiers are assigned, and no data is used for advertising or profiling purposes.
+
+Map tiles are delivered via the Fastly global CDN. Fastly, Inc. is a US-based company and the involvement of its infrastructure means that tile request data — including IP addresses — may transit servers subject to US jurisdiction and potential access by US government authorities under the CLOUD Act. OSMF's own privacy policy notes that tile cache servers are globally distributed and that the specific server handling a given request is determined by Fastly's routing logic at the time of the request. The UK, where OSMF is incorporated and where its primary servers are located, benefits from a GDPR adequacy decision, meaning transfers to the UK are treated as equivalent to EU-internal processing under current EU law.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+### 2.1 Configuration — Standard
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (single session, cross-website) |
+| Identifier | IP address |
+| Data categories | Browsing and interaction data, Device characteristics, IP address, Non-precise location data |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | No personalisation |
+| Processing location | UK (OSMF, adequacy decision applies); EU (Ireland, Netherlands — OSMF tile cache servers); US via Fastly CDN (CLOUD Act applies) |
+
+> **Note:** The OpenStreetMap Foundation operates exclusively as an Independent Controller. No Data Processing Agreement is available and no controller–processor relationship can be established. The OSMF explicitly states this in its Services and Tile Users Privacy FAQ. The legal basis for embedding OSM on a public website is therefore consent, as the website operator cannot contractually control how OSMF processes the transmitted data. Website operators should disclose the use of OSM and the resulting data transfer to the UK and US (via Fastly) in their privacy policy.
+> 
+
+---
+
+## Step 3 — Contextual Consent Integration
+
+Because the OSM embed connects to OSMF and Fastly servers at page load, the map element must be masked until the visitor has actively given consent. Contextual consent must be implemented in accordance with the Consenter Contextual Consent Integration Guide.

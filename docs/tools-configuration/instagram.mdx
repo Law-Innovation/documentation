@@ -1,0 +1,73 @@
+---
+title: Instagram
+---
+
+# Configuration Guide
+
+<aside>
+💡 This guide provides step-by-step instructions for embedding Instagram posts on a website and how this configuration must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Review the standard Instagram embed configuration and its privacy implications
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you embed Instagram content in your **privacy policy**
+
+</aside>
+
+Instagram is a US-based photo and video sharing social network owned and operated by Meta Platforms, Inc., headquartered in Menlo Park, California, United States. Website operators may embed public Instagram posts — including photos, videos, and Reels — using Instagram's official oEmbed mechanism, which delivers a `<blockquote>` placeholder alongside a JavaScript tag loading `embed.js` from `www.instagram.com`. This script, provided by Meta, transforms the blockquote into a fully rendered interactive post. The embed script actively sets tracking cookies in the visitor's browser and transmits data to Meta's servers on page render, prior to any visitor interaction. Meta operates one of the world's largest digital advertising platforms; data collected via embedded Instagram content feeds into Meta's behavioural advertising infrastructure. For EU/EEA users, the data controller is Meta Platforms Ireland Limited (Dublin, Ireland); for users outside the EU/EEA, the data controller is Meta Platforms, Inc. (United States). Data is processed in the United States and other countries. As Meta Platforms, Inc. is a US enterprise, it is subject to the CLOUD Act, which enables potential access by US government authorities to data held by US-based companies regardless of where that data is processed.
+
+---
+
+## Step 1 — Instagram Embed Configuration
+
+| # | Configuration Area | Where in Instagram / Website Code | Configuration A — Standard Embed |
+| --- | --- | --- | --- |
+| 1 | Embed method | Instagram post → `⋯` → *Embed*; copy resulting HTML and paste into website; or use Meta Graph API oEmbed endpoint: `GET https://graph.facebook.com/v{version}/instagram_oembed?url=<POST_URL>` | Standard oEmbed: `<blockquote class="instagram-media">` with post content plus `<script async src="//www.instagram.com/embed.js">` which calls `instgrm.Embeds.process()` to render the fully interactive post |
+| 2 | Tracking cookies set on page load | No configuration option for the embedding website operator; set automatically by `embed.js` on page render, prior to any visitor interaction | `_fbp` (Meta Pixel cookie, third-party, 90 days) and `ig_did` (Instagram device identifier, longer-lived) are set in the visitor's browser as a side effect of loading the embed script; these are used for cross-site tracking and advertising profile building |
+| 3 | Authenticated user identification | No configuration option for the embedding website operator; handled automatically by `embed.js` | If the visitor is logged in to Instagram or Facebook, the embed script links their authenticated Meta identity to the website visit, enriching Meta's user profile with off-platform browsing behaviour |
+| 4 | Advertising and behavioural profiling | No configuration option for the embedding website operator | Meta uses data collected via embedded Instagram content for behavioural advertising, personalised ad targeting, cross-site and cross-device tracking, and real-time bidding; processing includes both logged-in and logged-out visitors |
+| 5 | Data retention | Determined by Meta Platforms Ireland Limited / Meta Platforms, Inc.; no configuration option for the embedding website operator | `_fbp` cookie: 90 days; `ig_did` device identifier: longer-lived; Meta's privacy policy states that data is retained for as long as necessary to provide services and for other legitimate purposes; the EU Court of Justice ruled in 2024 that Meta cannot retain personal data for ad targeting indefinitely and must apply data minimisation limits |
+| 6 | Processing location | Fixed; determined by Meta infrastructure | Primary processing by Meta Platforms Ireland Limited (Dublin, Ireland) for EU/EEA users; Meta Platforms, Inc. (United States) for all other users; data transferred to the US and other countries in all cases; US government access via CLOUD Act applies regardless of storage location |
+
+### Configuration A — Standard Embed
+
+Use this configuration whenever a public Instagram post is embedded on a website using Instagram's official oEmbed method.
+
+The embed is implemented by copying the HTML snippet generated via the Instagram in-app menu (Post → `⋯` → *Embed*), or by querying the Meta Graph API oEmbed endpoint programmatically. The resulting snippet consists of a `<blockquote>` element containing a preview of the post content and a `<script>` tag loading `embed.js` from `www.instagram.com`. When the script executes in the visitor's browser, it calls `instgrm.Embeds.process()`, which renders the full post including media, caption, engagement metrics, and interactive buttons.
+
+The `embed.js` script performs active tracking beyond content rendering. It sets Meta tracking cookies — including the Meta Pixel cookie `_fbp` (90-day lifetime) and the Instagram device identifier `ig_did` — in the visitor's browser as a side effect of loading on page render, prior to any visitor interaction with the embed. These identifiers are used by Meta to track the visitor across websites that carry Meta's embedded content and advertising technologies, and to build behavioural advertising profiles used for cross-site retargeting and personalised ad delivery.
+
+If the visitor is logged in to Instagram or Facebook, the embed script additionally associates their authenticated Meta account identity with the website visit, directly linking their off-platform browsing behaviour to their known Meta user profile.
+
+Meta operates a large-scale digital advertising platform and explicitly uses data collected via embedded Instagram content for ad personalisation, real-time bidding, cross-device tracking, and audience building — for both account holders and logged-out visitors.
+
+For EU/EEA users, the data controller is Meta Platforms Ireland Limited (Dublin, Ireland), which is supervised by the Irish Data Protection Commission as lead supervisory authority under GDPR. Meta Platforms Ireland Limited has been the subject of multiple significant GDPR enforcement actions, including a €180 million fine by the Irish DPC (January 2023) for unlawful use of personal data for behavioural advertising on Instagram. Despite the EU-based data controller, data is transferred to the United States and other countries where Meta has infrastructure. Meta Platforms, Inc., as a US enterprise, is subject to the CLOUD Act, meaning US government authorities may compel access to data held by Meta regardless of where it is stored. This risk applies in addition to and independently of any other transfer safeguard, including the EU–US Data Privacy Framework.
+
+Because `embed.js` sets tracking cookies and transmits data to Meta's servers on page render — before any visitor interaction — the embed code must be blocked by the consent management solution until the visitor has given consent. A consent-based lazy-loading or click-to-activate wrapper must be used to ensure the script does not fire prior to consent.
+
+Meta Platforms Ireland Limited and Meta Platforms, Inc. act as Independent Controllers under Meta's privacy policy for all data collected via the embed.
+
+---
+
+## Step 2 — Mapping in the Consenter Manager
+
+Using the Instagram embed configuration defined in Step 1, apply the following mapping in the Consenter Manager to ensure the consent banner correctly reflects the data processing activity.
+
+### 2.1 Configuration A — Standard Embed
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers, Probabilistic identifiers, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Non-precise location data, Probabilistic identifiers, Users' profiles |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Profile based |
+| Maximum storage duration | 90 days (`_fbp` Meta Pixel cookie) |
+| Processing location | EU/Ireland (Meta Platforms Ireland Limited, lead supervisory authority: Irish DPC) / US (Meta Platforms, Inc.); US government access via CLOUD Act applies in all cases |
+
+> **Note on authenticated users:** Where a visitor is logged in to Instagram or Facebook, their browsing activity on the embedding website is linked to their authenticated Meta account. This results in authentication-derived identifier processing and should be reflected in the identifier selection above.
+> 
+
+> **Note on regulatory context:** Meta Platforms Ireland Limited has been subject to repeated significant GDPR enforcement actions by the Irish DPC, including findings of unlawful behavioural advertising on Instagram and orders to bring data transfers to the US into compliance. Website operators embedding Instagram content should ensure their consent banner accurately reflects the nature of Meta's data processing and that consent is obtained prior to the embed script loading.
+>

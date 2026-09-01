@@ -1,0 +1,137 @@
+---
+title: Google Analytics (GA4)
+---
+
+<aside>
+
+ℹ️ This guide provides step-by-step instructions for configuring Google Analytics 4 in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure GA4 accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use Google Analytics 4 in your **privacy policy**
+
+</aside>
+
+# Configuration Guide
+
+Google Analytics 4 (GA4) is Google's analytics platform that deploys a JavaScript tracking tag on websites and apps to collect visitor behaviour, session data, and event-based interaction data. Depending on configuration, GA4 can range from a basic anonymous analytics tool to a fully integrated cross-device advertising measurement platform linked to Google's wider advertising ecosystem. The configurations below cover the most privacy-relevant settings and their corresponding mappings in the Customer Panel (CP).
+
+> **Note on IP addresses in GA4:** GA4 does not log or store individual IP addresses in any configuration. For EU-based traffic, IP addresses are used solely to derive coarse geolocation data (city, region, country) on EU-based servers, then immediately discarded before being forwarded to Analytics processing servers. This behaviour is automatic and cannot be disabled. Accordingly, IP address is not a configurable privacy dimension in GA4 and does not appear as a differentiating factor between the configurations below.
+> 
+
+---
+
+## Step 1 — GA4 Configuration
+
+| # | Configuration Area | Where in GA4 | Configuration A — Low Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Consent Mode implementation | Google Tag Manager (GTM) or gtag.js — Consent Mode default commands; CMP integration | Basic Consent Mode — GA4 tag blocked entirely until consent is granted; no data sent before consent; no cookieless pings | Basic Consent Mode — GA4 tag blocked entirely until consent is granted; no data sent before consent; no cookieless pings | Advanced Consent Mode v2 — GA4 tag fires in limited mode without consent; cookieless pings sent to Google for conversion and behaviour modelling even when consent is denied; all four signals (`analytics_storage`, `ad_storage`, `ad_user_data`, `ad_personalization`) transmitted to Google |
+| 2 | Google Signals | Admin → Data Settings → Data Collection → Enable Google signals data collection | Disabled | Disabled | Enabled — cross-device data collected from signed-in Google users with Ads Personalisation turned on; demographics and interests reporting activated; third-party advertising identifiers used for cross-website and cross-device audience building |
+| 3 | User identification | Implemented via gtag.js or GTM (`user_id` parameter); Admin → Data Display → Reporting Identity | Disabled — anonymous sessions only; visitors identified solely by the first-party GA4 client ID (`_ga` cookie) as a device-level identifier | User ID implemented — persistent first-party identifier sent to GA4 for authenticated (logged-in) users; enables cross-session and cross-device journey stitching for identified users; Reporting Identity set to "By User-ID, Google signals, then Device ID" | User ID implemented; user-provided data collection optionally enabled (hashed first-party data, e.g. email, matched with Google accounts for enhanced conversions and cross-device attribution) |
+| 4 | Google Ads linkage and remarketing | Admin → Product Links → Google Ads Linking; Admin → Data Settings → Data Collection → Advertising Reporting Features | Not linked | Not linked | Google Ads account linked; remarketing audiences created in GA4 and shared with Google Ads; Advertising Reporting Features enabled; data sharing with Google products may be enabled (not recommended!) |
+| 5 | Granular location and device data | Admin → Data Settings → Data Collection → Granular location and device data collection | Disabled — city-level location (latitude/longitude), device brand, device model, and device name not collected; only country- and region-level data retained | Disabled — city-level location (latitude/longitude), device brand, device model, and device name not collected; only country- and region-level data retained | Enabled (default) — city-level location (latitude/longitude of city), device brand, device model, and device name collected |
+| 6 | Data retention (user-level data) | Admin → Data Settings → Data Retention | 2 months (default minimum) | 14 months (maximum for standard GA4) | 14 months (maximum for standard GA4) |
+| 7 | Processing location | Google infrastructure / account settings | EU initial collection (EU-based servers for EU traffic; IP discarded before forwarding); further processing by Google LLC (US); potential US government access via CLOUD Act | EU initial collection (EU-based servers for EU traffic; IP discarded before forwarding); further processing by Google LLC (US); potential US government access via CLOUD Act | EU initial collection (EU-based servers for EU traffic; IP discarded before forwarding); further processing by Google LLC (US); SCCs available via Google Ads Data Processing Terms; potential US government access via CLOUD Act |
+
+---
+
+### Configuration A — Low Risk
+
+Use this configuration when GA4 is used solely for anonymous website analytics without any user identification, advertising features, or cross-device tracking. Basic Consent Mode is implemented — the GA4 tag is blocked entirely until the visitor grants consent, meaning no data whatsoever reaches Google before a positive consent decision. Google Signals is disabled, so no cross-device tracking via Google's advertising identifiers takes place. No User ID is implemented; visitors are tracked only by the first-party GA4 client ID stored in the `_ga` cookie, scoped to the website domain. No Google Ads account is linked. Granular location and device data collection is disabled, so only country- and region-level location data is derived. User-level data is retained for 2 months.
+
+EU-based traffic is collected via EU-based servers before being forwarded to Google's processing infrastructure, and IP addresses are discarded before any logging occurs. However, as Google LLC is a US-based enterprise, all data processed by Google remains potentially subject to access by US government authorities under the CLOUD Act, regardless of where initial collection takes place. This should be disclosed as a potential US data transfer in the consent banner.
+
+Google acts as a data processor under the Google Ads Data Processing Terms, which are accepted via Admin → Account Settings. Standard Contractual Clauses (SCCs) are incorporated into these terms for international data transfers.
+
+---
+
+### Configuration B — Medium Risk
+
+Use this configuration when GA4 is used for website analytics including cross-session and cross-device identification for authenticated users. Basic Consent Mode is still used — the GA4 tag is blocked until consent is granted. Google Signals is disabled. A User ID is implemented by the website operator and sent to GA4 when a visitor is logged into their account on the website, enabling cross-session and cross-device journey stitching for identified users. This allows GA4 to associate multiple sessions, browser instances, or devices with a single known user, provided that user is authenticated. No Google Ads account is linked, and no advertising features are active. Granular location and device data collection remains disabled. User-level data is retained for 14 months.
+
+EU traffic routing and IP handling are the same as in Configuration A. As Google LLC is a US-based enterprise, the CLOUD Act applies in all cases. This should be disclosed as a potential US data transfer in the consent banner.
+
+Google acts as a data processor under its standard Data Processing Terms.
+
+---
+
+### Configuration C — Higher Risk
+
+Use this configuration when GA4 is deployed as part of a full advertising measurement stack integrated with Google Ads. Advanced Consent Mode v2 is implemented — the GA4 tag fires in a limited mode even when a visitor has declined consent, sending cookieless pings (without accessing browser storage or setting cookies) to Google's servers for statistical conversion and behaviour modelling. This means that even non-consenting visitors contribute anonymised signal data to Google's modelling processes.
+
+Google Signals is enabled, which activates cross-device tracking using Google advertising identifiers for users signed into their Google accounts with Ads Personalisation turned on, and enables demographics and interests reporting. A User ID is also implemented. User-provided data collection (hashed first-party data such as email addresses) may additionally be enabled for enhanced conversion attribution. Granular location and device data collection is enabled by default, providing city-level location and device details. GA4 is linked to a Google Ads account, enabling remarketing audiences to be created in GA4 and published to Google Ads. The four Consent Mode v2 signals (`analytics_storage`, `ad_storage`, `ad_user_data`, `ad_personalization`) are passed to Google, which uses these to determine whether and how it may use data for advertising purposes. Data retention is set to 14 months.
+
+EU traffic routing and IP handling are the same as in Configurations A and B. As Google LLC is a US-based enterprise, the CLOUD Act applies in all cases. SCCs are available via the Google Ads Data Processing Terms. Both the CLOUD Act risk and any US-side processing should be disclosed in the consent banner.
+
+> **Note on data processing without consent:** In Advanced Consent Mode, GA4 and linked Google Ads tags send cookieless pings to Google's servers even when a visitor has declined consent for analytics or advertising. While these pings do not access browser storage or set persistent cookies, they do transmit request-level data to Google for statistical modelling purposes. Whether this constitutes processing of personal data under the GDPR — and under what legal basis — should be carefully assessed with your Data Protection Officer or legal counsel before deploying Advanced Consent Mode.
+> 
+
+Google acts as a data processor for GA4 analytics under the Google Ads Data Processing Terms. When GA4 is linked to Google Ads and remarketing audiences are shared, Google additionally acts as an **Independent Controller** for advertising-related data processing under its own terms. Google Ads must therefore be configured as a **separate entry** in the Customer Panel.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+Using the GA4 configurations defined in Step 1, apply the following mappings in the Customer Panel to ensure the consent banner correctly reflects the data processing activities.
+
+---
+
+### 2.1 Configuration A — Low Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, IP address anonymised, Non-precise location data |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Maximum storage duration | 2 months |
+| Processing location | EU (initial collection via EU-based servers for EU traffic) / US (Google LLC; potential access via CLOUD Act) |
+
+---
+
+### 2.2 Configuration B — Medium Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers, Authentication-derived identifiers |
+| Data categories | Aggregated site statistics, Authentication-derived identifiers, Browsing and interaction data, Device characteristics, Device identifiers, IP address anonymised, Non-precise location data, Users' profiles |
+| Legal role of data recipient | Processor |
+| Personalisation model | Group based (behaviour) |
+| Maximum storage duration | 14 months |
+| Processing location | EU (initial collection via EU-based servers for EU traffic) / US (Google LLC; potential access via CLOUD Act) |
+
+---
+
+### 2.3 Configuration C — Higher Risk
+
+This configuration requires a separate Customer Panel entry for the GA4 processor entry and for Google Ads, which operates as an Independent Controller.
+
+**Google Analytics 4 (Processor entry):**
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Device identifiers, Authentication-derived identifiers, Probabilistic identifiers |
+| Data categories | Aggregated site statistics, Authentication-derived identifiers, Browsing and interaction data, Device characteristics, Device identifiers, IP address anonymised, Non-precise location data, Privacy choices, Probabilistic identifiers, Users' profiles |
+| Legal role of data recipient | Processor |
+| Personalisation model | Profile based |
+| Maximum storage duration | 14 months |
+| Processing location | EU (initial collection via EU-based servers for EU traffic) / US (Google LLC; SCCs in place; potential access via CLOUD Act) |
+
+**Google Ads (separate Independent Controller entry):**
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Device identifiers, Authentication-derived identifiers, Probabilistic identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Privacy choices, Probabilistic identifiers, Users' profiles |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Profile based |
+| Processing location | US (Google LLC; SCCs in place; potential access via CLOUD Act) |
+
+> **Note:** When GA4 is linked to Google Ads and remarketing audiences are shared, Google operates as an Independent Controller for advertising-related processing under its own Terms of Service. Google Ads must be listed as a separate data recipient in the Customer Panel, and the consent banner must surface appropriate information about data sharing with Google for advertising purposes individually. The `Privacy choices` data category reflects the Consent Mode v2 signals (`ad_storage`, `ad_user_data`, `ad_personalization`) being passed to Google, which then determines how it may use the data for advertising — meaning the consent decision for advertising purposes is handed over to Google as the data recipient.
+>

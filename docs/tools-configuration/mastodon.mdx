@@ -1,0 +1,71 @@
+---
+title: Mastodon
+---
+
+# Configuration Guide
+
+<aside>
+💡 This guide provides step-by-step instructions for embedding Mastodon posts on a website and how this configuration must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Review the standard Mastodon embed configuration and its privacy implications
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you embed Mastodon content in your **privacy policy**
+
+</aside>
+
+Mastodon is a decentralised, open-source social network built on the ActivityPub protocol. It is operated across thousands of independent instances, each running the same open-source server software. Operators of websites may embed public Mastodon posts using Mastodon's official oEmbed mechanism, which delivers an `<iframe>` pointing to the originating Mastodon instance alongside a companion `embed.js` script served from that same instance. Unlike commercial social media embeds, Mastodon does not operate an advertising platform, does not set cross-site tracking cookies, and does not build user profiles for targeting purposes.
+
+---
+
+## Step 1 — Mastodon Embed Configuration
+
+| # | Configuration Area | Where in Mastodon / Website Code | Configuration A — Standard Embed |
+| --- | --- | --- | --- |
+| 1 | Embed method | Mastodon post → `⋯` → *Get embed code*; paste into website HTML | Standard oEmbed: `<iframe>` pointing to `[instance]/@user/[postid]/embed` plus `<script src="[instance]/embed.js">` |
+| 2 | Data transmitted to instance server on page load | Determined by HTTP protocol; no configuration option available | Visitor's IP address, browser user-agent string, and referring URL are transmitted to the Mastodon instance server on every page load containing the embed, as part of the standard HTTP request for the iframe content and `embed.js` |
+| 3 | Server log retention | Determined by the instance operator; no configuration option for the embedding website operator | Mastodon's default server software retains server logs (including IP addresses) for up to 90 days; registered user IP addresses may be retained for up to 12 months (per mastodon.social privacy policy and Mastodon Server Covenant guidance) |
+| 4 | Cookies | No configuration option; determined by Mastodon instance software | The standard Mastodon embed does not set persistent cross-site tracking cookies on the embedding website's visitors. A session cookie (`_mastodon_session`) may be set in the context of the iframe if the visitor interacts with it |
+| 5 | Processing location | Determined by the instance operator's hosting choice | Varies by instance. mastodon.social is operated by Mastodon gGmbH, a German non-profit, with servers hosted in the EU. Other instances may be hosted anywhere in the world. The embedding website operator must verify the processing location of the specific instance whose posts they embed |
+
+### Configuration A — Standard Embed
+
+Use this configuration whenever a public Mastodon post is embedded on a website using Mastodon's official oEmbed method.
+
+The embed is implemented by copying the HTML snippet provided via the Mastodon web interface (Post → `⋯` → *Get embed code*) and pasting it into the website's HTML. The snippet consists of an `<iframe>` element pointing to the post's `/embed` URL on the originating instance, and a `<script>` tag loading `embed.js` from that same instance.
+
+When a visitor loads a page containing this embed, their browser makes direct HTTP requests to the Mastodon instance server. These requests necessarily transmit the visitor's IP address, browser user-agent string, and referring page URL to the instance. This occurs regardless of whether the visitor interacts with the embedded post. The Mastodon instance server logs these requests; default Mastodon software retains server logs for up to 90 days.
+
+Mastodon does not set persistent cross-site tracking cookies on the embedding website's visitors and does not build advertising profiles. The embed does not load any analytics pixel or third-party tracking script. The data transmitted is limited to what is inherent in any HTTP connection.
+
+The legal role of the Mastodon instance operator depends on the specific instance. For mastodon.social, the operator is Mastodon gGmbH (Germany), acting as an Independent Controller under its own privacy policy. For self-hosted instances operated by the same organisation as the embedding website, the operator may instead be a Processor or act in a self-hosted capacity. Website operators must verify the operator and data processing terms of the specific instance they embed.
+
+Because the embedded content is loaded directly from the third-party instance server, the embedding website operator cannot prevent data transmission to that server through technical means once the embed is present on the page. If consent is required before loading the embed (e.g. under GDPR and ePrivacy obligations), the embed code must be blocked by the consent management solution until the visitor has given consent, for instance by using a consent-based lazy-loading or click-to-activate wrapper.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+Using the Mastodon embed configuration defined in Step 1, apply the following mapping in the Customer Panel to ensure the consent banner correctly reflects the data processing activity.
+
+### 2.1 Configuration A — Standard Embed
+
+> **Note:** The processing location depends on the specific Mastodon instance being embedded. The values below apply to mastodon.social (operated by Mastodon gGmbH, Germany). If you embed posts from a different instance, verify that instance's operator, hosting location, and applicable data processing terms before completing this mapping.
+> 
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (single session, cross-website) |
+| Identifier | IP address |
+| Data categories | Browsing and interaction data, Device characteristics, IP address, Non-precise location data |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | No personalisation |
+| Maximum storage duration | 90 days (server log retention per mastodon.social privacy policy) |
+| Processing location | EU (mastodon.social, hosted in Germany by Mastodon gGmbH) |
+
+> **Note on "cross-website" tracking:** The Mastodon instance server receives an HTTP request whenever any page embedding its content is loaded, regardless of domain. The instance server can therefore observe, via its server logs, that a given IP address visited one or more pages on third-party websites that embed its content. This constitutes single-session, cross-website data exposure at the IP address level, even in the absence of any tracking cookie or advertising purpose.
+> 
+
+> **Note on self-hosted instances:** If the embedding organisation operates its own Mastodon instance and embeds only from that instance, the legal role may instead be **Self-hosted** and the processing location will correspond to the organisation's own infrastructure. In this case, the tracking method may be adjusted to **First party tracking (single session)** where no cross-site exposure arises.
+>

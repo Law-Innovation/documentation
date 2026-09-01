@@ -1,0 +1,67 @@
+---
+title: Bluesky
+---
+
+# Configuration Guide
+
+<aside>
+💡 This guide provides step-by-step instructions for embedding Bluesky posts on a website and how this configuration must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Review the standard Bluesky embed configuration and its privacy implications
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you embed Bluesky content in your **privacy policy**
+
+</aside>
+
+Bluesky is a US-based microblogging social network built on the AT Protocol, an open, federated communication protocol. It is owned and operated by Bluesky Social, PBC, a benefit corporation incorporated in Delaware and headquartered in Seattle, Washington, United States. Operators of websites may embed public Bluesky posts using Bluesky's official oEmbed mechanism, which delivers a `<blockquote>` placeholder alongside a JavaScript `<script>` tag served from `embed.bsky.app` — a centralised service operated by Bluesky Social, PBC. The script rewrites the blockquote into an `<iframe>` that loads the post via the Bluesky API. Unlike commercial social media embeds, Bluesky does not operate an advertising platform and does not build advertising profiles. However, as a US enterprise, Bluesky Social, PBC is subject to US law, including the CLOUD Act, which enables potential access by US government authorities to data held by US-based companies regardless of where that data is processed.
+
+---
+
+## Step 1 — Bluesky Embed Configuration
+
+| # | Configuration Area | Where in Bluesky / Website Code | Configuration A — Standard Embed |
+| --- | --- | --- | --- |
+| 1 | Embed method | Bluesky post → `⋯` → *Embed Post*; or paste post URL at `embed.bsky.app`; paste resulting HTML into website | Standard oEmbed: `<blockquote>` with post text plus `<script src="https://embed.bsky.app/static/embed.js">` which rewrites the blockquote into an `<iframe>` loading the post via the Bluesky API |
+| 2 | Data transmitted to Bluesky on page load | Determined by HTTP protocol and Bluesky's embed script; no configuration option available | Visitor's IP address, browser user-agent string, and referring URL are transmitted to `embed.bsky.app` (operated by Bluesky Social, PBC, US) on every page load containing the embed, as part of the standard HTTP request for the embed script and iframe content |
+| 3 | Cookies and tracking technologies | No configuration option for the embedding website operator; determined by Bluesky's embed script | Bluesky's privacy policy confirms collection of IP address, unique identifiers, browser and device information, and use of cookies and other tracking technologies; the embed script loads from Bluesky's centralised servers |
+| 4 | Data retention | Determined by Bluesky Social, PBC; no configuration option for the embedding website operator | Bluesky's privacy policy states retention is determined on a case-by-case basis for as long as necessary to provide services and fulfil legal obligations; no fixed maximum retention period is published for server log data |
+| 5 | Processing location | Fixed; determined by Bluesky Social, PBC infrastructure | United States (Bluesky Social, PBC); SCCs available for EU/EEA transfers per Bluesky's privacy policy; US government access via CLOUD Act applies regardless |
+
+### Configuration A — Standard Embed
+
+Use this configuration whenever a public Bluesky post is embedded on a website using Bluesky's official oEmbed method.
+
+The embed is implemented by copying the HTML snippet provided via the Bluesky in-app menu (Post → `⋯` → *Embed Post*) or by pasting the post URL at `embed.bsky.app`. The resulting snippet consists of a `<blockquote>` element containing a plain-text version of the post and a `<script>` tag loading `embed.js` from `embed.bsky.app`. When the script executes in the visitor's browser, it replaces the blockquote with an `<iframe>` that retrieves and renders the full post — including any media, quote-posts, and interactive elements — via the Bluesky API.
+
+All Bluesky embeds load exclusively from `embed.bsky.app`, a centralised service operated by Bluesky Social, PBC in the United States. Every visitor's browser makes HTTP requests to this US-operated service on each page load, regardless of the geographic location of the embedding website or its visitors.
+
+Per Bluesky's privacy policy, Bluesky automatically collects usage information including the visitor's IP address (which can be used to derive approximate location), unique identifiers, browser and device information, and internet service provider. Bluesky also uses cookies and other tracking technologies. Bluesky does not operate an advertising platform and does not build advertising profiles; data collection is stated to be for service provision, security, analytics, and product improvement purposes.
+
+Bluesky Social, PBC is incorporated in the United States and therefore subject to the CLOUD Act. This means US government authorities may compel access to data held by Bluesky, including data relating to EU/EEA visitors, regardless of where that data is stored. International transfers of personal data from the EU/EEA are covered by Standard Contractual Clauses (SCCs) as stated in Bluesky's privacy policy; however, the CLOUD Act risk applies in addition to and independently of any SCC arrangement.
+
+Because the embedded content and script are loaded directly from Bluesky's US-operated servers, the embedding website operator cannot prevent data transmission to Bluesky through technical means once the embed is present on the page. If consent is required before loading the embed (e.g. under GDPR and ePrivacy obligations), the embed code must be blocked by the consent management solution until the visitor has given consent, for instance by using a consent-based lazy-loading or click-to-activate wrapper.
+
+Bluesky Social, PBC acts as an Independent Controller under its own privacy policy for all data it collects via the embed service.
+
+---
+
+## Step 2 — Mapping in the Consenter Manager
+
+Using the Bluesky embed configuration defined in Step 1, apply the following mapping in the Consenter Manager to ensure the consent banner correctly reflects the data processing activity.
+
+### 2.1 Configuration A — Standard Embed
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (single session, cross-website) |
+| Identifier | IP address |
+| Data categories | Browsing and interaction data, Device characteristics, IP address, Non-precise location data |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | No personalisation |
+| Maximum storage duration | Not specified (Bluesky retains data for as long as necessary per its privacy policy; no fixed maximum published) |
+| Processing location | US (Bluesky Social, PBC); SCCs available for EU/EEA transfers; US government access via CLOUD Act applies in all cases |
+
+> **Note on processing location:** All Bluesky embeds are served exclusively from `embed.bsky.app`, operated by Bluesky Social, PBC (United States). There is no EU hosting option for the embed service. The US processing location and CLOUD Act risk must therefore always be disclosed in the consent banner, irrespective of the embedding website's own hosting location.
+>

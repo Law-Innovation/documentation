@@ -1,0 +1,72 @@
+---
+title: Vimeo
+---
+
+# Configuration Guide
+
+Vimeo is a video hosting platform operated by Vimeo.com, Inc., a US-based company. When a Vimeo video is embedded on a website, the visitor's browser establishes a direct connection to Vimeo's servers as soon as the iframe loads — before any user interaction. The only meaningful privacy-relevant configuration available at the embed level is the `?dnt=1` (Do Not Track) parameter, which, when appended to the embed URL, prevents Vimeo from setting new tracking cookies during the viewing session. Without this parameter, Vimeo sets the `vuid` persistent two-year cross-session identifier from the moment the embed loads, before any user interaction. Unlike YouTube's privacy-enhanced domain, Vimeo's `?dnt=1` parameter produces a genuinely different risk profile: with it enabled, no tracking cookies beyond essential Cloudflare security cookies are set. In both cases, however, the visitor's IP address is processed as a result of the browser connection to Vimeo and Cloudflare servers. As both Vimeo.com, Inc. and Cloudflare, Inc. are US-based companies, all configurations are subject to potential US government access under the CLOUD Act.
+
+---
+
+## Summary Overview
+
+| Step | Action |
+| --- | --- |
+| **Step 1 — Config A (Low Risk)** | Append `?dnt=1` to the embed URL. Vimeo will not set tracking cookies; only essential Cloudflare security cookies are placed. No persistent user identifier is assigned. |
+| **Step 1 — Config B (Higher Risk)** | Use the standard embed URL without `?dnt=1`. Vimeo sets the `vuid` persistent two-year identifier from page load, enabling cross-session and cross-website tracking. |
+| **Step 2 — Config A Mapping** | Map as third-party tracking, single session; IP address identifier; browsing and interaction data, device characteristics, IP address; Individual Controller; no personalisation; US processing. |
+| **Step 2 — Config B Mapping** | Map as third-party tracking, cross-session, cross-website; device identifiers; browsing and interaction data, device characteristics, IP address, device identifiers, users' profiles; Individual Controller; group based (behaviour); US processing. |
+| **Step 3 — Contextual Consent** | Implement contextual consent to mask the video until the visitor has given consent, in accordance with the Consenter integration guide. |
+
+---
+
+## Step 1 — Vimeo Embed Configuration
+
+| # | Configuration Area | Where to Configure | Configuration A — Low Risk | Configuration B — Higher Risk |
+| --- | --- | --- | --- | --- |
+| 1 | Do Not Track parameter | In the embed URL used in the website source code | Append `?dnt=1` to the player URL: `https://player.vimeo.com/video/[VIDEO_ID]?dnt=1` — Vimeo will not set new tracking cookies; only essential Cloudflare security cookies (`player_clearance`, `cf_clearance`, `_cf_bm`, `_cfuvid`) are placed | Use the standard embed URL without the `?dnt=1` parameter: `https://player.vimeo.com/video/[VIDEO_ID]` — Vimeo sets the `vuid` two-year persistent identifier from page load, before any user interaction |
+
+### Configuration A — Low Risk
+
+Append `?dnt=1` to the Vimeo embed URL. According to Vimeo's official documentation, this parameter prevents Vimeo from setting new tracking cookies during the viewing session. The only cookies placed are essential Cloudflare security cookies (`player_clearance`, `cf_clearance`, `_cf_bm`, `_cfuvid`), which are required for bot protection and secure player operation. No persistent user identifier is assigned and no analytics data is collected for the video owner. The visitor's browser nonetheless establishes a direct connection to Vimeo's and Cloudflare's servers at page load, meaning the visitor's IP address and basic device characteristics are transmitted as part of the standard network request.
+
+Note that `?dnt=1` only prevents new cookies from being set. If a visitor has previously visited Vimeo.com without DNT enabled, their browser may automatically transmit pre-existing Vimeo cookies to the server — this is standard browser behaviour that is outside either Vimeo's or the website operator's control. As both Vimeo.com, Inc. and Cloudflare, Inc. are US-based companies, all data processed is subject to potential access by US government authorities under the CLOUD Act. Vimeo operates as an Independent Controller under its own Terms of Service and Privacy Policy.
+
+### Configuration B — Higher Risk
+
+Use the standard embed URL without the `?dnt=1` parameter. In this configuration, Vimeo sets the `vuid` cookie — a two-year persistent identifier — as soon as the embed iframe loads, before any user interaction. This identifier is used to generate analytics data for the video owner and, since it persists across sessions and across all websites where Vimeo content is embedded, enables cross-session and cross-website tracking. As Vimeo.com, Inc. is a US-based company, all data processed is subject to potential access by US government authorities under the CLOUD Act. Vimeo operates as an Independent Controller under its own Terms of Service and Privacy Policy.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+### 2.1 Configuration A — Low Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (single session, cross-website) |
+| Identifier | IP address |
+| Data categories | Browsing and interaction data, Device characteristics, IP address |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | No personalisation |
+| Processing location | US (Vimeo.com, Inc.; Cloudflare, Inc. — CLOUD Act applies) |
+
+### 2.2 Configuration B — Higher Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers |
+| Data categories | Browsing and interaction data, Device characteristics, IP address, Device identifiers, Users' profiles |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Group based (behaviour) |
+| Processing location | US (Vimeo.com, Inc.; Cloudflare, Inc. — CLOUD Act applies) |
+
+> **Note:** Vimeo.com, Inc. operates as an Independent Controller in both configurations. A Data Processing Agreement in the traditional processor sense is not available; data transfers to the US rely on Standard Contractual Clauses (SCCs) and, where applicable, the EU–US Data Privacy Framework. Consent gating must be implemented at the website level and is not configurable within Vimeo itself.
+> 
+
+---
+
+## Step 3 — Contextual Consent Integration
+
+Because the Vimeo embed connects to Vimeo's and Cloudflare's servers at page load, the video element must be masked until the visitor has actively given consent. Contextual consent must be implemented in accordance with the Consenter Contextual Consent Integration Guide.

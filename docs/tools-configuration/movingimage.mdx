@@ -1,0 +1,74 @@
+---
+title: Movingimage
+---
+
+# Configuration Guide
+
+Movingimage is an enterprise video platform operated by movingimage EVP GmbH, a German company headquartered in Berlin. When the movingimage player is embedded on a website, the visitor's browser connects to movingimage's CDN infrastructure (`video-cdn.net`) and third-party analytics sub-processors as soon as the player loads. By default, analytics data is collected automatically and without user consent — this default behaviour does not comply with GDPR requirements and must be explicitly changed. The two meaningful privacy-relevant configuration options are whether to enable the consent dialog at all, and whether to restrict analytics to a minimal pseudoanonymised mode or allow full tracking. movingimage EVP GmbH is an EU-based company hosting data in ISO 27001-certified EU data centres; however, Akamai Technologies, Inc. — a US-based sub-processor used for CDN delivery and player analytics — is involved in both configurations and is subject to the CLOUD Act.
+
+---
+
+## Summary Overview
+
+| Step | Action |
+| --- | --- |
+| **Step 1 — Config A (Low Risk)** | Enable the consent dialog in the Player Generator and activate minimal analytics. Only pseudoanonymised play counts are collected; no persistent device identifiers are assigned. |
+| **Step 1 — Config B (Higher Risk)** | Enable the consent dialog in the Player Generator and leave minimal analytics disabled. Full analytics — including persistent Youbora device UUID and Akamai client identifier — are activated upon visitor consent. |
+| **Step 2 — Config A Mapping** | Map as third-party tracking, single session; no identifier; aggregated site statistics and browsing data; Processor; no personalisation; EU processing with US Akamai sub-processor. |
+| **Step 2 — Config B Mapping** | Map as third-party tracking, cross-session, cross-website; device identifiers; aggregated site statistics, browsing and interaction data, device identifiers and characteristics; Processor; no personalisation; EU processing with US Akamai sub-processor. |
+| **Step 3 — Contextual Consent** | Implement contextual consent to mask the player until the visitor has given consent, in accordance with the Consenter integration guide. |
+
+---
+
+## Step 1 — movingimage Configuration
+
+> ⚠️ **Important default behaviour:** The tracking consent dialog is **disabled by default** in VideoManager Pro, meaning analytics data is collected automatically without visitor consent. This default does not comply with GDPR in most EU contexts. Both configurations below require the consent dialog to be explicitly enabled in the Player Generator before embedding the player on a public website.
+> 
+
+| # | Configuration Area | Where in movingimage | Configuration A — Low Risk | Configuration B — Higher Risk |
+| --- | --- | --- | --- | --- |
+| 1 | Analytics consent activation | VideoManager Pro → Player Generator → Additional Settings → Tracking Consent Dialog | Enable the consent dialog; analytics only activate after the visitor grants consent | Enable the consent dialog; analytics only activate after the visitor grants consent |
+| 2 | Analytics scope | VideoManager Pro → Player Generator → Additional Settings → Minimal Analytics | Enable minimal analytics: only pseudoanonymised play counts are collected; no persistent device identifiers are assigned | Disable minimal analytics: full analytics activate after consent, including a persistent Youbora device UUID and Akamai client identifier |
+
+### Configuration A — Low Risk
+
+Enable the consent dialog in the Player Generator and activate minimal analytics. In this mode, only a pseudoanonymised play count is recorded — no persistent device identifiers are assigned to the visitor. The movingimage player connects to Akamai Technologies (CDN delivery) and NPAW/Youbora (analytics infrastructure), but the minimal analytics mode ensures that no individually identifiable tracking data is generated. Data is processed in movingimage's EU data centres. As Akamai Technologies, Inc. is a US-based sub-processor, data transiting Akamai's infrastructure remains potentially subject to access by US government authorities under the CLOUD Act, even in this lower-risk configuration. movingimage acts as a data processor; a DPA is incorporated into the customer contract.
+
+### Configuration B — Higher Risk
+
+Enable the consent dialog in the Player Generator and leave minimal analytics disabled, so that full analytics are activated upon visitor consent. In this mode, the player assigns a persistent Youbora device UUID (`youbora.youboraDeviceUUID`) and an Akamai client identifier (`akamai_clientId`) to the visitor, enabling cross-session tracking of video engagement across the visitor's device. Video playback data, device characteristics, and interaction behaviour are recorded. Data is processed by movingimage (EU), NPAW/Youbora (Spain, EU), and Akamai Technologies (US). As Akamai is a US-based sub-processor, the CLOUD Act applies. movingimage acts as a data processor under its customer DPA.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+### 2.1 Configuration A — Low Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (single session, cross-website) |
+| Identifier | No identifier |
+| Data categories | Aggregated site statistics, Browsing and interaction data |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Processing location | EU (movingimage EVP GmbH, ISO 27001-certified); US via Akamai Technologies sub-processor (CLOUD Act applies) |
+
+### 2.2 Configuration B — Higher Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Processing location | EU (movingimage EVP GmbH; NPAW/Youbora, Spain); US via Akamai Technologies sub-processor (CLOUD Act applies) |
+
+> **Note:** movingimage EVP GmbH acts as a data processor in both configurations. A DPA is available as part of the customer contract. NPAW/Youbora (Spain) and Akamai Technologies (US) operate as sub-processors of movingimage. The analytics data collected is publisher-facing (video performance reporting) and is not used to personalise content shown to the visitor. The JavaScript API (`Enable or disable analytics using the JavaScript API`) may be used as an alternative to the built-in consent dialog for integration with an existing consent management platform.
+> 
+
+---
+
+## Step 3 — Contextual Consent Integration
+
+Because the movingimage player begins loading third-party resources at the point the embed is rendered, the player element must be masked until the visitor has actively given consent. Contextual consent must be implemented in accordance with the Consenter Contextual Consent Integration Guide.

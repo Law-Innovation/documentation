@@ -1,0 +1,126 @@
+---
+title: Abla Analytics (Astra Porta)
+---
+
+# Privacy Configuration Guide
+
+<aside>
+ℹ️ This guide provides step-by-step instructions for configuring Abla Analytics in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure Abla Analytics accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use Abla Analytics in your **privacy policy**
+
+</aside>
+
+Abla Analytics is a cookieless web audience-measurement tool developed and published by Astra Porta SARL, a French start-up based in Marseille. It measures page views, visits, visitors, bounce rate, time on site, traffic sources, and country-level geolocation via a lightweight, cookie-free script. Astra Porta hosts all data in France on Scaleway (Groupe Iliad) infrastructure. The service is offered in three tiers — **Abla Analytics** (the free/base tier), **Abla Analytics+**, and **Abla Analytics x** — which differ in which analytical features are enabled, and this is what drives the two configurations below.
+
+<aside>
+>💡 **Note on legal role:** Astra Porta SARL acts as **data processor** ("sous-traitant" within the meaning of the GDPR) in its relationship with the Customer (website operator), who acts as the sole **data controller**. Data collected via Abla Analytics remains the exclusive property of the customer and may not be used by Astra Porta for any other purpose.
+>
+**Note on processing location:** All data is hosted in France on Scaleway (Groupe Iliad) infrastructure. Astra Porta, Scaleway, and Iliad are French companies with no US parent or US-based subprocessor for this hosting; accordingly there is **no CLOUD Act risk** for Abla Analytics' own data processing.
+
+</aside>
+
+---
+
+## Summary Oversight — Step 1 & Step 2
+
+| Configuration | Step 1 — Abla Analytics setup | Step 2 — CP tracking method | Step 2 — CP legal role | Step 2 — CP personalisation |
+| --- | --- | --- | --- | --- |
+| A — Lower Risk | Base tier (Abla Analytics): CNIL-exempt configuration — import, export with identifiers, Google Search Console keyword display, parameter filters, and event/link tagging all disabled by default | First party tracking (single session) | Processor | No personalisation |
+| B — Higher Risk | Abla Analytics+ / Abla Analytics x: parameter filters, event/link tagging, data export with anonymised visitor IDs, Google Search Console integration, and ad-blocker circumvention enabled | First party tracking (cross-session) | Processor | No personalisation |
+
+---
+
+## Step 1 — Abla Analytics Configuration
+
+Astra Porta publishes an official CNIL exemption configuration guide for Abla Analytics, confirming that only the base tier meets the exemption conditions by default, and specifying exactly which features must remain disabled to preserve that status. Certain protections apply identically across **all three tiers** and are not configurable: it is not possible to build visitor cohorts for differentiated content display, location data is limited to country level, visitor IP addresses are anonymised instantaneously, and cross-site or cross-device tracking of a visitor is not possible. All tiers must offer visitors a copy-paste opt-out button that disables all tracking for that visitor.
+
+| # | Configuration Area | Where in Abla Analytics | Configuration A — Lower Risk | Configuration B — Higher Risk |
+| --- | --- | --- | --- | --- |
+| 1 | Consent requirement | Tier selection at account/contract level | No consent required — base tier is configured by default to meet the CNIL exemption conditions for audience-measurement tools; no manual configuration is needed | Consent required — Abla Analytics+ and Abla Analytics x enable features the official CNIL exemption guide identifies as incompatible with the exemption |
+| 2 | Data import from other tools | Dashboard → Import (disabled on base tier) | Disabled — cannot import historical audience data from competing solutions | Enabled |
+| 3 | Data export | Dashboard → Export (disabled on base tier) | Disabled — no data export feature available | Enabled — exported data includes anonymised visitor identifiers, allowing individual visit paths to be reconstructed outside the platform |
+| 4 | Google Search Console integration | Dashboard → Integrations (disabled on base tier) | Disabled — cannot display the search keywords visitors used to arrive from Google | Enabled |
+| 5 | Parameter filtering | Dashboard → Filters (disabled on base tier) | Disabled — cannot filter by browser, traffic source, country, or other parameters, preventing individualisation of a visitor's journey | Enabled |
+| 6 | Event/link tagging | Dashboard → Tag Manager (disabled on base tier) | Disabled — cannot add tags to buttons, pages, or hyperlinks to track specific interactions | Enabled — individual on-page interactions (clicks, conversions) can be tagged and tracked per visitor path |
+| 7 | Ad-blocker circumvention | Script delivery method | Not a differentiator described in the official exemption guide, but third-party sources indicate this capability is a general product feature; where enabled alongside Configuration B's other features, it materially increases the share of traffic effectively tracked | Present — traffic otherwise blocked by ad-blocking browser extensions is captured |
+| 8 | Processing location | Fixed; not configurable | France (Scaleway / Groupe Iliad); no CLOUD Act risk | Same as Configuration A |
+
+---
+
+### Configuration A — Lower Risk
+
+Use this configuration when Abla Analytics is deployed on its base (free) tier exactly as shipped by default, with no feature upgrades enabled. In this configuration, Astra Porta disables — at the platform level, not merely as a customer setting — the features that its own official CNIL exemption guide identifies as incompatible with consent-free audience measurement: data import from other tools, data export (even export without personal identifiers is unavailable), Google Search Console keyword display, filtering by browser/source/country or other parameters, and event/link tagging. Combined with the baseline protections that apply to all tiers (instantaneous IP anonymisation, country-level-only location, no cohort building, no cross-site/cross-device tracking, and a mandatory visitor opt-out), this configuration was assessed by the CNIL and is intended to meet the ePrivacy/CNIL strictly-necessary audience-measurement exemption, meaning prior visitor consent is not required.
+
+Because filtering and individual event tagging are disabled, and no export of visitor-level identifiers is possible, this configuration does not support reconstructing an individual visitor's journey either on the platform or via exported data. All hosting takes place in France (Scaleway/Groupe Iliad); Astra Porta acts as data processor.
+
+<aside>
+⚠️ **Important limitation:** The CNIL's audience-measurement exemption is a French-specific interpretation of the ePrivacy Directive. Since 1 January 2026, the CNIL's formal evaluation and public list of assessed tools have been replaced by a self-assessment framework, under which providers and website operators are responsible for confirming that a given configuration still meets the substantive criteria. Astra Porta's official exemption guide predates this change (version 1.2, June 2021); before relying on Configuration A, confirm the base tier's feature set has not changed and that your specific deployment matches the guide's description. This exemption is also France-specific; for pan-European sites, visitors from other member states may still require a consent banner.
+
+</aside>
+
+---
+
+### Configuration B — Higher Risk
+
+Use this configuration when Abla Analytics+ or Abla Analytics x is deployed with filtering, event/link tagging, data export, Google Search Console integration, and/or ad-blocker circumvention enabled. Astra Porta's own exemption documentation states plainly that **only the base tier** meets the CNIL exemption conditions by default — meaning Configuration B falls outside the scope of that exemption, and prior visitor consent must be obtained before tracking occurs.
+
+With filtering and tagging enabled, individual visitor interactions (specific pages, links, or buttons) can be tracked and analysed by parameter, and exported data includes anonymised visitor identifiers that allow an individual visit path to be reconstructed outside the dashboard — a capability the base tier deliberately withholds to preserve its exemption status. Google Search Console integration additionally surfaces the search keywords used by individual visitors arriving from Google. Ad-blocker circumvention, where enabled, increases the share of visitors from whom data is captured, including visitors who have taken active steps (installing an ad/tracker blocker) to limit such collection.
+
+The baseline protections common to all tiers still apply: IP addresses remain anonymised instantaneously, location remains country-level only, and no cross-site or cross-device tracking occurs. Astra Porta continues to act as data processor, and hosting remains exclusively in France (Scaleway/Groupe Iliad); no CLOUD Act risk applies.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+Using the Abla Analytics configurations defined in Step 1, apply the following mappings in the Consenter Manager to ensure the consent banner correctly reflects the data processing activities. Select the "Audience measurement / analytics" processing purpose in line with the Consenter processing purposes documentation.
+
+---
+
+### 2.1 Configuration A — Lower Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (single session) |
+| Identifier | No identifier |
+| Data categories | Aggregated site statistics, Non-precise location data |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Maximum storage duration | Not publicly specified by Astra Porta — confirm the applicable retention period directly in your customer contract |
+| Processing location | France (Astra Porta; Scaleway/Groupe Iliad hosting; no CLOUD Act risk) |
+| Processing purposes | Audience measurement / analytics (strictly necessary) |
+
+<aside>
+💡 **Note on the consent banner:** Because Configuration A is intended to operate under the ePrivacy/CNIL audience-measurement exemption, this entry can be excluded from the consent-required list in the banner **for French visitors**, provided your own review confirms the base tier's feature set still matches Astra Porta's official exemption configuration under the current CNIL self-assessment framework. If you want to be sure and nevertheless collect consent from your users, simply configure this service according to the guide presented here. 
+
+</aside>
+
+---
+
+### 2.2 Configuration B — Higher Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Probabilistic identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Non-precise location data, Probabilistic identifiers |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Maximum storage duration | Not publicly specified by Astra Porta — confirm the applicable retention period directly in your customer contract |
+| Processing location | France (Astra Porta; Scaleway/Groupe Iliad hosting; no CLOUD Act risk) |
+| Processing purposes | Audience measurement / analytics |
+
+<aside>
+💡 **Note:** This configuration does not qualify for the ePrivacy/CNIL consent exemption. The consent banner must gate all Abla Analytics tracking on prior visitor consent when Abla Analytics+ or Abla Analytics x is deployed with filtering, tagging, export, Google Search Console integration, or ad-blocker circumvention enabled.
+
+</aside>
+
+---
+
+## Step 3 — Privacy Policy
+
+Reflect the Abla Analytics configuration you have implemented in your privacy policy, including the legal basis relied upon (exemption or consent), the categories of data processed, and the retention period confirmed with Astra Porta. For guidance on aligning contextual consent language with your privacy policy, see the Consenter contextual consent integration guide.

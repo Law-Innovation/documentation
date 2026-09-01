@@ -1,0 +1,93 @@
+---
+title: Pinterest
+---
+
+# Configuration Guide
+
+<aside>
+💡 This guide provides step-by-step instructions for configuring Pinterest website add-ons in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure Pinterest accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use the third party provider in your **privacy policy**
+
+</aside>
+
+Pinterest offers several website add-ons — the Save button, Follow button, Pin widget, Board widget, and Profile widget — which let visitors save content to Pinterest, follow your account, and let you showcase your Pinterest activity directly on your website. Most add-ons are implemented via Pinterest's JavaScript library (`pinit.js`), which only needs to be included once per page regardless of how many buttons or widgets are used. Separately, advertisers may also deploy the Pinterest Tag, a conversion-tracking pixel used for ad measurement and audience building. Depending on configuration, embedding Pinterest can range from a simple outbound link with no data transmission to a fully tracked, advertising-linked integration. The configurations below cover the most privacy-relevant implementation choices and their corresponding mappings in the Consenter Manager (CM).
+
+---
+
+## Step 1 — Pinterest Configuration
+
+| # | Configuration Area | Where in Pinterest | Configuration A — Low Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Implementation method | Pinterest Widget Builder / embed code | Static HTML link to Pinterest's pin-creation page (`pinterest.com/pin/create/button/?url=...`); no `pinit.js` script loaded | Official Save button and/or Follow button via `pinit.js`, loaded only after consent | Board widget and/or Profile widget via `pinit.js`, combined with the Pinterest Tag (conversion tracking), loaded after consent |
+| 2 | Consent gating | Consent Management / website implementation | Not applicable — no connection to Pinterest is made until the visitor clicks the link and is redirected to pinterest.com | Required — `pinit.js` only loads for visitors who have consented via the consent banner | Required — `pinit.js` and the Pinterest Tag only load for visitors who have consented via the consent banner |
+| 3 | Data transmitted on page load | Inherent to add-on design | None — IP address and browser data are only sent if the visitor clicks through to Pinterest | IP address, device information, and browsing behaviour are transmitted to Pinterest, which can use this information to personalise the visitor's experience back on Pinterest, regardless of whether the visitor interacts with the button | Same as Configuration B, plus event-level activity data (page views, content interactions, conversions) is transmitted via the Pinterest Tag for ad measurement and profile building |
+| 4 | Cookies set | Pinterest Cookies Policy / Pinterest Tag documentation | None set by the add-on itself; cookies only set if the visitor proceeds to pinterest.com | Essential and analytics cookies (e.g. login-state cookie `_pinterest_sess`), used to operate the widget and measure usage | Essential/analytics cookies as in Configuration B, plus Pinterest Tag cookies including `_pin_unauth` (groups actions for unidentified visitors), `_epik` (caches ad-click matching data), `_derived_epik`, and `_pinterest_ct_rt`, used for advertising measurement and audience building |
+| 5 | Purpose of processing | Pinterest Cookies Policy / Advertising Services Agreement | Functional only (opens pin-creation flow) | Service functionality and Pinterest's own analytics/personalisation purposes | Functionality and analytics, plus ad measurement, audience building, and feeding Pinterest's ad-targeting algorithms |
+| 6 | Legal role of data recipient | Pinterest Privacy Policy / Advertising Services Agreement | Individual Controller (applies only upon click-through) | Pinterest Europe Ltd. and Pinterest, Inc. act as joint data controllers for EEA, Switzerland, and UK residents | Pinterest and the website operator are joint controllers for data collected through the Pinterest Tag, as defined in Pinterest's Advertising Services Agreement and Joint Controller Addendum |
+| 7 | Data retention | Pinterest Cookies Policy / Pinterest Tag documentation | Not applicable | Cookies are retained only as long as needed to provide the service and fulfil the stated purposes; users can delete stored cookies at any time | Pinterest Tag cookies persist for one year |
+| 8 | Processing location | Pinterest entity structure | EU (Pinterest Europe Ltd., Dublin) / US (Pinterest, Inc., San Francisco), only upon click-through | Pinterest Europe Ltd. (Dublin, Ireland) is the responsible controller for fulfilling key GDPR obligations; data is transferred to and processed by Pinterest, Inc. in the United States | Same as Configuration B; CLOUD Act applies to all data accessible by Pinterest, Inc. |
+
+### Configuration A — Low Risk
+
+Use this configuration when you want to offer Pinterest sharing functionality with no data transmission unless the visitor actively engages. Instead of embedding the official Save button (which loads `pinit.js` for every visitor), implement a plain static HTML link to Pinterest's pin-creation page. If your website is static in nature and you don't want to rely on JavaScript, a simple Pin-it button link is sufficient — no script, no iframe, and no cookies are present on your page. Data is only transmitted to Pinterest, and Pinterest only becomes involved as a controller, once the visitor clicks the link and is redirected to pinterest.com. No consent gate is required for the link itself, though it should be clearly labelled as an outbound link to a third-party service.
+
+### Configuration B — Medium Risk
+
+Use this configuration when you want to embed an interactive Save button or Follow button directly on your page. Consent must be obtained via the consent banner before `pinit.js` loads; until consent is given, the widget should be replaced with a placeholder. Once consent is given and the script loads, Pinterest receives information about every consenting visitor's visit — Pinterest can use this information about the visit to customise the visitor's experience back on Pinterest, for example by showing related Pins or promoted content based on the websites visited — regardless of whether the visitor actually clicks the button. Pinterest Europe Ltd. and Pinterest, Inc. are joint data controllers for residents of the EEA, Switzerland, and the UK, meaning a joint controller relationship applies for this collection. No advertising or conversion tracking is active in this configuration.
+
+### Configuration C — Higher Risk
+
+Use this configuration when you embed the Board widget and/or Profile widget to showcase Pinterest content, and additionally deploy the Pinterest Tag for conversion tracking and ad measurement. Consent must be obtained before either `pinit.js` or the Pinterest Tag loads. The Pinterest Tag fires on every page load (once consented) and sets a series of first-party cookies on your domain; it does not just count conversions but also builds user profiles, enables cross-site tracking, and feeds Pinterest's ad targeting algorithms. Specific cookies set include `_pin_unauth` for visitors Pinterest cannot identify, `_epik` and `_derived_epik` for matching ad clicks to later site visits, and `_pinterest_ct_rt`, which requires an active Pinterest login session to be written. Pinterest and the website operator are joint controllers for this processing under Pinterest's Advertising Services Agreement and Joint Controller Addendum, which governs the respective responsibilities for collection and disclosure of activity data. All Pinterest Tag cookies persist for one year.
+
+---
+
+## Step 2 — Mapping in the Consenter Manager
+
+Using the Pinterest configurations defined in Step 1, apply the following mappings in the Consenter Manager to ensure the consent banner correctly reflects the data processing activities.
+
+### 2.1 Configuration A — Low Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | No tracking (until click-through to pinterest.com) |
+| Identifier | No identifier |
+| Data categories | None (only applicable once the visitor clicks through to Pinterest's own domain) |
+| Legal role of data recipient | Individual Controller (applies only upon click-through) |
+| Personalisation model | No personalisation |
+| Maximum storage duration | Not applicable — no data collected on your site |
+| Processing location | EU (Pinterest Europe Ltd.) / US (Pinterest, Inc.); potential access via CLOUD Act |
+
+> **Note:** Because no connection to Pinterest is established until the visitor actively clicks the link, this configuration does not require an entry in the consent banner for tracking purposes. It remains good practice to disclose in your privacy policy that clicking the link will take the visitor to a third-party website operated by Pinterest.
+> 
+
+### 2.2 Configuration B — Medium Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers, IP address |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | Group based (behaviour) |
+| Maximum storage duration | Retained only as long as necessary per Pinterest's Cookie Policy (not fixed) |
+| Processing location | EU (Pinterest Europe Ltd., Dublin) / US (Pinterest, Inc.); potential access via CLOUD Act |
+
+### 2.3 Configuration C — Higher Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers, IP address, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Authentication-derived identifiers, Users' profiles, e-commerce Activity (if conversion events tracked) |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | Profile based |
+| Maximum storage duration | Up to 12 months (Pinterest Tag cookies) |
+| Processing location | EU (Pinterest Europe Ltd., Dublin) / US (Pinterest, Inc.); potential access via CLOUD Act |
+
+> **Note:** Pinterest requires advertisers using the Pinterest Tag to incorporate the Joint Controller Addendum and to disclose the joint processing arrangement in their privacy policy. Pinterest relies on the EU-US Data Privacy Framework, the UK Extension, and the Swiss-US Data Privacy Framework, as well as Standard Contractual Clauses, to transfer personal data of EEA, Switzerland, and UK residents to the United States. Regardless of these safeguards, Pinterest, Inc. remains a US company subject to the CLOUD Act, meaning US government authorities may access data transferred under this configuration; this should be disclosed as a potential US data transfer in the consent banner.
+>

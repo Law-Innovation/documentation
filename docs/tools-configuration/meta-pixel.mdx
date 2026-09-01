@@ -1,0 +1,111 @@
+---
+title: Meta Pixel (Facebook Pixel)
+---
+
+# Configuration Guide
+
+<aside>
+💡 This guide provides step-by-step instructions for configuring the Meta Pixel in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure the Meta Pixel accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use the Meta Pixel in your **privacy policy**
+
+</aside>
+
+The Meta Pixel (formerly Facebook Pixel) is a piece of JavaScript code that website operators add to their site to measure, optimise, and build audiences for Meta advertising campaigns across Facebook, Instagram, and Meta's wider ad network. Once installed, the Pixel creates a Meta cookie on visitors' browsers and loads a small library of functions used to track website actions ("events"). The Pixel matches website visitors to Meta accounts via Meta's own cookies and, where the visitor is logged into Facebook, Instagram, or WhatsApp in the same browser, via that cross-platform login state — meaning even a baseline installation involves third-party, cross-website matching rather than purely first-party analytics. Depending on configuration, the Pixel can range from a conversion-counting and campaign-optimisation tool to a full member-level retargeting and lookalike-audience mechanism built on hashed personal identifiers. The configurations below cover the most privacy-relevant settings and their corresponding mappings in the Customer Panel (CP).
+
+> **Note on legal role:** Regarding the collection of Event Data via the Meta Pixel and its transmission to Meta, the website operator and Meta Platforms Ireland Limited ("Meta Ireland") are **Joint Controllers** in accordance with Article 26 GDPR, as set out in Meta's Controller Addendum to the Business Tools Terms. This joint controllership covers the collection of personal data via the Pixel and its transmission to Meta Ireland. Meta Ireland remains an **Independent Controller** for any processing that takes place after the data has been transmitted to it (for example, Meta's own use of the data for ad delivery, lookalike modelling, or platform-wide analytics). For the purposes of the Customer Panel, the Meta Pixel should be listed under the **Joint Controller** role, since this reflects the documented relationship for the data collection itself.
+> 
+
+> **Note on data processing without consent:** Meta does not offer a configuration option that allows Pixel data to be processed without prior consent under the GDPR. Meta's separate "Limited Data Use" (LDU) feature exists to restrict processing for individuals who have exercised an opt-out under US state privacy laws (e.g. CCPA/CPRA) — it serves the opposite function (restricting use after an opt-out) and is not a mechanism for collecting data without EU consent. It is therefore out of scope for this guide.
+> 
+
+---
+
+## Step 1 — Meta Pixel Configuration
+
+| # | Configuration Area | Where in Meta Events Manager / Ads Manager | Configuration A — Low Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Consent & Pixel activation | Tag Management System / CMP integration (e.g. a consent-conditional trigger in Google Tag Manager) | Pixel is blocked entirely until consent is granted | Pixel is blocked entirely until consent is granted | Pixel is blocked entirely until consent is granted |
+| 2 | Advanced Matching | Events Manager → Data sources → select Pixel → Settings → Automatic Advanced Matching (or manual Advanced Matching code) | Disabled — no hashed contact information (email, phone, name) is sent; matching relies solely on Meta's own cookies and cross-platform login state | Enabled (Manual or Automatic) — hashed email and/or phone number are sent alongside event data to improve member matching | Enabled (Automatic) — hashed email, phone number, and name are sent alongside event data, improving matching including in scenarios where the standard cookie-based match would otherwise fail |
+| 3 | Custom Audiences from website traffic | Ads Manager → Audiences → Create Audience → Custom Audience → Website | Not created — website event data is used only for conversion tracking and campaign-level optimisation; no member-level audience is built for off-site ad targeting | Created — a member-level Custom Audience is built from website visits/events and used to retarget identified visitors with ads on Facebook, Instagram, and Meta's ad network | Created — a member-level Custom Audience is built and additionally used as a seed for a Lookalike Audience, extending ad delivery to other Meta users who share similar characteristics, in addition to direct retargeting |
+| 4 | Custom Audience membership duration (retention) | Set when creating the Custom Audience — "number of days you want people to remain in your audience after they visit your website" | Not applicable (no Custom Audience created) | 30 days | 180 days (platform maximum) |
+| 5 | Processing location | Not configurable — fixed by Meta's infrastructure | Meta Platforms Ireland Limited (initial joint-controller processing); transferred to Meta Platforms, Inc. (US) for subsequent independent-controller processing under SCCs / EU-US Data Privacy Framework; potential US government access via CLOUD Act | Meta Platforms Ireland Limited (initial joint-controller processing); transferred to Meta Platforms, Inc. (US) for subsequent independent-controller processing under SCCs / EU-US Data Privacy Framework; potential US government access via CLOUD Act | Meta Platforms Ireland Limited (initial joint-controller processing); transferred to Meta Platforms, Inc. (US) for subsequent independent-controller processing under SCCs / EU-US Data Privacy Framework; potential US government access via CLOUD Act |
+
+---
+
+### Configuration A — Low Risk
+
+Use this configuration when the Meta Pixel is used solely for conversion tracking and campaign-level optimisation, without building any member-level Custom Audience. The Pixel is blocked until consent is granted. Advanced Matching is disabled, so no hashed contact information (email, phone, name) is sent to Meta. The Pixel still relies on Meta's own first/third-party cookies and, where applicable, cross-platform login state to attribute website actions to a Meta account for conversion counting and ad-delivery optimisation — this baseline matching is inherent to how the Pixel works and is not a separately toggleable feature. No Custom Audience is created in Ads Manager, so website visit data is not used to build a retargeting audience or to serve off-site ads to specific identified individuals; the data is used by Meta to optimise the delivery of existing campaigns toward visitors with similar behavioural patterns to those who converted.
+
+Even in this baseline configuration, the website operator and Meta Ireland are Joint Controllers for the collection and transmission of this data, and Meta Ireland subsequently acts as an Independent Controller for its own processing. Data flows from the EU/EEA, UK, and Switzerland to the United States and back, with Meta relying on Standard Contractual Clauses and the EU-US Data Privacy Framework as transfer mechanisms. As Meta Platforms, Inc. is a US-based enterprise, data transferred to the US remains potentially subject to access by US government authorities under the CLOUD Act. This should be disclosed as a potential US data transfer in the consent banner.
+
+---
+
+### Configuration B — Medium Risk
+
+Use this configuration when the Meta Pixel is used for conversion tracking, Advanced Matching, and member-level website retargeting. The Pixel is blocked until consent is granted. Advanced Matching is enabled (manually or automatically), so hashed email and/or phone number are sent to Meta alongside event data, improving Meta's ability to match the visitor to a Meta account even where cookie-based matching alone would be insufficient — for example across browsers where third-party cookies are restricted. A Custom Audience is created in Ads Manager based on website traffic, allowing identified visitors to be retargeted with ads on Facebook, Instagram, and Meta's wider ad network; membership in this audience is retained for 30 days after the relevant website visit or event. No Lookalike Audience is created from this data.
+
+This configuration introduces individual-level, hashed-identifier matching of website visitors to Meta accounts for the purpose of off-site, cross-platform ad delivery. As in Configuration A, the website operator and Meta Ireland are Joint Controllers for this data, and the same EU-to-US data transfer mechanisms and CLOUD Act considerations apply. This should be disclosed as a potential US data transfer in the consent banner.
+
+---
+
+### Configuration C — Higher Risk
+
+Use this configuration when the Meta Pixel is used for conversion tracking, Advanced Matching, member-level retargeting, and Lookalike Audience expansion. The Pixel is blocked until consent is granted. Automatic Advanced Matching is enabled, sending hashed email, phone number, and name where these appear in website forms. A Custom Audience is created from website traffic as in Configuration B, but with the maximum membership duration of 180 days. In addition, this Custom Audience is used as a seed to create a Lookalike Audience: Meta analyses the characteristics of the website-visitor audience and uses this profile to identify and target other Meta users who were never themselves website visitors, but who share similar characteristics.
+
+This is the most data-intensive configuration of the three: it combines hashed-identifier matching, longer-duration member-level retargeting, and the use of visitor data to influence ad delivery to non-visitors via lookalike modelling. As in Configurations A and B, the website operator and Meta Ireland are Joint Controllers for the underlying Pixel data, and the same EU-to-US data transfer mechanisms and CLOUD Act considerations apply. This should be disclosed as a potential US data transfer in the consent banner.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+Using the Meta Pixel configurations defined in Step 1, apply the following mappings in the Customer Panel to ensure the consent banner correctly reflects the data processing activities.
+
+---
+
+### 2.1 Configuration A — Low Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Authentication-derived identifiers, Device identifiers |
+| Data categories | Aggregated site statistics, Authentication-derived identifiers, Browsing and interaction data, Device characteristics, Device identifiers, IP address |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | Group based (behaviour) |
+| Maximum storage duration | Not applicable (no Custom Audience created) |
+| Processing location | EU (Meta Platforms Ireland Limited; initial processing) / US (Meta Platforms, Inc.; SCCs / EU-US DPF; potential access via CLOUD Act) |
+
+---
+
+### 2.2 Configuration B — Medium Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Authentication-derived identifiers, Device identifiers, Direct identifier |
+| Data categories | Aggregated site statistics, Authentication-derived identifiers, Browsing and interaction data, Device characteristics, Device identifiers, Direct identifier, IP address, User-provided data, Users' profiles |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | Profile based |
+| Maximum storage duration | 30 days |
+| Processing location | EU (Meta Platforms Ireland Limited; initial processing) / US (Meta Platforms, Inc.; SCCs / EU-US DPF; potential access via CLOUD Act) |
+
+---
+
+### 2.3 Configuration C — Higher Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Authentication-derived identifiers, Device identifiers, Direct identifier |
+| Data categories | Aggregated site statistics, Authentication-derived identifiers, Browsing and interaction data, Device characteristics, Device identifiers, Direct identifier, IP address, User-provided data, Users' profiles |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | Profile based |
+| Maximum storage duration | 180 days |
+| Processing location | EU (Meta Platforms Ireland Limited; initial processing) / US (Meta Platforms, Inc.; SCCs / EU-US DPF; potential access via CLOUD Act) |
+
+> **Note:** The `Joint Controller` role applies to all three configurations, reflecting Meta's documented Controller Addendum for the collection and transmission of Event Data via the Pixel. This is distinct from the subsequent processing Meta carries out on its own behalf (e.g. platform-wide ad delivery, Lookalike modelling), where Meta Ireland acts as an Independent Controller — this downstream use does not require a separate Customer Panel entry, as it is covered by the same Joint Controller relationship for the underlying data collection. Configuration C's use of the Custom Audience as a Lookalike seed extends the practical reach of the processing to non-visitors, but does not change the data categories collected from the website itself; this should be reflected in the accompanying privacy policy disclosure rather than as an additional Customer Panel entry.
+>

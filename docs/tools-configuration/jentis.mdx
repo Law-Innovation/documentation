@@ -1,0 +1,144 @@
+---
+title: JENTIS
+---
+
+# Configuration Guide
+
+ℹ️ This guide provides step-by-step instructions for configuring JENTIS in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure JENTIS accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use JENTIS in your **privacy policy**
+
+JENTIS is a server-side tag management system (TMS) and Data Capturing Platform (DCP) that replaces conventional client-side third-party tag management by routing website visitor data through a first-party server layer — the JENTIS Twin Server — before forwarding it to downstream analytics and advertising tools. Rather than allowing third-party scripts (e.g. Google Analytics, Meta Pixel) to fire directly from visitors' browsers and collect data independently, JENTIS collects data first-party on the website operator's behalf, applies configurable privacy-enhancing transformations (including pseudonymisation, IP stripping, and ID substitution), and only then forwards data to downstream tools under controlled conditions. JENTIS is headquartered in Vienna, Austria, processes all data exclusively within EU/EEA data centres, and is ISO 27001 certified.
+
+<aside>
+
+>💡 **Important scope note:** JENTIS is infrastructure through which other tracking tools are routed — it is not itself a behavioural tracking or advertising tool. This guide covers the JENTIS platform's **own data processing layer** only. Each downstream tool connected to JENTIS (such as Google Analytics 4, Meta Pixel, LinkedIn Insight Tag, Google Ads) remains a separate data recipient and must continue to be reflected as a **separate entry** in the Customer Panel, using the configuration guides for those individual tools. The JENTIS entry described in this guide represents exclusively what JENTIS GmbH processes as a first-party server-side infrastructure provider.
+>
+
+> **Note on legal role:** JENTIS acts as a **data processor** in its relationship with the Customer (website operator), because it processes data only in accordance with the instructions enabled through the JENTIS SaaS configuration by the Customer. JENTIS does not process visitor data for its own purposes. The website operator (Customer) remains the **sole data controller** for all data captured and routed through JENTIS. A Data Processing Agreement (DPA) is incorporated into the JENTIS Customer Agreement as standard.
+>
+
+>**Note on processing location:** JENTIS GmbH is headquartered in Vienna, Austria (EU). Corporate operations, hosting, and all data processing take place exclusively within the EU/EEA. JENTIS does not use US-based cloud infrastructure for visitor data processing. There is therefore **no CLOUD Act risk** associated with the JENTIS data processing layer itself. However, downstream tools to which JENTIS forwards data (such as Google Analytics 4 or Meta Pixel) may process data in the US via their own infrastructure; the CLOUD Act considerations for those tools are addressed in their respective configuration guides and remain unchanged regardless of whether JENTIS is used as the relay.
+>
+
+</aside>
+
+<aside>
+💡 **⚠ Recommendation — Use Configuration A (Standard Consent Mode) only:** Configurations B and C both rely on JENTIS Essential Mode, which processes a minimal set of server-side session data without prior consent on the basis of the "strictly necessary" exception under Art. 5(3) of the ePrivacy Directive (implemented in Germany as §25(2) TTDSG). It is **not fully established** whether Essential Mode processing genuinely qualifies for this exception under current supervisory authority guidance and applicable case law. JENTIS and its legal counsel have published a memorandum arguing in favour of this position, but no supervisory authority has formally confirmed it, and the applicability of the strictly necessary exception to server-side TMS processing of this kind remains legally contested. **We therefore recommend using JENTIS with Standard Consent Mode only (Configuration A)**, ensuring that no cookies are set and no personal data is processed until valid consent has been collected. Configurations B and C are documented below for completeness; they should only be activated following independent legal review and explicit sign-off from your Data Protection Officer.
+
+</aside>
+
+---
+
+## Step 1 — JENTIS Configuration
+
+| # | Configuration Area | Where in JENTIS | Configuration A — Standard Consent Mode (Recommended) | Configuration B — Essential Mode (⚠ Legal Uncertainty — Use with Caution) | Configuration C — Essential Mode + Synthetic User Engine (⚠ Legal Uncertainty — Use with Caution) |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Consent handling and tag activation | JENTIS Legal Hub → Consentbars (CMP connector); Legal Hub → Vendors → Consent Mode / Essential Mode toggle per vendor | Standard Consent Mode — CMP connected; all downstream tool tags blocked until a positive consent signal is received from the CMP; no fallback processing of visitor data without consent; MasterTag loads in the first-party context as a strictly necessary container solution to enable the CMP | Essential Mode activated — full downstream tool tracking with consent; strictly necessary fallback without consent: visitor IP address not stored, JENTIS Server IP substituted in all third-party communications, third-party client IDs replaced with randomly generated JENTIS IDs, click IDs removed from landing page URLs, IDs not merged across parameters to prevent re-identification, timestamps optionally blurred; no visitor data forwarded to downstream tools without consent; downstream server-side processing of strictly necessary fallback data on JENTIS Twin Server under legitimate interest (Art. 6(1)(f) GDPR) | Essential Mode activated with the same consent and no-consent handling as Configuration B; additionally, the Synthetic User Engine is activated for non-consenting users (see row 2) |
+| 2 | Synthetic User Engine | JENTIS → Synthetic Users (requires Essential Mode to be active); configured together with your JENTIS contact | Not activated | Not activated | Activated — non-persistent predictor data (e.g. browser type, session duration, number of page views, scroll rate, items added to cart) collected from non-consenting users as strictly necessary session-level data; combined on the JENTIS Twin Server with real behavioural data from consenting users to generate pseudonymised synthetic user profiles; pooled anonymised click IDs forwarded to downstream advertising tools (e.g. Google Ads, Meta Ads) on behalf of non-consenting user segments; raw non-consent predictor data permanently deleted from JENTIS servers after synthesis |
+| 3 | Pseudonymisation of data forwarded to downstream tools | JENTIS Legal Hub → Data Destinations → per-tool connector settings | Configurable per downstream tool — JENTIS can strip or pseudonymise individual data parameters (e.g. full IP address, user IDs, click IDs) before forwarding to each downstream tool; the degree of pseudonymisation is set separately per tool connector and does not affect JENTIS's own server-side processing | Same as Configuration A; in the Essential Mode without-consent fallback, visitor IP is not stored or forwarded by design; with consent, per-tool pseudonymisation settings apply as configured | Same as Configuration B |
+| 4 | Processing location | Fixed — determined by JENTIS infrastructure; not configurable per advertiser | EU/EEA exclusively — corporate headquarters in Vienna, Austria; all hosting and data processing within EU/EEA data centres; ISO 27001 certified; no US cloud infrastructure used for visitor data; no CLOUD Act exposure for JENTIS's own processing | EU/EEA exclusively (same as Configuration A) | EU/EEA exclusively (same as Configuration A) |
+
+---
+
+### Configuration A — Standard Consent Mode
+
+Use this configuration when JENTIS is used as a server-side tag management relay under a conventional consent-gated model. The JENTIS MasterTag loads in the first-party context (served from the website operator's own domain via the JENTIS reverse proxy) as a strictly necessary container solution for enabling the CMP and managing the consent banner. All downstream tools configured in JENTIS are blocked from firing — and no visitor data is forwarded to any of them — until a positive consent signal is received from the connected CMP. Without consent, JENTIS itself processes only the minimal transient data required to serve the CMP and manage the tag container; no persistent identifier is set by JENTIS at this stage and no data is forwarded to any downstream tracking tool.
+
+With consent granted, visitor session and event data is captured first-party on the JENTIS Twin Server and forwarded to the relevant downstream tools (GA4, Meta Pixel, LinkedIn Insight Tag, etc.) under the pseudonymisation and parameter settings configured per tool connector. This configuration is directly comparable to conventional client-side tag management with a consent gate, but with the structural privacy advantage that all third-party scripts are replaced server-side: no downstream tool script runs directly in the visitor's browser, meaning no direct IP-to-tool transmission occurs from the client side.
+
+As JENTIS processes all data exclusively within EU/EEA data centres and acts as a processor under a DPA, there is no CLOUD Act exposure for the JENTIS layer. Data forwarded by JENTIS to US-based downstream tools (GA4, Meta, etc.) retains the transfer risk of those tools, as documented in their respective guides.
+
+---
+
+### Configuration B — Essential Mode ⚠
+
+> **⚠ Legal caution:** This configuration activates JENTIS Essential Mode, which processes a minimal set of session-level data server-side **without prior consent**. The legal basis for this is the "strictly necessary" exception under Art. 5(3) of the ePrivacy Directive / §25(2) TTDSG. Whether server-side TMS processing of this kind genuinely qualifies for this exception has not been confirmed by any supervisory authority and remains legally contested. **We do not recommend this configuration.** If you are considering Essential Mode, obtain independent legal advice and explicit sign-off from your Data Protection Officer before activation. When in doubt, use Configuration A.
+> 
+
+Essential Mode creates two parallel tracking paths:
+
+**With consent:** Visitor data is captured and forwarded to downstream tools as in Configuration A, according to per-tool pseudonymisation settings.
+
+**Without consent (⚠ legally contested):** JENTIS activates a server-side fallback on the JENTIS Twin Server. In this mode, the visitor's IP address is not stored; instead, JENTIS substitutes the JENTIS Server IP address in all communications with third parties. Third-party client IDs (such as GA4 client IDs or Meta browser IDs) are replaced with randomly generated JENTIS IDs. Click IDs in landing page URLs are removed. IDs are not merged across data parameters to prevent re-identification. Timestamps may optionally be blurred. No visitor data is forwarded to downstream tools without consent. JENTIS and its legal counsel (Spirit Legal) argue that this fallback qualifies for the strictly necessary exception and that residual data is processed on the JENTIS Twin Server under legitimate interest (Art. 6(1)(f) GDPR), with storage limited to a maximum of 13 months. A legal memorandum supporting this position is available in the JENTIS documentation. However, this position has not been validated by supervisory authorities, and the legal risk associated with processing data without consent in this way rests with the website operator as data controller.
+
+JENTIS's own processing remains EU/EEA-exclusive in both consent paths.
+
+> **⚠ Note on data processing without consent:** Essential Mode involves server-side collection and retention of minimised session data without prior consent, on the basis of the ePrivacy strictly necessary exception and GDPR legitimate interest. It is **not fully established** that this exception applies to JENTIS Essential Mode processing under current law. No downstream third-party tools receive data without consent in this configuration, and personal identifiers are stripped by design — but the underlying access to and storage of session data on the JENTIS Twin Server without consent may itself be challengeable. Do not activate this configuration without independent legal assessment specific to your jurisdiction and use case.
+> 
+
+---
+
+### Configuration C — Essential Mode + Synthetic User Engine ⚠
+
+> **⚠ Legal caution:** This configuration combines all the legal uncertainty of Configuration B (Essential Mode without consent) with additional processing in which predictor data from non-consenting users is used to generate synthetic user profiles forwarded to downstream advertising tools. Both layers — the Essential Mode fallback and the Synthetic User Engine — rest on legal arguments that have not been confirmed by any supervisory authority. **We strongly advise against this configuration** without thorough independent legal review, explicit Data Protection Officer sign-off, and a documented Transfer Impact Assessment for the downstream advertising tools that receive synthetic data. When in doubt, use Configuration A.
+> 
+
+Configuration C retains all the consent-gated and contested no-consent processing described in Configuration B, and additionally activates the Synthetic User Engine for non-consenting users:
+
+The JENTIS Synthetic User Engine collects non-persistent predictor data from non-consenting users as strictly necessary session-level data (for example: browser type, session duration, number of page views, items added to cart, scroll rate). These predictors do not identify individual users and are not stored persistently. On the JENTIS Twin Server, this predictor data is combined with real behavioural data from consenting users to generate synthetic user profiles — pseudonymised artificial profiles that simulate the behaviours of the non-consenting user population without being traceable to any individual. After synthesis, all raw predictor data from non-consenting users is permanently deleted from JENTIS servers. Pooled, anonymised click IDs (where click ID values are drawn randomly from the consenting segment rather than being tied to any individual non-consenting user) are then forwarded to connected downstream advertising tools, enabling campaign performance data to include non-consenting user conversions at a segment level without linking them to identifiable individuals.
+
+JENTIS documents synthetic users as pseudonymised data under Art. 4(5) GDPR, while noting that the re-identification or singling-out of an individual from synthetic user data is considered highly unlikely given the pooling and random assignment process. The legal basis for the strictly necessary predictor collection without consent is the same as in Configuration B (ePrivacy strictly necessary exception; GDPR legitimate interest). The legal basis for the Synthetic User synthesis itself is legitimate interest, supported by a legal memorandum available from JENTIS. Whether this basis applies to your specific use case must be assessed independently with your Data Protection Officer.
+
+All JENTIS processing in this configuration remains EU/EEA-exclusive. The downstream advertising tools (Google Ads, Meta Ads, etc.) that receive the pooled synthetic data retain their own US transfer risks, as documented in their respective configuration guides.
+
+> **⚠ Note on data processing without consent:** The Synthetic User Engine compounds the legal uncertainty of Essential Mode: predictor data collected from non-consenting users without prior consent is used to generate synthetic profiles that feed into downstream advertising tools. JENTIS argues this processing qualifies under the ePrivacy strictly necessary exception and GDPR legitimate interest, supported by a legal memorandum from Spirit Legal. This position has not been validated by any supervisory authority. Whether the predictor collection constitutes personal data processing, and whether the synthetic profile generation and advertising tool forwarding are permissible without consent, are open legal questions. The legal risk of relying on this configuration rests with the website operator as data controller. **Independent legal advice and Data Protection Officer sign-off are essential before activating Configuration C.**
+> 
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+Using the JENTIS configurations defined in Step 1, apply the following mappings in the Customer Panel. These entries represent the **JENTIS infrastructure layer only**. All downstream tools routed through JENTIS (GA4, Meta Pixel, LinkedIn Insight Tag, Google Ads, etc.) must continue to be listed as **separate entries** in the Customer Panel, using the configuration guides for those individual tools. The existence of JENTIS does not change the data recipient or legal role of those downstream tools; it changes only the technical delivery path.
+
+> **⚠ Reminder:** Configuration A is the only configuration we recommend. The Customer Panel mappings for Configurations B and C are provided for documentation purposes only. Their activation should be preceded by independent legal assessment, as the no-consent processing in Essential Mode and the Synthetic User Engine rests on a legal basis that has not been confirmed by supervisory authorities.
+> 
+
+---
+
+### 2.1 Configuration A — Standard Consent Mode
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (single session) |
+| Identifier | No identifier |
+| Data categories | Browsing and interaction data, Device characteristics, IP address |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Processing location | EU/EEA exclusively (JENTIS GmbH, Vienna, Austria; EU/EEA data centres; ISO 27001 certified; no CLOUD Act risk) |
+
+---
+
+### 2.2 Configuration B — Essential Mode (⚠ Legal Uncertainty — Use with Caution)
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (single session) |
+| Identifier | No identifier |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP address |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Processing location | EU/EEA exclusively (JENTIS GmbH, Vienna, Austria; EU/EEA data centres; ISO 27001 certified; no CLOUD Act risk) |
+
+> **Note:** `Aggregated site statistics` is added relative to Configuration A to reflect the minimised, session-level, non-persistent data processed without consent in Essential Mode. `IP address` reflects the full IP processed transiently by JENTIS with consent; in the without-consent fallback, user IP is not stored and only the JENTIS Server IP is used. The Customer Panel entry must be configured if Essential Mode is deployed, but activating this configuration requires independent legal review — the no-consent processing reflected by `Aggregated site statistics` rests on a legal basis that is not yet established under supervisory authority guidance. See the ⚠ caution note in Step 1.
+> 
+
+---
+
+### 2.3 Configuration C — Essential Mode + Synthetic User Engine (⚠ Legal Uncertainty — Use with Caution)
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (single session) |
+| Identifier | Probabilistic identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP address, Probabilistic identifiers |
+| Legal role of data recipient | Processor |
+| Personalisation model | Group based (behaviour) |
+| Processing location | EU/EEA exclusively (JENTIS GmbH, Vienna, Austria; EU/EEA data centres; ISO 27001 certified; no CLOUD Act risk) |
+
+> **Note:** `Probabilistic identifiers` reflects the Synthetic User Engine's creation of pseudonymised user groupings from non-consenting users' predictor data. `Group based (behaviour)` reflects the purpose of the Synthetic User Engine: behavioural predictor groupings from non-consenting users are used to generate synthetic profiles for downstream advertising optimisation. `Tracking method` remains `First party tracking (single session)` because JENTIS operates entirely in first-party context and does not itself maintain cross-session or cross-website identifiers; cross-session and cross-device tracking attributable to downstream advertising tools is captured in those tools' respective Customer Panel entries. **Configuration C should only be documented in the Customer Panel once independent legal advice and Data Protection Officer sign-off have confirmed it is permissible in your specific jurisdiction and use case.** See the ⚠ caution notes in Step 1.
+>

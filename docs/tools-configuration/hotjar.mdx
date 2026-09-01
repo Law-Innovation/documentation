@@ -1,0 +1,101 @@
+---
+title: Hotjar
+---
+
+# Configuration Guide
+
+ℹ️ This guide provides step-by-step instructions for configuring Hotjar in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure Hotjar accordingly.
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly.
+
+**Step 3:** Explain how you use Hotjar in your **privacy policy**.
+
+Hotjar (now part of the Contentsquare Group following the merger of Hotjar Ltd. into Contentsquare on 1 July 2025) is a behaviour analytics platform that deploys a JavaScript tracking code on customer websites to capture visitor interactions via session recordings, heatmaps, and on-site surveys. Depending on configuration, Hotjar can operate as a privacy-minimised, aggregated analytics tool or as a full user-profiling platform with personally identifiable attributes and persistent user records. Hotjar sets first-party cookies (most notably `_hjSessionUser_*` and `_hjSession_*`) scoped to the customer's website domain; it does not perform cross-website tracking. IP addresses are anonymised by Hotjar by default at the platform level (the last octet is removed before storage); this is not a configurable toggle but a fixed platform behaviour applying to all configurations. The configurations below cover the most privacy-relevant settings and their corresponding mappings in the Customer Panel (CP).
+
+---
+
+## Step 1 — Hotjar Configuration
+
+| # | Configuration Area | Where in Hotjar | Configuration A — Low Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Consent & tracking activation | Via consent management platform / tag manager | Tracking script blocked until consent is given | Tracking script blocked until consent is given | Tracking script blocked until consent is given |
+| 2 | Data suppression — location information | Organisation Settings → Site Settings → Data suppression → Location information | Enabled (country of origin suppressed; no location data stored) | Disabled (country-level location data collected) | Disabled (country-level location data collected) |
+| 3 | Data suppression — on-page content and text | Organisation Settings → Site Settings → Data suppression | On-page text suppression: Enabled; On-page content suppression: Enabled (all images and videos masked client-side before transmission) | Platform defaults only: keystroke data, numeric sequences, and email address patterns are automatically suppressed; no additional suppression enabled | Platform defaults only (same as Configuration B) |
+| 4 | User identification (Identify API) | Organisation Settings → Site Settings → User Attributes; implemented via `hj('identify', userId, { attributes })` in page code | Disabled — visitors tracked as anonymous UUIDs only | Disabled — visitors tracked as anonymous UUIDs only | Enabled — user ID and user attributes (e.g. email address, name, subscription status) passed from the controller's database via the Identify API |
+| 5 | Surveys / feedback | Hotjar → Ask → Surveys | Not used, or used with aggregate-only questions that collect no open-text input and no personally identifiable fields | Used with non-PII questions only (e.g. NPS scores, star ratings, multiple-choice responses); no open-text or direct identifier fields | Used with open-text fields and direct identifier fields (e.g. email address or name explicitly requested in survey questions) |
+| 6 | Data retention | Platform default (fixed; not configurable per site) | Recordings & Heatmaps: 365 days | Recordings & Heatmaps: 365 days; Survey responses: stored indefinitely until manually deleted by account owner | Recordings & Heatmaps: 365 days; User Attributes (identified users): 365 days from last site visit; Survey responses: stored indefinitely until manually deleted by account owner |
+| 7 | Processing location | Hotjar / Contentsquare infrastructure | EU (Ireland, AWS eu-west-1); potential US government access via CLOUD Act (AWS is a US enterprise; Contentsquare Inc. is a US-based group entity) | EU (Ireland, AWS eu-west-1); potential US government access via CLOUD Act (AWS is a US enterprise; Contentsquare Inc. is a US-based group entity) | EU (Ireland, AWS eu-west-1); potential US government access via CLOUD Act (AWS is a US enterprise; Contentsquare Inc. is a US-based group entity) |
+
+---
+
+### Configuration A — Low Risk
+
+Use this configuration when Hotjar is used solely for privacy-minimised behaviour analytics where only aggregated interaction patterns (click positions, scroll depth, mouse movements) are required, without any legible on-page content being transmitted. Consent must be obtained before the Hotjar tracking script fires. Location information suppression is enabled under Site Settings → Data suppression → Location information, preventing the user's country of origin from being stored. On-page text suppression and on-page content suppression are both enabled, ensuring that all visible page text, images, and videos are masked client-side in the visitor's browser before any session data is transmitted to Hotjar's servers. Session data is captured (session capture is required for heatmap generation), but recordings will display only interaction coordinates against masked content. No user identification is in place; visitors are tracked solely via an anonymous first-party UUID stored in the `_hjSessionUser_*` cookie, scoped to the customer's domain and expiring after one year. Surveys are not used in this configuration, or only used with single-click aggregate responses (e.g. thumbs up/down) that collect no open text and no personally identifiable information. Recordings and heatmap data are retained for 365 days in accordance with Hotjar's fixed platform default. Hotjar is now part of the Contentsquare Group; data is stored on Amazon Web Services (AWS) infrastructure in Ireland (EU, eu-west-1). As AWS is a US-based enterprise and Contentsquare Inc. is a US-based group entity, data stored within the EU remains potentially subject to access by US government authorities under the CLOUD Act, irrespective of the storage location in Ireland. This should be disclosed as a potential US data transfer in the consent banner. Hotjar acts as a data processor; a Data Processing Agreement (DPA) is incorporated into Hotjar's Terms of Service and available at hotjar.com/legal.
+
+---
+
+### Configuration B — Medium Risk
+
+Use this configuration when Hotjar is used for standard behaviour analytics including session recordings and on-site survey feedback, without user identification. Consent must be obtained before the Hotjar tracking script fires. Location information suppression is disabled, meaning the user's country of origin is stored. No additional on-page content or text suppression is enabled beyond Hotjar's fixed platform defaults: keystroke data is automatically suppressed in all input fields; numeric sequences (e.g. card numbers) and email address patterns in visible HTML are automatically masked before data leaves the visitor's browser. Session recordings capture the full visual session within these default suppressions. No user identification is in place; visitors are tracked as anonymous first-party UUIDs. Surveys are used, but only with non-PII questions (e.g. NPS scores, rating scales, and pre-defined multiple-choice options); no open-text fields or direct identifier fields (email address, name) are included in any survey. Recordings and heatmap data are retained for 365 days; survey responses are stored indefinitely until manually deleted by the account owner — this indefinite survey retention should be factored into the overall risk assessment and documented in the privacy policy. Data is stored on AWS eu-west-1 infrastructure in Ireland (EU). As AWS is a US-based enterprise and Contentsquare Inc. is a US-based group entity, data remains potentially subject to access by US government authorities under the CLOUD Act. This should be disclosed as a potential US data transfer in the consent banner. Hotjar acts as a data processor under its standard DPA.
+
+---
+
+### Configuration C — Higher Risk
+
+Use this configuration when Hotjar is used for full behaviour analytics including session recordings, persistent user-level profiling via the Identify API, and surveys that collect personally identifiable information. Consent must be obtained before the Hotjar tracking script fires. Location information suppression is disabled. The platform's default suppressions apply (keystrokes, numeric sequences, and email patterns in HTML are automatically suppressed). The Identify API is enabled: a unique user ID, and optionally further personal attributes such as email address, name, or subscription status, are passed from the controller's own database to Hotjar via the `hj('identify', userId, { attributes })` call implemented in page code (Settings → User Attributes must be enabled for the site). Hotjar stores these as User Attributes linked to the visitor's session cookie, creating persistent cross-session user profiles. Identified users' profile data is retained for 365 days from their last site visit; de-identified users' data is retained for 3 months. Surveys are used with open-text fields and direct identifier fields (e.g. email address or name is explicitly requested within survey questions). Survey responses containing personal data are stored indefinitely until manually deleted by the account owner — this represents a significant and ongoing privacy risk that requires explicit disclosure in the privacy policy and consent banner. Data is stored on AWS eu-west-1 infrastructure in Ireland (EU). As AWS is a US-based enterprise and Contentsquare Inc. is a US-based group entity, data remains potentially subject to access by US government authorities under the CLOUD Act. This should be disclosed as a potential US data transfer in the consent banner. Hotjar acts as a data processor under its standard DPA; as Hotjar has no built-in advertising integrations operating as independent controllers, a single Customer Panel entry is sufficient for all Hotjar-related processing.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+Using the Hotjar configurations defined in Step 1, apply the following mappings in the Customer Panel to ensure the consent banner correctly reflects the data processing activities.
+
+---
+
+### 2.1 Configuration A — Low Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP address anonymised |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Maximum storage duration | 12 months |
+| Processing location | EU (Ireland, AWS eu-west-1) / US (potential access via CLOUD Act — AWS and Contentsquare Inc. are US enterprises) |
+
+---
+
+### 2.2 Configuration B — Medium Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP address anonymised, Non-precise location data |
+| Legal role of data recipient | Processor |
+| Personalisation model | No personalisation |
+| Maximum storage duration | 12 months (recordings/heatmaps); indefinite (survey responses — disclose separately) |
+| Processing location | EU (Ireland, AWS eu-west-1) / US (potential access via CLOUD Act — AWS and Contentsquare Inc. are US enterprises) |
+
+---
+
+### 2.3 Configuration C — Higher Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | First party tracking (cross-session) |
+| Identifier | Device identifiers, Authentication-derived identifiers, Direct identifier |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP address anonymised, Non-precise location data, Authentication-derived identifiers, Direct identifier, User-provided data, Users' profiles |
+| Legal role of data recipient | Processor |
+| Personalisation model | Profile based |
+| Maximum storage duration | 12 months (recordings/heatmaps/user attributes); indefinite (survey responses — disclose separately) |
+| Processing location | EU (Ireland, AWS eu-west-1) / US (potential access via CLOUD Act — AWS and Contentsquare Inc. are US enterprises) |
+
+> **Note on survey response retention:** In Configurations B and C, Hotjar survey responses are stored indefinitely until the account owner manually deletes them. Where surveys collect personal data (Configuration C), this indefinite retention must be separately communicated in the consent banner and privacy policy. The consent banner storage duration field should reflect the longest applicable retention period; if indefinite survey storage applies, this should be stated explicitly rather than specifying a fixed duration.
+> 
+
+> **Note on the Identify API (Configuration C):** The Identify API requires the controller to pass a user ID from their own database. Where this user ID corresponds to an authenticated account (e.g. a logged-in user), the resulting identifier is classified as an authentication-derived identifier. Where additional attributes such as email address or name are passed, these constitute direct identifiers. Both categories must be selected in the Customer Panel. As no advertising platforms or third-party controllers are connected via Hotjar, a single Customer Panel entry covers all Hotjar-related processing in this configuration.
+>

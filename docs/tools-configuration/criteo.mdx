@@ -1,0 +1,87 @@
+---
+title: Criteo
+---
+
+# Configuration Guide
+
+💡 This guide provides step-by-step instructions for configuring Criteo in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure Criteo accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use the third party provider in your **privacy policy**
+
+Criteo is a commerce media and retargeting platform that deploys a JavaScript tag — the **Criteo OneTag** — on advertiser websites to collect browsing and purchase intent signals, build cross-site behavioural profiles, and serve personalised product advertisements. Depending on configuration, Criteo can operate as a basic dynamic retargeting tool or a full cross-device, cross-site advertising platform leveraging hashed identity matching via the **Criteo Shopper Graph**. Criteo is headquartered in Paris, France, and listed on NASDAQ; it maintains significant infrastructure and operations in the United States. Under Criteo's Data Protection Agreement (DPA), the advertiser and Criteo act as **Joint Controllers** in accordance with Article 26 GDPR. The configurations below cover the most privacy-relevant settings and their corresponding mappings in the Consenter Manager.
+
+---
+
+## Step 1 — Criteo Configuration
+
+| # | Configuration Area | Where in Criteo | Configuration A — Low Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Consent & tag activation | OneTag implementation / CMP integration | OneTag fires only after explicit user consent; TCF 2.2 CMP integration or manual consent-gate in place | OneTag fires only after explicit user consent; TCF 2.2 CMP integration or manual consent-gate in place | OneTag fires only after explicit user consent; TCF 2.2 CMP integration or manual consent-gate in place |
+| 2 | Retargeting scope | Commerce Growth dashboard → Campaign settings | Dynamic retargeting limited to single-site sessions; no cross-site audience sharing | Dynamic retargeting active across the Criteo publisher network (cross-site) | Dynamic retargeting active across the Criteo publisher network (cross-site), including prospecting / customer acquisition audiences |
+| 3 | Cross-device identifier (hashed email) | OneTag `setEmail` / `setHashedEmail` parameter | Disabled — no hashed email passed to Criteo | Disabled — no hashed email passed to Criteo | Enabled — hashed email (SHA-256) passed via OneTag `setHashedEmail` parameter to enable cross-device matching via Criteo Shopper Graph |
+| 4 | E-commerce event tracking | OneTag page-level events | Homepage and product page views only (`viewItem` event) | Homepage, product, basket, and purchase events (`viewItem`, `addToCart`, `trackTransaction`) | Full funnel: homepage, product, basket, purchase events plus user-level revenue and product data passed to Criteo Shopper Graph |
+| 5 | Data retention | Criteo platform default | 13 months (Criteo platform maximum for cookies and hashed data) | 13 months | 13 months |
+| 6 | Processing location | Criteo infrastructure / DPA | EU endpoint (`dis.eu.criteo.com`) where available; potential US government access via CLOUD Act | EU endpoint (`dis.eu.criteo.com`) where available; potential US government access via CLOUD Act | US and EU endpoints; US government access via CLOUD Act applies in all cases |
+
+---
+
+### Configuration A — Low Risk
+
+Use this configuration when Criteo is used solely for basic dynamic retargeting within a single website session, without cross-site audience matching or cross-device linking. The OneTag fires only after the user has given explicit consent, either via a TCF 2.2-compliant CMP passing a valid consent string to Criteo (IAB TCF Vendor ID: 91), or via a manual consent-gate that conditionally loads the OneTag script. Retargeting is limited to showing relevant product ads based on the current browsing session; no cross-site behavioural profile is built using data pooled from other Criteo advertiser sites. No hashed email address or CRM identifier is passed to Criteo. Only homepage and product page view events (`viewItem`) are tracked. No purchase or basket data is transmitted. Data is retained for up to 13 months in line with Criteo's platform default. Criteo routes EU visitor data through its EU processing endpoint (`dis.eu.criteo.com`). However, as Criteo operates as a NASDAQ-listed company with significant US infrastructure and operations, EU-routed data remains potentially subject to access by US government authorities under the CLOUD Act. This should be disclosed as a potential US data transfer in the consent banner. Under Criteo's DPA, the advertiser and Criteo act as Joint Controllers pursuant to Article 26 GDPR.
+
+### Configuration B — Medium Risk
+
+Use this configuration when Criteo is used for full-funnel dynamic retargeting across the Criteo publisher network, covering the complete e-commerce journey from product browsing through to purchase. The OneTag fires only after explicit user consent. Retargeting extends across the Criteo network of publisher sites (cross-site), meaning behavioural data collected on the advertiser's website feeds into Criteo's cross-site advertising pool. No hashed email or CRM identifier is passed, so cross-device linking is not enabled. All standard e-commerce page events are tracked: product views, basket additions, and completed transactions (including order value and product data). Data is retained for up to 13 months. Processing routes through EU endpoints where available, but potential US government access via the CLOUD Act applies and should be disclosed. The advertiser and Criteo act as Joint Controllers under Criteo's DPA.
+
+### Configuration C — Higher Risk
+
+Use this configuration when Criteo is deployed as a full cross-device, cross-site commerce media platform, including identity-based audience matching via the Criteo Shopper Graph. The OneTag fires only after explicit user consent. In addition to cross-site retargeting across the Criteo publisher network, the advertiser passes a hashed email address (SHA-256) to Criteo via the OneTag `setHashedEmail` parameter. Criteo uses this hash to match the user across multiple devices (e.g. mobile and desktop) by resolving the hash against its Shopper Graph, which stitches together device identifiers, browsing patterns, and purchase signals across hundreds of thousands of participating sites. Full e-commerce funnel events are tracked, including product views, basket additions, and completed transactions with user-level revenue and product detail data. Criteo uses this data both to serve personalised ads and to build probabilistic audience segments for prospecting campaigns targeting users who resemble the advertiser's existing customer base. Data is retained for up to 13 months. Both EU and US infrastructure may be involved in processing; US government access via the CLOUD Act applies in all cases and must be disclosed. The advertiser and Criteo act as Joint Controllers under Criteo's DPA. Where Criteo Shopper Graph data is shared with downstream demand partners (e.g. in real-time bidding contexts), additional third-party data sharing may occur and should be disclosed separately.
+
+---
+
+## Step 2 — Mapping in the Consenter Manager
+
+Using the Criteo configurations defined in Step 1, apply the following mappings in the Consenter Manager to ensure the consent banner correctly reflects the data processing activities.
+
+### 2.1 Configuration A — Low Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, Non-precise location data, Users' profiles |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | Group based (behaviour) |
+| Maximum storage duration | 13 months |
+| Processing location | EU (primary endpoint) / US (potential access via CLOUD Act) |
+
+### 2.2 Configuration B — Medium Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, e-commerce Activity, Non-precise location data, Users' profiles |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | Profile based |
+| Maximum storage duration | 13 months |
+| Processing location | EU (primary endpoint) / US (potential access via CLOUD Act) |
+
+### 2.3 Configuration C — Higher Risk
+
+| **Consenter Manager Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Device identifiers, Probabilistic identifiers, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, e-commerce Activity, Non-precise location data, Probabilistic identifiers, Authentication-derived identifiers, Users' profiles |
+| Legal role of data recipient | Joint Controller |
+| Personalisation model | Profile based |
+| Maximum storage duration | 13 months |
+| Processing location | EU and US / US government access via CLOUD Act applies in all cases |
+
+> **Note:** In Configuration C, the hashed email passed via `setHashedEmail` constitutes an authentication-derived identifier used for cross-device resolution within the Criteo Shopper Graph. Although the hash is a pseudonymous value, it enables stable cross-device and cross-session linkage at the individual user level, which must be reflected in the identifier and data category selections above. Criteo acts as a Joint Controller under Article 26 GDPR in all configurations; the advertiser and Criteo each bear defined responsibilities for consent collection, data subject rights, and breach notification as set out in Criteo's DPA (available at criteo.com).
+>

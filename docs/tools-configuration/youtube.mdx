@@ -1,0 +1,53 @@
+---
+title: YouTube
+---
+
+# Configuration Guide
+
+YouTube is a video hosting platform operated by Google LLC. Embedding YouTube videos on a website causes the visitor's browser to establish a direct connection to Google's servers as soon as the embed iframe loads — before any user interaction takes place. There is only one meaningful privacy-relevant configuration available at the embed level: the choice between the standard embed domain (`youtube.com`) and the privacy-enhanced embed domain (`youtube-nocookie.com`). However, even under the nocookie variant, a direct connection to Google's servers is established at page load, meaning IP address and device data are transmitted regardless. This distinction does not produce a meaningfully different risk profile for the purposes of consent banner configuration. All privacy controls beyond the embed URL itself — such as consent gating via a video facade — are implemented at the website level and are not YouTube-specific configurations. Because Google LLC is a US-based enterprise, all configurations are subject to potential US government access under the CLOUD Act.
+
+---
+
+## Summary Overview
+
+| Step | Action |
+| --- | --- |
+| **Step 1 — Configuration** | Optionally use `youtube-nocookie.com` instead of `youtube.com` as the embed domain. In both cases, Google receives the visitor's IP address and device data at page load. Consent gating must be implemented at the website level. |
+| **Step 2 — Mapping** | Map as third-party tracking, cross-session, cross-website, cross-device; Independent Controller; profile-based personalisation; IP address, device identifiers, authentication-derived identifiers, user profiles. |
+| **Step 3 — Contextual Consent** | Implement contextual consent to mask the video until the visitor has given consent, in accordance with the Consenter integration guide. |
+
+---
+
+## Step 1 — YouTube Embed Configuration
+
+| # | Configuration Area | Where to Configure | Configuration — Higher Risk |
+| --- | --- | --- | --- |
+| 1 | Embed domain | In the embed URL used in the website source code | Optionally use `https://www.youtube-nocookie.com/embed/[VIDEO_ID]` instead of `https://www.youtube.com/embed/[VIDEO_ID]`. YouTube states that cookies are not stored unless the visitor actively plays the video when using the nocookie domain. However, in both cases a direct connection to Google's servers is established at page load and the same consent banner configuration applies. |
+
+### Configuration — Higher Risk
+
+Embedding a YouTube video — regardless of whether the standard or nocookie domain is used — causes the visitor's browser to connect directly to Google's servers at the point the embed iframe is rendered. Google can thereby process the visitor's IP address and device characteristics before any interaction occurs. Once the video is played, YouTube may additionally associate viewing behaviour with a signed-in Google account, enabling cross-session, cross-website, and cross-device identification and profiling via persistent cookies and authentication-derived identifiers. There is no option to configure or restrict this data processing at the YouTube platform level. Consent gating (e.g. via a video facade or placeholder image) must be implemented on the website side. As Google LLC is a US-based enterprise, data is subject to potential access by US government authorities under the CLOUD Act. YouTube operates as an Independent Controller under its own Terms of Service and Privacy Policy.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+### 2.1 Configuration — Higher Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | IP address, Device identifiers, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, Device characteristics, IP address, Device identifiers, Authentication-derived identifiers, Users' profiles |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Profile based |
+| Processing location | US (Google LLC, CLOUD Act applies) |
+
+> **Note:** YouTube (Google LLC) operates as an Independent Controller. A Data Processing Agreement in the traditional processor sense is not available; the legal basis for data transfers rests on Google's Standard Contractual Clauses (SCCs) and the EU–US Data Privacy Framework where applicable. Consent gating must be implemented at the website level and is not configurable within YouTube itself.
+> 
+
+---
+
+## Step 3 — Contextual Consent Integration
+
+Because the YouTube embed connects to Google's servers at page load, the video element must be masked until the visitor has actively given consent. Contextual consent must be implemented in accordance with the Consenter Contextual Consent Integration Guide.

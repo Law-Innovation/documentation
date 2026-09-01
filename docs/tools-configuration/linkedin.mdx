@@ -1,0 +1,111 @@
+---
+title: LinkedIn Insight Tag
+---
+
+# Configuration Guide
+
+ℹ️ This guide provides step-by-step instructions for configuring the LinkedIn Insight Tag in different privacy configurations and how these configurations must be reflected in the Consenter Manager when configuring your Consent Banner.
+
+**Step 1:** Choose which configuration matches your demands and configure the LinkedIn Insight Tag accordingly
+
+**Step 2:** Configure the Consent Banner in the Consenter Manager accordingly
+
+**Step 3:** Explain how you use the LinkedIn Insight Tag in your **privacy policy**
+
+The LinkedIn Insight Tag is a piece of lightweight JavaScript code that website operators add to their site to enable campaign reporting, conversion tracking, website retargeting, and aggregate audience insights for LinkedIn advertising campaigns. When the Insight Tag is installed, it creates a cookie on visitors' web browsers, and cookies enable the collection of data regarding members' visits to the website. The tag matches website visitors to their LinkedIn member accounts via LinkedIn's own cross-site cookies, so even in its most basic form it functions as third-party, cross-website tracking rather than purely first-party analytics. Depending on configuration, the tag can range from a lightweight conversion-counting and aggregate-reporting tool to a full member-level retargeting and cross-device advertising mechanism. The configurations below cover the most privacy-relevant settings and their corresponding mappings in the Customer Panel (CP).
+
+> **Note on legal role:** LinkedIn uses the data collected during use of the LinkedIn Insight Tag to conduct analysis for its own purposes and to target its own advertising material, in addition to providing reporting to the website operator. Because LinkedIn determines its own purposes and means for this processing (its own analytics, ad optimisation, and audience-matching to member profiles), LinkedIn acts as an **Independent Controller** for Insight Tag data across all configurations described below — it does not act as a processor on the website operator's instructions alone.
+> 
+
+> **Note on data retention:** Members' direct identifiers are removed from data within seven days in order to make the data pseudonymous, and this remaining pseudonymised data is then deleted within 180 days. This retention schedule is fixed by LinkedIn and is not configurable by the website operator in any of the configurations below.
+> 
+
+> **Note on sensitive pages:** Consistent with LinkedIn's terms, the Insight Tag should not be installed on web pages that collect or contain sensitive data, such as pages offering specific health-related or financial services to consumers. This applies regardless of which configuration is chosen and should be addressed during implementation rather than through Consent Banner configuration.
+> 
+
+---
+
+## Step 1 — LinkedIn Insight Tag Configuration
+
+| # | Configuration Area | Where in LinkedIn Campaign Manager | Configuration A — Low Risk | Configuration B — Medium Risk | Configuration C — Higher Risk |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Consent & tag activation | Tag Management System / CMP integration (e.g. via a consent-conditional trigger in Google Tag Manager or a custom script) | Tag is blocked entirely until consent is granted | Tag is blocked entirely until consent is granted | Tag is blocked entirely until consent is granted |
+| 2 | Conversion tracking cookie type | Manage Insight Tag → Settings → Enable enhanced conversion tracking | Disabled — tag relies on LinkedIn's third-party cookie only | Enabled — first-party cookie (`li_fat_id` click ID) used alongside the third-party cookie for more accurate conversion attribution | Enabled — first-party cookie (`li_fat_id` click ID) used alongside the third-party cookie for more accurate conversion attribution |
+| 3 | Website Retargeting (Matched Audiences) | Plan → Audiences → Create Audience → Website | Not created — no member-level audience is built from website visit data; only conversion tracking and aggregate Website Demographics reporting are used | Created — a member-level retargeting audience is built from website actions (page visits, button clicks, form submissions) and used to serve off-site LinkedIn ads to identified visitors, including across their devices | Created — a member-level retargeting audience is built from website actions and used to serve off-site LinkedIn ads to identified visitors, including across their devices |
+| 4 | Enhanced Matching | Website code → Insight Tag enhanced matching script (manually added by the website operator) | Disabled — no additional visitor-provided data is sent to the tag | Disabled — no additional visitor-provided data is sent to the tag | Enabled — hashed visitor-provided data (e.g. email address submitted via a website form) is sent to LinkedIn alongside the tag data to improve member matching, including across devices and browsers |
+| 5 | Processing location | Not configurable — fixed by LinkedIn's infrastructure | LinkedIn Ireland Unlimited Company (initial processing); transferred to LinkedIn Corporation (US) under SCCs / EU-US Data Privacy Framework; potential US government access via CLOUD Act | LinkedIn Ireland Unlimited Company (initial processing); transferred to LinkedIn Corporation (US) under SCCs / EU-US Data Privacy Framework; potential US government access via CLOUD Act | LinkedIn Ireland Unlimited Company (initial processing); transferred to LinkedIn Corporation (US) under SCCs / EU-US Data Privacy Framework; potential US government access via CLOUD Act |
+
+---
+
+### Configuration A — Low Risk
+
+Use this configuration when the Insight Tag is used solely for conversion tracking and aggregate Website Demographics reporting, without building any member-level retargeting audience. The tag is blocked until consent is granted. Enhanced Conversion Tracking (first-party cookies) is disabled, so the tag relies solely on LinkedIn's own third-party cookie to match visits to LinkedIn member accounts for conversion attribution. No Website Retargeting audience is created in Campaign Manager, meaning website visit data is not used to serve off-site LinkedIn ads to identified individual visitors — it is used only to count conversions and to generate aggregate, non-identifying demographic reports (job title, industry, seniority, company size) about the visitor base as a whole. LinkedIn does not share the personal data of members with the website operator; only reports and alerts that do not identify members are provided. Enhanced Matching is not used, so no additional visitor-provided data (such as form-submitted email addresses) is sent to LinkedIn. Conversion data still feeds into LinkedIn's own campaign optimisation, which biases ad delivery toward LinkedIn members with similar behavioural patterns to those who converted — this is an aggregate, behaviour-based optimisation, not individual-level retargeting.
+
+As described above, even in this baseline configuration, LinkedIn acts as an Independent Controller and uses the data for its own analytics and ad-delivery optimisation purposes. Data flows from the EU/EEA, UK, and Switzerland to the United States and back, with LinkedIn relying on Standard Contractual Clauses and the EU-US Data Privacy Framework as transfer mechanisms. As LinkedIn Corporation is a US-based enterprise, data transferred to the US remains potentially subject to access by US government authorities under the CLOUD Act. This should be disclosed as a potential US data transfer in the consent banner.
+
+---
+
+### Configuration B — Medium Risk
+
+Use this configuration when the Insight Tag is used for both conversion tracking and member-level website retargeting. The tag is blocked until consent is granted. Enhanced Conversion Tracking (first-party cookies) is enabled, adding a first-party click ID (`li_fat_id`) to landing page URLs to improve match accuracy as third-party cookies become increasingly restricted by browsers. A Website Retargeting audience is created in Campaign Manager based on website actions (page visits, button clicks, form submissions): using the Insight Tag, the button clicks, page visits, and form submissions on the web pages where the Insight Tag is installed are automatically collected and available to use as a base for the retargeting audience. This retargeting shows personalised ads off the website by using this data, but without identifying the member to the website operator. LinkedIn also uses data that doesn't identify members to improve ad relevance and reach members across devices. Enhanced Matching remains disabled — no additional visitor-provided PII is sent to LinkedIn.
+
+This configuration introduces individual-level matching of website visitors to LinkedIn member accounts for the purpose of off-site ad delivery, including across the member's devices. LinkedIn members can control the use of their personal data for advertising purposes through their account settings. As in Configuration A, LinkedIn acts as an Independent Controller, and the same EU-to-US data transfer mechanisms and CLOUD Act considerations apply. This should be disclosed as a potential US data transfer in the consent banner.
+
+---
+
+### Configuration C — Higher Risk
+
+Use this configuration when the Insight Tag is used for conversion tracking, website retargeting, and Enhanced Matching with visitor-provided data. The tag is blocked until consent is granted. Enhanced Conversion Tracking (first-party cookies) remains enabled, and a Website Retargeting audience continues to be built as in Configuration B. In addition, Enhanced Matching is implemented: emails are hashed on the website before being sent to LinkedIn, to protect members' privacy — LinkedIn only matches information it already has, and the rest remains unreadable. This typically involves sending a hashed email address (and potentially other identifiers such as first and last name) captured via website forms, which improves LinkedIn's ability to match the visitor to a member account, including in scenarios where the standard cookie-based match would otherwise fail — for example across different browsers or devices.
+
+This is the most data-intensive configuration of the three: it combines deterministic conversion tracking, member-level retargeting with cross-device reach, and direct identifiers submitted via Enhanced Matching. LinkedIn continues to act as an Independent Controller, and the same EU-to-US data transfer mechanisms and CLOUD Act considerations apply as in Configurations A and B. This should be disclosed as a potential US data transfer in the consent banner.
+
+> **Note on data processing without consent:** LinkedIn does not offer the website operator a configuration option to process Insight Tag data without prior consent — the tag-blocking approach described in row 1 of the table above is the recommended and only privacy-compliant implementation pattern. Unlike some other third-party providers, there is no documented LinkedIn-side "cookieless ping" or modelled-data mode for the Insight Tag.
+> 
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+Using the LinkedIn Insight Tag configurations defined in Step 1, apply the following mappings in the Customer Panel to ensure the consent banner correctly reflects the data processing activities.
+
+---
+
+### 2.1 Configuration A — Low Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website) |
+| Identifier | Authentication-derived identifiers, Device identifiers |
+| Data categories | Aggregated site statistics, Authentication-derived identifiers, Browsing and interaction data, Device characteristics, Device identifiers, IP address |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Group based (behaviour) |
+| Processing location | EU (LinkedIn Ireland Unlimited Company; initial processing) / US (LinkedIn Corporation; SCCs / EU-US DPF; potential access via CLOUD Act) |
+
+---
+
+### 2.2 Configuration B — Medium Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Authentication-derived identifiers, Device identifiers, Probabilistic identifiers |
+| Data categories | Aggregated site statistics, Authentication-derived identifiers, Browsing and interaction data, Device characteristics, Device identifiers, IP address anonymised, Probabilistic identifiers, Users' profiles |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Profile based |
+| Processing location | EU (LinkedIn Ireland Unlimited Company; initial processing) / US (LinkedIn Corporation; SCCs / EU-US DPF; potential access via CLOUD Act) |
+
+---
+
+### 2.3 Configuration C — Higher Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Authentication-derived identifiers, Device identifiers, Direct identifier, Probabilistic identifiers |
+| Data categories | Aggregated site statistics, Authentication-derived identifiers, Browsing and interaction data, Device characteristics, Device identifiers, Direct identifier, IP address anonymised, Probabilistic identifiers, User-provided data, Users' profiles |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Profile based |
+| Processing location | EU (LinkedIn Ireland Unlimited Company; initial processing) / US (LinkedIn Corporation; SCCs / EU-US DPF; potential access via CLOUD Act) |
+
+> **Note:** Across all three configurations, LinkedIn must be listed in the Customer Panel as an Independent Controller rather than a processor, since LinkedIn uses Insight Tag data for its own analytics and advertising purposes in addition to providing reports to the website operator. The `Direct identifier` and `User-provided data` categories in Configuration C reflect the hashed email (and potentially name) submitted via Enhanced Matching — although hashed before transmission, this data originates from directly identifying information provided by the visitor.
+>

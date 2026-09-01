@@ -1,0 +1,53 @@
+---
+title: Google Maps
+---
+
+# Configuration Guide
+
+Google Maps is a mapping service operated by Google LLC. Embedding Google Maps on a website — whether via a simple iframe embed or the Maps JavaScript API — causes the visitor's browser to establish a direct connection to Google's servers as soon as the embed loads, before any user interaction. Google processes the visitor's IP address and device characteristics at page load, and persistent cookies are set that enable cross-session, cross-website, and cross-device tracking. Because Google LLC is a US-based enterprise, all configurations are subject to potential US government access under the CLOUD Act.
+
+---
+
+## Summary Overview
+
+| Step | Action |
+| --- | --- |
+| **Step 1 — Configuration** | Embed Google Maps via iframe or the Maps JavaScript API. No privacy-relevant configuration options exist at the embed level that alter the consent banner mapping. Consent gating must be implemented at the website level. |
+| **Step 2 — Mapping** | Map as third-party tracking, cross-session, cross-website, cross-device; Independent Controller; profile-based personalisation; IP address, device identifiers, authentication-derived identifiers, user profiles. |
+| **Step 3 — Contextual Consent** | Implement contextual consent to mask the map until the visitor has given consent, in accordance with the Consenter integration guide. |
+
+---
+
+## Step 1 — Google Maps Embed Configuration
+
+| # | Configuration Area | Where to Configure | Configuration — Higher Risk |
+| --- | --- | --- | --- |
+| 1 | Embed method | In the website source code | Use either an iframe embed (`https://www.google.com/maps/embed?pb=[MAP_ID]`) or the Maps JavaScript API. Both methods cause an immediate connection to Google's servers at page load, with no privacy-enhanced alternative available. The same consent banner configuration applies in either case. |
+
+### Configuration — Higher Risk
+
+Embedding Google Maps — regardless of whether the iframe method or the Maps JavaScript API is used — causes the visitor's browser to connect directly to Google's servers at the point the embed is rendered. Google can thereby process the visitor's IP address and device characteristics before any interaction occurs. Persistent cookies are set at load time, enabling cross-session, cross-website, and, where the visitor is signed into a Google account, cross-device identification and profiling. There is no privacy-enhanced embed mode for Google Maps and no option to configure or restrict this data processing at the Google Maps platform level. Consent gating must be implemented on the website side. As Google LLC is a US-based enterprise, data is subject to potential access by US government authorities under the CLOUD Act. Google Maps operates as an Independent Controller under Google's Terms of Service and Privacy Policy.
+
+---
+
+## Step 2 — Mapping in the Customer Panel
+
+### 2.1 Configuration — Higher Risk
+
+| **Customer Panel Setting** | **Value to Select** |
+| --- | --- |
+| Tracking method | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | IP address, Device identifiers, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, Device characteristics, IP address, Device identifiers, Authentication-derived identifiers, Non-precise location data, Users' profiles |
+| Legal role of data recipient | Individual Controller |
+| Personalisation model | Profile based |
+| Processing location | US (Google LLC, CLOUD Act applies) |
+
+> **Note:** Google Maps (Google LLC) operates as an Independent Controller. A Data Processing Agreement in the traditional processor sense is not available; the legal basis for data transfers rests on Google's Standard Contractual Clauses (SCCs) and the EU–US Data Privacy Framework where applicable. Consent gating must be implemented at the website level and is not configurable within Google Maps itself.
+> 
+
+---
+
+## Step 3 — Contextual Consent Integration
+
+Because the Google Maps embed connects to Google's servers at page load, the map element must be masked until the visitor has actively given consent. Contextual consent must be implemented in accordance with the Consenter Contextual Consent Integration Guide.
