@@ -1,12 +1,16 @@
 ---
-title: 'TPP Privacy Badge — Übersicht'
-description: 'Alle bewerteten Third-Party Service Provider (TPP) der Consenter Badge Attribution Datenbank. Stand: 06/08/2026 | Framework v2.2'
+title: 'TPP Privacy Badge Assessment
+description: 'Pre-Assessment of all Third-Party Service Provider (TPP) within the Consenter Badge Attribution Database.' 
 ---
 
 # TPP Privacy Badge — Übersicht
 
-Alle bewerteten Third-Party Service Provider (TPP) der Consenter Badge Attribution Datenbank.  
-Stand: 06/08/2026 | Framework v2.2
+This database contains all pre-assessments of Third-Party Service Provider (TPP) within the Consenter Badge Attribution Database. It contains information on:
+- The attributed badge
+- sources and reasoning behind the attribution
+- processing purposes, for which the TPP can typically be used
+
+Effective: 31/08/2026 | Framework v2.2
 
 | TPP | Gruppe / Parent Service | Badge | Service-Typ |
 |---|---|---|---|
