@@ -27,15 +27,7 @@ Each third-party service provider is assigned one of three badges reflecting its
 
 <Callout type="info">In our [TPP Badge Assessment](/risk-assessments/tpp-preassessments), you will also find the "🏗️ infrastructure only" badge. This badge indicates that a TPP is typically used for purposes that are strictly necessary for the provision of the service itself (see Article 5(3) of the ePrivacy Directive) and therefore generally do not require user consent. However, this must be assessed separately for each specific use case and should be treated with caution. </Callout>
 
-## 2\. What constitutes normal tracking behaviour
-
-The following behaviour does **NOT**, by itself, lead to a Caution badge:
-
-> Tracking or data collection that begins on page load before user consent has been obtained, where this behaviour can be fully resolved by deploying a standard consent banner (CMP) that gates the tool until consent is given.
-
-This applies to analytics tools, session recording tools, heatmap tools, A/B testing tools, and any other tracking technology whose entire data collection can be switched off until the user grants consent. Because this issue is **universal across virtually all third-party tracking tools** and **fully resolvable by standard controller measures** (CMP integration), it does not alone constitute an elevated risk indicator warranting a Caution badge.
-
-## 3\. Attribution method — decision tree
+## 2\. Attribution method — decision tree
 
 Apply this sequence before consulting the aggregate score:
 
@@ -58,7 +50,7 @@ RF2 is recorded where present and **significantly lowers the domain E score**:
 
 A domain E score of 0 — combined with other low scores — may still result in Caution via the weighted-average or two-core-domain-zeros thresholds. It prevents Privacy+ in all cases.
 
-> **Note:** The presence of RF2 should always be disclosed in the reasoning and factored into the domain E score, even where it does not alone trigger Caution. Controllers must assess whether supplementary measures are adequate for the specific provider and deployment context.
+<Callout type="warn">The presence of RF2 should always be disclosed in the reasoning and factored into the domain E score, even where it does not alone trigger Caution. Controllers must assess whether supplementary measures are adequate for the specific provider and deployment context.</Callout>
 
 ### Step 3 — Structural elevated-risk indicators
 
@@ -101,7 +93,7 @@ Are there concrete elevated privacy risk indicators that cannot be resolved by s
 
 - Mixed / average / configurable, no red flags (RF1/RF3/RF4), no unresolvable elevated risk → **No badge** (default).
 
-## 4\. Scoring model
+## 3\. Scoring model
 
 Each domain is scored 0–2:
 
@@ -122,9 +114,9 @@ Each domain is scored 0–2:
 | G — Data subject rights & consent | Can the service be deployed in a way that respects consent and data subject rights? | 1.0× |
 | H — Sub-processors & onward sharing | Is the processing chain transparent, limited, and controlled? | 1.0× |
 
-> **Revised guidance for domain B (v2.1):** A tool that records sessions or collects data before consent fires in its default configuration does NOT automatically score B \= 0\. B \= 0 is reserved for structurally embedded non-essential tracking that cannot be effectively disabled by the controller — such as a retargeting DSP or DMP whose cross-publisher profiling is intrinsic to its function. A session recording or analytics tool that can be fully gated by a CMP scores B \= 1 at minimum.
+<Callout type="info">Revised guidance for domain B (v2.1):** A tool that records sessions or collects data before consent fires in its default configuration does NOT automatically score B \= 0\, if this can be resolved, simply by blocking tool until consent has been optined with the help of a CMP. B \= 0 is reserved for structurally embedded non-essential tracking that cannot be effectively disabled by the controller — such as a retargeting DSP or DMP whose cross-publisher profiling is intrinsic to its function. A session recording or analytics tool that can be fully gated by a CMP scores B \= 1 at minimum.</Callout>
 
-## 5\. Attribution thresholds
+## 4\. Attribution thresholds
 
 ### ✅ Privacy+ — all of the following must hold:
 
@@ -145,10 +137,7 @@ Each domain is scored 0–2:
 - Two or more core domains (A–E) score 0  
 - Concrete elevated-risk pattern present that is NOT resolvable by standard controller measures (e.g. own-purpose advertising use, cross-publisher profiling structural to the tool's business model, opaque onward sharing)
 
->   
-> **RF2 alone does not trigger Caution.** Where a lawful transfer mechanism exists (adequacy decision, DPF, SCCs), GDPR treats the transfer as compliant. RF2 is reflected in a lower domain E score (E \= 1 for standard DPF/SCCs; E \= 0 for transfers to high-risk countries without any lawful mechanism), which reduces the weighted average and prevents Privacy+, but does not by itself result in Caution.  
->   
-> **Not Caution on its own:** tracking that fires before consent but is fully resolvable by deploying a CMP. This is treated as normal tracking behaviour (Section 2).
+<Callout type="info">**RF2 alone does not trigger Caution:** Where a lawful transfer mechanism exists (adequacy decision, DPF, SCCs), GDPR treats the transfer as compliant. RF2 is reflected in a lower domain E score (E \= 1 for standard DPF/SCCs; E \= 0 for transfers to high-risk countries without any lawful mechanism), which reduces the weighted average and prevents Privacy+, but does not by itself result in Caution.</Callout>
 
 ### ⬜ No badge — default:
 
@@ -157,7 +146,7 @@ Each domain is scored 0–2:
 - Overall picture is mixed / average / configurable  
 - All elevated-risk indicators, if any, are resolvable by standard controller measures
 
-## 6\. Red flags
+## 5\. Red flags
 
 RF1, RF3, and RF4 are hard overrides: any one present results directly in **Caution**. RF2 is a significant risk factor that is reflected in the domain E score but does not alone override the badge.
 
@@ -170,7 +159,7 @@ RF1, RF3, and RF4 are hard overrides: any one present results directly in **Caut
 
 ---
 
-## 7\. Elevated risk indicators (non-red-flag)
+## 6\. Elevated risk indicators (non-red-flag)
 
 Where no formal red flag (RF1, RF3, RF4) is triggered, the following indicators may still support a Caution badge — but only if the risk is **structural** (inherent to the tool's business model and not addressable by controller configuration).
 
@@ -183,7 +172,7 @@ Where no formal red flag (RF1, RF3, RF4) is triggered, the following indicators 
 | Opaque onward sharing | Broad sharing with unnamed 'partners' or 'affiliates' for their own purposes without meaningful transparency | Named, disclosed sub-processors processing on the controller's behalf under DPA/SCCs |
 | High-risk international transfers | Transfer to a high-risk third country **without any lawful mechanism**, AND no meaningful supplementary measures; or a specific DPA enforcement finding that this provider's transfers are unlawful | Transfer covered by DPF, SCCs, or adequacy decision — reflected in domain E score (E \= 0 or 1\) but does not alone result in Caution |
 
-## 8\. Domain scoring guidance
+## 7\. Domain scoring guidance
 
 Full scoring criteria per domain. Consult the provider's privacy policy, DPA, Terms of Service, and supervisory authority decisions.
 
