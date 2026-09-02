@@ -10,322 +10,200 @@ We want to keep the process as open as possible. If you disagree with parameters
 
 </Callout>
 
-***
 
-## 1. Badge model
+# Badge Attribution
 
-### Privacy+
+**Criteria for Privacy+, No badge, and Caution attribution to third-party service providers | v2.2 — 31/08/2026**
 
-A Privacy+ badge is assigned where the provider demonstrates a clearly privacy-friendly design and default configuration, does not process data for its own advertising or profiling purposes, performs strongly against tracking, profiling, and international transfer criteria, and does not trigger any red flags.
+## 1\. Badge model
 
-### No badge
+Each third-party service provider is assigned one of three badges reflecting its **default deployment risk** — the privacy profile presented in a standard integration without special controller action.
 
-No badge is assigned where the provider presents a mixed or average privacy risk profile: not clearly problematic, but not sufficiently privacy-friendly by design or default to justify positive attribution.  
-This is the default outcome for configurable services that can be deployed in a compliant manner but require standard controller due diligence and appropriate configuration.  
-No badge is also assigned where insufficient information is available at the time of assessment.
+| Badge | Meaning | Default outcome? |
+| :---- | :---- | :---- |
+| ✅ Privacy+ | Clearly privacy-friendly by design and by default. No red flags. Strong performance against tracking, profiling, and international transfer criteria. No own-purpose advertising or profiling. | No — awarded only where all criteria are met |
+| ⬜ No badge | Mixed or average risk profile. The service can be deployed compliantly through standard controller measures (including a consent banner that gates tracking until consent is given). This is also the default outcome where information is insufficient. | Yes — default outcome |
+| ⚠️ Caution | One or more red flags present (RF1, RF3, or RF4), or elevated privacy risk indicators that cannot be resolved by standard controller measures. Requires heightened due diligence. | No — requires specific findings |
 
-### Caution
+<Callout type="info">In our [TPP Badge Assessment](/risk-assessments/tpp-preassessments), you will also find the "🏗️ infrastructure only" badge. This badge indicates that a TPP is typically used for purposes that are strictly necessary for the provision of the service itself (see Article 5(3) of the ePrivacy Directive) and therefore generally do not require user consent. However, this must be assessed separately for each specific use case and should be treated with caution. </Callout>
 
-A Caution badge is assigned where the provider triggers one or more red flags or otherwise presents clear indicators of elevated privacy risk, including own-purpose data use, intrusive tracking, problematic profiling practices, restrictive or manipulative consent mechanisms, opaque onward data sharing, or high-risk international transfers without adequate safeguards. This doesn't mean the service is not GDPR compliant. However website providers must configure these services carefully, in order to be fully GDPR compliant when using them.
+## 2\. What constitutes normal tracking behaviour
 
-***
+The following behaviour does **NOT**, by itself, lead to a Caution badge:
 
-## 2. Attribution method
+> Tracking or data collection that begins on page load before user consent has been obtained, where this behaviour can be fully resolved by deploying a standard consent banner (CMP) that gates the tool until consent is given.
 
-### Upfront decision tree
+This applies to analytics tools, session recording tools, heatmap tools, A/B testing tools, and any other tracking technology whose entire data collection can be switched off until the user grants consent. Because this issue is **universal across virtually all third-party tracking tools** and **fully resolvable by standard controller measures** (CMP integration), it does not alone constitute an elevated risk indicator warranting a Caution badge.
 
-Use this decision sequence before looking at the aggregate score:
+## 3\. Attribution method — decision tree
 
-1. Are there one or more red flags?  
-   - Yes → Caution.  
-   - No → continue.
+Apply this sequence before consulting the aggregate score:
 
-2. Are domains B (tracking/profiling) and E (international transfers/government access) both strong?  
-   - No → cannot receive Privacy+.  
-   - Yes → continue.
+### Step 1 — Red flags RF1, RF3, RF4
 
-3. Is the provider’s overall profile consistently high across the core domains?  
-   - Yes → Privacy+.  
-   - No → continue.
+- Any of RF1, RF3, or RF4 present? → **Caution.**  
+- None present → continue to Step 2\.
 
-4. Is the provider mixed / average risk, with no red flags and no clearly severe risk indicator?  
-   - Yes → No badge.  
-   - No, but there are still concrete elevated risks → Caution.
+### Step 2 — International transfer risk (RF2)
 
-This makes “no badge” the default outcome for providers that are usable and configurable but not notably privacy-preserving.
+RF2 (high-risk third-country exposure) does **not** by itself lead to Caution. Where a lawful transfer mechanism exists — such as an EU adequacy decision, participation in the EU–US Data Privacy Framework (DPF), or Standard Contractual Clauses (SCCs) — GDPR treats the transfer as compliant and the risk is addressed through the domain E score rather than an automatic badge override.
 
-### Scoring model
+RF2 is recorded where present and **significantly lowers the domain E score**:
 
-Score each domain on a 0–2 scale:
+| Transfer situation | Domain E score |
+| :---- | :---- |
+| Processing limited to EU/EEA or adequate jurisdictions; no meaningful government-access risk | 2 |
+| Some third-country exposure; lawful mechanism in place (DPF, SCCs); moderate access risk | 1 |
+| Transfer to high-risk third country (e.g. Russia, China) **without** any lawful mechanism or meaningful supplementary measures; or documented DPA enforcement finding that the specific transfer is unlawful | 0 |
 
-- 2 = privacy-friendly  
-- 1 = mixed / average / configurable  
-- 0 = elevated risk / poor privacy posture
+A domain E score of 0 — combined with other low scores — may still result in Caution via the weighted-average or two-core-domain-zeros thresholds. It prevents Privacy+ in all cases.
 
-Domains and weighting:
+> **Note:** The presence of RF2 should always be disclosed in the reasoning and factored into the domain E score, even where it does not alone trigger Caution. Controllers must assess whether supplementary measures are adequate for the specific provider and deployment context.
 
-- A = 1.0  
-- B = 1.5  
-- C = 1.0  
-- D = 1.0  
-- E = 1.5  
-- F = 1.0  
-- G = 1.0  
-- H = 1.0
+### Step 3 — Structural elevated-risk indicators
 
-### Attribution thresholds
+Are there concrete elevated privacy risk indicators that cannot be resolved by standard controller measures?
 
-Use the following logic:
+**Indicators that may qualify** (see Section 7 for full table):
 
-**Privacy+** only if:
+- Own-purpose data use (advertising, cross-service profiling, data brokering)  
+- Problematic cross-publisher or cross-device profiling without adequate legal basis  
+- Restrictive or manipulative consent mechanisms (dark patterns, forced consent)  
+- Opaque onward data sharing with unnamed 'partners' for their own purposes
 
-- no red flags;  
-- B = ≥ 1;  
-- C = 2;  
-- E = 2;  
-- weighted average score ≥ 1.4;  
-- no domain scored 0 in A, B, C, D or E.
+**Indicators that do NOT qualify on their own** (treated as normal — Section 2):
 
-**Caution** if:
+- Tracking or session recording that fires before consent but is resolvable by a CMP  
+    
+- Cookies or persistent identifiers that are fully gatable via a consent banner  
+    
+- IP address collection forming part of normal web server operation  
+    
+- Third-country transfers covered by a lawful mechanism (DPF, SCCs, adequacy decision)  
+    
+- Concrete structural elevated-risk indicator present → **Caution.**  
+    
+- No structural elevated-risk indicator → continue to Step 4\.
 
-- any red flag is present; or  
-- weighted average < 0.9; or  
-- two or more core domains among A, B, C, D, E score 0; or  
-- there is a concrete elevated risk pattern even without a formal red flag.
+### Step 4 — Domain B and E strength
 
-**No badge** if:
+- Are domains B (tracking/profiling) and E (international transfers) both strong?  
+  - No → cannot receive Privacy+; go to Step 6\.  
+  - Yes → continue to Step 5\.
 
-- no red flags;  
-- Privacy+ threshold not met;  
-- overall picture is mixed / average / configurable.
+### Step 5 — Overall profile
 
-***
+- Is the provider's profile consistently high across core domains?  
+  - Yes → **Privacy+.**  
+  - No → continue to Step 6\.
 
-## 3. Red flags
+### Step 6 — Default outcome
 
-These should override the score and lead directly to Caution, because they indicate a clearly heightened compliance burden or systemic incompatibility with privacy-friendly deployment.
+- Mixed / average / configurable, no red flags (RF1/RF3/RF4), no unresolvable elevated risk → **No badge** (default).
 
-### Red flag 1 — Own advertising or cross-service profiling
+## 4\. Scoring model
 
-The provider uses personal data for its own advertising, retargeting, audience building, or cross-service profiling, especially across unrelated customer contexts.  
-This is a strong indicator that the provider is not acting merely on the controller’s behalf and materially increases intrusiveness.
+Each domain is scored 0–2:
 
-### Red flag 2 — High-risk third-country exposure without meaningful mitigation
+| Score | Meaning |
+| :---- | :---- |
+| 2 | Privacy-friendly |
+| 1 | Mixed / average / configurable |
+| 0 | Elevated risk / poor privacy posture |
 
-Personal data is processed in, remotely accessed from, or otherwise exposed to a high-risk third country, and the provider lacks meaningful supplementary measures.  
-The EDPB expressly frames supplementary measures as necessary where the transfer tool alone does not ensure essentially equivalent protection.
+| Domain | Scoring question | Weight |
+| :---- | :---- | :---- |
+| A — Role & purpose limitation | Does the provider process strictly on the customer's behalf, or also for its own purposes? | 1.0× |
+| B — Tracking, profiling & advertising | How intrusive is the service's identifier, tracking, and profiling model? (See revised B guidance below) | 1.5× |
+| C — Default settings & configurability | Are privacy-friendly settings the default, or does compliance depend on active reconfiguration? | 1.0× |
+| D — Minimisation, retention & deletion | Does the service limit collection and retention to what is necessary? | 1.0× |
+| E — International transfers & gov. access | What is the provider's exposure to third-country transfers and access risks? (See RF2 guidance in Section 3\) | 1.5× |
+| F — Transparency & documentation | Can the controller clearly understand and document the processing? | 1.0× |
+| G — Data subject rights & consent | Can the service be deployed in a way that respects consent and data subject rights? | 1.0× |
+| H — Sub-processors & onward sharing | Is the processing chain transparent, limited, and controlled? | 1.0× |
 
-### Red flag 3 — Broad onward sharing for others’ own purposes
+> **Revised guidance for domain B (v2.1):** A tool that records sessions or collects data before consent fires in its default configuration does NOT automatically score B \= 0\. B \= 0 is reserved for structurally embedded non-essential tracking that cannot be effectively disabled by the controller — such as a retargeting DSP or DMP whose cross-publisher profiling is intrinsic to its function. A session recording or analytics tool that can be fully gated by a CMP scores B \= 1 at minimum.
 
-The privacy terms allow data sharing with “partners,” “affiliates,” or ecosystem participants for their own purposes, especially for analytics, advertising, or product enrichment.  
-This makes purpose limitation and controller oversight much harder.
+## 5\. Attribution thresholds
 
-### Red flag 4 — Significant opacity
+### ✅ Privacy+ — all of the following must hold:
 
-The provider does not disclose sufficient information on purposes, tracking technologies, transfer destinations, sub-processors, or retention periods, such that a controller cannot meaningfully assess compliance.
+- No red flags (RF1, RF3, RF4)  
+- No RF2 (or if RF2 present: E must still score 2, which requires an adequacy decision or equivalent strong mitigation — in practice this means no RF2 can coexist with E \= 2\)  
+- B ≥ 1  
+- C \= 2  
+- E \= 2  
+- Weighted average score ≥ 1.4  
+- No domain scored 0 in A, B, C, D or E
 
-***
+### ⚠️ Caution — any one of the following triggers it:
 
-## 4. Detailed assessment criteria
+- RF1 present (own advertising or cross-service profiling)  
+- RF3 present (broad onward sharing for others' own purposes)  
+- RF4 present (significant opacity)  
+- Weighted average \< 0.9  
+- Two or more core domains (A–E) score 0  
+- Concrete elevated-risk pattern present that is NOT resolvable by standard controller measures (e.g. own-purpose advertising use, cross-publisher profiling structural to the tool's business model, opaque onward sharing)
 
-### A. Role and purpose limitation
+>   
+> **RF2 alone does not trigger Caution.** Where a lawful transfer mechanism exists (adequacy decision, DPF, SCCs), GDPR treats the transfer as compliant. RF2 is reflected in a lower domain E score (E \= 1 for standard DPF/SCCs; E \= 0 for transfers to high-risk countries without any lawful mechanism), which reduces the weighted average and prevents Privacy+, but does not by itself result in Caution.  
+>   
+> **Not Caution on its own:** tracking that fires before consent but is fully resolvable by deploying a CMP. This is treated as normal tracking behaviour (Section 2).
 
-**Question:** Does the provider process data strictly on behalf of the customer, or also for its own purposes?
+### ⬜ No badge — default:
 
-- **Score 2**  
-  - Clear processor role for the relevant service.  
-  - Processing is limited to delivering the customer-requested functionality, with narrowly defined exceptions (e.g. security, abuse prevention).  
-  - No use of data for the provider’s own purposes (e.g. marketing, cross-customer analytics, profile enrichment).
+- No red flags (RF1, RF3, RF4) — RF2 may be present  
+- Privacy+ threshold not met  
+- Overall picture is mixed / average / configurable  
+- All elevated-risk indicators, if any, are resolvable by standard controller measures
 
-- **Score 1**  
-  - Predominantly processor model, but with limited own-purpose use (e.g. service improvement, aggregate analytics).  
-  - Clauses are broad but not clearly excessive or abusive.  
-  - Some ambiguity remains, but not to the level of a red flag.
+## 6\. Red flags
 
-- **Score 0**  
-  - Data is used for the provider’s own purposes beyond what is strictly necessary.  
-  - Blended or unclear controller/processor allocation.  
-  - Own-purpose use materially alters the nature of the service relationship.
+RF1, RF3, and RF4 are hard overrides: any one present results directly in **Caution**. RF2 is a significant risk factor that is reflected in the domain E score but does not alone override the badge.
 
-**Evidence points:**
+| Red flag | Definition | Effect on badge |
+| :---- | :---- | :---- |
+| RF1 — Own advertising or cross-service profiling | The provider uses personal data FOR ITS OWN advertising, retargeting, audience building, or cross-service profiling, especially across unrelated customer contexts. | **Hard override → Caution** |
+| RF2 — High-risk third-country exposure | Personal data is processed in, accessed from, or exposed to a high-risk third country. Assessed against: whether a lawful transfer mechanism exists (adequacy decision, DPF, SCCs) and whether supplementary measures are meaningful. | **Significant E-score reduction; does NOT alone trigger Caution** |
+| RF3 — Broad onward sharing for others' own purposes | The privacy terms allow data sharing with 'partners', 'affiliates', or ecosystem participants for their own purposes (analytics, advertising, enrichment), making purpose limitation and controller oversight materially harder. | **Hard override → Caution** |
+| RF4 — Significant opacity | The provider does not disclose sufficient information on purposes, tracking technologies, transfer destinations, sub-processors, or retention periods to allow a controller to meaningfully assess compliance. | **Hard override → Caution** |
 
-- Data Processing Agreement (DPA).  
-- Privacy policy.  
-- Product and technical documentation.  
-- “How we use data” / “service improvement” clauses.
+---
 
-### B. Tracking, profiling, and advertising
+## 7\. Elevated risk indicators (non-red-flag)
 
-**Question:** How intrusive is the service’s identifier, tracking, and profiling model?
+Where no formal red flag (RF1, RF3, RF4) is triggered, the following indicators may still support a Caution badge — but only if the risk is **structural** (inherent to the tool's business model and not addressable by controller configuration).
 
-- **Score 2**  
-  - No non-essential tracking in the default EU deployment.  
-  - No behavioural profiling.  
-  - No advertising or ad-tech components.  
-  - Analytics, if present, is aggregate or strongly minimised.
+| Indicator | → Caution if... | → NOT Caution if... |
+| :---- | :---- | :---- |
+| Own-purpose data use | Provider uses visitor data for its own commercial analytics, data products, or advertising — not controllable by the deploying controller | Provider uses only aggregated/anonymised data for service improvement, with controller ability to opt out |
+| Intrusive tracking | Tracking is structurally embedded and cannot be disabled without removing the tool (e.g. cross-publisher identity graph intrinsic to the product) | Tracking fires before consent by default but is FULLY blockable by a CMP — this is NORMAL and does not lead to Caution |
+| Problematic profiling | Cross-publisher or cross-device profiling without a clear legal basis, structural to the tool's function | On-site behavioural analysis (session recording, heatmaps) scoped to the controller's own domain and fully gatable by a CMP |
+| Manipulative consent mechanisms | Dark patterns, forced consent, or mechanisms that structurally undermine user choice | Standard consent flow configurable to be GDPR-compliant by the controller |
+| Opaque onward sharing | Broad sharing with unnamed 'partners' or 'affiliates' for their own purposes without meaningful transparency | Named, disclosed sub-processors processing on the controller's behalf under DPA/SCCs |
+| High-risk international transfers | Transfer to a high-risk third country **without any lawful mechanism**, AND no meaningful supplementary measures; or a specific DPA enforcement finding that this provider's transfers are unlawful | Transfer covered by DPF, SCCs, or adequacy decision — reflected in domain E score (E \= 0 or 1\) but does not alone result in Caution |
 
-- **Score 1**  
-  - Uses identifiers (e.g. cookies, SDKs), but these can be disabled or withheld without disproportionate effort.  
-  - Limited profiling or telemetry for product analytics only.  
-  - Configurable and not inherently incompatible with compliant deployment.
+## 8\. Domain scoring guidance
 
-- **Score 0**  
-  - Default deployment relies on non-essential tracking, persistent identifiers, fingerprinting, or profiling.  
-  - Cross-site or cross-service tracking.  
-  - Advertising or marketing functionality is structurally embedded.
+Full scoring criteria per domain. Consult the provider's privacy policy, DPA, Terms of Service, and supervisory authority decisions.
 
-**Caution indicator**  
-Broad default tracking combined with difficult or manipulative consent gating may justify escalation, even without explicit ad-tech.
+### Domain B — Tracking, profiling, and advertising *(revised v2.1)*
 
-### C. Default settings and configurability
+| Score | Criteria |
+| :---- | :---- |
+| 2 | No non-essential tracking in default EU deployment. No behavioural profiling. No advertising or ad-tech components. Analytics, if present, is aggregate or strongly minimised. |
+| 1 | Uses identifiers (cookies, SDKs) but these can be disabled or withheld without disproportionate effort — including by deploying a CMP. Limited profiling for product analytics only. Configurable and not inherently incompatible with compliant deployment. Includes tools that record sessions or fire tracking by default, where the tool can be fully blocked by a CMP until consent is obtained. |
+| 0 | Non-essential tracking is structurally embedded and cannot be effectively disabled by the controller. Cross-site or cross-service tracking intrinsic to the tool's function (e.g. retargeting DSP, DMP with cross-publisher profile building). Advertising functionality is structurally embedded and not separable. Note: a tool that tracks before consent but can be gated by a CMP does NOT score B \= 0\. |
 
-**Question:** Are privacy-friendly settings the default, or does compliance depend on active reconfiguration?
+### Domain E — International transfers and government access *(revised v2.2)*
 
-- **Score 2**  
-  - Defaults are privacy-friendly and data-minimising.  
-  - Intrusive features are disabled by default.  
-  - Configuration is granular, effective, and well documented.
+| Score | Criteria |
+| :---- | :---- |
+| 2 | Processing limited to EU/EEA or adequate jurisdictions (Art. 45 GDPR adequacy decision); or transfers are exceptional, well-controlled, and supported by strong technical safeguards. No meaningful government-access risk from a high-risk third country. |
+| 1 | Some exposure to the US or another third country. Lawful transfer mechanism in place (DPF, SCCs). Supplementary safeguards exist but are not particularly strong. Overall risk is moderate but not clearly severe. This is the typical score for standard US-based SaaS with DPF/SCCs. |
+| 0 | Transfer to a high-risk third country (e.g. Russia, China) **without any lawful transfer mechanism or meaningful supplementary measures**; or a DPA enforcement finding that specifically declares this provider's transfers unlawful. Reliance on contractual safeguards alone where technical measures are clearly required. |
 
-- **Score 1**  
-  - Defaults are neutral rather than privacy-friendly.  
-  - Some telemetry or extended logging enabled by default.  
-  - Compliant deployment is achievable, but requires active configuration.
+Domains A, C, D, F, G, H: scoring criteria unchanged from v1 — see the Consenter Manager Badge Attribution assessment tool (Google Apps Script) for full domain-level scoring rubrics.
 
-- **Score 0**  
-  - Intrusive features are enabled by default and difficult to disable.  
-  - Key controls are missing or only partially effective.  
-  - Compliant deployment depends on workarounds rather than supported settings.
-
-### D. Data minimisation, retention, and deletion
-
-**Question:** Does the service limit collection and retention to what is necessary?
-
-- **Score 2**  
-  - Limited and well-defined data categories.  
-  - Clear, short, and purpose-bound retention periods.  
-  - Deletion and export are supported and documented.  
-  - Use of pseudonymisation or comparable techniques where appropriate.
-
-- **Score 1**  
-  - Moderate data collection.  
-  - Retention periods exist but are longer than necessary or unevenly documented.  
-  - Deletion is possible but partially manual or incomplete (e.g. logs, backups).
-
-- **Score 0**  
-  - Broad or excessive data collection by default.  
-  - Retention is vague, undefined, or excessive.  
-  - Deletion rights are difficult to exercise or operationally unclear.
-
-### E. International transfers and government access
-
-**Question:** What is the provider’s exposure to third-country transfers and access risks?
-
-Assessment should distinguish between:
-
-- EU/EEA or adequacy-based processing (Art. 45 GDPR).  
-- EU–US Data Privacy Framework participation.  
-- SCC-based transfers (Art. 46 GDPR).  
-- Technical and organisational supplementary measures.  
-- Exposure to foreign government access laws.
-
-- **Score 2**  
-  - Processing limited to EU/EEA or adequate jurisdictions; or  
-  - Transfers are exceptional, well-controlled, and supported by strong technical safeguards (e.g. encryption, separation).  
-  - No meaningful remote access from high-risk jurisdictions, or access risk is effectively mitigated.
-
-- **Score 1**  
-  - Some exposure to the US or another third country.  
-  - Lawful transfer mechanism in place (e.g. DPF, SCCs).  
-  - Supplementary safeguards exist but are not particularly strong.  
-  - Overall risk is moderate but not clearly severe.
-
-- **Score 0**  
-  - Significant processing or access in high-risk third countries.  
-  - Reliance primarily on contractual safeguards where technical measures would be expected.  
-  - Lack of clarity regarding remote access, support access, or infrastructure chain.
-
-**Attribution note**  
-A US nexus does not automatically imply “Caution.”  
-“No badge” may be appropriate for standard DPF/SCC setups without additional red flags.  
-“Privacy+” typically requires a clearly stronger posture (e.g. EU-only processing or robust technical mitigation).
-
-### F. Transparency and documentation
-
-**Question:** Can the controller clearly understand and document the processing?
-
-- **Score 2**  
-  - Clear and consistent privacy notice and DPA.  
-  - Public and specific sub-processor list.  
-  - Transparent retention information.  
-  - Sufficient technical documentation to support lawful deployment and DPIA.
-
-- **Score 1**  
-  - Documentation is available but partly generic or incomplete.  
-  - Key elements can be inferred with effort.  
-  - Sufficient for standard due diligence.
-
-- **Score 0**  
-  - Documentation is unclear, inconsistent, or overly generic.  
-  - Material aspects of processing are omitted.
-
-### G. Data subject rights and consent compatibility
-
-**Question:** Can the service be deployed in a way that respects consent and data subject rights?
-
-- **Score 2**  
-  - Non-essential processing can be withheld until valid consent.  
-  - Withdrawal of consent can be effectively implemented.  
-  - Supports data subject rights (e.g. access, deletion, objection) in a usable manner.  
-  - No structural undermining of user choice.
-
-- **Score 1**  
-  - Consent-compatible deployment is possible but requires integration effort.  
-  - Rights handling exists but is partly manual or indirect.  
-  - Some limitations, but no structural incompatibility.
-
-- **Score 0**  
-  - Consent gating is difficult or ineffective in practice.  
-  - Withdrawal cannot be reliably enforced across data flows.  
-  - Rights handling is materially impaired, especially due to own-purpose processing.
-
-### H. Sub-processors and onward sharing
-
-**Question:** Is the processing chain transparent, limited, and controlled?
-
-- **Score 2**  
-  - Detailed and up-to-date sub-processor list.  
-  - Roles, locations, and functions clearly identified.  
-  - Onward sharing is strictly limited to service delivery.
-
-- **Score 1**  
-  - Sub-processors are disclosed, but descriptions are partly generic.  
-  - Transfer pathways or roles are not fully clear.  
-  - Onward sharing exists but appears operationally bounded.
-
-- **Score 0**  
-  - Broad, vague, or poorly disclosed onward sharing.  
-  - Relevant sub-processors not identified.  
-  - Use of unclear formulations (e.g. “partners and affiliates”) without specification.
-
-***
-
-## 5. Short-form checklist version
-
-- Does the provider act only for the customer’s purposes?  
-- Does the provider use data for its own analytics, marketing, or product enrichment?  
-- Does the service set or read non-essential identifiers by default?  
-- Does the provider create behavioural or cross-service profiles?  
-- Is any ad-tech or marketing ecosystem involvement present?  
-- Are privacy-friendly defaults enabled out of the box?  
-- Can intrusive features be disabled with ordinary configuration?  
-- Are data categories and retention periods limited and documented?  
-- Are international transfers limited to EU/adequate locations, or otherwise strongly safeguarded?  
-- Is the provider exposed to foreign government access laws, and if yes, are meaningful mitigations in place?  
-- Are sub-processors and onward sharing transparently documented?  
-- Can the service be integrated in a way that respects consent and data subject rights?
-
-**Interpretation:**
-
-- Several “strong yes” answers to privacy-friendly questions, plus no red flags → candidate for Privacy+.  
-- Mixed answers, but no serious risk indicators → No badge.  
-- Any red-flag answer or strongly negative answer in tracking, profiling or transfer posture → Caution.
+---
+Consenter Manager | v2.2 — 31/08/2026 | 
