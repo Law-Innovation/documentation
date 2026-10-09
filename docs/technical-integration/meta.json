@@ -6,7 +6,8 @@
     "contextual-consent",
     "privacy-policy",
     "imprint",
-    "javascript-api"
+    "javascript-api",
+    "ai-agents"
   ],
   "defaultOpen": true
 }
