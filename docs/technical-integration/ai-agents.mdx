@@ -1,0 +1,83 @@
+---
+title: Connect an AI Agent
+description: Let an AI app such as Claude or ChatGPT draft your cookie banner through Consenter Manager
+---
+
+Connect an AI app such as Claude or ChatGPT to Consenter Manager. It can create sites and draft cookie banners. It never publishes: you review and publish each draft yourself.
+
+Server URL: `https://manager.consenter.eu/api/mcp`
+
+## 1. Create a key
+
+<Steps>
+  <Step>
+    Open [Account → Service accounts](https://manager.consenter.eu/account/service-accounts) and choose **New service account**.
+  </Step>
+  <Step>
+    Name it and choose **Sites: Read and Write** and **Drafts: Read and Write**.
+  </Step>
+  <Step>
+    Copy the key. It is shown once. It expires after 90 days by default.
+  </Step>
+</Steps>
+
+## 2. Connect your AI app
+
+Use your key in place of `li_sk_…`.
+
+<Tabs items={["Claude Code", "Codex CLI", "Cursor", "Other clients"]}>
+  <Tab value="Claude Code">
+    ```bash
+    claude mcp add --transport http consenter https://manager.consenter.eu/api/mcp --header "Authorization: Bearer li_sk_…"
+    ```
+  </Tab>
+  <Tab value="Codex CLI">
+    Add this to `~/.codex/config.toml`:
+
+    ```toml
+    [mcp_servers.consenter]
+    url = "https://manager.consenter.eu/api/mcp"
+    http_headers = { "Authorization" = "Bearer li_sk_…" }
+    ```
+  </Tab>
+  <Tab value="Cursor">
+    Add this to `~/.cursor/mcp.json`:
+
+    ```json
+    {
+      "mcpServers": {
+        "consenter": {
+          "url": "https://manager.consenter.eu/api/mcp",
+          "headers": {
+            "Authorization": "Bearer li_sk_…"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab value="Other clients">
+    Use the Streamable HTTP transport and send the header `Authorization: Bearer <your key>`. For example:
+
+    ```json
+    {
+      "mcpServers": {
+        "consenter": {
+          "type": "http",
+          "url": "https://manager.consenter.eu/api/mcp",
+          "headers": {
+            "Authorization": "Bearer li_sk_…"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+Then ask the agent to list your sites, or to create one.
+
+## Problems and revoking
+
+- **A tool is missing, or requests are refused.** The key lacks a capability, has expired, or the account is disabled. Open the service account and choose **Manage** to fix it, then reconnect the app.
+- **Stop an agent.** In **Manage**, disable the account or regenerate the key.
