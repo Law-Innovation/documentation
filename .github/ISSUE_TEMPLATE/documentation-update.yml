@@ -31,7 +31,7 @@ body:
     id: page
     attributes:
       label: Affected page (URL or file path)
-      placeholder: e.g. /technical-integration/third-party-tools or docs/tools-configuration.mdx
+      placeholder: e.g. /third-party-tools or docs/tools-configuration/index.mdx
     validations:
       required: false
   - type: textarea

@@ -17,7 +17,7 @@ https://github.com/Law-Innovation/documentation/blob/main/WRITING_GUIDE.md
 
 ## Affected pages
 
-<!-- List the pages or files you changed, e.g. docs/technical-integration/third-party-tools/matomo.mdx -->
+<!-- List the pages or files you changed, e.g. docs/third-party-tools/matomo.mdx -->
 
 ## Checklist
 
