@@ -1,26 +1,26 @@
 ---
-title: eTracker
+title: etracker
 ---
 
 <Callout type="warn">
-  eTracker tracks in cookie-less mode by default without requiring consent (GDPR
+  etracker tracks in cookie-less mode by default without requiring consent (GDPR
   compliant). This integration enables cookies only when users consent,
-  providing enhanced tracking. Do not block the eTracker script itself.
+  providing enhanced tracking. Do not block the etracker script itself.
 </Callout>
 
 ## Prerequisites
 
 Before starting, you'll need:
 
-- Your eTracker account key (also called "secure code")
+- Your etracker account key (also called "secure code")
 - Your website domain name
 
 <Callout type="info">
-  Find your account key in your eTracker dashboard under Integration → Tracking
+  Find your account key in your etracker dashboard under Integration → Tracking
   Code, or in Account → Account Key. It's an alphanumeric string like "ABC123".
 </Callout>
 
-## Integrate eTracker with Consenter
+## Integrate etracker with Consenter
 
 <Callout type="warn">
   **Important**: Before using this code, verify that the service ID and purpose
@@ -28,16 +28,16 @@ Before starting, you'll need:
   configuration. To find the correct IDs, go to [Consenter
   Manager](https://manager.consenter.eu) → Your Site → Active Banner → Hover
   over the service and purpose labels and click the copy button in the tooltip.
-  See the [Control Third Party Data Processing](/technical-integration/third-party-tools) page for detailed
+  See the [Control Third Party Data Processing](/third-party-tools) page for detailed
   instructions.
 </Callout>
 
 Copy the code below and paste it into your website's `<head>` section.
 Replace the placeholders with your own values:
 
-- `YOUR_SERVICE_ID` → Your eTracker service ID from Consenter Manager
+- `YOUR_SERVICE_ID` → Your etracker service ID from Consenter Manager
 - `YOUR_PURPOSE_ID` → Your purpose ID from Consenter Manager
-- `YOUR_ACCOUNT_KEY` → Your eTracker account key
+- `YOUR_ACCOUNT_KEY` → Your etracker account key
 - `yourdomain.com` → Your website domain (e.g., example.com)
 
 ```html title="index.html" lineNumbers
@@ -77,4 +77,8 @@ Replace the placeholders with your own values:
 </script>
 ```
 
-eTracker is now connected to Consenter.
+etracker is now connected to Consenter.
+
+<Callout type="info">
+  First [configure etracker in Consenter Manager](/tools-configuration/etracker).
+</Callout>

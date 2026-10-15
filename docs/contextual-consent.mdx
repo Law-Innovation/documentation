@@ -199,12 +199,12 @@ the Consenter API instead.
 In this mode you load **only** the banner script (not `contextual-consent.js`),
 block the third-party content yourself, then:
 
-- call [`grantContextualConsent(tppId, purposeIds)`](/technical-integration/javascript-api#grantcontextualconsenttppid-purposeids)
+- call [`grantContextualConsent(tppId, purposeIds)`](/javascript-api#grantcontextualconsenttppid-purposeids)
   when the user opts in, and
-- [`subscribe`](/technical-integration/javascript-api#subscribecallback-selector) (or
-  [`has`](/technical-integration/javascript-api#hasselector)) to reveal the content once it is consented.
+- [`subscribe`](/javascript-api#subscribecallback-selector) (or
+  [`has`](/javascript-api#hasselector)) to reveal the content once it is consented.
 
-See the [JavaScript API](/technical-integration/javascript-api) for the full method reference.
+See the [JavaScript API](/javascript-api) for the full method reference.
 
 ```html title="index.html" lineNumbers
 <script src="https://banner.consenter.eu/YOUR_DOMAIN_ID/cb.js" async></script>

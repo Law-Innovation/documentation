@@ -1,0 +1,11 @@
+{
+  "title": "Control Third Party Data Processing",
+  "pages": [
+    "matomo",
+    "google-analytics",
+    "etracker",
+    "optimizely",
+    "criteo"
+  ],
+  "defaultOpen": false
+}
