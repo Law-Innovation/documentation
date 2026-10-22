@@ -1,0 +1,15 @@
+name: Renovate Labels
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/renovate-labels.yml]
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  sync:
+    permissions:
+      issues: write
+    uses: Law-Innovation/renovate-config/.github/workflows/labels.yml@1a3b83523bd56fafaac8073db718edf8e90813b0 # v1.0.0
