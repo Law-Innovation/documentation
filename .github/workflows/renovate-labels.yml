@@ -10,6 +10,23 @@ permissions: {}
 
 jobs:
   sync:
+    runs-on: ubuntu-26.04
     permissions:
       issues: write
-    uses: Law-Innovation/renovate-config/.github/workflows/labels.yml@1a3b83523bd56fafaac8073db718edf8e90813b0 # v1.0.0
+    steps:
+      - name: Sync labels
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          while IFS='|' read -r name color description; do
+            gh label create "$name" --color "$color" --description "$description" --force
+          done <<'LABELS'
+          type/major|f6412d|Major version update
+          type/minor|ff9800|Minor version update
+          type/patch|ffec19|Patch version update
+          type/digest|ffec19|Digest update
+          security|d73a4a|Renovate security update
+          renovate/github-action|027fa0|Renovate GitHub Action update
+          LABELS
