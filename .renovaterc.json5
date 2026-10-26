@@ -11,7 +11,7 @@
   osvVulnerabilityAlerts: true,
   dependencyDashboardOSVVulnerabilitySummary: "unresolved",
   vulnerabilityAlerts: { labels: ["security"] },
-  schedule: ["before 6am on monday"],
+  schedule: ["on monday"],
   updateNotScheduled: false,
   minimumReleaseAge: "3 days",
   minimumReleaseAgeBehaviour: "timestamp-optional",
