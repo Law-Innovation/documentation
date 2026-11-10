@@ -1,83 +1,59 @@
 ---
-title: Connect an AI Agent
-description: Let an AI app such as Claude or ChatGPT draft your cookie banner through Consenter Manager
+title: Connect your AI
+description: Your AI drafts the cookie banner. You review and publish.
 ---
 
-Connect an AI app such as Claude or ChatGPT to Consenter Manager. It can create sites and draft cookie banners. It never publishes: you review and publish each draft yourself.
+<ConnectAiHero />
 
-Server URL: `https://manager.consenter.eu/api/mcp`
+## Get your key
 
-## 1. Create a key
+<Tabs items={["New account", "Already have a site"]}>
+  <Tab value="New account">
+    ![The Consenter Manager welcome screen, with a marker on the Connect your AI button](/assets/connect-your-ai-new-account.png)
 
-<Steps>
-  <Step>
-    Open [Account → Service accounts](https://manager.consenter.eu/account/service-accounts) and choose **New service account**.
-  </Step>
-  <Step>
-    Name it and choose **Sites: Read and Write** and **Drafts: Read and Write**.
-  </Step>
-  <Step>
-    Copy the key. It is shown once. It expires after 90 days by default.
-  </Step>
-</Steps>
+    Press **Connect your AI**.
 
-## 2. Connect your AI app
-
-Use your key in place of `li_sk_…`.
-
-<Tabs items={["Claude Code", "Codex CLI", "Cursor", "Other clients"]}>
-  <Tab value="Claude Code">
-    ```bash
-    claude mcp add --transport http consenter https://manager.consenter.eu/api/mcp --header "Authorization: Bearer li_sk_…"
-    ```
   </Tab>
-  <Tab value="Codex CLI">
-    Add this to `~/.codex/config.toml`:
+  <Tab value="Already have a site">
+    ![The Service accounts page, with markers on the Service accounts menu item and the Connect your AI button](/assets/connect-your-ai-service-accounts.png)
 
-    ```toml
-    [mcp_servers.consenter]
-    url = "https://manager.consenter.eu/api/mcp"
-    http_headers = { "Authorization" = "Bearer li_sk_…" }
-    ```
-  </Tab>
-  <Tab value="Cursor">
-    Add this to `~/.cursor/mcp.json`:
+    Open **Service accounts** in your account, then press **Connect your AI**.
 
-    ```json
-    {
-      "mcpServers": {
-        "consenter": {
-          "url": "https://manager.consenter.eu/api/mcp",
-          "headers": {
-            "Authorization": "Bearer li_sk_…"
-          }
-        }
-      }
-    }
-    ```
-  </Tab>
-  <Tab value="Other clients">
-    Use the Streamable HTTP transport and send the header `Authorization: Bearer <your key>`. For example:
-
-    ```json
-    {
-      "mcpServers": {
-        "consenter": {
-          "type": "http",
-          "url": "https://manager.consenter.eu/api/mcp",
-          "headers": {
-            "Authorization": "Bearer li_sk_…"
-          }
-        }
-      }
-    }
-    ```
   </Tab>
 </Tabs>
 
-Then ask the agent to list your sites, or to create one.
+Then choose **Create an access key instead**.
 
-## Problems and revoking
+## Add it to your AI
 
-- **A tool is missing, or requests are refused.** The key lacks a capability, has expired, or the account is disabled. Open the service account and choose **Manage** to fix it, then reconnect the app.
-- **Stop an agent.** In **Manage**, disable the account or regenerate the key.
+Your AI's own guide has the current steps. You'll need this address: `https://manager.consenter.eu/api/mcp`
+
+Your key goes in your AI's connection settings as an `Authorization` header, never in a chat message.
+
+<GuideLinks>
+
+- [ChatGPT](https://help.openai.com/en/articles/12584461-connecting-custom-mcp-servers-in-chatgpt)
+- [Claude](https://claude.com/docs/connectors/custom/add-unlisted)
+- [Perplexity](https://www.perplexity.ai/help-center/en/articles/13915507-adding-custom-remote-connectors)
+- [Claude Code](https://code.claude.com/docs/en/mcp)
+- [Codex](https://developers.openai.com/codex/mcp)
+- [Cursor](https://cursor.com/docs/mcp)
+
+</GuideLinks>
+
+## Skills
+
+Ready-made instructions your AI can follow. Install one, or send your AI its link.
+
+<GuideLinks>
+
+- [Set up your cookie banner](https://documentation.consenter.eu/skills/consenter-banner/SKILL.md)
+
+</GuideLinks>
+
+## If something goes wrong
+
+<HelpCards>
+  <HelpCard title="It isn't allowed, or a tool is missing">Press **Connect your AI** for a new key, then reconnect.</HelpCard>
+  <HelpCard title="To stop your AI">Open Service accounts, press **Manage** and disable it.</HelpCard>
+</HelpCards>
