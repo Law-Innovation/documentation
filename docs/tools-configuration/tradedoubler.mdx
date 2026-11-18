@@ -1,0 +1,71 @@
+---
+title: "Tradedoubler"
+description: "How to configure Tradedoubler at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Support marketing analytics, Receive marketing offers
+
+> This guide explains how to implement different privacy configurations for Tradedoubler affiliate conversion tracking on an advertiser website and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Tradedoubler advertiser conversion tracking. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** First Party Cookie Validation stores a Tradedoubler Unique Identifier (TDUID) at client domain level [S1]. The integration handles cookie and tracking consent, can store a "Strictly Necessary ID" to support consented traffic such as cashback/reward partners, and can track events without cookies [S1]. Tag integrations pass a `tracking_consent` flag alongside the `tduid` [S2]. Tradedoubler describes its cookieless tracking as a device fingerprint without personally identifiable information [S3]. Cross Device Tracking matches devices deterministically using hashed user IDs (`extid`) and requires consent [S1][S4].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | First-party TDUID cookie only after Consenter consent; `tracking_consent` passed. |
+| Configuration B — Higher risk | As A, plus cookieless (fingerprint) tracking and the Strictly Necessary ID for reward partners when consent is missing. |
+| Configuration C — Higher risk | As A, plus Cross Device Tracking with hashed user IDs. |
+
+> ⚠ **Recommendation.** Tradedoubler's "strictly necessary" ID and fingerprint-based cookieless tracking in B are vendor positions. Device fingerprinting reads information from the device under § 25 TDDDG. Have your DPO assess B before using it without consent.
+
+## Step 1 — Configure Tradedoubler
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics; Receive marketing offers | Support marketing analytics; Receive marketing offers |
+| 2 | First-party cookie (TDUID) | Conversion tracking script [S1] | After consent | After consent | After consent |
+| 3 | Consent flag | `tracking_consent` [S2] | From Consenter | From Consenter | From Consenter |
+| 4 | Cookieless / Strictly Necessary ID | Tradedoubler account [S1][S3] | Off | On | Off |
+| 5 | Cross Device Tracking | `extid` (hashed) [S4] | Off | Off | On |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Tradedoubler is a Swedish company; check its terms for US sub-processors and list the United States if present (18 U.S.C. § 2713 [S5]).
+
+**Legal role.** Confirm the role (processor or joint controller) in your Tradedoubler advertiser agreement; the table uses Joint Controller as the network also processes for its publishers.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
+|---|---|---|---|
+| Processing purposes | Support marketing analytics | Support marketing analytics, Receive marketing offers | Support marketing analytics, Receive marketing offers |
+| Tracking method | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Device identifiers | Device identifiers, Probabilistic identifiers | Device identifiers, Authentication-derived identifiers |
+| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Privacy choices | Device identifiers, Probabilistic identifiers, Device characteristics, IP address, Browsing and interaction data, e-commerce Activity, Privacy choices | Device identifiers, Authentication-derived identifiers, Browsing and interaction data, e-commerce Activity, Privacy choices |
+| Legal role of data recipient | Joint Controller | Joint Controller | Joint Controller |
+| Personalisation model | No personalisation | No personalisation | Profile based |
+| Maximum storage duration | Per programme cookie period | Per programme cookie period | Per programme cookie period |
+| Processing location | Sweden / EU | Sweden / EU | Sweden / EU |
+
+## Sources
+
+- [S1] Tradedoubler Developer — Conversion Tracking
+- [S2] Tealium Docs — Tradedoubler Conversion Tracking tag
+- [S3] Tradedoubler — Our tech
+- [S4] Tradedoubler Developer — Cross Device Tracking
+- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://dev.tradedoubler.com/tracking/advertiser/
+[S2]: https://docs.tealium.com/client-side-tags/tradedoubler-conversion-tracking-tag/index.md
+[S3]: https://tradedoubler.com/our-tech
+[S4]: https://dev.tradedoubler.com/crossdevice/advertiser/
+[S5]: https://www.law.cornell.edu/uscode/text/18/2713

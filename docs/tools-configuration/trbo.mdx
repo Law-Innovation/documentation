@@ -1,0 +1,59 @@
+---
+title: "trbo"
+description: "How to configure trbo at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Personalise the website, Receive marketing offers
+
+> This guide explains how to implement different privacy configurations for trbo and how to reflect them in the Consenter Manager. It covers the index entries "trbo", "trbo (only Banner)" and "trbo (with Profiling)".
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** trbo onsite personalisation, optimisation and A/B/n testing (trbo GmbH, Munich). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** trbo delivers layers in the website design based on user behaviour data; it states that it does not collect personal user data and that cookie information is never shared with third parties [S1]. An opt-out button sets a cookie that stops trbo collecting information and deactivates the solution [S1]. The index distinguishes a banner-only use and a use with profiling.
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk ("only Banner") | Static onsite banners/layers without behaviour-based targeting; after consent. |
+| Configuration B — Higher risk ("with Profiling") | Behaviour-based targeting and personalisation; after consent. |
+
+**No configuration without prior consent.** trbo sets cookies to record session information [S1]; no consent-free configuration is documented.
+
+## Step 1 — Configure trbo
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Receive marketing offers | Personalise the website; Receive marketing offers |
+| 2 | Targeting | trbo campaign settings | No behavioural targeting | Behavioural targeting / profiling |
+| 3 | Loading | Consenter script blocking | After consent | After consent |
+| 4 | Opt-out | trbo opt-out link [S1] | Provide | Provide |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Receive marketing offers | Personalise the website, Receive marketing offers |
+| Tracking method | First party tracking (single session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Browsing and interaction data, Device characteristics | Browsing and interaction data, Device characteristics, Device identifiers, Users' profiles, e-commerce Activity |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | Group based (behaviour) |
+| Maximum storage duration | Not documented | Not documented |
+| Processing location | Per DPA (trbo is German) | Per DPA |
+
+**Basis.** trbo's product and opt-out description [S1]. Cookie names and lifetimes are not published by trbo; verify in the browser. The single-session mapping for A assumes only session data is stored when no behavioural targeting is used.
+
+## Sources
+
+- [S1] trbo — Opt-out and description of trbo
+
+[S1]: https://www.trbo.com/de/?p=21874

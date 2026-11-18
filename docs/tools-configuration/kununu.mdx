@@ -1,0 +1,59 @@
+---
+title: "kununu"
+description: "How to configure kununu at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for kununu employer widgets and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** kununu employer rating widgets and seals (kununu is part of New Work SE, Hamburg, Germany [S1]). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** kununu widgets are generated on the company's kununu profile and embedded by copying the widget code [S2]. kununu does not publish which cookies or data its widgets use.
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Static seal image (e.g. Top Company) served from your own server with a link to the kununu profile. |
+| Configuration B — Medium risk | kununu widget code loaded after Consenter consent. |
+
+> ⚠ **Research gap.** kununu does not document the widget's device storage or data transfer. Inspect the widget in the browser before finalising the mapping for B.
+
+## Step 1 — Configure kununu
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — | Unlock additional website features |
+| 2 | Integration | kununu profile widget generator [S2] | Self-hosted image + link | Widget code |
+| 3 | Loading | Consenter script blocking | — | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|
+| Entry needed | No | Yes |
+| Processing purposes | — | Unlock additional website features |
+| Tracking method | No tracking | Third party tracking (single session, cross-website) (verify) |
+| Identifier | No identifier | IP address |
+| Data categories | — | IP address, Device characteristics |
+| Legal role of data recipient | — | Individual Controller |
+| Personalisation model | — | No personalisation |
+| Maximum storage duration | — | Not documented |
+| Processing location | — | Germany (German company; no CLOUD Act flag unless US sub-processors) |
+
+## Sources
+
+- [S1] trend. — kununu company profile (New Work SE)
+- [S2] Perspective Funnels Help — How can I embed my kununu widget
+
+[S1]: https://www.trend.at/unternehmensprofile/kununu
+[S2]: https://intercom.help/perspective-funnels/en/articles/6827616-how-can-i-embed-my-kununu-widget

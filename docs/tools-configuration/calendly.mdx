@@ -1,0 +1,64 @@
+---
+title: "Calendly"
+description: "How to configure Calendly at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for an embedded Calendly scheduler and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Calendly inline, pop-up and badge embeds on the website. Calendly LLC is a US company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Calendly shows its own cookie banner in embedded pages by default; it can be hidden with `hide_gdpr_banner=1`. Calendly uses cookies even if the banner is hidden, and recommends waiting to load Calendly until users accept performance cookies [S1].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Link to the Calendly booking page (no embed on the website). |
+| Configuration B — Higher risk | Inline or pop-up embed loaded after Consenter consent; Calendly banner hidden. |
+
+**Configuration A without website consent.** A plain link sets nothing on your website; Calendly handles cookies on its own domain. No Consenter entry is required, but mention Calendly in the privacy policy.
+
+## Step 1 — Configure Calendly
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — (external link) | Unlock additional website features |
+| 2 | Integration | Website code | Link to `calendly.com/...` | Embed code with `widget.js` |
+| 3 | Calendly cookie banner | `hide_gdpr_banner=1` [S1] | — | Hidden (Consenter handles consent) |
+| 4 | Loading | Consenter script blocking [S1] | — | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Calendly is a US enterprise subject to 18 U.S.C. § 2713 [S2]; list the United States.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Entry needed | No | Yes |
+| Processing purposes | — | Unlock additional website features |
+| Tracking method | No tracking | Third party tracking (crosssession, cross-website) |
+| Identifier | No identifier | Device identifiers |
+| Data categories | — | Browsing and interaction data, Device characteristics, Device identifiers, IP address, User-provided data, direct identifier |
+| Legal role of data recipient | — | Processor |
+| Personalisation model | — | No personalisation |
+| Maximum storage duration | — | Per Calendly cookie notice |
+| Processing location | — | United States |
+
+**Basis.** Embed cookies [S1]. The third-party mapping in B reflects that the embed runs in an iframe on Calendly's domain, where its cookies are set; verify in the browser.
+
+## Sources
+
+- [S1] Calendly Help — Calendly cookie management and banner
+- [S2] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://help.calendly.com/hc/en-us/articles/4418236309399
+[S2]: https://www.law.cornell.edu/uscode/text/18/2713

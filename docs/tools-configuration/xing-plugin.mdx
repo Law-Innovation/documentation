@@ -1,0 +1,63 @@
+---
+title: "XING Plugin"
+description: "How to configure XING Plugin at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for XING share and follow buttons and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** XING Share and Follow buttons on the website (New Work SE, Hamburg, Germany). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** When a page with the XING Share button loads, a connection to the XING server is established automatically; XING states in its privacy notice that the IP addresses are not stored [S1]. If a visitor clicks a XING button, XING assigns this information to the visitor's XING account [S2]. Shariff-style buttons are plain links that load nothing from the network until clicked [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Plain share link (e.g. Shariff) to XING; nothing loaded before the click. |
+| Configuration B — Medium risk | Official XING Share/Follow plugin loaded after Consenter consent. |
+
+**Configuration A without consent.** A plain link sets nothing and transfers nothing before the click [S3]; mention XING in the privacy policy.
+
+## Step 1 — Configure XING
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — | Unlock additional website features |
+| 2 | Button type | Website code | Link / Shariff [S3] | XING plugin script |
+| 3 | Loading | Consenter script blocking | — | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|
+| Entry needed | No | Yes |
+| Processing purposes | — | Unlock additional website features |
+| Tracking method | No tracking | Third party tracking (single session, cross-website) |
+| Identifier | No identifier | IP address; Authentication-derived identifiers (on click, logged-in members) |
+| Data categories | — | IP address, Browsing and interaction data, Social media interaction data |
+| Legal role of data recipient | — | Joint Controller |
+| Personalisation model | — | No personalisation |
+| Maximum storage duration | — | IP not stored per XING [S1] |
+| Processing location | — | Germany |
+
+**Basis.** Plugin connection [S1]; click attribution [S2]. Joint controllership follows the CJEU's Fashion ID reasoning for social plugins; confirm with your DPO. New Work SE is German, so no CLOUD Act flag.
+
+## Sources
+
+- [S1] Dr. Datenschutz — XING and data protection (Share button)
+- [S2] Dlubal — Privacy information on XING buttons
+- [S3] Gosign — rx_shariff (link-based share buttons)
+
+[S1]: https://www.dr-datenschutz.de/fachbeitraege/xing-und-datenschutz/
+[S2]: https://www.dlubal.com/en/support-and-learning/support/product-features/001592
+[S3]: https://www.gosign.de/en/typo3/rx_shariff/

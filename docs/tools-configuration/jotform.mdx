@@ -1,0 +1,69 @@
+---
+title: "Jotform"
+description: "How to configure Jotform at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for embedded Jotform forms and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Jotform forms embedded on the website (iframe or script). Jotform Inc. is a US company [S1]. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** In the **Data** tab of the account settings, the GDPR / Europe data-centre option moves form data to EU servers in Frankfurt, Germany, and the account is served from `eu.jotform.com` [S2][S3]. Jotform's GDPR page states the Frankfurt servers are run by Google [S3]. Jotform offers a DPA for EU customers [S4].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | EU data centre; form embedded and loaded after Consenter consent. |
+| Configuration B — Higher risk (default behaviour) | US data centre; form embedded after consent. |
+
+**No configuration without prior consent.** Embedded forms load from Jotform and may set cookies on Jotform's domain; Jotform's sources do not list them. Verify in the browser.
+
+## Step 1 — Configure Jotform
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
+| 2 | Data centre | **Account settings > Data** [S2] | Europe (Frankfurt) | US (default) |
+| 3 | Loading | Consenter script blocking | After consent | After consent |
+| 4 | DPA | Jotform GDPR page [S4] | Signed | Signed |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Jotform is a US enterprise, and the EU servers are operated by Google [S3]; both are subject to 18 U.S.C. § 2713 [S5]. List the United States in all configurations.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Unlock additional website features |
+| Tracking method | Third party tracking (single session, cross-website) | Third party tracking (single session, cross-website) |
+| Identifier | No identifier | No identifier |
+| Data categories | IP address, Device characteristics, User-provided data | IP address, Device characteristics, User-provided data |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | Per form retention settings | Per form retention settings |
+| Processing location | Germany; United States | United States |
+
+**Basis.** The single-session mapping assumes Jotform sets only session cookies for form state; adjust if the browser shows persistent cookies.
+
+## Sources
+
+- [S1] iubenda — JotForm and the GDPR
+- [S2] Jotform Help — How to store your data on EU servers
+- [S3] Jotform — GDPR compliance (EU servers in Frankfurt)
+- [S4] Jotform Answers — GDPR compliance and DPA
+- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://www.iubenda.com/en/help/23789-jotform-gdpr-how-to-be-compliant/
+[S2]: https://www.jotform.com/help/871-how-to-store-your-data-on-eu-servers
+[S3]: https://www.jotform.com/id/gdpr-compliance
+[S4]: https://www.jotform.com/answers/2231660-how-i-can-implement-your-jotform-gdpr-compliance
+[S5]: https://www.law.cornell.edu/uscode/text/18/2713

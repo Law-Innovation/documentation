@@ -1,0 +1,66 @@
+---
+title: "Adobe Experience Platform Tags (Adobe Launch) / Web SDK"
+description: "How to configure Adobe Experience Platform Tags (Adobe Launch) / Web SDK at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Personalise the website, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for the Adobe Experience Platform Web SDK delivered via Data Collection Tags (formerly Adobe Launch) and how to reflect them in the Consenter Manager. Individual Adobe products fed by the Web SDK (e.g. Adobe Analytics, Target) are covered by their own guides where available.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Web SDK consent handling in the Tags extension and the `alloy` library. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** `defaultConsent` accepts `in`, `out` and `pending`; with `pending`, data is stored locally until the user opts in via `setConsent` [S1]. If `defaultConsent` is not set, the default value is `in` [S2]. With `pending` and no `setConsent`, no data is collected and no cookies are set [S3]. The default is configured under **Data Collection > Tags > Extensions > Adobe Experience Platform Web SDK > Configure > Consent** [S4]. Consent status determines when an ECID is generated and identity cookies are set [S5].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | `defaultConsent: "pending"`; Consenter triggers `setConsent` (general: in/out). |
+| Configuration B — Higher risk (default behaviour) | `defaultConsent: "in"`; collection and cookies from page load until opt-out. |
+
+## Step 1 — Configure Adobe Tags / Web SDK
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Per connected Adobe products | Per connected Adobe products |
+| 2 | Default consent | Web SDK extension → Consent [S4] | Pending | In |
+| 3 | Consent signal | Tags rule action / `setConsent` [S3] | Rule fired by Consenter choice | Opt-out only |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Adobe is a US enterprise; list the United States (18 U.S.C. § 2713 [S6]).
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+|---|---|---|
+| Processing purposes | Improve the service, Personalise the website, Support marketing analytics | Improve the service, Personalise the website, Support marketing analytics |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, Privacy choices | Browsing and interaction data, Device identifiers, Device characteristics |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | Per connected products | Per connected products |
+| Maximum storage duration | Per Adobe identity cookie documentation | Per Adobe identity cookie documentation |
+| Processing location | United States | United States |
+
+## Sources
+
+- [S1] Adobe Experience League — defaultConsent (Data Collection)
+- [S2] Adobe Experience League — defaultConsent (Web SDK)
+- [S3] Adobe Experience League — setConsent
+- [S4] Adobe Experience League — Consent configuration settings (Web SDK tag extension)
+- [S5] Adobe Experience League — Consent and identity in Data Collection
+- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://experienceleague.adobe.com/en/docs/experience-platform/collection/js/commands/configure/defaultconsent
+[S2]: https://experienceleague.adobe.com/zh-hans/docs/experience-platform/web-sdk/commands/configure/defaultconsent
+[S3]: https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/setconsent
+[S4]: https://experienceleague.adobe.com/en/docs/experience-platform/tags/extensions/client/web-sdk/configure/consent
+[S5]: https://experienceleague.adobe.com/en/docs/experience-platform/collection/identity/consent
+[S6]: https://www.law.cornell.edu/uscode/text/18/2713

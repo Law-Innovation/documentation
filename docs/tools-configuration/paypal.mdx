@@ -1,0 +1,67 @@
+---
+title: "PayPal"
+description: "How to configure PayPal at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for PayPal on a merchant website and how to reflect them in the Consenter Manager. Processing a payment the visitor has chosen is out of scope; the guide covers where the PayPal SDK is loaded beyond that and PayPal's analytics SDK.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** PayPal JavaScript SDK (buttons, Pay Later messaging) and the PayPal Insights SDK. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The JavaScript SDK renders the eligible PayPal and Pay Later buttons [S1]. PayPal and its service providers use cookies, web beacons and similar technologies when visitors interact with its services [S2]. The Insights SDK lets merchants share visitor activity on their website with PayPal, using the PayPal client ID as the analytics tag ID [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | SDK loaded only in checkout once the visitor selects PayPal. |
+| Configuration B — Medium risk | SDK with Pay Later messaging on product/cart pages, loaded after consent. |
+| Configuration C — Higher risk | As B, plus the Insights SDK sharing visitor activity with PayPal. |
+
+> ⚠ **Recommendation.** Whether loading the SDK in checkout (A) is strictly necessary for the payment the visitor requested is a legal assessment. Have your DPO confirm it before running A without a consent entry.
+
+## Step 1 — Configure PayPal
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features | Unlock additional website features; Support marketing analytics |
+| 2 | SDK components | SDK `components` parameter [S1] | `buttons` (checkout only) | `buttons`, `messages` | `buttons`, `messages` |
+| 3 | Loading | Theme / shop plugin | On PayPal selection in checkout | After Consenter consent | After Consenter consent |
+| 4 | Insights SDK | Insights SDK snippet [S3] | Off | Off | On |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** PayPal's EU services are provided by a Luxembourg entity of a US group; list the United States (18 U.S.C. § 2713 [S4]).
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
+|---|---|---|---|
+| Entry needed | Per DPO assessment (⚠) | Yes | Yes |
+| Processing purposes | Unlock additional website features | Unlock additional website features | Unlock additional website features, Support marketing analytics |
+| Tracking method | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) |
+| Identifier | Device identifiers | Device identifiers | Device identifiers |
+| Data categories | Device identifiers, Device characteristics, IP address, e-commerce Activity | Device identifiers, Device characteristics, IP address, Browsing and interaction data | Device identifiers, Device characteristics, IP address, Browsing and interaction data, e-commerce Activity |
+| Legal role of data recipient | Individual Controller | Individual Controller | Individual Controller |
+| Personalisation model | No personalisation | No personalisation | Group based (behaviour) |
+| Maximum storage duration | Per PayPal cookie statement [S2] | Per PayPal cookie statement [S2] | Per PayPal cookie statement [S2] |
+| Processing location | EU (Luxembourg) / United States | EU (Luxembourg) / United States | EU (Luxembourg) / United States |
+
+## Sources
+
+- [S1] PayPal Developer — JavaScript SDK reference
+- [S2] PayPal — Statement on Cookies and Tracking Technologies
+- [S3] PayPal Developer — Insights SDK overview
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://developer.paypal.com/docs/regional/th/checkout/reference/customize-sdk/
+[S2]: https://www.paypal.com/gb/webapps/mpp/ua/cookie-full
+[S3]: https://developer.paypal.com/limited-release/insights-sdk/overview
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

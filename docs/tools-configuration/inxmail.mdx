@@ -1,0 +1,55 @@
+---
+title: "Inxmail"
+description: "How to configure Inxmail at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Receive marketing offers, Support marketing analytics
+
+> This guide explains how to reflect Inxmail in the Consenter Manager. On the website itself, Inxmail is used for sign-up forms and web-tracking link parameters; its open and click tracking runs in emails and is governed by the newsletter consent, not the cookie banner. This guide therefore uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** Inxmail sign-up forms on the website and web-tracking parameters in mailing links (Inxmail GmbH, Freiburg, Germany). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Web-tracking parameters link newsletter clicks with clicks on the website; they are added to all links when enabled under **Configure web tracking** in the mailing settings [S1]. The parameters are evaluated by the website's analytics tool (e.g. Google Analytics, etracker, econda) [S2]. Person-based tracking in emails is controlled per recipient via the **Tracking permission** attribute [S3]. Inxmail states that recipients' consent is required for this processing [S4].
+
+## Step 1 — Implement Inxmail
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Receive marketing offers; Support marketing analytics (post-click) |
+| Sign-up form | Include the **Tracking Permission** element [S3] |
+| Web-tracking parameters | Enable only if the receiving analytics tool is itself covered by Consenter consent [S1][S2] |
+| Website cookies | Inxmail sets no website tracking cookie in this scope; post-click analysis happens in the analytics tool, which needs its own entry |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Entry needed | Optional — only to disclose form data processing | Website footprint limited to forms |
+| Processing purposes | Receive marketing offers | Newsletter |
+| Tracking method | No tracking | No website tracking cookie in scope |
+| Identifier | Direct identifier | Email address on sign-up |
+| Data categories | User-provided data, direct identifier | Form data |
+| Legal role of data recipient | Processor | Inxmail data processing agreement |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Until unsubscribe | — |
+| Processing location | Germany | German company; no CLOUD Act flag unless the DPA lists US sub-processors |
+
+## Sources
+
+- [S1] Inxmail Help — Configuring web tracking
+- [S2] Inxmail Help — Setting up web tracking (Advanced Template)
+- [S3] Inxmail Help — Adding the Tracking Permission element
+- [S4] Inxmail Help — GDPR-compliant tracking
+
+[S1]: https://help.inxmail.com/en/content/xnew/redaktion/web-tracking_konfigurieren.htm
+[S2]: https://help.inxmail.com/en/content/xpro/xpro_advanced_template/web_tracking_einrichten.htm
+[S3]: https://help.inxmail.com/en/content/xpro/element_tracking_permission_hinzufuegen.htm
+[S4]: https://help.inxmail.com/en/content/xcom/dsgvo/dsgvo_-_datenschutzkonformes_tracking.htm

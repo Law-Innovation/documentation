@@ -1,0 +1,69 @@
+---
+title: "DoubleVerify (incl. Meetrics)"
+description: "How to configure DoubleVerify (incl. Meetrics) at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Support marketing analytics
+
+> This guide explains how DoubleVerify ad verification is used on websites and how to reflect it in the Consenter Manager. It also covers the index entry "Meetrics", which DoubleVerify acquired in 2021 [S1].
+>
+> 1. Configure the third-party service.
+> 2. Map the configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configuration is a comparative example, not a guarantee of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** DoubleVerify (DV) verification tags that measure ad impressions (viewability, brand safety, invalid traffic) on a website, either deployed by the publisher or delivered with ads. DoubleVerify, Inc. is a US company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** DV states that its technology "does not leverage cookies and does not create profiles or audiences" and measures each ad impression individually without tracking user activity over time [S2]. Under DV's data privacy addendum, DV processes personal data as **processor** for the client, while the fraud-elimination part of the solutions is operated by DV as **controller**; DV's processing is limited to pseudonymous information [S3][S4].
+
+**Simplified format.** DV offers no privacy settings for the website operator. The guide uses a single fixed-behaviour configuration.
+
+**Consent.** Verification tags run in the visitor's browser alongside ads. Load publisher-side DV tags together with the advertising they measure, i.e. after advertising consent.
+
+## Step 1 — Configure DoubleVerify
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Support marketing analytics (ad measurement and verification) |
+| Cookies / profiles | None, per DV [S2] |
+| Roles | Processor; Controller for fraud elimination [S3] |
+| Loading | With advertising, after consent |
+| DPA | DV Data Privacy Addendum [S3] |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Support marketing analytics | Ad verification. |
+| Tracking method | No tracking | No cookies, no tracking over time [S2]. |
+| Identifier | IP address | Pseudonymous information for invalid-traffic detection [S4]. |
+| Data categories | IP address, Device characteristics, Browsing and interaction data | Impression context and device signals. |
+| Legal role of data recipient | Processor; Individual Controller for fraud elimination | [S3] Consider a second entry. |
+| Personalisation model | No personalisation | No profiles or audiences [S2]. |
+| Maximum storage duration | Not documented | — |
+| Processing location | United States | DoubleVerify, Inc. is subject to 18 U.S.C. § 2713 [S5]. |
+
+## Privacy-policy follow-up
+
+- DoubleVerify as processor and, for fraud detection, controller [S3]; ad verification; US transfer and potential access by US authorities [S5].
+
+## Verification checklist
+
+- [ ] DV tags load only with consented advertising.
+
+## Sources
+
+- [S1] AdExchanger — DoubleVerify acquires Meetrics
+- [S2] Business Wire — DoubleVerify awarded privacy certification seals (no cookies, no profiles)
+- [S3] DoubleVerify — Hosted DV Data Privacy Addendum (December 2025)
+- [S4] DoubleVerify — Hosted DV Data Privacy Addendum (December 2023)
+- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://www.adexchanger.com/platforms/doubleverify-acquires-an-eu-competitor-its-first-deal-since-going-public/
+[S2]: https://www.businesswire.com/news/home/20210720005162/en
+[S3]: https://doubleverify.com/hubfs/content/Hosted-DV-Data-Privacy-Agreement-December-2025.pdf
+[S4]: https://doubleverify.com/hubfs/content/Hosted-DV-Data-Privacy-Agreement-Dec-2023.pdf
+[S5]: https://www.law.cornell.edu/uscode/text/18/2713

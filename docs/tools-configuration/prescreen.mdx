@@ -1,0 +1,51 @@
+---
+title: "Prescreen"
+description: "How to configure Prescreen at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to reflect Prescreen (now part of XING / onlyfy) in the Consenter Manager. On the employer's website Prescreen appears as a job widget or a link to the hosted career page; the sources document no configurable privacy settings, so this guide uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** Prescreen e-recruiting (Prescreen International GmbH, Vienna, Austria; acquired by XING in 2017 [S1][S2]). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Prescreen operates the e-recruiting system where companies advertise vacancies and manage applications; the employer is responsible under data protection law [S2]. Prescreen uses session cookies and permanent cookies (e.g. to return to an application later) [S2].
+
+## Step 1 — Implement Prescreen
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Unlock additional website features (job listings, applications) |
+| Integration | Link to the hosted career page, or embedded job widget |
+| Loading | Plain link: no entry needed; embedded widget: after Consenter consent |
+| Contract | DPA with Prescreen / XING E-Recruiting |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Entry needed | Only for an embedded widget | Link sets nothing on your site |
+| Processing purposes | Unlock additional website features | Job listings |
+| Tracking method | Third party tracking (crosssession, cross-website) | Permanent cookies on Prescreen's domain [S2] |
+| Identifier | Device identifiers | Cookies [S2] |
+| Data categories | Browsing and interaction data, Device identifiers, User-provided data (applications) | [S2] |
+| Legal role of data recipient | Processor | Employer is responsible [S2] |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Per Prescreen cookie information | Not documented |
+| Processing location | Austria / Germany | Austrian company in the German New Work group; no CLOUD Act flag unless US sub-processors |
+
+## Sources
+
+- [S1] XING — Press release on the Prescreen acquisition
+- [S2] onlyfy — Information about data processing (Prescreen)
+
+[S1]: https://www.presseportal.de/download/document/5b9628db4700007a590970bd-xing-pm-kandidaten-inklusive-xing-und-prescreen-beschleunigen-recruiting.pdf
+[S2]: https://hauptverband.onlyfy.jobs/policy

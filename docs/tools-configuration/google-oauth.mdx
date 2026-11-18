@@ -1,0 +1,100 @@
+---
+title: "Google OAuth (Sign in with Google)"
+description: "How to configure Google OAuth (Sign in with Google) at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for Sign in with Google and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** This guide covers **Sign in with Google** for websites, built on the Google Identity Services (GIS) JavaScript library (`accounts.google.com/gsi/client`): the personalised button, One Tap and automatic sign-in [S1][S2]. Server-side OAuth authorisation for access to Google APIs is out of scope. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The library renders the button and One Tap prompt in iframes served from `accounts.google.com` [S2]. When the visitor signs in, Google returns an ID token to the site. GIS integrates the browser's Federated Credential Management (FedCM) API as a privacy-preserving alternative to third-party cookies [S1]. Without FedCM, the signed-out state used to prevent automatic sign-in loops is stored in a cookie (`g_state`) [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Button only, on the login page, loaded after consent; FedCM enabled; no One Tap, no automatic sign-in. |
+| Configuration B — Medium risk | One Tap prompt and automatic sign-in (`data-auto_select="true"`) on all pages, loaded after consent. |
+
+**Consent.** Loading the library contacts Google's account domain in the visitor's browser before any sign-in decision. Load it only after consent (or on an explicit click on a placeholder button), so that Google is not contacted for visitors who do not use the sign-in.
+
+| Action | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|
+| Where the library loads | Login page only | Every page |
+| One Tap / automatic sign-in | Off | On |
+| FedCM | Enabled | Enabled |
+| Consenter Manager entries | One entry (Google as Individual Controller) | One entry (Google as Individual Controller) |
+
+## Step 1 — Configure Sign in with Google
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features (account sign-in) | Same |
+| 2 | Library loading | `<script src="https://accounts.google.com/gsi/client" async>` on pages where sign-in is offered [S2] | Login page only, after consent | All pages, after consent |
+| 3 | One Tap | `g_id_onload` element / `google.accounts.id.prompt()` | Not used | Used |
+| 4 | Automatic sign-in | `data-auto_select="true"` [S3] | Off | On |
+| 5 | Sign-out handling | `g_id_signout` class or `google.accounts.id.disableAutoSelect()` [S3] | Not needed | Required |
+| 6 | FedCM | `use_fedcm_for_prompt` / FedCM migration settings [S1] | Enabled | Enabled |
+| 7 | Consent screen privacy policy link | Google Cloud console > OAuth consent screen > **Application Privacy Policy link** [S2] | Set | Set |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Google LLC is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S4].
+
+### Configuration A — Lower risk
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Sign-in with an existing Google account. |
+| Tracking method | No tracking | No identifier is set by the site's integration when FedCM is used [S1]. |
+| Identifier | IP address, Authentication-derived identifiers | IP address on loading; ID token after sign-in. |
+| Data categories | IP address, Device characteristics, Authentication-derived identifiers, direct identifier | The ID token contains the Google account identifier and, depending on scopes, name and email address. |
+| Legal role of data recipient | Individual Controller | Google operates the Google account and authenticates the user on its own terms. |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Not documented | Google account data is retained under Google's own policies. |
+| Processing location | United States as potential processing and access location | See note above. |
+
+### Configuration B — Medium risk
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features | As A. |
+| Tracking method | Third party tracking (crosssession, cross-website) | On every page, Google's account domain recognises signed-in Google users to show One Tap; without FedCM the `g_state` cookie is used [S3]. |
+| Identifier | IP address, Authentication-derived identifiers | As A. |
+| Data categories | IP address, Device characteristics, Authentication-derived identifiers, direct identifier, Browsing and interaction data | Google learns on which pages the prompt is shown. |
+| Legal role of data recipient | Individual Controller | As A. |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Not documented | — |
+| Processing location | United States as potential processing and access location | See note above. |
+
+## Privacy-policy follow-up
+
+- Google as independent controller for the Google account; data exchanged at sign-in; One Tap and automatic sign-in (B); US transfer and potential access by US authorities [S4].
+
+## Verification checklist
+
+- [ ] No request to `accounts.google.com/gsi` before consent (or before the click).
+- [ ] A: library only on the login page; no One Tap prompt.
+- [ ] B: sign-out disables automatic sign-in [S3].
+
+## Sources
+
+- [S1] Google for Developers — Google Identity Services overview (One Tap / FedCM)
+- [S2] Google for Developers — Get your Google API client ID (library loading and consent screen settings)
+- [S3] Google for Developers — Automatic sign-in and sign-out
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://developers.google.com/identity/one-tap/web/
+[S2]: https://developers.google.com/identity/one-tap/web/guides/get-google-api-clientid
+[S3]: https://developers.google.com/identity/gsi/web/guides/subdomains
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

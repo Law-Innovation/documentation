@@ -1,0 +1,64 @@
+---
+title: "Pipedrive"
+description: "How to configure Pipedrive at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for Pipedrive's website lead-generation features and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Pipedrive Chatbot, Web Forms and the paid Web Visitors add-on. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Chatbot and embedded Web Forms load a single Cloudflare cookie, `__cf_bm` (third-party, 1 hour, bot protection), and a tracking script that records events (web form ID, embedded flag, URL, interaction type) for engagement statistics; this script is always used with these features [S1]. Web Visitors is powered by Dealfront (Leadfeeder) and sets `_lfa` and `_lfa_expiry`; Dealfront's consent manager creates `_lfa_consent` [S1]. Web Visitors collects data via Leadfeeder's AWS infrastructure and shows only company visits [S2]. Chatbot and Web Forms do not detect or respond to CMP signals; Pipedrive states that consent may be required and that the operator must prevent the scripts from loading until consent [S1].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Web Forms and/or Chatbot; loaded after consent. |
+| Configuration B — Higher risk | As A, plus Web Visitors (Dealfront) tracking; after consent. |
+
+**No configuration without prior consent.** Pipedrive's scripts always include event tracking [S1].
+
+## Step 1 — Configure Pipedrive
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features; Support marketing analytics |
+| 2 | Chatbot / Web Forms | LeadBooster settings | Embedded; loaded after consent | Embedded; loaded after consent |
+| 3 | Web Visitors | Add-on; Dealfront tracking script [S1][S2] | Not used | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Check Pipedrive's DPA for hosting regions. Cloudflare (`__cf_bm`) and AWS (Web Visitors) are US enterprises subject to 18 U.S.C. § 2713 [S3]; list the United States.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Unlock additional website features, Support marketing analytics |
+| Tracking method | Third party tracking (single session, cross-website) | First party tracking (cross-session) |
+| Identifier | No identifier | Device identifiers, IP address |
+| Data categories | Browsing and interaction data, User-provided data | Browsing and interaction data, Device identifiers, IP address, User-provided data |
+| Legal role of data recipient | Processor | Processor (Pipedrive); see Leadfeeder guide for Dealfront |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | 1 hour (`__cf_bm`) | Per Dealfront settings |
+| Processing location | Per DPA; United States | Per DPA; United States |
+
+**Basis.** Cookies and event tracking [S1]; Web Visitors [S2]. The third-party single-session mapping in A reflects the 1-hour Cloudflare cookie on Pipedrive's domain [S1]. For Web Visitors, also apply the separate Leadfeeder guide.
+
+## Sources
+
+- [S1] Pipedrive Knowledge Base — Chatbot, Web Forms and Web Visitors cookies and other tracking technologies
+- [S2] Pipedrive Knowledge Base — Web Visitors and GDPR
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://support.pipedrive.com/en/article/leadbooster-cookies
+[S2]: https://support.pipedrive.com/hc/en/articles/360012851458
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

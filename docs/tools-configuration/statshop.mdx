@@ -1,0 +1,59 @@
+---
+title: "Statshop (Web2Roi)"
+description: "How to configure Statshop (Web2Roi) at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for Statshop and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Statshop audience measurement tag, published by Web2Roi. Servers are in France, maintained by OVH [S1]. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** By default, Statshop is configured for the consent exemption: one first-party cookie; anonymised IPs; page audience aggregated hourly; device, browser and screen size, referrer domain, time on page, bounce rate and scroll depth aggregated daily [S1]. Exempt mode disables third-party ad-platform imports, non-aggregated exports, individual visitor paths and the `usid` user identifier [S1]. A **"with consent" version** lifts these restrictions [S1]. Web2Roi acts as processor and does not share data with third parties [S1].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk (⚠ no-consent) | Default exempt mode. |
+| Configuration B — Higher risk | "With consent" version: `usid`, ad-platform imports, individual paths; after consent. |
+
+> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement cookies as exempt only under strict conditions [S2]. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run A without consent only after review by your DPO or independent counsel.
+
+## Step 1 — Configure Statshop
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk (⚠ no-consent) | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics |
+| 2 | Version | Statshop Manager [S1] | Exempt (default) | With consent |
+| 3 | `usid` | Tag parameter, only with consent [S1] | Not set | Set after consent |
+| 4 | Opt-out | CMP or page calling `window._optimusConsent.statshop = consent` [S1] | Provide | Consent withdrawal |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Lower risk (⚠ no-consent) | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Improve the service | Improve the service, Support marketing analytics |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers, Authentication-derived identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, IP address anonymised | As A, plus Authentication-derived identifiers, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | Not documented | Not documented |
+| Processing location | France (OVH) | France (OVH) |
+
+## Sources
+
+- [S1] CNIL — Statshop user guide: audience measurement consent exemption
+- [S2] CNIL — Cookies: solutions pour les outils de mesure d'audience (4 July 2025)
+
+[S1]: https://Cnil.fr/sites/cnil/files/atoms/files/guide_utilisateur_exempt_final.pdf
+[S2]: https://cnil.fr/fr/node/167364

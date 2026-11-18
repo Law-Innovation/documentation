@@ -1,0 +1,74 @@
+---
+title: "VWO (Visual Website Optimizer)"
+description: "How to configure VWO (Visual Website Optimizer) at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Personalise the website
+
+> This guide explains how to implement different privacy configurations for VWO and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** VWO SmartCode for testing, personalisation and VWO Insights (heatmaps, session recordings). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** VWO stores a pseudonymised UUID per visitor [S1]. By default, the last octet of IPv4 (or last five segments of IPv6) addresses is anonymised before storage; stricter formats or disabling IP storage are configurable [S2][S3]. Customers can opt for **EU data residency**; the EU data centre is in Belgium (`europe-west1`) [S4][S5]. SmartCode can run conditionally on the visitor's cookie consent via callbacks [S6]. VWO acts as processor [S7].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Testing only; IP storage disabled; EU data residency; SmartCode after consent. |
+| Configuration B — Higher risk | Testing, personalisation and VWO Insights session recordings; default IP anonymisation; after consent. |
+
+**No configuration without prior consent.** VWO stores a UUID [S1] and recommends consent before tracking [S1][S6].
+
+## Step 1 — Configure VWO
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website |
+| 2 | Consent | SmartCode cookie-consent configuration [S6] | After consent | After consent |
+| 3 | IP address settings | Privacy settings [S2][S3] | Do not store IP | Default (last octet) |
+| 4 | Data residency | Via Customer Success Manager [S5] | EU | EU or default |
+| 5 | Session recordings | VWO Insights | Off | On (with masking) |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Belgium (`europe-west1`) for EU residency [S4]; the region name indicates Google Cloud, a US provider subject to 18 U.S.C. § 2713 [S8]. List the United States as a potential access location.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Improve the service | Improve the service, Personalise the website |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers | Browsing and interaction data, Device characteristics, Device identifiers, IP address anonymised, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | Group based (behaviour) |
+| Maximum storage duration | Per account retention | Per account retention |
+| Processing location | EU (Belgium); United States as potential access location | Same, or per residency choice |
+
+## Sources
+
+- [S1] VWO Blog — Prioritising data privacy in your experimentation programme
+- [S2] VWO Help — VWO updates for privacy and protection compliance
+- [S3] VWO Help — IP address anonymisation formats
+- [S4] Acquia — Conversion Optimization powered by VWO: product privacy notice (EU data centre)
+- [S5] VWO Product Updates — EU data centre
+- [S6] VWO Help — Cookie consent and VWO's adherence
+- [S7] VWO — Compliance guide for session recordings (VWO as data processor)
+- [S8] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://vwo.com/blog/prioritizing-data-privacy-in-your-experimentation-program
+[S2]: https://help.vwo.com/hc/en-us/articles/360035082493
+[S3]: https://help.vwo.com/hc/en-us/articles/360021116134
+[S4]: https://docs.acquia.com/md/conversion-optimization/conversion-optimization-powered-vwo-product-privacy-notice
+[S5]: https://vwo.com/product-updates/wp-json/wp/v2/posts/1241
+[S6]: https://help.vwo.com/hc/en-us/articles/4402914753817-Cookie-Consent-and-VWO-s-Adherence
+[S7]: https://vwo.com/compliance/compliance-session-recordings/
+[S8]: https://www.law.cornell.edu/uscode/text/18/2713

@@ -1,0 +1,67 @@
+---
+title: "MaxMind GeoIP"
+description: "How to configure MaxMind GeoIP at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Personalise the website
+
+> This guide explains how to implement different privacy configurations for MaxMind GeoIP lookups and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** GeoIP databases (server-side) and the GeoIP JavaScript client (browser-side). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** MaxMind provides binary databases and client APIs for local IP lookups [S1]. The JavaScript client lets sites use GeoIP web services from the browser; the script must be served from MaxMind's servers (`geoip-js.com`) [S2]. MaxMind recommends server-side integration over the JavaScript client [S3]. Data collected via the JavaScript client is covered by MaxMind's privacy policy [S4].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | GeoIP database queried on your own server; no request from the browser to MaxMind. |
+| Configuration B — Medium risk | GeoIP JavaScript client loaded from `geoip-js.com` after Consenter consent. |
+
+> ⚠ **Recommendation.** A uses the IP address only on your own server and sets nothing on the device; whether it needs a banner entry depends on what you do with the location. Have your DPO confirm the legal basis.
+
+## Step 1 — Configure MaxMind
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Personalise the website | Personalise the website |
+| 2 | Integration | MaxMind account | Downloaded database, server-side lookup [S1] | JavaScript client, registered domains [S2] |
+| 3 | Loading | Front-end | — | After Consenter consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** MaxMind is a US enterprise; list the United States for B (18 U.S.C. § 2713 [S5]).
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|
+| Entry needed | Per DPO assessment (⚠) | Yes |
+| Processing purposes | Personalise the website | Personalise the website |
+| Tracking method | No tracking | No tracking |
+| Identifier | IP address | IP address |
+| Data categories | IP address, Non-precise location data | IP address, Non-precise location data |
+| Legal role of data recipient | Self-hosted | Individual Controller |
+| Personalisation model | Group based (properties) | Group based (properties) |
+| Maximum storage duration | Your log retention | Per MaxMind privacy policy [S4] |
+| Processing location | Your hosting location | United States |
+
+## Sources
+
+- [S1] MaxMind Dev — GeoLite databases and web services
+- [S2] MaxMind Dev — Geolocate an IP address with the client-side JavaScript
+- [S3] MaxMind Dev — GeoIP2 JavaScript Client API (usage notice)
+- [S4] GeoIP2 JavaScript Client API domain notice
+- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://dev.maxmind.com/geoip/geoip2/geolite2/
+[S2]: https://dev.maxmind.com/geoip/geolocate-an-ip/client-side-javascript
+[S3]: https://dev.maxmind.com/geoip/geoip2/javascript
+[S4]: https://geoip-js.com/
+[S5]: https://www.law.cornell.edu/uscode/text/18/2713

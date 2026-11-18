@@ -1,0 +1,61 @@
+---
+title: "Yumpu"
+description: "How to configure Yumpu at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for Yumpu publications on a website and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Yumpu flip-book publications (i-Magazine AG, Switzerland [S1]) linked or embedded. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** A website operator documents that the Yumpu embed sets a broad range of cookies, including Yumpu's own (`ypsession`, `yumpu_slc`) and cookies associated with Google Analytics and Ads, Meta, Microsoft Clarity and Bing, LinkedIn and others, with retention up to 2 years [S2]. Yumpu's privacy policy is written under the GDPR and the Swiss DSG [S1].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Link to the publication on Yumpu; no embed. |
+| Configuration B — Higher risk | Embedded Yumpu reader loaded after Consenter consent / click-to-load. |
+
+## Step 1 — Configure Yumpu
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — | Unlock additional website features |
+| 2 | Integration | Website code | Link | Yumpu embed code |
+| 3 | Loading | Consenter script blocking / click-to-load | — | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Switzerland (adequacy decision); the embed loads US advertising and analytics vendors [S2], subject to 18 U.S.C. § 2713 [S3]; list the United States.
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Higher risk |
+|---|---|---|
+| Entry needed | No | Yes |
+| Processing purposes | — | Unlock additional website features |
+| Tracking method | No tracking | Third party tracking (crosssession, cross-website) |
+| Identifier | No identifier | Device identifiers |
+| Data categories | — | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Users' profiles |
+| Legal role of data recipient | — | Individual Controller |
+| Personalisation model | — | Profile based (embedded ad vendors) |
+| Maximum storage duration | — | Up to 2 years [S2] |
+| Processing location | — | Switzerland; United States |
+
+## Sources
+
+- [S1] Yumpu — Privacy policy (i-Magazine AG)
+- [S2] Kölner Philharmonie — Cookie information for Yumpu embed
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://www.yumpu.com/es/info/privacy_policy
+[S2]: https://koelner-philharmonie.de/en/programm/glanzend/4945
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

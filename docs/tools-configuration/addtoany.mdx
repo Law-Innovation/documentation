@@ -1,0 +1,64 @@
+---
+title: "AddToAny"
+description: "How to configure AddToAny at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for AddToAny share buttons and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** AddToAny share buttons (script from `static.addtoany.com` [S1]). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** AddToAny states that it does not use unique user identifiers on sites across the web, that it uses HTTP cookies on its own domain only, and that server log data is used for administration and general operation [S2]. Optional "official" buttons (e.g. Facebook Like, Pinterest Save, LinkedIn Share) are third-party widgets loaded from the respective networks [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | AddToAny standard buttons only; no official third-party buttons. |
+| Configuration B — Higher risk | AddToAny with official network buttons (Facebook Like, Pinterest Save, LinkedIn Share); after consent. |
+
+> ⚠ **Recommendation — Configuration A without consent.** AddToAny's script still loads from its server and transmits the IP address [S2]. AddToAny states it sets no cross-site identifiers [S2], but verify in the browser that no cookie is set on page load. Load it without consent only if your DPO or independent counsel confirms this; otherwise gate it behind Consenter.
+
+## Step 1 — Configure AddToAny
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
+| 2 | Official network buttons | AddToAny button settings [S3] | Off | On |
+| 3 | Loading | Consenter script blocking | See ⚠ recommendation | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** AddToAny is US-based (18 U.S.C. § 2713 [S4]); list the United States. In B, also add entries for each network whose official button is loaded (e.g. Meta, Pinterest, LinkedIn).
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Unlock additional website features |
+| Tracking method | Third party tracking (single session, cross-website) | Third party tracking (crosssession, cross-website) |
+| Identifier | IP address | Device identifiers, IP address |
+| Data categories | IP address, Device characteristics | IP address, Device characteristics, Device identifiers, Social media interaction data |
+| Legal role of data recipient | Processor | Processor (AddToAny); networks as Joint Controller |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | — | Per network |
+| Processing location | United States | United States |
+
+## Sources
+
+- [S1] AddToAny — FAQ (`static.addtoany.com`)
+- [S2] AddToAny — Privacy Policy
+- [S3] WordPress.org — AddToAny Share Buttons (official buttons)
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://www.addtoany.com/buttons/faq/
+[S2]: https://addtoany.com/privacy
+[S3]: https://pluginsdb.com/plugins/add-to-any
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

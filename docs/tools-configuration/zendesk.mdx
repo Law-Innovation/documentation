@@ -1,0 +1,63 @@
+---
+title: "Zendesk"
+description: "How to configure Zendesk at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for the Zendesk messaging Web Widget and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Zendesk messaging Web Widget and Web Widget (Classic). Zendesk, Inc. is a US company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The messaging Web Widget uses cookies and local and session storage, grouped into essential, functional and analytics categories; by default it stores all three [S1]. `zE('messenger:set', 'cookies', range)` tells the widget which categories it may use: `"all"` when the user opted in to all cookies, `"none"` when the user opted out, in which case the widget is unable to use any of these storage options [S1]. The widgets use `ZD-suid` (session ID) and `ZD-buid` (device ID) [S2].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Widget loaded after Consenter consent with `cookies` set to the categories consented to (functional, no analytics). |
+| Configuration B — Higher risk (default behaviour) | Widget loaded after consent with `cookies: "all"`; authenticated visitors. |
+
+> ⚠ **Recommendation — widget without storage before consent.** Setting `cookies` to `"none"` prevents storage [S1], but the widget still loads from Zendesk and transmits the IP address and page data. Whether this may run without consent depends on the GDPR legal basis for the chat; have your DPO or independent counsel review before loading the widget before consent.
+
+## Step 1 — Configure Zendesk
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
+| 2 | Cookie range | `zE('messenger:set', 'cookies', …)` [S1] | Consented categories only (no analytics) | `"all"` |
+| 3 | Loading | Consenter script blocking | After consent | After consent |
+| 4 | Authenticated visitors | JWT sign-in for messaging | Off | On |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Zendesk is a US enterprise subject to 18 U.S.C. § 2713 [S3]; list the United States, plus the data-locality region in your Zendesk contract.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Unlock additional website features |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, IP address, User-provided data | As A, plus Device characteristics, Authentication-derived identifiers |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | Per Zendesk In-Product Cookie Policy | Per Zendesk In-Product Cookie Policy |
+| Processing location | Contract region; United States | Contract region; United States |
+
+## Sources
+
+- [S1] Zendesk Developer Docs — Web Widget SDK API reference (set cookies)
+- [S2] Zendesk Support — Cookies used by Web Widget (Classic) and Web Widget
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://developer.zendesk.com/documentation/zendesk-web-widget-sdks/sdks/web/sdk_api_reference/
+[S2]: https://support.zendesk.com/hc/en-us/articles/5742080105626
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

@@ -1,0 +1,86 @@
+---
+title: "Fullstory"
+description: "How to configure Fullstory at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service
+
+> This guide explains how to implement different privacy configurations for Fullstory and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Fullstory browser snippet (`fs.js`) for session replay and digital experience analytics. Fullstory, Inc. is a US company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** `fs.js` attaches listeners to browser events to recreate sessions [S1]. The first-party `fs_uid` cookie (1 year) groups sessions for anonymous users and tracks the user across sessions and pages; `fs_cid` (1 year) stores the consent state [S2]. Capture can be delayed until consent with `_fs_capture_on_startup = false` and started with `FS('start')` [S3]. Fullstory's default is to capture (unmask) content, unless the account uses **Private by Default**, where text is masked unless explicitly unmasked [S4]. Calling `FS('setIdentity', { uid, … })` links sessions to a known user [S3].
+
+**Legal role.** Fullstory is controller only for its own domains [S5]; for customer sites it acts as processor under its DPA.
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Private by Default; anonymous users only; capture starts after consent. |
+| Configuration B — Higher risk | Standard capture (unmask by default, blocklist with `.fs-mask` / `.fs-exclude`); `setIdentity` with user ID and email; capture after consent. |
+
+**No configuration without prior consent.** `fs_uid` persists for a year [S2]; no consent-free configuration is documented.
+
+## Step 1 — Configure Fullstory
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
+| 2 | Capture start | `window['_fs_capture_on_startup'] = false` before the snippet; `FS('start')` in the Consenter callback [S3] | After consent | After consent |
+| 3 | Privacy mode | Private by Default (onboarding or via Fullstory Support) [S4] | Private by Default | Standard (blocklist) |
+| 4 | Element rules | Settings > Data Capture and Privacy > Privacy (`.fs-exclude`, `.fs-mask`, `.fs-unmask`) [S4] | Unmask only non-personal elements | Mask/exclude sensitive elements |
+| 5 | User identification | `FS('setIdentity', { uid, properties })` [S3] | Not used | Used (user ID, display name, email) |
+| 6 | Data region | Account data centre (EU option) | EU | EU or US |
+| 7 | Withdrawal | `FS('shutdown')` on withdrawal [S3] | Configure | Configure |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Fullstory, Inc. is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S6]. The United States is listed as a potential processing and access location in all configurations.
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Improve the service | Improve the service |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers, IP address | Device identifiers, IP address, Authentication-derived identifiers, Direct identifier |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address | Browsing and interaction data, Device characteristics, Device identifiers, IP address, User-provided data, direct identifier, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | Cookie 1 year [S2]; data per contract | Cookie 1 year [S2]; data per contract |
+| Processing location | EU data centre; United States as potential access location | EU or US data centre; United States as potential access location |
+
+**Basis.** `fs_uid` grouping sessions and tracking across sessions [S1][S2]; identification merges sessions with the provided user ID and properties [S3]; unmasked capture in standard mode exposes on-page content including user-entered data [S4].
+
+## Privacy-policy follow-up
+
+- Fullstory as processor; session replay; cookies `fs_uid`, `fs_cid` [S2]; masking mode; identification (B); data centre; US provider and potential access by US authorities [S6].
+
+## Verification checklist
+
+- [ ] No `fs.js` capture or `fs_uid` before consent [S3].
+- [ ] Replays reviewed for unmasked personal data [S4].
+- [ ] `FS('shutdown')` on withdrawal.
+
+## Sources
+
+- [S1] Fullstory Help — How does Fullstory capture data to recreate my users' experience?
+- [S2] Fullstory Help — Why Fullstory uses first-party cookies
+- [S3] Fullstory Developer Docs — User consent / capture elements with consent
+- [S4] Fullstory Help — How do I protect my users' privacy in Fullstory?
+- [S5] Fullstory Help — Fullstory as controller for its own domains
+- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://help.fullstory.com/hc/en-us/articles/360032975773
+[S2]: https://help.fullstory.com/hc/en-us/articles/360020829513
+[S3]: https://developer.fullstory.com/consent
+[S4]: https://help.fullstory.com/hc/en-us/articles/360020623574
+[S5]: https://help.fullstory.com/hc/en-us/articles/360020828153
+[S6]: https://www.law.cornell.edu/uscode/text/18/2713

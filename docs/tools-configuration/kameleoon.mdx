@@ -1,0 +1,65 @@
+---
+title: "Kameleoon"
+description: "How to configure Kameleoon at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Personalise the website
+
+> This guide explains how to implement different privacy configurations for Kameleoon and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Kameleoon web experimentation and personalisation (JavaScript tag). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Kameleoon stores the `kameleoonVisitorCode` identifier [S1]. The consent management policy is set in **Admin > Projects** [S2]. With **Consent required**, Kameleoon starts in **restricted mode** and switches to normal mode when `Kameleoon.API.Core.enableLegalConsent()` is called, remembering the choice for the visitor [S3]. Consent can be granted separately for `AB_TESTING` and `PERSONALIZATION` [S4]. For certain rule types, Kameleoon recommends classifying Kameleoon as a "strictly necessary cookie" so that they run without consent [S5].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Consent required; `enableLegalConsent("AB_TESTING")` only. |
+| Configuration B — Higher risk | Consent required; `enableLegalConsent("BOTH")` (testing and personalisation). |
+
+> ⚠ **Recommendation — "strictly necessary" classification is legally uncertain.** Kameleoon's suggestion to run some rules as strictly necessary [S5] has no basis in this guide's sources for German or EU law. Do not classify Kameleoon as strictly necessary without review by your DPO or independent counsel.
+
+## Step 1 — Configure Kameleoon
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website |
+| 2 | Consent management policy | **Admin > Projects** [S2] | Consent required | Consent required |
+| 3 | Consent signal | `enableLegalConsent(type)` / `disableLegalConsent(type)` [S3][S4] | `AB_TESTING` | `BOTH` |
+| 4 | Loading | Tag in restricted mode until consent; or Consenter blocking | Restricted until consent | Restricted until consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Improve the service | Improve the service, Personalise the website |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers | As A, plus Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | Group based (behaviour) |
+| Maximum storage duration | Not documented | Not documented |
+| Processing location | Per DPA | Per DPA |
+
+## Sources
+
+- [S1] Kameleoon Docs — Data collection client-side (`kameleoonVisitorCode`)
+- [S2] Kameleoon Help — Consent management policy
+- [S3] Kameleoon Developers — Legal consent
+- [S4] Kameleoon Help — Didomi integration (`AB_TESTING`, `PERSONALIZATION`)
+- [S5] Kameleoon Docs — Consent management policy (strictly necessary recommendation)
+
+[S1]: https://docs.kameleoon.com/developer-docs/privacy-and-compliance/data-collection-client-side.md
+[S2]: https://help.kameleoon.com/project-management/consent-management-policy
+[S3]: https://developers.kameleoon.com/legal-consent.html
+[S4]: https://help.kameleoon.com/integrations/as-a-source/cmp/didomi
+[S5]: https://docs.kameleoon.com/user-manual/project-management/consent-management-policy

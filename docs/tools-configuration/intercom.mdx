@@ -1,0 +1,70 @@
+---
+title: "Intercom"
+description: "How to configure Intercom at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features, Receive marketing offers
+
+> This guide explains how to implement different privacy configurations for the Intercom Messenger and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Intercom Messenger (including Fin) on the website. Intercom, Inc. is a US company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The Messenger sets `intercom-id-[app_id]` (anonymous visitor identifier, 9 months), `intercom-session-[app_id]` (1 week) and `intercom-device-id-[app_id]` (270 days, refreshed on each ping) [S1][S2]. The cookies are unique to the customer's domain and cannot be read by Intercom on other sites [S3]. Intercom documents booting the Messenger with `disabled: true` and calling `Intercom('boot', { disabled: false })` once consent is given [S3]. Intercom offers EU data hosting in Dublin; `app.eu.intercom.com` indicates EU hosting [S4].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Messenger for anonymous visitors after consent; EU data hosting. |
+| Configuration B — Higher risk | Messenger with identified users (user ID, email via `boot`), outbound messages and product tours; US hosting. |
+
+**No configuration without prior consent.** The 9-month visitor cookie is set regardless of whether the visitor interacts with the Messenger [S5].
+
+## Step 1 — Configure Intercom
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features; Receive marketing offers |
+| 2 | Consent handling | `intercomSettings.disabled` / `Intercom('boot', …)` [S3] | Boot after Consenter consent | Boot after Consenter consent |
+| 3 | User identification | `boot` with `user_id` / `email` | Not passed | Passed |
+| 4 | Data hosting | Workspace region [S4] | EU (Dublin) | US |
+| 5 | Outbound messages | Intercom Outbound | Off | On |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Intercom is a US enterprise subject to 18 U.S.C. § 2713 [S6]; list the United States in all configurations.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Unlock additional website features, Receive marketing offers |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers, Authentication-derived identifiers, Direct identifier |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, User-provided data | As A, plus Authentication-derived identifiers, direct identifier, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | Profile based |
+| Maximum storage duration | 9 months | 9 months |
+| Processing location | EU; United States | United States |
+
+## Sources
+
+- [S1] Intercom Help — Intercom Messenger cookies
+- [S2] Fin Help — Fin Messenger cookies (`intercom-device-id`)
+- [S3] Intercom Help — Messenger cookies and consent (`disabled`, `boot`)
+- [S4] Consently — Is Intercom GDPR compliant (EU hosting)
+- [S5] Intercom — Product Privacy Notice
+- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://intercom.com/help/en/articles/2361922
+[S2]: https://fin.ai/help/en/articles/15000735-fin-messenger-cookies
+[S3]: https://www.intercom.com/help/pricing-privacy-and-terms/intercom-messenger-cookies
+[S4]: https://consently.net/blog/is-intercom-gdpr-compliant
+[S5]: https://www.intercom.com/legal/product-privacy-notice
+[S6]: https://www.law.cornell.edu/uscode/text/18/2713

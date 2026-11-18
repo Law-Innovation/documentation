@@ -1,0 +1,96 @@
+---
+title: "Google Forms"
+description: "How to configure Google Forms at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for Google Forms embedded in a website and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** A Google Form embedded on a website (iframe from `docs.google.com/forms`) or linked from it. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The form is rendered by Google and responses are stored in the form owner's Google account. For **Google Workspace** customers, Google Forms is part of the Workspace services; Customer Data is processed under the Cloud Data Processing Addendum, and Workspace In-Scope Editions can select a data region for Forms data at rest ("text, embedded images, responses and draft responses") [S1][S2]. A form created with a personal (consumer) Google account is not covered by these terms.
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Form owned by a Google Workspace account (Cloud Data Processing Addendum applies), Europe data region selected, email collection off, linked or embedded after consent. |
+| Configuration B — Higher risk | Form owned by a personal Google account, embedded on page load after consent, email collection on. |
+
+**Consent.** The embedded iframe loads from a Google domain where the visitor may already have Google cookies. Load the iframe only after consent, or link to the form instead.
+
+| Action | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Account type | Google Workspace | Personal Google account |
+| Data region (Forms at rest) | Europe | Not available |
+| Collect email addresses | Off | On |
+| Embedding | Link, or iframe after consent | Iframe after consent |
+| Consenter Manager entries | One entry (Google as Processor) | One entry (Google as Individual Controller) |
+
+## Step 1 — Configure Google Forms
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features (form submission) | Same |
+| 2 | Account type and contract | Google Workspace subscription with Cloud Data Processing Addendum [S2] | Workspace | Personal account |
+| 3 | Data region | Google Admin console > Data regions (In-Scope Editions only) [S1] | Europe | — |
+| 4 | Collect email addresses | Form **Settings > Responses > Collect email addresses** | Off | On |
+| 5 | Embedding | Website code | Link, or iframe blocked until consent | Iframe blocked until consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Data not covered by the Data Regions Policy may be processed wherever Google or its subprocessors maintain facilities [S1]. Google LLC is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S3].
+
+### Configuration A — Medium risk
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Form submission. |
+| Tracking method | No tracking | No tracking by the form owner. |
+| Identifier | IP address | Transmitted when the iframe loads. |
+| Data categories | IP address, Device characteristics, User-provided data | Form responses [S1]. Add "direct identifier" if the form asks for names or email addresses. |
+| Legal role of data recipient | Processor | Cloud Data Processing Addendum for Workspace Customer Data [S2]. |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Until deleted by the form owner | Responses remain until deleted. |
+| Processing location | Europe (data at rest); United States as potential processing and access location | [S1][S3] |
+
+### Configuration B — Higher risk
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features | As A. |
+| Tracking method | No tracking | Re-assess if Google cookies are read in the iframe for signed-in visitors. |
+| Identifier | IP address, Direct identifier | Email collection on. |
+| Data categories | IP address, Device characteristics, User-provided data, direct identifier | — |
+| Legal role of data recipient | Individual Controller | No processing terms for personal accounts. |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Until deleted by the form owner | — |
+| Processing location | United States as potential processing and access location | [S3] |
+
+## Privacy-policy follow-up
+
+- Google as processor (A) or controller (B); data collected in the form; data region; US transfer and potential access by US authorities [S3].
+
+## Verification checklist
+
+- [ ] No request to `docs.google.com` before consent (if embedded).
+- [ ] Form owned by the Workspace account (A); data region set [S1].
+
+## Sources
+
+- [S1] Google Workspace Service Specific Terms (Data Regions)
+- [S2] Cloud Data Processing Addendum (Customers)
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://workspace.google.com/terms/service-terms
+[S2]: https://workspace.google.com/intl/af/terms/dpa_terms.html
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

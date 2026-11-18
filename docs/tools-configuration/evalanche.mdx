@@ -1,0 +1,51 @@
+---
+title: "Evalanche"
+description: "How to configure Evalanche at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Receive marketing offers, Receive personalised marketing offers
+
+> This guide explains how to reflect Evalanche in the Consenter Manager. SC-Networks does not publish technical details of Evalanche's website tracking, so this guide uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** Evalanche marketing automation by SC-Networks GmbH, Starnberg, Germany [S1]: forms and, where used, website tracking. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** SC-Networks states that the use of tracking functionalities is configuration-dependent and must be controlled organisationally [S1]. Evalanche processes data as a processor under a data processing agreement [S2].
+
+> ⚠ **Research gap.** Cookie names, lifetimes and the exact behaviour of Evalanche's website tracking were not found in public documentation. Inspect the implementation in the browser and request the technical documentation from SC-Networks before finalising the mapping.
+
+## Step 1 — Implement Evalanche
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Receive marketing offers; Receive personalised marketing offers (if tracking and profiling are used) |
+| Website tracking | Configuration-dependent [S1]; load after Consenter consent |
+| Contract | Data processing agreement [S2] |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Receive marketing offers, Receive personalised marketing offers | Marketing automation |
+| Tracking method | First party tracking (cross-session) | Assumed for website tracking; verify |
+| Identifier | Device identifiers, Direct identifier | Tracking linked to contacts; verify |
+| Data categories | Browsing and interaction data, Device identifiers, User-provided data, direct identifier, Users' profiles | Marketing automation profiles |
+| Legal role of data recipient | Processor | [S2] |
+| Personalisation model | Profile based | Marketing automation |
+| Maximum storage duration | Per cookie inspection | Not documented |
+| Processing location | Germany | German company; no CLOUD Act flag unless the DPA lists US sub-processors |
+
+## Sources
+
+- [S1] SC-Networks — Compliance and governance assessment (Evalanche)
+- [S2] eRecht24 — Privacy policy for Evalanche
+
+[S1]: https://www.evalanche.com/wp-content/uploads/2026/05/bob-compliance-checkliste-ciso.pdf
+[S2]: https://www.e-recht24.de/dsg/12642-evalanche.html

@@ -1,0 +1,63 @@
+---
+title: "GIPHY"
+description: "How to configure GIPHY at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for GIPHY content on a website and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** GIFs and stickers from GIPHY (owned by Shutterstock, a US company [S1]) shown on the website. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** GIPHY's privacy policy states that it collects data automatically, including IP address and device information [S1]. Content fetched via the GIPHY API is loaded from GIPHY's servers [S2].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | GIF downloaded (where licence permits) and served from your own server. |
+| Configuration B — Medium risk | GIPHY iframe embed or API/CDN content loaded after Consenter consent / click-to-load. |
+
+## Step 1 — Configure GIPHY
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — | Unlock additional website features |
+| 2 | Integration | Website code | Self-hosted file | GIPHY embed / API |
+| 3 | Loading | Consenter script blocking / click-to-load | — | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Shutterstock / GIPHY are US enterprises subject to 18 U.S.C. § 2713 [S3]; list the United States.
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|
+| Entry needed | No | Yes |
+| Processing purposes | — | Unlock additional website features |
+| Tracking method | No tracking | Third party tracking (single session, cross-website) |
+| Identifier | No identifier | IP address |
+| Data categories | — | IP address, Device characteristics |
+| Legal role of data recipient | — | Individual Controller |
+| Personalisation model | — | No personalisation |
+| Maximum storage duration | — | Per GIPHY privacy policy |
+| Processing location | — | United States |
+
+**Basis.** Automatic collection of IP and device data [S1]. If the browser shows persistent GIPHY cookies, change the tracking method to cross-session.
+
+## Sources
+
+- [S1] DeleteMe — Is GIPHY safe (Shutterstock ownership, GIPHY privacy policy)
+- [S2] Motion Stickers — Privacy policy (GIPHY API content)
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://joindeleteme.com/is-site-safe/is-giphy-safe/
+[S2]: https://motionstickers.onrender.com/privacy
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

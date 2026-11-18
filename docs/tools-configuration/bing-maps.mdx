@@ -1,0 +1,68 @@
+---
+title: "Bing Maps"
+description: "How to configure Bing Maps at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement Bing Maps and how to reflect it in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configuration is a comparative example, not a guarantee of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Interactive maps embedded through Bing Maps for Enterprise web controls or REST APIs. Sources were checked on 16 November 2026.
+
+**Service status — deprecated.** Microsoft has retired Bing Maps for Enterprise. Free and Basic accounts stopped working after 30 June 2025; existing Enterprise licence holders can continue until 30 June 2028; no new customers have been accepted since 30 June 2024. Microsoft directs all customers to migrate to **Azure Maps** [S1][S2]. This guide therefore documents only the remaining Enterprise use and recommends migration planning.
+
+**Simplified format.** Microsoft publishes no privacy configuration options for Bing Maps web controls (such as IP truncation, cookie control or retention settings) in the sources reviewed. The guide therefore uses a single fixed-behaviour table.
+
+**Consent.** Loading a map sends the visitor's IP address and request headers to Microsoft. Load the map only after consent (for example, behind a click-to-load placeholder).
+
+## Step 1 — Configure Bing Maps
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Unlock additional website features (interactive map) |
+| Account type | Enterprise licence only; Free/Basic keys no longer function after 30 June 2025 [S1][S2] |
+| Loading | Blocked by Consenter until consent; static placeholder before consent |
+| Privacy settings in the service | **Not documented** |
+| Retention at Microsoft | **Not documented** |
+| End of service | 30 June 2028 at the latest [S2] |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Map display. |
+| Tracking method | No tracking | No identifier documented for the map control. Re-assess if browser inspection shows Microsoft cookies set by the map. |
+| Identifier | IP address | Transmitted with each tile and API request. |
+| Data categories | IP address, Device characteristics, Non-precise location data | Map viewport and search queries reveal approximate locations of interest; add "Precise location data" if the browser location is passed to the map. |
+| Legal role of data recipient | Individual Controller | No processor terms for map display were found in the sources reviewed; verify against your Enterprise licence agreement. |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Not documented | — |
+| Processing location | United States as potential processing and access location | Microsoft Corporation is a US company subject to 18 U.S.C. § 2713 [S3]. |
+
+## Privacy-policy follow-up
+
+- Microsoft as recipient; data transmitted when the map loads; consent; US transfer and potential access by US authorities [S3]; planned migration to Azure Maps.
+
+## Verification checklist
+
+- [ ] No request to Bing Maps domains before consent.
+- [ ] Browser inspection after consent: record any cookies set and update the mapping.
+- [ ] Migration to Azure Maps scheduled before the licence ends.
+
+## Sources
+
+- [S1] Bing Maps Blog — retirement announcements
+- [S2] Microsoft — Bing Maps FAQ (retirement dates)
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://blogs.bing.com/maps
+[S2]: https://www.microsoft.com/maps/faq.aspx
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

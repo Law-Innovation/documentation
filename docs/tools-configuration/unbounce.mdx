@@ -1,0 +1,68 @@
+---
+title: "Unbounce"
+description: "How to configure Unbounce at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for Unbounce landing pages and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Landing pages built and hosted with Unbounce (Unbounce Marketing Solutions Inc., Vancouver, Canada). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Unbounce pages set the cookies `ubpb`, `ubvs` and `ubvt`; `ubpv` keeps a visitor on the same A/B variant and `ubvt` supports external conversion tracking [S1]. Unbounce offers a built-in cookie banner so visitors can accept or reject cookie tracking on the landing page [S2]. Unbounce is a data processor and provides a DPA on request [S3]. A customer reported that Unbounce adds its own Google Tag Manager and `events.ub-analytics.com` trackers to landing pages [S4].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Single-variant landing page; Unbounce cookies after consent; forms with consent text. |
+| Configuration B — Higher risk | A/B tests and conversion tracking (`ubpv`, `ubvt`); after consent. |
+
+**No configuration without prior consent.** Unbounce itself categorises these cookies as performance cookies requiring opt-in on its own site [S1].
+
+## Step 1 — Configure Unbounce
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics |
+| 2 | Consent | Consenter on the landing page, or Unbounce cookie banner [S2] | Before tracking | Before tracking |
+| 3 | A/B testing | Page variants | Off | On |
+| 4 | Conversion tracking | Unbounce conversion goals / external tracking | Off | On |
+| 5 | Forms | Form builder; consent checkbox [S3] | Consent text | Consent text |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Unbounce is Canadian; check the DPA for US sub-processors (e.g. CDN and analytics) and list the United States if present (18 U.S.C. § 2713 [S5]).
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Improve the service | Improve the service, Support marketing analytics |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device identifiers, User-provided data | As A, plus Device characteristics |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | Per cookie inspection | Per cookie inspection |
+| Processing location | Canada; per DPA | Canada; per DPA |
+
+## Sources
+
+- [S1] Unbounce Community — Landing page without setting any cookies
+- [S2] Unbounce Documentation — Adding a cookie banner to Unbounce
+- [S3] Unbounce — GDPR
+- [S4] Unbounce Community — Unexpected Unbounce trackers on landing pages
+- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://community.unbounce.com/t/unbounce-landingpage-without-setting-any-cookies/32534
+[S2]: https://documentation.unbounce.com/hc/en-us/articles/13204374131476
+[S3]: https://unbounce.com/gdpr/
+[S4]: https://community.unbounce.com/ask-a-question-41/unexpected-unbounce-trackers-on-all-our-ub-landing-pages-6838
+[S5]: https://www.law.cornell.edu/uscode/text/18/2713

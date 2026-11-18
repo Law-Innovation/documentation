@@ -1,0 +1,41 @@
+---
+title: "Google Translate (Website Translator)"
+description: "How to configure Google Translate (Website Translator) at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains the status of the Google Translate Website Translator widget and how to reflect any remaining use in the Consenter Manager.
+
+## At a glance
+
+**Service status — retired.** Google stopped issuing the Website Translator widget to new websites in 2019 [S1]. Google has since announced that the widget is no longer supported from **1 October 2026** and points site owners to the Cloud Translation API [S2]. No configuration guide is provided for a retired product.
+
+**What to do.**
+
+1. Search your templates and plug-ins for `translate.google.com/translate_a/element.js`, `google_translate_element` or `googleTranslateElementInit` and remove the widget [S2].
+2. If the site needs machine translation, assess the replacement (for example, a server-side integration of the Cloud Translation API, or a translation plug-in) as a separate recipient.
+3. Remove the Google Translate entry from the Consenter Manager once the widget is removed.
+
+**If the widget is still embedded.** Until removal, load it only after consent and map it as follows.
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features | On-page translation. |
+| Tracking method | No tracking | Not documented; re-assess if browser inspection shows cookies on Google domains. |
+| Identifier | IP address | Transmitted with each request. |
+| Data categories | IP address, Device characteristics, Browsing and interaction data | Page content is sent for translation. |
+| Legal role of data recipient | Individual Controller | No processor terms exist for the free widget. |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Not documented | — |
+| Processing location | United States as potential processing and access location | Google LLC is subject to 18 U.S.C. § 2713 [S3]. |
+
+## Sources
+
+- [S1] Google Translate Help Community — Website Translator no longer available for new websites (2019)
+- [S2] WP Mayor — Google Translate widget retirement (reporting Google's update confirming end of support on 1 October 2026)
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://support.google.com/translate/thread/10863024/how-can-i-create-a-link-to-automatically-translate-my-website?hl=en
+[S2]: https://wpmayor.com/google-translate-widget-replacement/
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

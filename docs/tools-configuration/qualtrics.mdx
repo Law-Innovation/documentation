@@ -1,0 +1,66 @@
+---
+title: "Qualtrics"
+description: "How to configure Qualtrics at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service
+
+> This guide explains how to implement different privacy configurations for Qualtrics Website / App Insights (site intercepts) and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Qualtrics Website / App Insights intercepts (Site Intercept, `QSI` script) and Digital Experience Analytics. Qualtrics is a US company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** All cookies used by Website / App Insights are first-party cookies on the website's domain [S1]. For Site History and Page Count you can choose to store the information as cookies or in session storage, as a setting for the whole project [S1]. Intercepts use cookies such as Prevent Repeated Display to track whether a user has already seen an intercept [S2]. Qualtrics advises consulting legal counsel on the consent needed for Digital Experience Analytics and documents a OneTrust integration [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Intercepts with Site History / Page Count in session storage; no repeated-display cookie; after consent. |
+| Configuration B — Higher risk | Intercepts with cookies (Site History, Prevent Repeated Display) plus Digital Experience Analytics; after consent. |
+
+**No configuration without prior consent.** The intercept script evaluates browsing behaviour to trigger surveys.
+
+## Step 1 — Configure Qualtrics
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
+| 2 | Site History / Page Count storage | Project options [S1] | Session storage | Cookies |
+| 3 | Prevent Repeated Display | Intercept settings [S1] | Off | On |
+| 4 | Digital Experience Analytics | DXA project [S3] | Off | On |
+| 5 | Loading | Consenter script blocking; `QSI.API.load()` after consent | After consent | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Qualtrics is a US enterprise subject to 18 U.S.C. § 2713 [S4]; list the United States in addition to the data centre in your contract.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Improve the service | Improve the service |
+| Tracking method | First party tracking (single session) | First party tracking (cross-session) |
+| Identifier | No identifier | Device identifiers |
+| Data categories | Browsing and interaction data, Device characteristics, User-provided data | Browsing and interaction data, Device characteristics, Device identifiers, User-provided data |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | Session | Per Qualtrics cookie documentation [S1] |
+| Processing location | Contract data centre; United States | Contract data centre; United States |
+
+## Sources
+
+- [S1] Qualtrics Support — Website / App Insights browser cookies
+- [S2] Qualtrics Community — Impact of Chrome cookie changes on Digital CX
+- [S3] Qualtrics Support — Integrating consent managers with Digital Experience Analytics
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://www.qualtrics.com/de/support/website-app-feedback/getting-started-with-website-app-feedback/website-app-feedback-browser-cookies/
+[S2]: https://community.qualtrics.com/community-basics-discussions-3/impact-of-the-recent-google-chrome-cookies-changes-on-your-digital-cx-program-7885
+[S3]: https://www.qualtrics.com/support/website-app-feedback/dx-programs/integrating-consent-managers-with-digital-experience-analytics/
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

@@ -1,0 +1,61 @@
+---
+title: "Sleeknote"
+description: "How to configure Sleeknote at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Receive marketing offers, Receive personalised marketing offers
+
+> This guide explains how to implement different privacy configurations for Sleeknote and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Sleeknote on-site pop-ups and sign-up campaigns (Sleeknote ApS, Denmark). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Sleeknote sets `_sn_m` (persistent, 1 year, classified as marketing, can be opted out), which stores geo location if geo-targeting is used and the IP address if IP targeting is used, and `SNS` (session cookie, Unix timestamp); SiteData is held in session storage [S1]. Sleeknote's update made it easier to disable visitor tracking [S1]. The customer is controller and Sleeknote the processor; EU customers sign a DPA [S2][S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Campaigns without geo or IP targeting; visitor tracking disabled; after consent. |
+| Configuration B — Higher risk | Campaigns with geo and IP targeting and visitor analytics (`_sn_m`); after consent. |
+
+**No configuration without prior consent.** Even without targeting, Sleeknote sets a session cookie and session storage [S1]; whether these are strictly necessary for a marketing pop-up is not established by the sources.
+
+## Step 1 — Configure Sleeknote
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Receive marketing offers | Receive marketing offers; Receive personalised marketing offers |
+| 2 | Visitor tracking | Sleeknote analytics and consent settings [S1] | Disabled | Enabled |
+| 3 | Geo / IP targeting | Campaign targeting options [S1] | Off | On |
+| 4 | Loading | Consenter script blocking | After consent | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Receive marketing offers | Receive marketing offers, Receive personalised marketing offers |
+| Tracking method | First party tracking (single session) | First party tracking (cross-session) |
+| Identifier | No identifier | Device identifiers, IP address |
+| Data categories | Browsing and interaction data, User-provided data (on submission) | Browsing and interaction data, Device identifiers, IP address, Non-precise location data, User-provided data, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | Group based (behaviour) |
+| Maximum storage duration | Session | 1 year (`_sn_m`) |
+| Processing location | Per DPA | Per DPA |
+
+## Sources
+
+- [S1] Sleeknote Help — What cookies does Sleeknote place in my browser
+- [S2] Sleeknote — Privacy policy (controller/processor)
+- [S3] Sleeknote — Sign a data processing agreement
+
+[S1]: https://help.sleeknote.com/hc/en-us/articles/6991176574621-What-cookies-does-Sleeknote-place-in-my-browser
+[S2]: https://sleeknote.com/privacy-policy
+[S3]: https://sleeknote.com/gdpr/dpa

@@ -1,0 +1,53 @@
+---
+title: "CleverReach"
+description: "How to configure CleverReach at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Receive marketing offers, Support marketing analytics
+
+> This guide explains how to reflect CleverReach in the Consenter Manager. On the website, CleverReach is used for sign-up forms; open, click and conversion tracking takes place in emails or in the website's own analytics tool. This guide therefore uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** CleverReach sign-up forms on the website (CleverReach GmbH & Co. KG, Rastede, Germany). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** CleverReach offers open, click and unsubscribe rates and conversion tracking via Google Analytics or intelliAd [S1]. Website operators must obtain the users' consent (double opt-in) and conclude a data processing agreement with CleverReach [S2][S3].
+
+## Step 1 — Implement CleverReach
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Receive marketing offers; Support marketing analytics (email performance) |
+| Sign-up form | Double opt-in; inform about email tracking in the consent text [S2] |
+| Conversion tracking | Runs via Google Analytics / intelliAd; those tools need their own Consenter entries [S1] |
+| Contract | Data processing agreement [S3] |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Entry needed | Optional — only to disclose form data processing | Website footprint limited to forms |
+| Processing purposes | Receive marketing offers | Newsletter |
+| Tracking method | No tracking | No website tracking cookie in scope; verify in the browser |
+| Identifier | Direct identifier | Email address on sign-up |
+| Data categories | User-provided data, direct identifier | Form data |
+| Legal role of data recipient | Processor | [S3] |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Until unsubscribe | — |
+| Processing location | Germany | German company; no CLOUD Act flag unless the DPA lists US sub-processors |
+
+## Sources
+
+- [S1] Löwenstark — CleverReach functions (reporting and tracking)
+- [S2] eRecht24 — Privacy policy for CleverReach
+- [S3] CleverReach — Data processing agreement (version 4.2)
+
+[S1]: https://www.loewenstark.com/wissen/online-marketing-tools/cleverreach?pdf=31244
+[S2]: https://www.e-recht24.de/dsg/12623-cleverreach.html
+[S3]: https://igrn.de/fileadmin/user_upload/igrn/Datenschutz/Treubau_cleverreach_adv_185558_4.2.pdf

@@ -1,0 +1,67 @@
+---
+title: "Typeform"
+description: "How to configure Typeform at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for embedded Typeform forms and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Typeform forms embedded via the Embed SDK or linked. Typeform S.L. is based in Barcelona [S1]. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Typeform stores form responses in the US, or in the EU for EU data-hosting customers; infrastructure is provided by AWS [S2]. Embedded forms load analytics scripts (requests to `api.segment.io`), which Typeform states can only be stopped by blocking them [S3]. Typeform acts as processor with SCCs and participates in the EU-US Data Privacy Framework [S4].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Link to the hosted form; EU data hosting. |
+| Configuration B — Higher risk | Embedded form loaded after Consenter consent; US hosting; GTM / tracking in the form. |
+
+## Step 1 — Configure Typeform
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — (external link) | Unlock additional website features; Support marketing analytics |
+| 2 | Integration | Website code | Link to `form.typeform.com/...` | Embed SDK (`embed.typeform.com`) |
+| 3 | Data hosting | Plan / account [S2] | EU | US |
+| 4 | Form tracking (GTM, pixels) | Typeform form settings | Off | On |
+| 5 | Loading | Consenter script blocking | — | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** AWS hosts all Typeform data [S2]; AWS is a US enterprise subject to 18 U.S.C. § 2713 [S5]; list the United States in all configurations with an entry.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Entry needed | No (mention in the privacy policy) | Yes |
+| Processing purposes | — | Unlock additional website features, Support marketing analytics |
+| Tracking method | No tracking | Third party tracking (crosssession, cross-website) |
+| Identifier | No identifier | Device identifiers |
+| Data categories | — | Browsing and interaction data, Device characteristics, Device identifiers, IP address, User-provided data |
+| Legal role of data recipient | — | Processor |
+| Personalisation model | — | No personalisation |
+| Maximum storage duration | — | Per Typeform cookie policy |
+| Processing location | — | United States |
+
+## Sources
+
+- [S1] Legal Web — Typeform (data processor details)
+- [S2] Typeform Help — What other companies do we share data with
+- [S3] Typeform Community — Disable Segment tracking in embedded form
+- [S4] Consently — Is Typeform GDPR compliant
+- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://legalweb.io/en/gdpr/embeddings_typeform/
+[S2]: https://typeform.com/help/what-other-companies-do-we-share-data-with
+[S3]: https://community.typeform.com/typeform-developers-44/disable-segment-io-tracking-in-embedded-form-3213
+[S4]: https://consently.net/blog/is-typeform-gdpr-compliant
+[S5]: https://www.law.cornell.edu/uscode/text/18/2713

@@ -1,0 +1,63 @@
+---
+title: "Squarespace"
+description: "How to configure Squarespace at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service
+
+> This guide explains how to implement different privacy configurations for Squarespace Analytics and how to reflect them in the Consenter Manager. Hosting and strictly necessary cookies (such as `crumb`) are out of scope.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Squarespace's built-in visitor analytics. Google Analytics or pixels added via Code Injection need their own entries. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Squarespace's cookie settings live under **Website > Website Tools > Cookies & Visitor Data**; with the banner on and cookies restricted, non-essential Squarespace Analytics or Google Analytics cookies are not dropped until the visitor accepts [S1]. Squarespace counts site-analytics cookies among those needing consent [S2]. The Squarespace banner governs Squarespace Analytics; a third-party banner does not control it [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Cookies restricted under Cookies & Visitor Data; Squarespace Analytics cookies only after acceptance. |
+| Configuration B — Higher risk | Cookies not restricted; Squarespace Analytics cookies set on page load. |
+
+> ⚠ **Recommendation.** Because a third-party banner cannot control Squarespace Analytics [S3], keep the restriction enabled when Consenter is your banner and check with your DPO how the two consent layers interact.
+
+## Step 1 — Configure Squarespace
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
+| 2 | Cookie restriction | **Website > Website Tools > Cookies & Visitor Data** [S1] | Restricted until acceptance | Not restricted |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Squarespace is a US enterprise; list the United States (18 U.S.C. § 2713 [S4]).
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Improve the service | Improve the service |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | Per Squarespace cookie list | Per Squarespace cookie list |
+| Processing location | United States | United States |
+
+## Sources
+
+- [S1] Google Analytics Help — Set up Squarespace to obtain user consent
+- [S2] Squarespace Blog — Data privacy and website cookies
+- [S3] TermsFeed — Add a cookie banner to your Squarespace site
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://support.google.com/analytics/answer/14562974?hl=en
+[S2]: https://www.squarespace.com/blog/data-privacy-website-cookies
+[S3]: https://www.termsfeed.com/docs/cookie-consent/getting-started/install/squarespace/
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

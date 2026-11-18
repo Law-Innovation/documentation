@@ -1,0 +1,68 @@
+---
+title: "Algolia"
+description: "How to configure Algolia at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features, Personalise the website
+
+> This guide explains how to implement different privacy configurations for Algolia search and Insights and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Algolia site search (InstantSearch / API) and the Search Insights library for click analytics and personalisation. Algolia, Inc. is a US company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Since Search Insights v2, anonymous user tokens are generated on every page load and not stored in a cookie by default [S1][S2]. With `useCookie: true`, the token is stored in the first-party `_ALGOLIA` cookie (default 6 months, adjustable with `cookieDuration`) to identify users across sessions; Algolia advises obtaining consent before enabling it and switching `useCookie` dynamically when consent is granted [S2][S3]. `setAuthenticatedUserToken` sets a token for logged-in users [S1].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Search only, or Insights with in-memory tokens (`useCookie: false`, default). |
+| Configuration B — Medium risk | Insights with `useCookie: true` after Consenter consent; 6-month `_ALGOLIA` cookie. |
+| Configuration C — Higher risk | As B, plus authenticated user tokens and Algolia Personalization. |
+
+**Configuration A.** No cookie is set [S1]; the search request transmits the query and IP address to Algolia as part of the search the visitor requests. Treat this under Art. 6(1)(b) or (f) GDPR after DPO review.
+
+## Step 1 — Configure Algolia
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features | Unlock additional website features; Personalise the website |
+| 2 | `useCookie` | `aa('init', { useCookie })` [S3] | `false` | `true` after consent | `true` after consent |
+| 3 | `cookieDuration` | `init` [S2] | — | 6 months (default) | 6 months |
+| 4 | Authenticated token | `setAuthenticatedUserToken` [S1] | Off | Off | On |
+| 5 | Personalization | Algolia dashboard | Off | Off | On |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Algolia is a US enterprise subject to 18 U.S.C. § 2713 [S4]; list the United States in addition to the application's data-centre region.
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
+|---|---|---|---|
+| Entry needed | Optional | Yes | Yes |
+| Processing purposes | Unlock additional website features | Unlock additional website features | Unlock additional website features, Personalise the website |
+| Tracking method | First party tracking (single session) | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | No identifier | Device identifiers | Device identifiers, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, IP address | As A, plus Device identifiers | As B, plus Authentication-derived identifiers, Users' profiles |
+| Legal role of data recipient | Processor | Processor | Processor |
+| Personalisation model | No personalisation | Group based (behaviour) | Profile based |
+| Maximum storage duration | Page view (in-memory) | 6 months [S2] | 6 months |
+| Processing location | Data-centre region; United States | Data-centre region; United States | Data-centre region; United States |
+
+## Sources
+
+- [S1] Algolia Docs — User token
+- [S2] Algolia Docs (preview) — User token (`_ALGOLIA` default duration)
+- [S3] Algolia Docs — Initialize the Insights client (`useCookie`)
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://www.algolia.com/doc/guides/sending-events/concepts/usertoken.md
+[S2]: https://deploy-preview-8902--algolia-docs.netlify.app/doc/guides/sending-events/concepts/usertoken
+[S3]: https://www.algolia.com/doc/libraries/search-insights/init.md
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

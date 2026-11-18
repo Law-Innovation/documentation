@@ -1,0 +1,86 @@
+---
+title: "Piano Analytics (formerly AT Internet)"
+description: "How to configure Piano Analytics (formerly AT Internet) at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for Piano Analytics and how to reflect them in the Consenter Manager. It covers the TPP entries "AT INTERNET" and "Piano" (analytics), and the alias "XiTi".
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Piano Analytics JavaScript SDK on a website. Other Piano products (Composer, Audience/DMP) are out of scope. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Piano Analytics uses **privacy modes** set per visitor from the CMP: `opt-in` (consent; full collection and identifiers), `exempt`/**Essential** (no consent; only properties classified as strictly necessary are sent), `opt-out` (no audience data; only a passage signal) and **Extended opt-out** (events without visitor ID) [S1][S2][S3]. A `_pcid` cookie may hold an identifier usable by other Piano products, which Piano Analytics does not use in Extended opt-out mode [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk (⚠ no-consent) | `exempt` (Essential) mode for visitors who have not consented, with opt-out link. Self-assessed exemption. |
+| Configuration B — Medium risk | `opt-in` mode after consent; no user ID or personal data. |
+| Configuration C — Higher risk | `opt-in` mode after consent, with user ID and personal data properties. |
+
+> ⚠ **Recommendation — Configuration A relies on a self-assessed exemption.** Piano documents an exempt mode for the consent exemption and published a configuration guide for the former CNIL programme [S2][S4]. That programme has ended, so qualifying configurations must be described as a **self-assessed exemption**, not as CNIL-approved. In Germany, § 25 TDDDG contains no equivalent audience-measurement exemption. Use A without consent only after review by your DPO or independent counsel.
+
+## Step 1 — Configure Piano Analytics
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service | Improve the service; Support marketing analytics |
+| 2 | Privacy mode | SDK consent API (`pa.consent.setMode` / `setByPurpose`) from the CMP [S1][S5] | `exempt` before consent; `opt-out` on refusal | `opt-in` after consent | `opt-in` after consent |
+| 3 | Exempt property list | Organisation privacy settings (strictly necessary properties) [S2] | Default list only | — | — |
+| 4 | User ID / personal data properties | Tagging | Not sent | Not sent | Sent |
+| 5 | Extended opt-out | `enableExtendedOptout` at initialisation [S3] | Optional for refusers | Optional | Optional |
+| 6 | Data retention | Privacy configurations [S6] | Shortest suitable | Default | Default |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Piano Software, Inc. is a US company; it can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S7]. The United States is listed as a potential access location.
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
+|---|---|---|---|
+| Processing purposes | Improve the service | Improve the service | Improve the service, Support marketing analytics |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers, IP address | Device identifiers, IP address, Authentication-derived identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, IP address, Non-precise location data | As B, plus Authentication-derived identifiers, Users' profiles |
+| Legal role of data recipient | Processor | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation | No personalisation |
+| Maximum storage duration | Per privacy configuration [S6] | Per privacy configuration [S6] | Per privacy configuration [S6] |
+| Processing location | EU (per contract); United States as potential access location | Same | Same |
+
+**Basis.** Modes and their effect on data and trackers [S1][S5]; exempt property list [S2]. In A, only strictly necessary properties are sent [S2]; check whether your exempt list includes the IP address before selecting it.
+
+## Privacy-policy follow-up
+
+- Piano as processor; privacy modes in use; for A, the exemption basis and opt-out link; cookies; retention; potential access by US authorities [S7].
+
+## Verification checklist
+
+- [ ] Before consent: requests carry `visitor_privacy_mode = exempt` (A) or no requests (B, C).
+- [ ] After refusal: opt-out mode applied.
+- [ ] C: user IDs only after consent.
+
+## Sources
+
+- [S1] Piano Docs — Consent exemption configuration (modes)
+- [S2] Piano Analytics Docs — Consent exemption configuration (exempt mode)
+- [S3] Piano Analytics Docs — Extended opt-out
+- [S4] CNIL — AT Internet / Piano Analytics configuration guide for the exempted solution (2024)
+- [S5] Piano Analytics Docs — Consent management
+- [S6] Piano Docs — Privacy configurations (data retention)
+- [S7] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://docs.piano.io/en/analytics/consent-exemption-configuration
+[S2]: https://analytics-docs.piano.io/en/analytics/v1/consent-exemption-configuration
+[S3]: https://analytics-docs.piano.io/en/analytics/v1/extended-opt-out
+[S4]: https://cnil.fr/sites/cnil/files/2024-11/atinternet_guide-de-configuration_solution-exemptee_public_2024.pdf
+[S5]: https://analytics-docs.piano.io/en/analytics/v1/consent-management
+[S6]: https://docs.piano.io/en/analytics/privacy-configurations
+[S7]: https://www.law.cornell.edu/uscode/text/18/2713

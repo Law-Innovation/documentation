@@ -1,0 +1,65 @@
+---
+title: "Font Awesome"
+description: "How to configure Font Awesome at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for Font Awesome icons and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Font Awesome icons, either self-hosted or loaded via a Font Awesome Kit (Fonticons, Inc., US). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** A Font Awesome Kit is a personal CDN that manages icons for a project; alternatively the files can be downloaded and self-hosted [S1]. Kits use Cloudflare's CDN technology [S2]. Font Awesome's privacy notice lists service providers including Amazon Web Services for running the content delivery networks [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Self-hosted Font Awesome files; no request to Font Awesome. |
+| Configuration B — Medium risk | Font Awesome Kit from the CDN; loaded after Consenter consent (with fallback icons). |
+
+**Configuration A without consent.** Self-hosted files make no third-party request [S1]; no Consenter entry is required.
+
+> ⚠ **Configuration B.** Kit requests transmit the visitor's IP address to Font Awesome's CDN providers in the US [S2][S3]. By analogy with LG München I (judgment of 20 January 2022, 3 O 17493/20) on Google Fonts, where self-hosting is possible a transfer without consent is legally uncertain; prefer A or have your DPO confirm B.
+
+## Step 1 — Configure Font Awesome
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — | Unlock additional website features |
+| 2 | Delivery | Download vs Kit [S1] | Self-hosted | Kit (`kit.fontawesome.com`) |
+| 3 | Loading | Consenter script blocking | — | After consent / per DPO |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|
+| Entry needed | No | Yes |
+| Processing purposes | — | Unlock additional website features |
+| Tracking method | No tracking | No tracking |
+| Identifier | No identifier | IP address |
+| Data categories | — | IP address, Device characteristics |
+| Legal role of data recipient | Self-hosted | Processor |
+| Personalisation model | — | No personalisation |
+| Maximum storage duration | — | Per Font Awesome privacy notice [S3] |
+| Processing location | Your server | United States (Cloudflare, AWS; 18 U.S.C. § 2713 [S4]) |
+
+## Sources
+
+- [S1] Font Awesome Docs — Kits and self-hosting
+- [S2] Font Awesome Blog — Self-hosting and CDN
+- [S3] Font Awesome — Privacy
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://docsearch.algolia.com/mcp/docs/website/docs.fontawesome.com
+[S2]: https://blog.fontawesome.com/self-host-and-cdn/
+[S3]: https://fontawesome.com/privacy?swcfpc=1
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

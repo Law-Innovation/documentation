@@ -1,0 +1,61 @@
+---
+title: "epoq"
+description: "How to configure epoq at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Personalise the website, Receive personalised marketing offers
+
+> This guide explains how to implement different privacy configurations for epoq and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** epoq Search, Advise, Inspire and Connect (epoq internet services GmbH, Ettlingen, Germany). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** epoq uses between 0 and 5 cookies, depending on which services are in use, to display product suggestions in the shop or newsletter and to report on the success of the services. The cookies can only be read from the shop domain or a customer-specific subdomain at `arc.epoq.de` [S1]. epoq uses pseudonymised data, hosts in Germany and offers a data processing agreement on request [S2].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | epoq Search only; after consent. |
+| Configuration B — Higher risk | Recommendations (Advise, Inspire) in shop and newsletter (Connect); after consent. |
+
+**No configuration without prior consent.** epoq sets cookies for recommendations and success reporting [S1]; no consent-free configuration is documented.
+
+## Step 1 — Configure epoq
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Personalise the website | Personalise the website; Receive personalised marketing offers |
+| 2 | Services in use | epoq contract / integration [S1] | epoq Search | epoq Advise, Inspire, Connect |
+| 3 | Loading | Consenter script blocking | After consent | After consent |
+| 4 | Contract | Data processing agreement [S2] | Conclude | Conclude |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Germany [S2]; epoq is a German company, so no CLOUD Act flag is added unless the DPA lists US sub-processors.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Personalise the website | Personalise the website, Receive personalised marketing offers |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers | Browsing and interaction data, Device identifiers, e-commerce Activity, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | Group based (behaviour) | Profile based |
+| Maximum storage duration | Per cookie documentation [S1] | Per cookie documentation [S1] |
+| Processing location | Germany | Germany |
+
+## Sources
+
+- [S1] epoq Support — Cookies
+- [S2] epoq — Data protection
+
+[S1]: https://support.epoq.de/docs-dev/03-cookies/general/cookies/
+[S2]: https://www.epoq.de/en/?p=16793
