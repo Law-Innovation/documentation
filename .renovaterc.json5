@@ -1,43 +1,93 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
-    "config:recommended",
-    "helpers:pinGitHubActionDigestsToSemver",
-    ":configMigration",
-    ":semanticCommits",
+    'config:recommended',
+    'helpers:pinGitHubActionDigestsToSemver',
+    ':configMigration',
+    ':semanticCommits',
   ],
-  dependencyDashboardTitle: "Renovate Dashboard",
-  timezone: "Europe/Berlin",
+  dependencyDashboard: {
+    title: 'Renovate Dashboard',
+    osvVulnerabilitySummary: 'unresolved',
+  },
+  timezone: 'Europe/Berlin',
   osvVulnerabilityAlerts: true,
-  dependencyDashboardOSVVulnerabilitySummary: "unresolved",
-  vulnerabilityAlerts: { labels: ["security"] },
-  schedule: ["on monday"],
+  vulnerabilityAlerts: {
+    labels: [
+      'security',
+    ],
+  },
+  schedule: [
+    'on monday',
+  ],
   updateNotScheduled: false,
-  minimumReleaseAge: "3 days",
-  minimumReleaseAgeBehaviour: "timestamp-optional",
-  internalChecksFilter: "strict",
+  minimumReleaseAge: '3 days',
+  minimumReleaseAgeBehaviour: 'timestamp-optional',
+  internalChecksFilter: 'strict',
   prConcurrentLimit: 10,
   prHourlyLimit: 0,
   packageRules: [
     {
-      description: "Majors are opened only when ticked on the dashboard",
-      matchUpdateTypes: ["major"],
+      description: 'Majors are opened only when ticked on the dashboard',
+      matchUpdateTypes: [
+        'major',
+      ],
       dependencyDashboardApproval: true,
     },
     {
-      matchManagers: ["github-actions"],
-      matchUpdateTypes: ["minor", "patch", "digest", "pinDigest"],
-      groupName: "github actions",
+      matchManagers: [
+        'github-actions',
+      ],
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+        'digest',
+        'pinDigest',
+      ],
+      groupName: 'github actions',
     },
     {
-      matchManagers: ["github-actions"],
-      semanticCommitType: "ci",
-      semanticCommitScope: "actions",
-      addLabels: ["renovate/github-action"],
+      matchManagers: [
+        'github-actions',
+      ],
+      semanticCommitType: 'ci',
+      semanticCommitScope: 'actions',
+      addLabels: [
+        'renovate/github-action',
+      ],
     },
-    { matchUpdateTypes: ["major"], addLabels: ["type/major"] },
-    { matchUpdateTypes: ["minor"], addLabels: ["type/minor"] },
-    { matchUpdateTypes: ["patch"], addLabels: ["type/patch"] },
-    { matchUpdateTypes: ["digest", "pinDigest"], addLabels: ["type/digest"] },
+    {
+      matchUpdateTypes: [
+        'major',
+      ],
+      addLabels: [
+        'type/major',
+      ],
+    },
+    {
+      matchUpdateTypes: [
+        'minor',
+      ],
+      addLabels: [
+        'type/minor',
+      ],
+    },
+    {
+      matchUpdateTypes: [
+        'patch',
+      ],
+      addLabels: [
+        'type/patch',
+      ],
+    },
+    {
+      matchUpdateTypes: [
+        'digest',
+        'pinDigest',
+      ],
+      addLabels: [
+        'type/digest',
+      ],
+    },
   ],
 }
