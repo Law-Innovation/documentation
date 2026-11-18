@@ -5,25 +5,29 @@ description: "How to configure Rakuten Advertising at different risk levels and 
 
 Typical processing purposes: Support marketing analytics
 
-> This guide explains how to implement different privacy configurations for the Rakuten Advertising site tracking tag on an advertiser website and how to reflect them in the Consenter Manager.
->
-> 1. Configure the third-party service.
-> 2. Map the selected configuration in the Consenter Manager.
-> 3. Update your privacy policy to reflect the actual implementation.
->
-> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+<Callout type="info" title="Overview">
+This guide explains how to implement different privacy configurations for the Rakuten Advertising site tracking tag on an advertiser website and how to reflect them in the Consenter Manager.
+
+1. Configure the third-party service.
+2. Map the selected configuration in the Consenter Manager.
+3. Update your privacy policy to reflect the actual implementation.
+
+The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+</Callout>
 
 ## At a glance
 
 **Scope.** Rakuten Advertising affiliate site tracking and conversion tag. Sources were checked on 16 November 2026.
 
-**What the service does in this scope.** Rakuten Advertising lists the cookies and storage its customers may use, including `__rmco` and `__rmco_cs` in first-party `localStorage` for consent information [S1]. CMP integrations set the `__rmcp2` consent signal for EU/UK visitors; tracking stays restricted until marketing consent is given [S2]. Rakuten Advertising processes digital identifiers such as cookie IDs and may act as a processor under the GDPR in some cases [S3].
+**What the service does in this scope.** Rakuten Advertising lists the cookies and storage its customers may use, including `__rmco` and `__rmco_cs` in first-party `localStorage` for consent information [S1]. CMP integrations set the `__rmcp2` consent signal for EU/UK visitors; tracking stays restricted until marketing consent is given [S2].
+
+> **Note on consent signals.** Rakuten Advertising expects the `__rmcp2` consent signal from a CMP integration [S2]. Consenter does not currently provide this signal, so this guide does not cover configuring it; load the tag only after consent in Consenter. Rakuten Advertising processes digital identifiers such as cookie IDs and may act as a processor under the GDPR in some cases [S3].
 
 **Configurations included.**
 
 | Configuration | Summary |
 |---|---|
-| Configuration A — Medium risk | `__rmcp2` consent signal set from Consenter; tracking restricted until consent. |
+| Configuration A — Medium risk | Tag loaded only after Consenter consent. |
 | Configuration B — Higher risk | Tag fires without a consent signal. |
 
 ## Step 1 — Configure Rakuten Advertising
@@ -31,8 +35,7 @@ Typical processing purposes: Support marketing analytics
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics |
-| 2 | Consent signal | `__rmcp2` [S2] | Set from Consenter | Not set |
-| 3 | Conversion tag | `ranMID` / tracking key | After consent | On page load |
+| 2 | Conversion tag | `ranMID` / tracking key | After consent | On page load |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
@@ -43,7 +46,7 @@ Typical processing purposes: Support marketing analytics
 | Processing purposes | Support marketing analytics | Support marketing analytics |
 | Tracking method | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) |
 | Identifier | Device identifiers | Device identifiers |
-| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Privacy choices | Device identifiers, Browsing and interaction data, e-commerce Activity |
+| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity | Device identifiers, Browsing and interaction data, e-commerce Activity |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | Per Rakuten cookie policy [S1] | Per Rakuten cookie policy [S1] |
@@ -55,8 +58,3 @@ Typical processing purposes: Support marketing analytics
 - [S2] Pandectes Help — Rakuten Advertising integration guide
 - [S3] Rakuten Advertising — Services Privacy Request Form
 - [S4] 18 U.S.C. § 2713 (CLOUD Act)
-
-[S1]: https://rakutenadvertising.com/cookie-policy/
-[S2]: https://help.pandectes.io/en/article/rakuten-advertising-integration-guide-1x8beuk/
-[S3]: https://rakutenadvertising.com/?p=7856
-[S4]: https://www.law.cornell.edu/uscode/text/18/2713

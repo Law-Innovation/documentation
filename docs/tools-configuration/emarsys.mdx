@@ -5,13 +5,15 @@ description: "How to configure SAP Emarsys at different risk levels and map it i
 
 Typical processing purposes: Receive personalised marketing offers, Personalise the website
 
-> This guide explains how to reflect SAP Emarsys Web Extend in the Consenter Manager. The sources do not document configurable privacy settings for Web Extend, so this guide uses a single fixed-behaviour table.
->
-> 1. Implement the service as described below.
-> 2. Map the implementation in the Consenter Manager.
-> 3. Update your privacy policy to reflect the actual implementation.
->
-> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+<Callout type="info" title="Overview">
+This guide explains how to reflect SAP Emarsys Web Extend in the Consenter Manager. The sources do not document configurable privacy settings for Web Extend, so this guide uses a single fixed-behaviour table.
+
+1. Implement the service as described below.
+2. Map the implementation in the Consenter Manager.
+3. Update your privacy policy to reflect the actual implementation.
+
+The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+</Callout>
 
 ## At a glance
 
@@ -48,7 +50,3 @@ Typical processing purposes: Receive personalised marketing offers, Personalise 
 - [S1] gblock — Is Emarsys tracking your email (Web Extend, link parameters)
 - [S2] foomo sesamy-cli — Emarsys Web Extend provider (cookies)
 - [S3] 18 U.S.C. § 2713 (CLOUD Act)
-
-[S1]: https://www.gblock.app/articles/is-emarsys-tracking-your-email-block-2026
-[S2]: https://beta.pkg.go.dev/github.com/foomo/sesamy-cli/pkg/provider/emarsys
-[S3]: https://www.law.cornell.edu/uscode/text/18/2713

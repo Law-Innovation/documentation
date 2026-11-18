@@ -5,13 +5,15 @@ description: "How to configure AppDynamics Browser RUM at different risk levels 
 
 Typical processing purposes: Improve the service
 
-> This guide explains how to reflect Splunk AppDynamics Browser Real User Monitoring (RUM) in the Consenter Manager. Server-side APM is out of scope. Browser RUM has no visitor-facing privacy settings beyond the switch noted below, so this guide uses a single fixed-behaviour table.
->
-> 1. Implement the service as described below.
-> 2. Map the implementation in the Consenter Manager.
-> 3. Update your privacy policy to reflect the actual implementation.
->
-> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+<Callout type="info" title="Overview">
+This guide explains how to reflect Splunk AppDynamics Browser Real User Monitoring (RUM) in the Consenter Manager. Server-side APM is out of scope. Browser RUM has no visitor-facing privacy settings beyond the switch noted below, so this guide uses a single fixed-behaviour table.
+
+1. Implement the service as described below.
+2. Map the implementation in the Consenter Manager.
+3. Update your privacy policy to reflect the actual implementation.
+
+The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+</Callout>
 
 ## At a glance
 
@@ -48,9 +50,3 @@ Typical processing purposes: Improve the service
 - [S3] Splunk AppDynamics — Set the exact current domain in the JavaScript agent cookie
 - [S4] Splunk Community — How to disable EUM dynamically
 - [S5] 18 U.S.C. § 2713 (CLOUD Act)
-
-[S1]: https://help-preview.splunk.com/en/appdynamics-saas/end-user-monitoring/25.4.0/end-user-monitoring/eum-data
-[S2]: https://help.splunk.com/en/appdynamics-saas/end-user-monitoring/26.5.0/end-user-monitoring/eum-data
-[S3]: https://help.splunk.com/ja-jp/appdynamics-saas/end-user-monitoring/26.1.0/%E3%82%A8%E3%83%B3%E3%83%89-%E3%83%A6%E3%83%BC%E3%82%B6-%E3%83%A2%E3%83%8B%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0-%E3%83%87%E3%83%BC%E3%82%BF/browser-monitoring/browser-real-user-monitoring/javascript-%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E6%A7%8B%E6%88%90/set-the-exact-current-domain-in-the-javascript-agent-cookie
-[S4]: https://community.splunk.com/t5/Splunk-AppDynamics/How-to-disable-EUM-dynamically/td-p/739924
-[S5]: https://www.law.cornell.edu/uscode/text/18/2713

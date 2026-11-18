@@ -5,13 +5,15 @@ description: "How to configure INFOnline Measurement at different risk levels an
 
 Typical processing purposes: Improve the service, Support marketing analytics
 
-> This guide explains how to implement different privacy configurations for INFOnline Measurement (IVW reach measurement) and how to reflect them in the Consenter Manager. It covers both INFOnline index entries and the legacy entry "Ioam".
->
-> 1. Configure the third-party service.
-> 2. Map the selected configuration in the Consenter Manager.
-> 3. Update your privacy policy to reflect the actual implementation.
->
-> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+<Callout type="info" title="Overview">
+This guide explains how to implement different privacy configurations for INFOnline Measurement (IVW reach measurement) and how to reflect them in the Consenter Manager. It covers both INFOnline index entries and the legacy entry "Ioam".
+
+1. Configure the third-party service.
+2. Map the selected configuration in the Consenter Manager.
+3. Update your privacy policy to reflect the actual implementation.
+
+The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+</Callout>
 
 ## At a glance
 
@@ -34,7 +36,7 @@ Typical processing purposes: Improve the service, Support marketing analytics
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service (reach measurement) | Improve the service; Support marketing analytics |
 | 2 | Pseudonymous measurement | Measurement Manager [S3] | Disabled | Enabled |
-| 3 | Consent transmission | TCF CMP (vendor 730) or manual consent string (`ct`) [S4] | — | Required |
+| 3 | Consent transmission | INFOnline requires a consent string for pseudonymous measurement [S4]; not currently supported by Consenter (see note) | — | Load only after Consenter consent |
 | 4 | Census measurement | Measurement Manager [S2] | Enabled | Enabled |
 | 5 | Loading | Consenter / Measurement Manager | Census without consent | Pseudonymous only after consent [S5] |
 
@@ -45,13 +47,13 @@ Typical processing purposes: Improve the service, Support marketing analytics
 | Processing purposes | Improve the service | Improve the service, Support marketing analytics |
 | Tracking method | No tracking | First party tracking (cross-session) |
 | Identifier | No identifier | Device identifiers |
-| Data categories | Aggregated site statistics, Browsing and interaction data | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics, Privacy choices |
+| Data categories | Aggregated site statistics, Browsing and interaction data | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | Not documented | Not documented |
 | Processing location | Germany | Germany |
 
-**Basis.** Census without identifiers [S1][S2]; pseudonymous with client identifiers and consent [S2][S3]. "Privacy choices" is selected in B because the consent string is transmitted to INFOnline [S4]. INFOnline is German-owned; no CLOUD Act flag is applied.
+**Basis.** Census without identifiers [S1][S2]; pseudonymous with client identifiers and consent [S2][S3]. INFOnline expects the consent decision to be transmitted as a TCF or manual consent string [S4]; Consenter does not currently support TCF communication, so the signal is not configured here and "Privacy choices" is not selected. INFOnline is German-owned; no CLOUD Act flag is applied.
 
 ## Privacy-policy follow-up
 
@@ -69,9 +71,3 @@ Typical processing purposes: Improve the service, Support marketing analytics
 - [S3] INFOnline Docs — Legal implications for INFOnline Measurement
 - [S4] INFOnline Docs — Manual consent transmission with the Measurement Manager
 - [S5] INFOnline Docs — Checklist for maximum data protection compliance
-
-[S1]: https://www.infonline.de/en/infonline-measurement/
-[S2]: https://docs.infonline.de/infonline-measurement/en/getting-started/verfahrensbeschreibung/
-[S3]: https://docs.infonline.de/infonline-measurement/en/getting-started/rechtliche-auswirkungen/
-[S4]: https://docs.infonline.de/infonline-measurement/en/integration/tcf/manuelle_consent_uebergabe/
-[S5]: https://docs.infonline.de/infonline-measurement/en/getting-started/checkliste_ds/
