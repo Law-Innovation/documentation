@@ -17,11 +17,11 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** advanced store retargeting and tracking pixels on advertiser websites. Sources were checked on 16 November 2026.
+**Scope.** advanced store retargeting and tracking pixels on advertiser websites.
 
-**What the service does in this scope.** advanced store GmbH (Berlin) offers an opt-out [S1].
+**What the service does in this scope.** advanced store GmbH (Berlin) offers an opt-out.
 
-> **Note on consent signals.** advanced store works with the IAB TCF consent signal [S1]. Consenter does not currently support TCF communication, so this guide does not cover configuring the signal; load the pixel only after consent in Consenter. Tracking pixels integrated on pages establish a direct connection between the visitor's browser and advanced store or a third party [S2]. advanced store publishes a list of cooperation partners and subcontractors [S1][S2].
+> **Note on consent signals.** advanced store works with the IAB TCF consent signal. Consenter does not currently support TCF communication, so this guide does not cover configuring the signal; load the pixel only after consent in Consenter. Tracking pixels integrated on pages establish a direct connection between the visitor's browser and advanced store or a third party. advanced store publishes a list of cooperation partners and subcontractors.
 
 > ⚠ **Research gap.** advanced store does not publish cookie names, durations or its GDPR role toward advertisers in the sources found. Confirm these in your contract before finalising the mapping.
 
@@ -31,24 +31,17 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 |---|---|
 | Processing purposes | Customise online ads; Receive personalised marketing offers (retargeting) |
 | Loading | Load the pixel only after Consenter consent |
-| Contract | advanced store partner terms; partner list [S1] |
+| Contract | advanced store partner terms; partner list |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Customise online ads, Receive personalised marketing offers | Retargeting |
-| Tracking method | Third party tracking (crosssession, cross-website) | Tracking pixels [S2] |
+| Tracking method | Third party tracking (crosssession, cross-website) | Tracking pixels |
 | Identifier | Device identifiers | Cookie IDs |
 | Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Users' profiles | Retargeting |
 | Legal role of data recipient | Individual Controller | Verify in contract (⚠) |
 | Personalisation model | Profile based | Retargeting |
-| Maximum storage duration | Per advanced store privacy policy [S3] | — |
-| Processing location | Germany / EU; partners per subcontractor list | Check partner list for US recipients; CLOUD Act [S4] |
-
-## Sources
-
-- [S1] advanced store — Notes for our partners
-- [S2] advanced store — Data privacy (GDPR, cookies, opt-out)
-- [S3] advanced store — Privacy Policy
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+| Maximum storage duration | Per advanced store privacy policy | — |
+| Processing location | Germany / EU; partners per subcontractor list | Check partner list for US recipients; CLOUD Act|

@@ -17,13 +17,13 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** VLYBY video advertising and monetisation for publishers (VLYBY Digital GmbH, Germany). Sources were checked on 16 November 2026.
+**Scope.** VLYBY video advertising and monetisation for publishers (VLYBY Digital GmbH, Germany).
 
-**What the service does in this scope.** VLYBY provides advertising-related services that help clients monetise ad space and buy and sell online ads programmatically [S1]. VLYBY participates in the IAB Europe TCF with vendor ID 1009 [S1]. It states that it does not collect, store or process information collected by cookies or other tracking technologies placed by its third parties (e.g. SSPs), which process data for their own purposes [S1].
+**What the service does in this scope.** VLYBY provides advertising-related services that help clients monetise ad space and buy and sell online ads programmatically. VLYBY participates in the IAB Europe TCF with vendor ID 1009. It states that it does not collect, store or process information collected by cookies or other tracking technologies placed by its third parties (e.g. SSPs), which process data for their own purposes.
 
-**No configuration without prior consent.** Programmatic advertising involves third-party trackers [S1].
+**No configuration without prior consent.** Programmatic advertising involves third-party trackers.
 
-> **Note on consent signals.** VLYBY relies on the IAB TCF consent signal [S1]. Consenter does not currently support TCF communication, so this guide does not cover configuring the signal; load VLYBY only after consent in Consenter.
+> **Note on consent signals.** VLYBY relies on the IAB TCF consent signal. Consenter does not currently support TCF communication, so this guide does not cover configuring the signal; load VLYBY only after consent in Consenter.
 
 ## Step 1 — Implement VLYBY
 
@@ -37,15 +37,11 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Customise online ads | [S1] |
-| Tracking method | Third party tracking (crosssession, cross-website) | Programmatic ad partners [S1] |
+| Processing purposes | Customise online ads | — |
+| Tracking method | Third party tracking (crosssession, cross-website) | Programmatic ad partners |
 | Identifier | Device identifiers | Ad partners |
-| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Users' profiles | Programmatic ad partners [S1] |
-| Legal role of data recipient | Individual Controller | VLYBY and each SSP process for their own purposes [S1] |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Users' profiles | Programmatic ad partners |
+| Legal role of data recipient | Individual Controller | VLYBY and each SSP process for their own purposes |
 | Personalisation model | Profile based | Programmatic advertising |
 | Maximum storage duration | Per ad partner disclosures | Not documented |
 | Processing location | Germany; add the United States for US ad partners | German company |
-
-## Sources
-
-- [S1] VLYBY — Product privacy notice

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Calendly inline, pop-up and badge embeds on the website. Calendly LLC is a US company. Sources were checked on 16 November 2026.
+**Scope.** Calendly inline, pop-up and badge embeds on the website. Calendly LLC is a US company.
 
-**What the service does in this scope.** Calendly shows its own cookie banner in embedded pages by default; it can be hidden with `hide_gdpr_banner=1`. Calendly uses cookies even if the banner is hidden, and recommends waiting to load Calendly until users accept performance cookies [S1].
+**What the service does in this scope.** Calendly shows its own cookie banner in embedded pages by default; it can be hidden with `hide_gdpr_banner=1`. Calendly uses cookies even if the banner is hidden, and recommends waiting to load Calendly until users accept performance cookies.
 
 **Configurations included.**
 
@@ -36,12 +36,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | — (external link) | Unlock additional website features |
 | 2 | Integration | Website code | Link to `calendly.com/...` | Embed code with `widget.js` |
-| 3 | Calendly cookie banner | `hide_gdpr_banner=1` [S1] | — | Hidden (Consenter handles consent) |
-| 4 | Loading | Consenter script blocking [S1] | — | After consent |
+| 3 | Calendly cookie banner | `hide_gdpr_banner=1` | — | Hidden (Consenter handles consent) |
+| 4 | Loading | Consenter script blocking | — | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Calendly is a US enterprise subject to 18 U.S.C. § 2713 [S2]; list the United States.
+**Processing location.** Calendly is a US enterprise subject to the US CLOUD Act; list the United States.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -54,10 +54,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | — | No personalisation |
 | Maximum storage duration | — | Per Calendly cookie notice |
 | Processing location | — | United States |
-
-**Basis.** Embed cookies [S1]. The third-party mapping in B reflects that the embed runs in an iframe on Calendly's domain, where its cookies are set; verify in the browser.
-
-## Sources
-
-- [S1] Calendly Help — Calendly cookie management and banner
-- [S2] 18 U.S.C. § 2713 (CLOUD Act)

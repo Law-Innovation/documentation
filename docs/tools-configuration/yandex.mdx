@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Yandex Metrica tag on the website. Sources were checked on 16 November 2026.
+**Scope.** Yandex Metrica tag on the website.
 
-**What the service does in this scope.** To count users, Metrica uses anonymous browser identifiers stored in cookies or `localStorage` on the top-level domain [S1]. `_ym_uid` identifies site users for 1 year; `_ym_visorc_*` (30 minutes) allows Session Replay to work; `gdpr` and `is_gdpr` identify users under GDPR jurisdiction [S1]. Metrica also sets identifiers on Yandex domains such as `yandexuid` and `ymex` (1 year) [S2].
+**What the service does in this scope.** To count users, Metrica uses anonymous browser identifiers stored in cookies or `localStorage` on the top-level domain. `_ym_uid` identifies site users for 1 year; `_ym_visorc_*` (30 minutes) allows Session Replay to work; `gdpr` and `is_gdpr` identify users under GDPR jurisdiction. Metrica also sets identifiers on Yandex domains such as `yandexuid` and `ymex` (1 year).
 
 **Configurations included.**
 
@@ -34,7 +34,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
 | 2 | Loading | Tag manager / Consenter | After consent | After consent |
-| 3 | Session Replay | Metrica tag settings [S1] | Off | On |
+| 3 | Session Replay | Metrica tag settings | Off | On |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
@@ -48,12 +48,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics, User-provided data |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | 1 year (`_ym_uid`) [S1] | 1 year (`_ym_uid`) [S1] |
+| Maximum storage duration | 1 year (`_ym_uid`) | 1 year (`_ym_uid`) |
 | Processing location | Russian Federation | Russian Federation |
 
-> **Note on legal role and tracking method.** Yandex-domain identifiers (`yandexuid`, `ymex`) are set across Yandex properties [S2], which is why the table uses third-party tracking. Confirm Yandex's role (processor or controller) in its Metrica terms.
-
-## Sources
-
-- [S1] Yandex Metrica Help — Temporary files installed by Yandex Metrica
-- [S2] Yandex Metrica Help — Temporary files installed by Yandex Metrica (Yandex domains)
+> **Note on legal role and tracking method.** Yandex-domain identifiers (`yandexuid`, `ymex`) are set across Yandex properties, which is why the table uses third-party tracking. Confirm Yandex's role (processor or controller) in its Metrica terms.

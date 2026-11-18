@@ -17,39 +17,34 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 ## At a glance
 
-**Scope.** Alphalyr Analytics JavaScript tag. Alphalyr is a French company; hosting is with Scaleway [S1]. Sources were checked on 16 November 2026.
+**Scope.** Alphalyr Analytics JavaScript tag. Alphalyr is a French company; hosting is with Scaleway.
 
-**What the service does in this scope.** Alphalyr collects a session ID (30-minute sliding lifetime), browser type, device type, referrer, visited page URL and a partial IP address sufficient for city-level location; it does not retrieve URL parameters from referrers [S1]. Results are visible only as aggregated statistics per dimension and day [S1]. Alphalyr acts as processor and processes no personal data for its own account [S1]. The `OPTOUT` parameter (`1`) deletes the session cookie and stops collection [S1].
+**What the service does in this scope.** Alphalyr collects a session ID (30-minute sliding lifetime), browser type, device type, referrer, visited page URL and a partial IP address sufficient for city-level location; it does not retrieve URL parameters from referrers. Results are visible only as aggregated statistics per dimension and day. Alphalyr acts as processor and processes no personal data for its own account. The `OPTOUT` parameter (`1`) deletes the session cookie and stops collection.
 
 **Simplified format.** Alphalyr has one measurement mode plus opt-out. The guide uses a single fixed-behaviour configuration.
 
-> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement tracers as exempt only under strict conditions [S2]. Describe this configuration as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run Alphalyr without consent only after review by your DPO or independent counsel.
+> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement tracers as exempt only under strict conditions. Describe this configuration as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run Alphalyr without consent only after review by your DPO or independent counsel.
 
 ## Step 1 — Configure Alphalyr
 
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Improve the service |
-| Tag placement | All pages, before `</head>` [S1] |
-| Session cookie | 30-minute sliding lifetime [S1] |
-| IP handling | Partial IP only (city level) [S1] |
-| Opt-out | `OPTOUT=1` via a form or preference button [S1] |
-| URLs with personal data | Do not tag such pages [S1] |
+| Tag placement | All pages, before `</head>` |
+| Session cookie | 30-minute sliding lifetime |
+| IP handling | Partial IP only (city level) |
+| Opt-out | `OPTOUT=1` via a form or preference button |
+| URLs with personal data | Do not tag such pages |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Improve the service | Audience measurement [S1]. |
-| Tracking method | First party tracking (single session) | 30-minute session ID [S1]. |
-| Identifier | Device identifiers | Session ID [S1]. |
-| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP address anonymised, Non-precise location data | [S1] |
-| Legal role of data recipient | Processor | [S1] |
+| Processing purposes | Improve the service | Audience measurement. |
+| Tracking method | First party tracking (single session) | 30-minute session ID. |
+| Identifier | Device identifiers | Session ID. |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP address anonymised, Non-precise location data | — |
+| Legal role of data recipient | Processor | — |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Not documented | — |
-| Processing location | France (Scaleway) | [S1] |
-
-## Sources
-
-- [S1] CNIL — Alphalyr Analytics configuration guide (V1.1, 24 May 2022)
-- [S2] CNIL — Cookies: solutions pour les outils de mesure d'audience (4 July 2025)
+| Processing location | France (Scaleway) | — |

@@ -17,34 +17,28 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** Connexity merchant pixel (conversion tracking and Dynamic Product Ads). Sources were checked on 16 November 2026.
+**Scope.** Connexity merchant pixel (conversion tracking and Dynamic Product Ads).
 
-**What the service does in this scope.** In relation to merchants, Connexity is a controller under the GDPR and, together with Taboola, uses data for affiliate and behavioural advertising [S1]. Connexity offers merchants ways to pass consent signals and to opt out of behavioural advertising [S1]. Pixel details, including the unified pixel for Dynamic Product Ads, are covered by the Merchant Privacy Terms [S2].
+**What the service does in this scope.** In relation to merchants, Connexity is a controller under the GDPR and, together with Taboola, uses data for affiliate and behavioural advertising. Connexity offers merchants ways to pass consent signals and to opt out of behavioural advertising. Pixel details, including the unified pixel for Dynamic Product Ads, are covered by the Merchant Privacy Terms.
 
 ## Step 1 — Implement Connexity
 
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Support marketing analytics; Customise online ads |
-| Pixel | Load after Consenter consent and pass the consent signal [S1] |
-| Behavioural advertising | Opt out via the mechanism Connexity offers if not wanted [S1] |
-| Contract | Connexity Merchant Terms and Merchant Privacy Terms [S2] |
+| Pixel | Load after Consenter consent and pass the consent signal |
+| Behavioural advertising | Opt out via the mechanism Connexity offers if not wanted |
+| Contract | Connexity Merchant Terms and Merchant Privacy Terms |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Support marketing analytics, Customise online ads | [S1] |
-| Tracking method | Third party tracking (crosssession, cross-website) | Behavioural advertising [S1] |
+| Processing purposes | Support marketing analytics, Customise online ads | — |
+| Tracking method | Third party tracking (crosssession, cross-website) | Behavioural advertising |
 | Identifier | Device identifiers | Cookie IDs |
-| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Users' profiles, Privacy choices | Consent signal passed [S1] |
-| Legal role of data recipient | Individual Controller | [S1] |
-| Personalisation model | Profile based | Behavioural advertising [S1] |
+| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Users' profiles, Privacy choices | Consent signal passed |
+| Legal role of data recipient | Individual Controller | — |
+| Personalisation model | Profile based | Behavioural advertising |
 | Maximum storage duration | Per Connexity Merchant Privacy Terms | — |
-| Processing location | United States | US enterprise; CLOUD Act [S3] |
-
-## Sources
-
-- [S1] Connexity Resources — Merchant FAQs regarding the EU GDPR
-- [S2] Connexity Resources — Merchant FAQs regarding CCPA/CPRA (Merchant Privacy Terms)
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+| Processing location | United States | US enterprise; CLOUD Act|

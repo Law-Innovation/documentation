@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** IONOS SiteAnalytics for websites hosted with IONOS. Sources were checked on 16 November 2026.
+**Scope.** IONOS SiteAnalytics for websites hosted with IONOS.
 
-**What the service does in this scope.** Data is determined either by a **pixel** or by a **log file**; SiteAnalytics "does not use cookies" [S1]. The visitor's IP address is transmitted with the page request, "anonymized directly after transmission, and processed without personal reference"; IONOS records referrer, requested page or file, browser, operating system, device type, time of access and the anonymised IP (used only to determine location) [S2][S3]. Tracking and logging are activated by default and must be mentioned in the privacy notice [S4].
+**What the service does in this scope.** Data is determined either by a **pixel** or by a **log file**; SiteAnalytics "does not use cookies". The visitor's IP address is transmitted with the page request, "anonymized directly after transmission, and processed without personal reference"; IONOS records referrer, requested page or file, browser, operating system, device type, time of access and the anonymised IP (used only to determine location). Tracking and logging are activated by default and must be mentioned in the privacy notice.
 
 **Configurations included.**
 
@@ -28,17 +28,17 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | Log-file based statistics only; no pixel in the page. |
 | Configuration B — Medium risk (default) | Pixel-based statistics plus log file. |
 
-> ⚠ **Recommendation — consent-free use.** Neither mode sets cookies [S1]. Log-file analysis (A) involves no script or pixel on the device. The pixel (B) is loaded in the browser; whether this triggers § 25 TDDDG depends on your assessment. Document the reasoning and have it reviewed by your DPO or independent counsel; otherwise load the pixel only after consent.
+> ⚠ **Recommendation — consent-free use.** Neither mode sets cookies. Log-file analysis (A) involves no script or pixel on the device. The pixel (B) is loaded in the browser; whether this triggers § 25 TDDDG depends on your assessment. Document the reasoning and have it reviewed by your DPO or independent counsel; otherwise load the pixel only after consent.
 
 ## Step 1 — Configure IONOS SiteAnalytics
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk (default) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
-| 2 | Data source | SiteAnalytics settings (pixel or log file) [S1] | Log file only | Pixel and log file |
-| 3 | Activation | Enabled by default [S4] | Keep log file, disable pixel | Default |
-| 4 | Cookies | **Not used** [S1] | — | — |
-| 5 | IP handling | **Not configurable.** Anonymised directly after transmission [S2] | — | — |
+| 2 | Data source | SiteAnalytics settings (pixel or log file) | Log file only | Pixel and log file |
+| 3 | Activation | Enabled by default | Keep log file, disable pixel | Default |
+| 4 | Cookies | **Not used** | — | — |
+| 5 | IP handling | **Not configurable.** Anonymised directly after transmission | — | — |
 | 6 | Data processing agreement | IONOS contract (hosting customer) | Concluded | Concluded |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -54,20 +54,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Maximum storage duration | Not documented | Not documented |
 | Processing location | Germany / EU (IONOS SE) | Germany / EU (IONOS SE) |
 
-**Basis.** No cookies [S1]; anonymised IP and data recorded [S2][S3]. IONOS SE is a German company; no US parent is involved.
-
 ## Privacy-policy follow-up
 
-- IONOS as processor; statistics without cookies; data recorded; IP anonymisation [S2][S3]; mandatory mention because tracking is on by default [S4].
+- IONOS as processor; statistics without cookies; data recorded; IP anonymisation; mandatory mention because tracking is on by default.
 
 ## Verification checklist
 
 - [ ] A: no SiteAnalytics pixel request in the browser.
 - [ ] Data processing agreement with IONOS in place.
-
-## Sources
-
-- [S1] IONOS Help — Data collection for SiteAnalytics
-- [S2] IONOS Help — Data processing by SiteAnalytics
-- [S3] IONOS Help — Information collected in SiteAnalytics
-- [S4] IONOS Help (CA) — Data processing by SiteAnalytics (activated by default)

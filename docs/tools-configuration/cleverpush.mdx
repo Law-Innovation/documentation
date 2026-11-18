@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** CleverPush web push notifications (CleverPush GmbH, Hamburg, Germany). Sources were checked on 16 November 2026.
+**Scope.** CleverPush web push notifications (CleverPush GmbH, Hamburg, Germany).
 
-**What the service does in this scope.** To subscribe, the visitor confirms the browser's permission request; CleverPush documents the registration and stores the time of registration and a push token or device ID [S1]. CleverPush also statistically evaluates whether and when notifications were displayed and clicked, and stores the topic on which push notifications were activated; the legal basis it names is consent, Art. 6(1)(a) GDPR [S2]. Browser storage entries include `cleverpush-subscription-status` (which CleverPush classifies as technically necessary so that a declining user is not asked again) and `cleverpush-subscription-id` (subscribers only) [S3]. Customer data is stored in Germany [S1].
+**What the service does in this scope.** To subscribe, the visitor confirms the browser's permission request; CleverPush documents the registration and stores the time of registration and a push token or device ID. CleverPush also statistically evaluates whether and when notifications were displayed and clicked, and stores the topic on which push notifications were activated; the legal basis it names is consent, Art. 6(1)(a) GDPR. Browser storage entries include `cleverpush-subscription-status` (which CleverPush classifies as technically necessary so that a declining user is not asked again) and `cleverpush-subscription-id` (subscribers only). Customer data is stored in Germany.
 
 **Configurations included.**
 
@@ -28,7 +28,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Push subscription with topic selection only; no segmentation by behaviour; script after consent. |
 | Configuration B — Higher risk | Push subscription with behavioural segmentation/tags; script after consent. |
 
-> ⚠ **Recommendation — status entry before consent.** CleverPush classifies `cleverpush-subscription-status` as technically necessary [S3]. Whether this storage access qualifies under § 25(2) TDDDG before any subscription is not confirmed by the sources. Load the CleverPush script after Consenter consent unless your DPO or independent counsel confirms otherwise.
+> ⚠ **Recommendation — status entry before consent.** CleverPush classifies `cleverpush-subscription-status` as technically necessary. Whether this storage access qualifies under § 25(2) TDDDG before any subscription is not confirmed by the sources. Load the CleverPush script after Consenter consent unless your DPO or independent counsel confirms otherwise.
 
 ## Step 1 — Configure CleverPush
 
@@ -36,7 +36,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Receive marketing offers | Receive marketing offers; Receive personalised marketing offers |
 | 2 | Loading | Consenter script blocking | After consent | After consent |
-| 3 | Opt-in | Browser permission prompt [S1] | Required | Required |
+| 3 | Opt-in | Browser permission prompt | Required | Required |
 | 4 | Segmentation | CleverPush channel settings | Topics only | Tags / behavioural segments |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -49,13 +49,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Device identifiers, Browsing and interaction data | Device identifiers, Browsing and interaction data, Users' profiles |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | Group based (properties) | Group based (behaviour) |
-| Maximum storage duration | For the duration of the subscription [S2] | For the duration of the subscription [S2] |
-| Processing location | Germany [S1] | Germany [S1] |
-
-**Basis.** Push token and storage entries [S1][S3]; German company, so no CLOUD Act flag unless the DPA lists US sub-processors. Browser push services (e.g. Google, Mozilla, Apple) deliver the messages; disclose these in the privacy policy.
-
-## Sources
-
-- [S1] CleverPush — Data protection and data processing agreement
-- [S2] CleverPush — GDPR privacy text for push notifications
-- [S3] CleverPush — Cookies and local storage
+| Maximum storage duration | For the duration of the subscription | For the duration of the subscription |
+| Processing location | Germany | Germany |

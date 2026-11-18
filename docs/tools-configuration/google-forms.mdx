@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** A Google Form embedded on a website (iframe from `docs.google.com/forms`) or linked from it. Sources were checked on 16 November 2026.
+**Scope.** A Google Form embedded on a website (iframe from `docs.google.com/forms`) or linked from it.
 
-**What the service does in this scope.** The form is rendered by Google and responses are stored in the form owner's Google account. For **Google Workspace** customers, Google Forms is part of the Workspace services; Customer Data is processed under the Cloud Data Processing Addendum, and Workspace In-Scope Editions can select a data region for Forms data at rest ("text, embedded images, responses and draft responses") [S1][S2]. A form created with a personal (consumer) Google account is not covered by these terms.
+**What the service does in this scope.** The form is rendered by Google and responses are stored in the form owner's Google account. For **Google Workspace** customers, Google Forms is part of the Workspace services; Customer Data is processed under the Cloud Data Processing Addendum, and Workspace In-Scope Editions can select a data region for Forms data at rest ("text, embedded images, responses and draft responses"). A form created with a personal (consumer) Google account is not covered by these terms.
 
 **Configurations included.**
 
@@ -43,14 +43,14 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features (form submission) | Same |
-| 2 | Account type and contract | Google Workspace subscription with Cloud Data Processing Addendum [S2] | Workspace | Personal account |
-| 3 | Data region | Google Admin console > Data regions (In-Scope Editions only) [S1] | Europe | — |
+| 2 | Account type and contract | Google Workspace subscription with Cloud Data Processing Addendum | Workspace | Personal account |
+| 3 | Data region | Google Admin console > Data regions (In-Scope Editions only) | Europe | — |
 | 4 | Collect email addresses | Form **Settings > Responses > Collect email addresses** | Off | On |
 | 5 | Embedding | Website code | Link, or iframe blocked until consent | Iframe blocked until consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Data not covered by the Data Regions Policy may be processed wherever Google or its subprocessors maintain facilities [S1]. Google LLC is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S3].
+**Processing location.** Data not covered by the Data Regions Policy may be processed wherever Google or its subprocessors maintain facilities. Google LLC is a US company and can be required to disclose data in its possession, custody or control regardless of storage location.
 
 ### Configuration A — Medium risk
 
@@ -59,11 +59,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Processing purposes | Unlock additional website features | Form submission. |
 | Tracking method | No tracking | No tracking by the form owner. |
 | Identifier | IP address | Transmitted when the iframe loads. |
-| Data categories | IP address, Device characteristics, User-provided data | Form responses [S1]. Add "direct identifier" if the form asks for names or email addresses. |
-| Legal role of data recipient | Processor | Cloud Data Processing Addendum for Workspace Customer Data [S2]. |
+| Data categories | IP address, Device characteristics, User-provided data | Form responses. Add "direct identifier" if the form asks for names or email addresses. |
+| Legal role of data recipient | Processor | Cloud Data Processing Addendum for Workspace Customer Data. |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Until deleted by the form owner | Responses remain until deleted. |
-| Processing location | Europe (data at rest); United States as potential processing and access location | [S1][S3] |
+| Processing location | Europe (data at rest); United States as potential processing and access location | — |
 
 ### Configuration B — Higher risk
 
@@ -76,19 +76,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Legal role of data recipient | Individual Controller | No processing terms for personal accounts. |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Until deleted by the form owner | — |
-| Processing location | United States as potential processing and access location | [S3] |
+| Processing location | United States as potential processing and access location | — |
 
 ## Privacy-policy follow-up
 
-- Google as processor (A) or controller (B); data collected in the form; data region; US transfer and potential access by US authorities [S3].
+- Google as processor (A) or controller (B); data collected in the form; data region; US transfer and potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] No request to `docs.google.com` before consent (if embedded).
-- [ ] Form owned by the Workspace account (A); data region set [S1].
-
-## Sources
-
-- [S1] Google Workspace Service Specific Terms (Data Regions)
-- [S2] Cloud Data Processing Addendum (Customers)
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+- [ ] Form owned by the Workspace account (A); data region set.

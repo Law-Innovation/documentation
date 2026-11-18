@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Bazaarvoice ratings and reviews display (`bv.js`) on the website. Bazaarvoice, Inc. is a US company (Austin, Texas) [S1]. Sources were checked on 16 November 2026.
+**Scope.** Bazaarvoice ratings and reviews display (`bv.js`) on the website. Bazaarvoice, Inc. is a US company (Austin, Texas).
 
-**What the service does in this scope.** Bazaarvoice states that it cannot create first-party cookies without explicit consent; first-party cookies must be enabled per domain by Bazaarvoice Support, and the website passes consent with the `setConsent` function [S2]. `BVBRANDID` (1 year) and `BVBRANDSID` (session) correlate internal Bazaarvoice web analytics to the same user or session within a client domain [S3]. When the opt-out function is invoked, these cookies are removed and analytics calls go to an anonymous endpoint [S4]. Bazaarvoice's privacy policy states it uses cookies to combine data across multiple websites in the Bazaarvoice Network [S5].
+**What the service does in this scope.** Bazaarvoice states that it cannot create first-party cookies without explicit consent; first-party cookies must be enabled per domain by Bazaarvoice Support, and the website passes consent with the `setConsent` function. `BVBRANDID` (1 year) and `BVBRANDSID` (session) correlate internal Bazaarvoice web analytics to the same user or session within a client domain. When the opt-out function is invoked, these cookies are removed and analytics calls go to an anonymous endpoint. Bazaarvoice's privacy policy states it uses cookies to combine data across multiple websites in the Bazaarvoice Network.
 
 **Configurations included.**
 
@@ -28,20 +28,20 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Reviews display without Bazaarvoice cookies (first-party cookies not enabled, or consent `false`); anonymous analytics endpoint. |
 | Configuration B — Higher risk | First-party cookies enabled; `setConsent` passes Consenter consent; cookies after consent. |
 
-> ⚠ **Recommendation — Configuration A before consent.** Without cookies the script still loads and sends analytics to Bazaarvoice's anonymous endpoint [S4]. Load the review display after Consenter consent unless your DPO or independent counsel confirms a consent-free basis.
+> ⚠ **Recommendation — Configuration A before consent.** Without cookies the script still loads and sends analytics to Bazaarvoice's anonymous endpoint. Load the review display after Consenter consent unless your DPO or independent counsel confirms a consent-free basis.
 
 ## Step 1 — Configure Bazaarvoice
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features; Improve the service |
-| 2 | First-party cookies | Bazaarvoice Support, per domain [S2] | Not enabled | Enabled |
-| 3 | Consent signal | `setConsent({ BVBRANDID: …, BVBRANDSID: … })` [S2] | — | From Consenter |
+| 2 | First-party cookies | Bazaarvoice Support, per domain | Not enabled | Enabled |
+| 3 | Consent signal | `setConsent({ BVBRANDID: …, BVBRANDSID: … })` | — | From Consenter |
 | 4 | Loading | Consenter script blocking | See ⚠ | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Bazaarvoice is a US enterprise subject to 18 U.S.C. § 2713 [S6]; list the United States.
+**Processing location.** Bazaarvoice is a US enterprise subject to the US CLOUD Act; list the United States.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -51,16 +51,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | IP address, Browsing and interaction data | Browsing and interaction data, Device identifiers, IP address, Privacy choices |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | — | 1 year (`BVBRANDID`) [S3] |
+| Maximum storage duration | — | 1 year (`BVBRANDID`) |
 | Processing location | United States | United States |
-
-**Basis.** Cookies [S2][S3]; consent signal [S2], hence "Privacy choices". If the third-party Bazaarvoice Network cookie is active, add "Third party tracking (crosssession, cross-website)" and Individual Controller per the network data use [S5].
-
-## Sources
-
-- [S1] Bazaarvoice — Privacy contact (Austin, TX)
-- [S2] Bazaarvoice Knowledge — Cookie consent
-- [S3] Bazaarvoice Knowledge — Cookies
-- [S4] Bazaarvoice Developers — Opting out of tracking
-- [S5] Bazaarvoice — Privacy Policy
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)

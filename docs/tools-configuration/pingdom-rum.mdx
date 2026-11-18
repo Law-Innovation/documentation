@@ -17,13 +17,13 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 ## At a glance
 
-**Scope.** SolarWinds Pingdom Real User Monitoring (RUM) script. SolarWinds is a US company. Sources were checked on 16 November 2026.
+**Scope.** SolarWinds Pingdom Real User Monitoring (RUM) script. SolarWinds is a US company.
 
-**What the service does in this scope.** The RUM script sends performance data to Pingdom's servers [S1]. RUM uses **local storage** to track visitors, saving a random session ID (`sid`) and the session start time (`sst`) [S2]. Pingdom states that it does not save user IP addresses, uses the IP address only to determine country of origin, and that the session ID is unique per domain, so users cannot be tracked across sites [S1].
+**What the service does in this scope.** The RUM script sends performance data to Pingdom's servers. RUM uses **local storage** to track visitors, saving a random session ID (`sid`) and the session start time (`sst`). Pingdom states that it does not save user IP addresses, uses the IP address only to determine country of origin, and that the session ID is unique per domain, so users cannot be tracked across sites.
 
 **Simplified format.** Pingdom documents no privacy settings to vary (such as storage choice or retention). The guide uses a single fixed-behaviour configuration.
 
-**Consent.** RUM stores information in local storage on the visitor's device [S2]; load the script only after consent.
+**Consent.** RUM stores information in local storage on the visitor's device; load the script only after consent.
 
 ## Step 1 — Configure Pingdom RUM
 
@@ -31,34 +31,28 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 |---|---|
 | Processing purposes | Improve the service |
 | Loading | Blocked by Consenter until consent |
-| Storage on the device | Local storage: `sid`, `sst` [S2] |
-| IP address | Not saved; used for country of origin [S1] |
-| Cross-site tracking | Not possible (session ID unique per domain) [S1] |
+| Storage on the device | Local storage: `sid`, `sst` |
+| IP address | Not saved; used for country of origin |
+| Cross-site tracking | Not possible (session ID unique per domain) |
 | Retention | **Not documented** |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Improve the service | Page performance monitoring [S1]. |
-| Tracking method | First party tracking (single session) | Random session ID in local storage [S2]. |
-| Identifier | Device identifiers | Session ID [S2]. |
-| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, Non-precise location data | Performance data, browser/platform; country derived from IP [S1]. |
+| Processing purposes | Improve the service | Page performance monitoring. |
+| Tracking method | First party tracking (single session) | Random session ID in local storage. |
+| Identifier | Device identifiers | Session ID. |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, Non-precise location data | Performance data, browser/platform; country derived from IP. |
 | Legal role of data recipient | Processor | Verify against SolarWinds' DPA. |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Not documented | — |
-| Processing location | United States | SolarWinds is a US company subject to 18 U.S.C. § 2713 [S3]. |
+| Processing location | United States | SolarWinds is a US company subject to the US CLOUD Act. |
 
 ## Privacy-policy follow-up
 
-- SolarWinds Pingdom as processor; performance data; local storage; IP used only for country; US provider and potential access by US authorities [S3].
+- SolarWinds Pingdom as processor; performance data; local storage; IP used only for country; US provider and potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] No `rum-static.pingdom.net` request and no RUM local-storage entries before consent.
-
-## Sources
-
-- [S1] SolarWinds Documentation — About Pingdom Real User Monitoring
-- [S2] SolarWinds Documentation — Data stored in Real User Monitoring
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Typeform forms embedded via the Embed SDK or linked. Typeform S.L. is based in Barcelona [S1]. Sources were checked on 16 November 2026.
+**Scope.** Typeform forms embedded via the Embed SDK or linked. Typeform S.L. is based in Barcelona.
 
-**What the service does in this scope.** Typeform stores form responses in the US, or in the EU for EU data-hosting customers; infrastructure is provided by AWS [S2]. Embedded forms load analytics scripts (requests to `api.segment.io`), which Typeform states can only be stopped by blocking them [S3]. Typeform acts as processor with SCCs and participates in the EU-US Data Privacy Framework [S4].
+**What the service does in this scope.** Typeform stores form responses in the US, or in the EU for EU data-hosting customers; infrastructure is provided by AWS. Embedded forms load analytics scripts (requests to `api.segment.io`), which Typeform states can only be stopped by blocking them. Typeform acts as processor with SCCs and participates in the EU-US Data Privacy Framework.
 
 **Configurations included.**
 
@@ -34,13 +34,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | — (external link) | Unlock additional website features; Support marketing analytics |
 | 2 | Integration | Website code | Link to `form.typeform.com/...` | Embed SDK (`embed.typeform.com`) |
-| 3 | Data hosting | Plan / account [S2] | EU | US |
+| 3 | Data hosting | Plan / account | EU | US |
 | 4 | Form tracking (GTM, pixels) | Typeform form settings | Off | On |
 | 5 | Loading | Consenter script blocking | — | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** AWS hosts all Typeform data [S2]; AWS is a US enterprise subject to 18 U.S.C. § 2713 [S5]; list the United States in all configurations with an entry.
+**Processing location.** AWS hosts all Typeform data; AWS is a US enterprise subject to the US CLOUD Act; list the United States in all configurations with an entry.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -53,11 +53,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | — | No personalisation |
 | Maximum storage duration | — | Per Typeform cookie policy |
 | Processing location | — | United States |
-
-## Sources
-
-- [S1] Legal Web — Typeform (data processor details)
-- [S2] Typeform Help — What other companies do we share data with
-- [S3] Typeform Community — Disable Segment tracking in embedded form
-- [S4] Consently — Is Typeform GDPR compliant
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

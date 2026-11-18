@@ -17,21 +17,21 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 ## At a glance
 
-**Scope.** VG Wort counting pixels (Zählmarken) embedded in texts via the METIS system so that authors and publishers can claim statutory remuneration. Verwertungsgesellschaft Wort is a German collecting society. Sources were checked on 16 November 2026.
+**Scope.** VG Wort counting pixels (Zählmarken) embedded in texts via the METIS system so that authors and publishers can claim statutory remuneration. Verwertungsgesellschaft Wort is a German collecting society.
 
-**What the service does in this scope.** Each text carries a counting pixel that reports page accesses to the VG Wort counting server [S1]. Access counting recognises systems either by a **session cookie** with a random session ID or by a signature formed from information the browser transmits automatically [S2]. VG Wort's position, as reported, is that counting is anonymous and the cookie only serves to prevent incorrect counts and fraud [S3].
+**What the service does in this scope.** Each text carries a counting pixel that reports page accesses to the VG Wort counting server. Access counting recognises systems either by a **session cookie** with a random session ID or by a signature formed from information the browser transmits automatically. VG Wort's position, as reported, is that counting is anonymous and the cookie only serves to prevent incorrect counts and fraud.
 
 **Simplified format.** VG Wort documents no privacy options for publishers. The guide uses a single fixed-behaviour configuration.
 
-> ⚠ **Recommendation — consent status is disputed.** Commentators argue that the session cookie is not technically necessary and therefore needs consent under § 25 TDDDG [S4]; others treat counting for statutory remuneration as necessary [S5]. The alternative signature method reads browser information and raises the same question. Load the pixel after consent unless your DPO or independent counsel confirms an exemption; note that without counting, remuneration claims may be lost.
+> ⚠ **Recommendation — consent status is disputed.** Commentators argue that the session cookie is not technically necessary and therefore needs consent under § 25 TDDDG; others treat counting for statutory remuneration as necessary. The alternative signature method reads browser information and raises the same question. Load the pixel after consent unless your DPO or independent counsel confirms an exemption; note that without counting, remuneration claims may be lost.
 
 ## Step 1 — Configure VG Wort
 
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Unlock additional website features (statutory remuneration counting) |
-| Pixel placement | Per METIS documentation, one pixel per text [S1] |
-| Recognition method | Session cookie or browser signature [S2] |
+| Pixel placement | Per METIS documentation, one pixel per text |
+| Recognition method | Session cookie or browser signature |
 | Loading | See ⚠ recommendation |
 | Retention | **Not documented** |
 
@@ -40,12 +40,12 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Unlock additional website features | Closest available purpose; the processing serves statutory author remuneration. Taxonomy gap: no purpose describes rights-management counting. |
-| Tracking method | First party tracking (single session) | Session cookie or signature for the current session [S2]. |
-| Identifier | Device identifiers, Probabilistic identifiers | Session ID or browser signature [S2]. |
-| Data categories | IP address, Device characteristics, Browsing and interaction data, Probabilistic identifiers | Pixel request data [S2]. |
+| Tracking method | First party tracking (single session) | Session cookie or signature for the current session. |
+| Identifier | Device identifiers, Probabilistic identifiers | Session ID or browser signature. |
+| Data categories | IP address, Device characteristics, Browsing and interaction data, Probabilistic identifiers | Pixel request data. |
 | Legal role of data recipient | Individual Controller | VG Wort counts for its own statutory distribution purposes. |
 | Personalisation model | No personalisation | — |
-| Maximum storage duration | Session (cookie) | [S2] |
+| Maximum storage duration | Session (cookie) | — |
 | Processing location | Germany | VG Wort, Munich. |
 
 ## Privacy-policy follow-up
@@ -56,11 +56,3 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 - [ ] Pixel loading matches the consent decision.
 - [ ] Privacy policy includes VG Wort counting.
-
-## Sources
-
-- [S1] VG Wort — METIS documentation (Zählmarken)
-- [S2] Example privacy notice describing VG Wort session cookie or signature (alcasthq.com)
-- [S3] eRecht24 — Datenschutzerklärung für VG Wort Zählpixel
-- [S4] IT-Recht Kanzlei — Cookies der VG Wort: Einwilligungspflicht mangels technischer Notwendigkeit?
-- [S5] Dr. DSGVO — Cookies that may be considered necessary (VG Wort billing)

@@ -17,9 +17,9 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** PushPanda web push notifications (Austrian provider). Sources were checked on 16 November 2026.
+**Scope.** PushPanda web push notifications (Austrian provider).
 
-**What the service does in this scope.** PushPanda states that web push notifications do not require cookie technology but store two endpoints [S1], that it does not store personal data and that data is managed on servers in Germany [S2]. Interests and segments of visitors can be stored, and subscribers can be connected to customer data via the REST API [S3].
+**What the service does in this scope.** PushPanda states that web push notifications do not require cookie technology but store two endpoints, that it does not store personal data and that data is managed on servers in Germany. Interests and segments of visitors can be stored, and subscribers can be connected to customer data via the REST API.
 
 > ⚠ **Recommendation — "no personal data" claim.** A push subscription endpoint is a device-specific identifier, and the subscription is stored in the browser. Treat the endpoint as a device identifier and load PushPanda only after consent unless your DPO or independent counsel confirms otherwise.
 
@@ -29,24 +29,18 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 |---|---|
 | Processing purposes | Receive marketing offers |
 | Loading | Consenter script blocking until consent; then browser permission prompt |
-| Segments / interests | Store only if disclosed [S3] |
-| CRM connection | Via REST API only if disclosed [S3] |
+| Segments / interests | Store only if disclosed |
+| CRM connection | Via REST API only if disclosed |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Receive marketing offers | Push marketing [S3] |
-| Tracking method | First party tracking (cross-session) | Stored push subscription [S1] |
-| Identifier | Device identifiers | Push endpoint [S1] |
-| Data categories | Device identifiers, Browsing and interaction data | Subscription and interests [S1][S3] |
+| Processing purposes | Receive marketing offers | Push marketing |
+| Tracking method | First party tracking (cross-session) | Stored push subscription |
+| Identifier | Device identifiers | Push endpoint |
+| Data categories | Device identifiers, Browsing and interaction data | Subscription and interests |
 | Legal role of data recipient | Processor | Provider on behalf of the operator |
-| Personalisation model | Group based (properties) | Interests and segments [S3]; "Profile based" if connected to customer data |
+| Personalisation model | Group based (properties) | Interests and segments; "Profile based" if connected to customer data |
 | Maximum storage duration | For the duration of the subscription | — |
-| Processing location | Germany | [S2] |
-
-## Sources
-
-- [S1] PushPanda Support — Web push notifications
-- [S2] PushPanda Support — Data storage
-- [S3] PushPanda — E-commerce (interests, segments, REST API)
+| Processing location | Germany | — |

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Klarna Web SDK conversion features: On-site Messaging (OSM), Klarna Express Checkout (KEC) and Sign in with Klarna (SIWK) [S1]. Sources were checked on 16 November 2026.
+**Scope.** Klarna Web SDK conversion features: On-site Messaging (OSM), Klarna Express Checkout (KEC) and Sign in with Klarna (SIWK).
 
-**What the service does in this scope.** When integrating the Web SDK, for example for conversion boosters, partners must inform users about the tracking technologies employed [S2]. Merchants must disclose both strictly necessary technologies and any specific technologies used by the Web SDK, including name, purpose, provider, local storage use and retention period [S3]. KEC can be placed on product or cart pages and pre-fills the customer's personal details [S4].
+**What the service does in this scope.** When integrating the Web SDK, for example for conversion boosters, partners must inform users about the tracking technologies employed. Merchants must disclose both strictly necessary technologies and any specific technologies used by the Web SDK, including name, purpose, provider, local storage use and retention period. KEC can be placed on product or cart pages and pre-fills the customer's personal details.
 
 **Configurations included.**
 
@@ -33,12 +33,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features; Support marketing analytics |
-| 2 | Features | Klarna Merchant Portal / Web SDK [S1] | On-site Messaging | OSM + KEC and/or SIWK |
+| 2 | Features | Klarna Merchant Portal / Web SDK | On-site Messaging | OSM + KEC and/or SIWK |
 | 3 | Loading | `js.klarna.com/web-sdk/v1/klarna.js` | After Consenter consent | After Consenter consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Klarna Bank AB is a Swedish company; check its DPA for US sub-processors and list the United States if present (18 U.S.C. § 2713 [S5]).
+**Processing location.** Klarna Bank AB is a Swedish company; check its DPA for US sub-processors and list the United States if present.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -48,13 +48,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Device identifiers, Device characteristics, Browsing and interaction data | Device identifiers, Device characteristics, Browsing and interaction data, Authentication-derived identifiers, Direct identifier, e-commerce Activity |
 | Legal role of data recipient | Individual Controller | Individual Controller |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | Per Klarna Web SDK disclosure [S3] | Per Klarna Web SDK disclosure [S3] |
+| Maximum storage duration | Per Klarna Web SDK disclosure | Per Klarna Web SDK disclosure |
 | Processing location | Sweden / EU; per DPA | Sweden / EU; per DPA |
-
-## Sources
-
-- [S1] Klarna Docs — Boost Features Terms of Service
-- [S2] Klarna Docs — On-site messaging integration prerequisites
-- [S3] Klarna Docs — Terms of Service (tracking technology disclosure)
-- [S4] Klarna Docs — Purchase experience
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

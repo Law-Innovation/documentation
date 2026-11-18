@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The iAdvize conversational tag (chat, chatbots, expert community). iAdvize SAS is a French company with subsidiaries including iAdvize GmbH and iAdvize Inc. (US) [S1]. Sources were checked on 16 November 2026.
+**Scope.** The iAdvize conversational tag (chat, chatbots, expert community). iAdvize SAS is a French company with subsidiaries including iAdvize GmbH and iAdvize Inc. (US).
 
-**What the service does in this scope.** iAdvize needs one cookie for the conversation, `iadvize-SID_NUMBER-vuid` [S2]; browser type, terminal type and page URL are attached to this VUID for 12 months to apply targeting rules [S3]. iAdvize offers two consent methods: management by the CMP alone (iAdvize hidden if cookies are refused), or coordinated management, where the tag is triggered without cookies, iAdvize is always displayed, and consent can also be given in the chatbox (**Settings > Consent Management > Privacy**) [S4].
+**What the service does in this scope.** iAdvize needs one cookie for the conversation, `iadvize-SID_NUMBER-vuid`; browser type, terminal type and page URL are attached to this VUID for 12 months to apply targeting rules. iAdvize offers two consent methods: management by the CMP alone (iAdvize hidden if cookies are refused), or coordinated management, where the tag is triggered without cookies, iAdvize is always displayed, and consent can also be given in the chatbox (**Settings > Consent Management > Privacy**).
 
 **Configurations included.**
 
@@ -28,20 +28,20 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | CMP-only: tag fires after Consenter consent; iAdvize hidden otherwise. |
 | Configuration B — Higher risk | As A, plus proactive targeting rules and co-browsing / mirroring. |
 
-> ⚠ **Recommendation — coordinated management.** iAdvize's recommended coordinated method loads the tag before consent, without cookies [S4]. Loading the tag still transmits data to iAdvize. Use it only if your DPO or independent counsel confirms a legal basis for that pre-consent processing.
+> ⚠ **Recommendation — coordinated management.** iAdvize's recommended coordinated method loads the tag before consent, without cookies. Loading the tag still transmits data to iAdvize. Use it only if your DPO or independent counsel confirms a legal basis for that pre-consent processing.
 
 ## Step 1 — Configure iAdvize
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features; Receive marketing offers |
-| 2 | Consent method | **Settings > Integration > Apps** (CMP); **Settings > Consent Management** [S4] | CMP-only | CMP-only |
+| 2 | Consent method | **Settings > Integration > Apps** (CMP); **Settings > Consent Management** | CMP-only | CMP-only |
 | 3 | Targeting rules | iAdvize targeting | Basic | Proactive, behaviour-based |
-| 4 | Mirroring / co-browsing | **Settings > Advanced settings > Agent settings** [S5] | Off | On |
+| 4 | Mirroring / co-browsing | **Settings > Advanced settings > Agent settings** | Off | On |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Per iAdvize's DPA; iAdvize Inc. is a US subsidiary, so list the United States as a potential access location (18 U.S.C. § 2713 [S6]).
+**Processing location.** Per iAdvize's DPA; iAdvize Inc. is a US subsidiary, so list the United States as a potential access location.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -51,14 +51,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Browsing and interaction data, Device characteristics, Device identifiers, User-provided data | As A, plus Users' profiles |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | Group based (behaviour) |
-| Maximum storage duration | 12 months [S3] | 12 months [S3] |
+| Maximum storage duration | 12 months | 12 months |
 | Processing location | Per DPA; United States | Per DPA; United States |
-
-## Sources
-
-- [S1] iAdvize — Privacy policy (subsidiaries)
-- [S2] iAdvize Help — iAdvize and cookies
-- [S3] iAdvize Help — The GDPR & iAdvize
-- [S4] iAdvize Help — Consent management
-- [S5] iAdvize Help — Modifying privacy settings
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)

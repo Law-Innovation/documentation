@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Adobe Analytics web data collection (AppMeasurement or the Adobe Experience Platform Web SDK). Adobe Target, Audience Manager and the Experience Cloud Identity Service are covered in the Adobe Experience Cloud guide. Sources were checked on 16 November 2026.
+**Scope.** Adobe Analytics web data collection (AppMeasurement or the Adobe Experience Platform Web SDK). Adobe Target, Audience Manager and the Experience Cloud Identity Service are covered in the Adobe Experience Cloud guide.
 
-**What the service does in this scope.** Data collection libraries generate a visitor ID per browser, stored in a cookie; if no cookie can be set, a fallback method ties hits to the same visit [S1]. Report suite settings can replace the last octet of IP addresses with zero before geo reports are populated, and **IP Obfuscation** can further hash or remove the IP address [S2][S3]. With the Web SDK, IP obfuscation can also be applied at the Edge Network in the datastream configuration [S2].
+**What the service does in this scope.** Data collection libraries generate a visitor ID per browser, stored in a cookie; if no cookie can be set, a fallback method ties hits to the same visit. Report suite settings can replace the last octet of IP addresses with zero before geo reports are populated, and **IP Obfuscation** can further hash or remove the IP address. With the Web SDK, IP obfuscation can also be applied at the Edge Network in the datastream configuration.
 
 **Legal role.** Adobe processes Analytics data on behalf of its customers under its data processing terms. Adobe Inc. is a US company.
 
@@ -30,23 +30,23 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Last octet replaced with 0 and IP obfuscation (remove/hash); no customer IDs; after consent. |
 | Configuration B — Higher risk | Full IP processing (no obfuscation); customer IDs and marketing channel data used for attribution; after consent. |
 
-**No configuration without prior consent.** The visitor ID cookie is persistent [S1]; no consent-free configuration is documented.
+**No configuration without prior consent.** The visitor ID cookie is persistent; no consent-free configuration is documented.
 
 ## Step 1 — Configure Adobe Analytics
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics |
-| 2 | Replace last octet | Admin > Report Suites > Edit Settings > General > General Account Settings > **Replace the last octet of IP addresses with 0** [S2] | On | Off |
-| 3 | IP Obfuscation | Same page > **IP Obfuscation** (obfuscate / remove) [S2][S3] | Remove IP address | Disabled |
-| 4 | Web SDK datastream IP obfuscation | Data Collection > Datastreams > IP Obfuscation (Web SDK only) [S2] | Full | None |
+| 2 | Replace last octet | Admin > Report Suites > Edit Settings > General > General Account Settings > **Replace the last octet of IP addresses with 0** | On | Off |
+| 3 | IP Obfuscation | Same page > **IP Obfuscation** (obfuscate / remove) | Remove IP address | Disabled |
+| 4 | Web SDK datastream IP obfuscation | Data Collection > Datastreams > IP Obfuscation (Web SDK only) | Full | None |
 | 5 | Customer IDs / declared IDs | Implementation (`s.visitorID`, identity map) | Not used | Used |
 | 6 | Loading | Consenter blocking of the library / tag | After consent | After consent |
 | 7 | Data retention | Admin > Data Governance / contractual retention | Short (e.g. 13 months, illustrative) | Long (e.g. 25 months, illustrative) |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Adobe Inc. is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S4]. The United States is listed as a potential processing and access location.
+**Processing location.** Adobe Inc. is a US company and can be required to disclose data in its possession, custody or control regardless of storage location. The United States is listed as a potential processing and access location.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -59,21 +59,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Maximum storage duration | 13 months (illustrative) | 25 months (illustrative) |
 | Processing location | Per data centre; United States as potential access location | Per data centre; United States as potential access location |
 
-**Basis.** Cookie-based visitor ID [S1]; IP settings [S2][S3]. Geo reports remain available with last-octet replacement [S2], hence "Non-precise location data" in A.
-
 ## Privacy-policy follow-up
 
-- Adobe as processor; visitor ID cookie; IP handling; retention; US provider and potential access by US authorities [S4].
+- Adobe as processor; visitor ID cookie; IP handling; retention; US provider and potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] No Adobe Analytics beacons before consent.
-- [ ] Report suite IP settings match the configuration [S2].
+- [ ] Report suite IP settings match the configuration.
 - [ ] Retention period documented in the contract.
-
-## Sources
-
-- [S1] Adobe Experience League — Analytics privacy overview
-- [S2] Adobe Experience League — General Account Settings (IP settings)
-- [S3] Adobe Experience League — Exclude by IP address (processing order of IP obfuscation)
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

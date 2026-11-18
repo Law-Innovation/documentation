@@ -17,9 +17,9 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 ## At a glance
 
-**Scope.** Interactive maps embedded through Bing Maps for Enterprise web controls or REST APIs. Sources were checked on 16 November 2026.
+**Scope.** Interactive maps embedded through Bing Maps for Enterprise web controls or REST APIs.
 
-**Service status — deprecated.** Microsoft has retired Bing Maps for Enterprise. Free and Basic accounts stopped working after 30 June 2025; existing Enterprise licence holders can continue until 30 June 2028; no new customers have been accepted since 30 June 2024. Microsoft directs all customers to migrate to **Azure Maps** [S1][S2]. This guide therefore documents only the remaining Enterprise use and recommends migration planning.
+**Service status — deprecated.** Microsoft has retired Bing Maps for Enterprise. Free and Basic accounts stopped working after 30 June 2025; existing Enterprise licence holders can continue until 30 June 2028; no new customers have been accepted since 30 June 2024. Microsoft directs all customers to migrate to **Azure Maps**. This guide therefore documents only the remaining Enterprise use and recommends migration planning.
 
 **Simplified format.** Microsoft publishes no privacy configuration options for Bing Maps web controls (such as IP truncation, cookie control or retention settings) in the sources reviewed. The guide therefore uses a single fixed-behaviour table.
 
@@ -30,11 +30,11 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Unlock additional website features (interactive map) |
-| Account type | Enterprise licence only; Free/Basic keys no longer function after 30 June 2025 [S1][S2] |
+| Account type | Enterprise licence only; Free/Basic keys no longer function after 30 June 2025 |
 | Loading | Blocked by Consenter until consent; static placeholder before consent |
 | Privacy settings in the service | **Not documented** |
 | Retention at Microsoft | **Not documented** |
-| End of service | 30 June 2028 at the latest [S2] |
+| End of service | 30 June 2028 at the latest |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
@@ -47,20 +47,14 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 | Legal role of data recipient | Individual Controller | No processor terms for map display were found in the sources reviewed; verify against your Enterprise licence agreement. |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Not documented | — |
-| Processing location | United States as potential processing and access location | Microsoft Corporation is a US company subject to 18 U.S.C. § 2713 [S3]. |
+| Processing location | United States as potential processing and access location | Microsoft Corporation is a US company subject to the US CLOUD Act. |
 
 ## Privacy-policy follow-up
 
-- Microsoft as recipient; data transmitted when the map loads; consent; US transfer and potential access by US authorities [S3]; planned migration to Azure Maps.
+- Microsoft as recipient; data transmitted when the map loads; consent; US transfer and potential access by US authorities; planned migration to Azure Maps.
 
 ## Verification checklist
 
 - [ ] No request to Bing Maps domains before consent.
 - [ ] Browser inspection after consent: record any cookies set and update the mapping.
 - [ ] Migration to Azure Maps scheduled before the licence ends.
-
-## Sources
-
-- [S1] Bing Maps Blog — retirement announcements
-- [S2] Microsoft — Bing Maps FAQ (retirement dates)
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)

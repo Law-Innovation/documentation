@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Trustpilot TrustBox widgets and the invitation script (Trustpilot A/S, Copenhagen, Denmark [S1]). Sources were checked on 16 November 2026.
+**Scope.** Trustpilot TrustBox widgets and the invitation script (Trustpilot A/S, Copenhagen, Denmark).
 
-**What the service does in this scope.** TrustBox widgets are embeddable components that display a business's Trustpilot rating, from star ratings to review carousels [S1]. Widgets are loaded from `widget.trustpilot.com` [S2]. The Trustpilot invitation script transmits customer data (name, email, order reference) to Trustpilot to send review invitations [S3]. Trustpilot's cookie policy describes its own cookies [S4].
+**What the service does in this scope.** TrustBox widgets are embeddable components that display a business's Trustpilot rating, from star ratings to review carousels. Widgets are loaded from `widget.trustpilot.com`. The Trustpilot invitation script transmits customer data (name, email, order reference) to Trustpilot to send review invitations. Trustpilot's cookie policy describes its own cookies.
 
 **Configurations included.**
 
@@ -33,12 +33,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
-| 2 | TrustBox | Trustpilot Business / plugin [S3] | On, after consent | On, after consent |
-| 3 | Invitation script | Integrations [S3] | Off | On, after consent |
+| 2 | TrustBox | Trustpilot Business / plugin | On, after consent | On, after consent |
+| 3 | Invitation script | Integrations | Off | On, after consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Trustpilot A/S is Danish; check its privacy policy for US sub-processors and list the United States if present (18 U.S.C. § 2713 [S5]).
+**Processing location.** Trustpilot A/S is Danish; check its privacy policy for US sub-processors and list the United States if present.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -48,15 +48,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Browsing and interaction data, Device characteristics, IP address | As A, plus direct identifier, e-commerce Activity |
 | Legal role of data recipient | Individual Controller | Individual Controller |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | Per Trustpilot cookie policy [S4] | Per Trustpilot cookie policy [S4] |
+| Maximum storage duration | Per Trustpilot cookie policy | Per Trustpilot cookie policy |
 | Processing location | Denmark; per privacy policy | Denmark; per privacy policy |
-
-**Basis.** Widgets [S1][S2]; invitation script [S3]. The cross-session mapping assumes Trustpilot's cookies on its own domain are readable in the widget iframe; verify in the browser.
-
-## Sources
-
-- [S1] European Stack — Trustpilot (TrustBox widgets, company details)
-- [S2] AesirX — GDPR compliance for Trustpilot (widget host)
-- [S3] AesirX — Integrate Trustpilot with WordPress (TrustBox, invitation script)
-- [S4] Trustpilot — Cookie Policy
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

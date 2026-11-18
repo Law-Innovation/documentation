@@ -17,11 +17,11 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** Juicer (Juicer.io / Juicer Social) social media feeds embedded on the website. Sources were checked on 16 November 2026.
+**Scope.** Juicer (Juicer.io / Juicer Social) social media feeds embedded on the website.
 
-**What the service does in this scope.** Juicer states that it does not track individuals who view Juicer feeds on webpages [S1]. When a feed is embedded, viewers are served static image and video files directly from the social media networks' servers; Juicer does not transfer personal data to the networks, but what the networks record is subject to their privacy policies [S2]. Juicer offers a DPA and SCCs [S3].
+**What the service does in this scope.** Juicer states that it does not track individuals who view Juicer feeds on webpages. When a feed is embedded, viewers are served static image and video files directly from the social media networks' servers; Juicer does not transfer personal data to the networks, but what the networks record is subject to their privacy policies. Juicer offers a DPA and SCCs.
 
-> ⚠ **Recommendation — content from social networks.** Juicer itself does not track feed viewers [S1], but media is loaded from the social networks' servers [S2], which receive the visitor's IP address. Load the feed after Consenter consent (or with a click-to-load placeholder) unless your DPO or independent counsel confirms these requests need no consent.
+> ⚠ **Recommendation — content from social networks.** Juicer itself does not track feed viewers, but media is loaded from the social networks' servers, which receive the visitor's IP address. Load the feed after Consenter consent (or with a click-to-load placeholder) unless your DPO or independent counsel confirms these requests need no consent.
 
 ## Step 1 — Implement Juicer
 
@@ -30,24 +30,17 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 | Processing purposes | Unlock additional website features |
 | Embed | Juicer embed code or WordPress plugin |
 | Loading | After Consenter consent / click-to-load (see ⚠) |
-| Contract | Juicer DPA [S3] |
+| Contract | Juicer DPA |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Unlock additional website features | Social feed display |
-| Tracking method | Third party tracking (single session, cross-website) | Media requests to social networks [S2] |
-| Identifier | IP address | Media requests [S2] |
+| Tracking method | Third party tracking (single session, cross-website) | Media requests to social networks |
+| Identifier | IP address | Media requests |
 | Data categories | IP address, Device characteristics | Server requests |
-| Legal role of data recipient | Processor | Juicer; social networks as Individual Controllers [S2] |
+| Legal role of data recipient | Processor | Juicer; social networks as Individual Controllers |
 | Personalisation model | No personalisation | — |
-| Maximum storage duration | — | Juicer does not track viewers [S1] |
-| Processing location | United States | Juicer and social networks; 18 U.S.C. § 2713 [S4] |
-
-## Sources
-
-- [S1] Juicer Support — Juicer and the EU GDPR
-- [S2] Juicer — Privacy policy
-- [S3] Juicer Help — Juicer Social and the EU GDPR (DPA, SCCs)
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+| Maximum storage duration | — | Juicer does not track viewers |
+| Processing location | United States | Juicer and social networks; the US CLOUD Act |

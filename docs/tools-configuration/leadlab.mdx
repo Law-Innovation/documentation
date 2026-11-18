@@ -17,53 +17,44 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 ## At a glance
 
-**Scope.** WiredMinds LeadLab B2B visitor identification via its JavaScript tracking code. WiredMinds GmbH is a German company. Sources were checked on 16 November 2026.
+**Scope.** WiredMinds LeadLab B2B visitor identification via its JavaScript tracking code. WiredMinds GmbH is a German company.
 
-**What the service does in this scope.** Before visitor behaviour is recorded, the IP address is compared against WiredMinds' company database (whitelist procedure) and deleted after the comparison; the IP address is not stored in LeadLab "under any circumstances" [S1][S2]. IP addresses not found in the whitelist are deleted immediately and the visit is anonymised; LeadLab does not carry out profiling [S2]. No cookies are created for tracking [S3]. WiredMinds names legitimate interest (Art. 6(1)(f) GDPR) as the basis and concludes a data processing agreement (AVV) with all customers [S1][S4]. An opt-out link sets a cookie to exclude the browser [S5].
+**What the service does in this scope.** Before visitor behaviour is recorded, the IP address is compared against WiredMinds' company database (whitelist procedure) and deleted after the comparison; the IP address is not stored in LeadLab "under any circumstances". IP addresses not found in the whitelist are deleted immediately and the visit is anonymised; LeadLab does not carry out profiling. No cookies are created for tracking. WiredMinds names legitimate interest (Art. 6(1)(f) GDPR) as the basis and concludes a data processing agreement (AVV) with all customers. An opt-out link sets a cookie to exclude the browser.
 
 **Simplified format.** LeadLab documents no alternative privacy settings beyond IP blacklists for internal traffic. The guide uses a single fixed-behaviour configuration.
 
-> ⚠ **Recommendation — running LeadLab before consent is legally uncertain.** WiredMinds positions LeadLab as usable without consent [S1][S4]. The script runs in the browser and the IP address is processed transiently. Have your DPO or independent counsel confirm before loading LeadLab without consent.
+> ⚠ **Recommendation — running LeadLab before consent is legally uncertain.** WiredMinds positions LeadLab as usable without consent. The script runs in the browser and the IP address is processed transiently. Have your DPO or independent counsel confirm before loading LeadLab without consent.
 
 ## Step 1 — Configure LeadLab
 
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Support marketing analytics; Receive marketing offers (if identified companies are approached) |
-| Cookies | None for tracking [S3] |
-| IP handling | Whitelist comparison, then deletion; never stored [S1][S2] |
-| IP blacklist | Configuration area: add internal IPs [S6] |
-| Opt-out | `wiredminds.optOut()` link in the privacy policy [S5] |
-| Data processing agreement | AVV with WiredMinds [S4] |
+| Cookies | None for tracking |
+| IP handling | Whitelist comparison, then deletion; never stored |
+| IP blacklist | Configuration area: add internal IPs |
+| Opt-out | `wiredminds.optOut` link in the privacy policy |
+| Data processing agreement | AVV with WiredMinds |
 | Loading | See ⚠ recommendation |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Support marketing analytics, Receive marketing offers | Company identification [S1]. |
-| Tracking method | No tracking | No cookies [S3]. |
-| Identifier | IP address | Processed transiently [S1]. |
-| Data categories | IP address, Browsing and interaction data, Aggregated site statistics | Visitor behaviour of identified companies [S1]. |
-| Legal role of data recipient | Processor | AVV [S4]. |
+| Processing purposes | Support marketing analytics, Receive marketing offers | Company identification. |
+| Tracking method | No tracking | No cookies. |
+| Identifier | IP address | Processed transiently. |
+| Data categories | IP address, Browsing and interaction data, Aggregated site statistics | Visitor behaviour of identified companies. |
+| Legal role of data recipient | Processor | AVV. |
 | Personalisation model | Group based (properties) | Company-level segmentation. |
-| Maximum storage duration | Not documented | IP deleted after comparison [S1]. |
+| Maximum storage duration | Not documented | IP deleted after comparison. |
 | Processing location | Germany | WiredMinds GmbH. |
 
 ## Privacy-policy follow-up
 
-- WiredMinds as processor; whitelist comparison and deletion of IP addresses; no cookies; opt-out link [S5].
+- WiredMinds as processor; whitelist comparison and deletion of IP addresses; no cookies; opt-out link.
 
 ## Verification checklist
 
 - [ ] No LeadLab cookies set (except opt-out cookie on request).
 - [ ] AVV concluded; opt-out link published.
-
-## Sources
-
-- [S1] WiredMinds — LeadLab FAQ
-- [S2] WiredMinds Help — LeadLab data architecture
-- [S3] WiredMinds Help — LeadLab is GDPR compliant (no cookies, no IP storage)
-- [S4] WiredMinds — Statement on cookies and tracking with opt-in (2019)
-- [S5] WiredMinds — Privacy statement template (opt-out link)
-- [S6] WiredMinds Help — Glossary (IP blacklist)

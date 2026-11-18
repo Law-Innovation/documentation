@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Wistia player (Aurora web component or iframe embed). Wistia, Inc. is a US company [S1]. Sources were checked on 16 November 2026.
+**Scope.** The Wistia player (Aurora web component or iframe embed). Wistia, Inc. is a US company.
 
-**What the service does in this scope.** With **Privacy Mode**, Wistia collects only anonymised data; it can be set as the account default or per visitor via `W.consent()`; `W.consent(false)` removes temporary storage used for tracking, though some non-tracking cookies and local storage may remain [S2]. With registration turned off, no personal information is collected and only anonymous, aggregate analytics are provided in Privacy Mode [S3]. Loading the player and tracking the viewer are separate decisions; the tracking preference can be set once the embed script is present [S4]. Wistia recommends classifying `*.wistia.com` and `*.wistia.net` as functional or essential in the consent manager [S5].
+**What the service does in this scope.** With **Privacy Mode**, Wistia collects only anonymised data; it can be set as the account default or per visitor via `W.consent`; `W.consent(false)` removes temporary storage used for tracking, though some non-tracking cookies and local storage may remain. With registration turned off, no personal information is collected and only anonymous, aggregate analytics are provided in Privacy Mode. Loading the player and tracking the viewer are separate decisions; the tracking preference can be set once the embed script is present. Wistia recommends classifying `*.wistia.com` and `*.wistia.net` as functional or essential in the consent manager.
 
 **Configurations included.**
 
@@ -28,20 +28,20 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | Player loads; Privacy Mode on by default; registration (email gate) off. |
 | Configuration B — Higher risk | Player after consent; Privacy Mode off via `W.consent(true)`; heatmaps and Turnstile email gate. |
 
-> ⚠ **Recommendation — Configuration A without consent.** Wistia describes Privacy Mode as minimising data, not as requiring no consent [S6], and some non-tracking storage remains [S2]; the player also transmits the IP address to Wistia (US). Loading the player before consent is a legally uncertain setup; have your DPO or independent counsel review it, or use a click-to-load placeholder.
+> ⚠ **Recommendation — Configuration A without consent.** Wistia describes Privacy Mode as minimising data, not as requiring no consent, and some non-tracking storage remains; the player also transmits the IP address to Wistia (US). Loading the player before consent is a legally uncertain setup; have your DPO or independent counsel review it, or use a click-to-load placeholder.
 
 ## Step 1 — Configure Wistia
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features; Support marketing analytics |
-| 2 | Privacy Mode default | Account settings [S2] | On | On |
-| 3 | Per-visitor consent | `W.consent(true/false)` from Consenter [S2][S4] | Not called (Privacy Mode) | `W.consent(true)` after consent |
-| 4 | Registration / email gate | Media customisation [S3] | Off | On |
+| 2 | Privacy Mode default | Account settings | On | On |
+| 3 | Per-visitor consent | `W.consent(true/false)` from Consenter | Not called (Privacy Mode) | `W.consent(true)` after consent |
+| 4 | Registration / email gate | Media customisation | Off | On |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Wistia is a US enterprise subject to 18 U.S.C. § 2713 [S7]; list the United States.
+**Processing location.** Wistia is a US enterprise subject to the US CLOUD Act; list the United States.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Higher risk |
 |---|---|---|
@@ -53,15 +53,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | — | Per Wistia cookie documentation |
 | Processing location | United States | United States |
-
-**Basis.** Privacy Mode [S2][S3]; consent passed via `W.consent()` [S2], hence "Privacy choices" in B. The mapping "IP address anonymised" for A assumes the account setting to anonymise IPs is active; verify.
-
-## Sources
-
-- [S1] Evidon — Wistia company profile
-- [S2] Wistia Docs — Player Privacy Mode (v2026.03)
-- [S3] Wistia Docs — Player Privacy Mode (registration)
-- [S4] Wistia Docs — Embed webinars with tag managers and cookie consent
-- [S5] Wistia Support — Privacy and data protection
-- [S6] Wistia Support — Security (Privacy Mode not a necessity for GDPR)
-- [S7] 18 U.S.C. § 2713 (CLOUD Act)

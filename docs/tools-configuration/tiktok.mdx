@@ -17,15 +17,15 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** TikTok Pixel on the advertiser website (Events Manager settings). The Events API is not covered. Sources were checked on 16 November 2026.
+**Scope.** TikTok Pixel on the advertiser website (Events Manager settings). The Events API is not covered.
 
-**What the service does in this scope.** Third-party cookies are always on for the TikTok Pixel, while first-party cookies are optional and enabled by default; they can be toggled off in the pixel settings in Events Manager [S1][S2]. Advanced Matching supplements cookie matching [S1]. Where consent is required, TikTok tells advertisers to disable cookie setting and use when a person declines, using a tag manager or CMP [S3]. TikTok's consent mode adds `holdConsent`, `grantConsent` and `revokeConsent` to the pixel base code [S4].
+**What the service does in this scope.** Third-party cookies are always on for the TikTok Pixel, while first-party cookies are optional and enabled by default; they can be toggled off in the pixel settings in Events Manager. Advanced Matching supplements cookie matching. Where consent is required, TikTok tells advertisers to disable cookie setting and use when a person declines, using a tag manager or CMP. TikTok's consent mode adds `holdConsent`, `grantConsent` and `revokeConsent` to the pixel base code.
 
 **Configurations included.**
 
 | Configuration | Summary |
 |---|---|
-| Configuration A — Higher risk | Pixel held with `ttq.holdConsent()` until Consenter consent; first-party cookies off; no Advanced Matching. |
+| Configuration A — Higher risk | Pixel held with `ttq.holdConsent` until Consenter consent; first-party cookies off; no Advanced Matching. |
 | Configuration B — Higher risk (default configuration) | Pixel after consent with default cookie settings (first- and third-party cookies). |
 | Configuration C — Higher risk | As B, plus Advanced Matching (hashed email/phone). |
 
@@ -34,9 +34,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Higher risk | Configuration B — Higher risk (default configuration) | Configuration C — Higher risk |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics; Customise online ads | Support marketing analytics; Customise online ads | Support marketing analytics; Customise online ads |
-| 2 | Consent gating | `ttq.holdConsent()` / `grantConsent()` [S4] | Hold until Consenter consent | Hold until Consenter consent | Hold until Consenter consent |
-| 3 | First-party cookies | Events Manager → pixel settings [S3] | Off | On | On |
-| 4 | Advanced Matching | Events Manager [S1] | Off | Off | On |
+| 2 | Consent gating | `ttq.holdConsent` / `grantConsent` | Hold until Consenter consent | Hold until Consenter consent | Hold until Consenter consent |
+| 3 | First-party cookies | Events Manager → pixel settings | Off | On | On |
+| 4 | Advanced Matching | Events Manager | Off | Off | On |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
@@ -50,14 +50,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Users' profiles | Device identifiers, Browsing and interaction data, e-commerce Activity, Users' profiles | Device identifiers, Direct identifier, Browsing and interaction data, e-commerce Activity, Users' profiles |
 | Legal role of data recipient | Joint Controller | Joint Controller | Joint Controller |
 | Personalisation model | Profile based | Profile based | Profile based |
-| Maximum storage duration | Per TikTok cookie list [S2] | Per TikTok cookie list [S2] | Per TikTok cookie list [S2] |
+| Maximum storage duration | Per TikTok cookie list | Per TikTok cookie list | Per TikTok cookie list |
 | Processing location | Per TikTok business terms | Per TikTok business terms | Per TikTok business terms |
 
 > **Note on legal role.** The table uses Joint Controller for the collection via the pixel; confirm the role in TikTok's business terms.
-
-## Sources
-
-- [S1] TikTok Business Help — Using cookies with TikTok Pixel
-- [S2] TikTok Business Help — About using cookies with TikTok Pixel
-- [S3] TikTok Business Help — How to use cookies with TikTok Pixel
-- [S4] TermsFeed — Fire the TikTok Pixel only after visitors accept targeting cookies (TikTok consent mode)

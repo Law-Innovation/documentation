@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Spotify embeds (tracks, playlists, podcasts) via iframe from `open.spotify.com/embed/`, or a plain link. Spotify AB is a Swedish company. Sources were checked on 16 November 2026.
+**Scope.** Spotify embeds (tracks, playlists, podcasts) via iframe from `open.spotify.com/embed/`, or a plain link. Spotify AB is a Swedish company.
 
-**What the service does in this scope.** Cookies associated with the Spotify embed include `sp_landing`, `sp_ab`, `sp_t`, `sp_usid`, `sp_m` and `_ga` [S1]. When a visitor is logged in to Spotify, the embed attempts to use the visitor's Spotify session [S2].
+**What the service does in this scope.** Cookies associated with the Spotify embed include `sp_landing`, `sp_ab`, `sp_t`, `sp_usid`, `sp_m` and `_ga`. When a visitor is logged in to Spotify, the embed attempts to use the visitor's Spotify session.
 
 **Configurations included.**
 
@@ -35,7 +35,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | — | Unlock additional website features |
-| 2 | Integration | Website code | Link | `iframe` embed [S1] |
+| 2 | Integration | Website code | Link | `iframe` embed |
 | 3 | Loading | Consenter script blocking / click-to-load | — | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -51,10 +51,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | — | No personalisation (on your site) |
 | Maximum storage duration | — | Per Spotify cookie policy |
 | Processing location | — | Sweden / per Spotify privacy policy; check for US transfers |
-
-**Basis.** Embed cookies [S1]; session use [S2]. Spotify processes embed data for its own purposes, hence Individual Controller.
-
-## Sources
-
-- [S1] tarteaucitron — Spotify service details (cookies)
-- [S2] Mozilla Bugzilla — Spotify embed login status in embedded context

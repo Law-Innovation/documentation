@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Thank-You Marketing Analytics (THEBRIGADE FRANCE) on a website. Sources were checked on 16 November 2026.
+**Scope.** Thank-You Marketing Analytics (THEBRIGADE FRANCE) on a website.
 
-**What the service does in this scope.** The default configuration meets CNIL's specification for exempt audience measurement: one first-party cookie dedicated to audience measurement; IP addresses are not retained; only page-by-page audience measurement aggregated hourly; exports and reports only aggregated, without unique identifiers [S1]. A **"with consent" version** lifts these restrictions after explicit consent (for example, importing external data, user cohorts, non-aggregated exports) [S1]. The provider acts as processor [S1].
+**What the service does in this scope.** The default configuration meets CNIL's specification for exempt audience measurement: one first-party cookie dedicated to audience measurement; IP addresses are not retained; only page-by-page audience measurement aggregated hourly; exports and reports only aggregated, without unique identifiers. A **"with consent" version** lifts these restrictions after explicit consent (for example, importing external data, user cohorts, non-aggregated exports). The provider acts as processor.
 
 **Configurations included.**
 
@@ -28,15 +28,15 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk (⚠ no-consent) | Default exempt configuration. |
 | Configuration B — Higher risk | "With consent" version: cohorts, external data import, identifier-level exports; after consent. |
 
-> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement cookies as exempt from consent only where they serve solely the publisher's audience measurement, produce anonymous statistics, are not cross-referenced or passed on, and do not allow tracking across sites; it recommends a cookie lifetime of about 13 months and data retention of at most 25 months [S2]. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run A without consent only after review by your DPO or independent counsel.
+> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement cookies as exempt from consent only where they serve solely the publisher's audience measurement, produce anonymous statistics, are not cross-referenced or passed on, and do not allow tracking across sites; it recommends a cookie lifetime of about 13 months and data retention of at most 25 months. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run A without consent only after review by your DPO or independent counsel.
 
 ## Step 1 — Configure Thank-You
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics |
-| 2 | Version | Account / contract [S1] | Default (exempt) | "With consent" |
-| 3 | Opt-out | Button calling `ThankYou.dotNotTrack()` [S1] | Provide | Consent withdrawal |
+| 2 | Version | Account / contract | Default (exempt) | "With consent" |
+| 3 | Opt-out | Button calling `ThankYou.dotNotTrack` | Provide | Consent withdrawal |
 | 4 | Loading | Consenter | See ⚠ recommendation | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -52,13 +52,6 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Maximum storage duration | Not documented | Not documented |
 | Processing location | Not documented | Not documented |
 
-**Basis.** Configuration guide [S1]. Cookie name and lifetime are not published; verify in the browser.
-
 ## Privacy-policy follow-up
 
 - Provider as processor; version used; opt-out button; cohorts and imports (B).
-
-## Sources
-
-- [S1] CNIL — Thank-You configuration guide
-- [S2] CNIL — Cookies: solutions pour les outils de mesure d'audience (4 July 2025)

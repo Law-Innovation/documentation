@@ -17,11 +17,11 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** The Radioplayer web player (console) used by broadcasters, opened from the broadcaster's website (Radioplayer Worldwide Ltd, UK [S1]). Sources were checked on 16 November 2026.
+**Scope.** The Radioplayer web player (console) used by broadcasters, opened from the broadcaster's website (Radioplayer Worldwide Ltd, UK).
 
-**What the service does in this scope.** The web player uses cookies that expire after 12 months; on load it initialises all cookies and removes those the listener does not permit [S2]. The player remembers volume, recently played and favourite stations and stores numeric identifiers to recognise the device [S3]. A broadcaster can integrate a TCF 2.0 CMP, in which case the player passes the listener's consents to ad providers in the player [S4].
+**What the service does in this scope.** The web player uses cookies that expire after 12 months; on load it initialises all cookies and removes those the listener does not permit. The player remembers volume, recently played and favourite stations and stores numeric identifiers to recognise the device. A broadcaster can integrate a TCF 2.0 CMP, in which case the player passes the listener's consents to ad providers in the player.
 
-> ⚠ **Recommendation — cookies before choice.** Radioplayer's documentation states that all cookies are initialised when the player loads and removed afterwards if not permitted [S2]. Have your DPO or independent counsel review this behaviour, and link to the player from a Consenter-gated element if needed.
+> ⚠ **Recommendation — cookies before choice.** Radioplayer's documentation states that all cookies are initialised when the player loads and removed afterwards if not permitted. Have your DPO or independent counsel review this behaviour, and link to the player from a Consenter-gated element if needed.
 
 ## Step 1 — Implement Radioplayer
 
@@ -29,25 +29,18 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 |---|---|
 | Processing purposes | Unlock additional website features |
 | Integration | Link or pop-up to the Radioplayer console |
-| Consent in the player | Radioplayer cookie dialog [S2] |
-| Advertising | Requires a TCF consent signal [S4]; not currently supported by Consenter |
+| Consent in the player | Radioplayer cookie dialog |
+| Advertising | Requires a TCF consent signal; not currently supported by Consenter |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Unlock additional website features | Radio streaming |
-| Tracking method | Third party tracking (crosssession, cross-website) | Player cookies on Radioplayer domains [S2][S3] |
-| Identifier | Device identifiers | Numeric device identifiers [S3] |
-| Data categories | Browsing and interaction data, Device identifiers, IP address | [S1][S3][S4] |
+| Tracking method | Third party tracking (crosssession, cross-website) | Player cookies on Radioplayer domains |
+| Identifier | Device identifiers | Numeric device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, IP address | — |
 | Legal role of data recipient | Individual Controller | Radioplayer operates the console |
-| Personalisation model | Group based (behaviour) | Recently played and favourites [S3] |
-| Maximum storage duration | 12 months [S2] | — |
+| Personalisation model | Group based (behaviour) | Recently played and favourites |
+| Maximum storage duration | 12 months | — |
 | Processing location | United Kingdom | UK company (UK adequacy decision applies) |
-
-## Sources
-
-- [S1] Radioplayer — Privacy policy (Radioplayer Worldwide Ltd)
-- [S2] Radioplayer Docs — Cookies used in the web player
-- [S3] Radioplayer — Cookies on Radioplayer web consoles
-- [S4] Radioplayer Docs — Integrating a TCF 2.0 CMP

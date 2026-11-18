@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Sitecore XP 10.x web tracking and contact identification. Sources were checked on 16 November 2026.
+**Scope.** Sitecore XP 10.x web tracking and contact identification.
 
-**What the service does in this scope.** `SC_ANALYTICS_GLOBAL_COOKIE` stores a device ID used to identify returning contacts and is only issued if tracking is enabled [S1]. If a website requires explicit tracking, contacts are not tracked until they give consent; the choice is stored in `SC_TRACKING_CONSENT` via `IConsentManager` [S2]. Contacts can additionally be identified (e.g. on login) against xDB [S3].
+**What the service does in this scope.** `SC_ANALYTICS_GLOBAL_COOKIE` stores a device ID used to identify returning contacts and is only issued if tracking is enabled. If a website requires explicit tracking, contacts are not tracked until they give consent; the choice is stored in `SC_TRACKING_CONSENT` via `IConsentManager`. Contacts can additionally be identified (e.g. on login) against xDB.
 
 **Configurations included.**
 
@@ -34,13 +34,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website; Support marketing analytics | Improve the service; Personalise the website; Support marketing analytics |
-| 2 | Tracking consent | Explicit tracking / `IConsentManager` [S2] | Required | Required | Not required |
-| 3 | Contact identification | Tracker identification API [S3] | Off | On | On |
-| 4 | Cookie lifetime | Analytics cookie lifetime setting [S1] | Short | Default | Default |
+| 2 | Tracking consent | Explicit tracking / `IConsentManager` | Required | Required | Not required |
+| 3 | Contact identification | Tracker identification API | Off | On | On |
+| 4 | Cookie lifetime | Analytics cookie lifetime setting | Short | Default | Default |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Self-hosted XP runs on your infrastructure; for Sitecore-managed cloud hosting check the DPA and list the United States where US entities are involved (18 U.S.C. § 2713 [S4]).
+**Processing location.** Self-hosted XP runs on your infrastructure; for Sitecore-managed cloud hosting check the DPA and list the United States where US entities are involved.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
 |---|---|---|---|
@@ -52,10 +52,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | Profile based | Profile based |
 | Maximum storage duration | Per configured cookie lifetime | Per configured cookie lifetime | Per configured cookie lifetime |
 | Processing location | Your hosting location | Your hosting location | Your hosting location |
-
-## Sources
-
-- [S1] Sitecore Documentation — Cookies used by Sitecore
-- [S2] Sitecore Documentation — Manage a contact's tracking consent choices
-- [S3] Sitecore Documentation — Tracking contacts
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

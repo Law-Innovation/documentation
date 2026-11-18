@@ -17,11 +17,11 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** The Emarsys Web Extend tracking code (`scarab-v2.js` with `ScarabQueue`). Sources were checked on 16 November 2026.
+**Scope.** The Emarsys Web Extend tracking code (`scarab-v2.js` with `ScarabQueue`).
 
-**What the service does in this scope.** Web Extend is the data collection module that tracks visitor interactions on the e-commerce site and feeds them to revenue attribution, the Automation Center, Smart Insight and Predict [S1]. Server-side implementations show the cookies `s`, `cdv`, `xp` and `fc` [S2]. Emarsys email links append parameters including `sc_eh` (an email hash) and `sc_uid`, which connect web activity to a known contact [S1].
+**What the service does in this scope.** Web Extend is the data collection module that tracks visitor interactions on the e-commerce site and feeds them to revenue attribution, the Automation Center, Smart Insight and Predict. Server-side implementations show the cookies `s`, `cdv`, `xp` and `fc`. Emarsys email links append parameters including `sc_eh` (an email hash) and `sc_uid`, which connect web activity to a known contact.
 
-**No configuration without prior consent.** Web Extend sets persistent identifiers and builds contact-level behavioural data [S1][S2].
+**No configuration without prior consent.** Web Extend sets persistent identifiers and builds contact-level behavioural data.
 
 ## Step 1 — Implement Emarsys Web Extend
 
@@ -29,24 +29,18 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 |---|---|
 | Processing purposes | Receive personalised marketing offers; Personalise the website (recommendations) |
 | Loading | Consenter script blocking: load `scarab-v2.js` and push `ScarabQueue` commands only after consent |
-| Contact identification | `setEmail` / `setCustomerId` and email link parameters identify contacts [S1] |
+| Contact identification | `setEmail` / `setCustomerId` and email link parameters identify contacts |
 | Contract | SAP Emarsys data processing agreement |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Receive personalised marketing offers, Personalise the website | [S1] |
-| Tracking method | First party tracking (cross-session) | First-party cookies [S2] |
-| Identifier | Device identifiers, Direct identifier | Cookies [S2]; email hash and customer ID [S1] |
-| Data categories | Browsing and interaction data, Device identifiers, e-commerce Activity, direct identifier, Users' profiles | Page views, carts, purchases [S1] |
+| Processing purposes | Receive personalised marketing offers, Personalise the website | — |
+| Tracking method | First party tracking (cross-session) | First-party cookies |
+| Identifier | Device identifiers, Direct identifier | Cookies; email hash and customer ID |
+| Data categories | Browsing and interaction data, Device identifiers, e-commerce Activity, direct identifier, Users' profiles | Page views, carts, purchases |
 | Legal role of data recipient | Processor | Per SAP Emarsys DPA |
-| Personalisation model | Profile based | Predict and recommendations [S1] |
+| Personalisation model | Profile based | Predict and recommendations |
 | Maximum storage duration | Per cookie inspection | Not documented in the sources |
-| Processing location | Per DPA | SAP is a German group; add the United States if the DPA lists US cloud sub-processors (18 U.S.C. § 2713 [S3]) |
-
-## Sources
-
-- [S1] gblock — Is Emarsys tracking your email (Web Extend, link parameters)
-- [S2] foomo sesamy-cli — Emarsys Web Extend provider (cookies)
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+| Processing location | Per DPA | SAP is a German group; add the United States if the DPA lists US cloud sub-processors |

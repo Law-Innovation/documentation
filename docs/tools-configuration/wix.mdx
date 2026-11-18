@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Wix Analytics and Wix-managed marketing functions. Apps and custom code with their own trackers need separate entries. Sources were checked on 16 November 2026.
+**Scope.** Wix Analytics and Wix-managed marketing functions. Apps and custom code with their own trackers need separate entries.
 
-**What the service does in this scope.** Wix's consent policy has the properties `essential` (always true), `functional`, `analytics`, `advertising` and `dataToThirdParty` [S1][S2]. A consent app sets them with `updateConsentPolicy()`, with all types except `essential` set to `false` until consent [S2]. With the Wix cookie banner, only essential cookies and scripts load first; Functional, Marketing and Analytics require consent [S3].
+**What the service does in this scope.** Wix's consent policy has the properties `essential` (always true), `functional`, `analytics`, `advertising` and `dataToThirdParty`. A consent app sets them with `updateConsentPolicy`, with all types except `essential` set to `false` until consent. With the Wix cookie banner, only essential cookies and scripts load first; Functional, Marketing and Analytics require consent.
 
 **Configurations included.**
 
@@ -33,12 +33,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service; Support marketing analytics | Improve the service; Support marketing analytics |
-| 2 | Consent policy | Site Properties API, `updateConsentPolicy()` [S2] | `functional`, `analytics`, `advertising`, `dataToThirdParty` from Consenter | Not set |
+| 2 | Consent policy | Site Properties API, `updateConsentPolicy` | `functional`, `analytics`, `advertising`, `dataToThirdParty` from Consenter | Not set |
 | 3 | Custom code | Settings → Custom code | Categorise as non-essential | Default categorisation |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Check Wix's DPA and sub-processor list; list the United States where US entities or providers are involved (18 U.S.C. § 2713 [S4]).
+**Processing location.** Check Wix's DPA and sub-processor list; list the United States where US entities or providers are involved.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -50,10 +50,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | Per Wix cookie information | Per Wix cookie information |
 | Processing location | Per Wix DPA; United States possible (CLOUD Act) | Per Wix DPA; United States possible (CLOUD Act) |
-
-## Sources
-
-- [S1] Wix Developers — About the Consent Policy
-- [S2] Wix Developers — About Consent Apps
-- [S3] Wix Help Center — Displaying a Usercentrics for Wix Cookie Banner
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

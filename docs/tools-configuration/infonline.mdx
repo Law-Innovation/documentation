@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** INFOnline Measurement for websites via the Measurement Manager. INFOnline GmbH is a German company; the legacy IOAM/IOMb tags are replaced by INFOnline Measurement. Sources were checked on 16 November 2026.
+**Scope.** INFOnline Measurement for websites via the Measurement Manager. INFOnline GmbH is a German company; the legacy IOAM/IOMb tags are replaced by INFOnline Measurement.
 
-**What the service does in this scope.** INFOnline offers two methods: **Census Measurement** (anonymous), which "operates entirely without identification features", and **Pseudonymous Measurement**, which uses client identifiers and requires valid user consent [S1][S2]. INFOnline's own interpretation is that the pseudonymous measurement may only be loaded with active consent under § 25 TDDDG, while the census measurement "may continue to be played out without the user's consent" [S3]. The Measurement Manager integrates with TCF CMPs (IAB vendor 730) or accepts a manual consent string [S3][S4].
+**What the service does in this scope.** INFOnline offers two methods: **Census Measurement** (anonymous), which "operates entirely without identification features", and **Pseudonymous Measurement**, which uses client identifiers and requires valid user consent. INFOnline's own interpretation is that the pseudonymous measurement may only be loaded with active consent under § 25 TDDDG, while the census measurement "may continue to be played out without the user's consent". The Measurement Manager integrates with TCF CMPs (IAB vendor 730) or accepts a manual consent string.
 
 **Configurations included.**
 
@@ -28,17 +28,17 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk (no consent, per INFOnline) | Census Measurement only. |
 | Configuration B — Medium risk | Census Measurement plus Pseudonymous Measurement after consent. |
 
-**Note on Configuration A.** INFOnline designed the census measurement for use without consent [S3]. As a provider interpretation, document it in your own assessment; if your DPO disagrees, load A after consent as well.
+**Note on Configuration A.** INFOnline designed the census measurement for use without consent. As a provider interpretation, document it in your own assessment; if your DPO disagrees, load A after consent as well.
 
 ## Step 1 — Configure INFOnline Measurement
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service (reach measurement) | Improve the service; Support marketing analytics |
-| 2 | Pseudonymous measurement | Measurement Manager [S3] | Disabled | Enabled |
-| 3 | Consent transmission | INFOnline requires a consent string for pseudonymous measurement [S4]; not currently supported by Consenter (see note) | — | Load only after Consenter consent |
-| 4 | Census measurement | Measurement Manager [S2] | Enabled | Enabled |
-| 5 | Loading | Consenter / Measurement Manager | Census without consent | Pseudonymous only after consent [S5] |
+| 2 | Pseudonymous measurement | Measurement Manager | Disabled | Enabled |
+| 3 | Consent transmission | INFOnline requires a consent string for pseudonymous measurement; not currently supported by Consenter (see note) | — | Load only after Consenter consent |
+| 4 | Census measurement | Measurement Manager | Enabled | Enabled |
+| 5 | Loading | Consenter / Measurement Manager | Census without consent | Pseudonymous only after consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
@@ -53,21 +53,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Maximum storage duration | Not documented | Not documented |
 | Processing location | Germany | Germany |
 
-**Basis.** Census without identifiers [S1][S2]; pseudonymous with client identifiers and consent [S2][S3]. INFOnline expects the consent decision to be transmitted as a TCF or manual consent string [S4]; Consenter does not currently support TCF communication, so the signal is not configured here and "Privacy choices" is not selected. INFOnline is German-owned; no CLOUD Act flag is applied.
-
 ## Privacy-policy follow-up
 
 - INFOnline as processor for IVW reach measurement; census (no identifiers) and pseudonymous measurement (consent); consent transmission.
 
 ## Verification checklist
 
-- [ ] Pseudonymous measurement requests only after consent [S5].
-- [ ] Valid `ct` variable sent with each request [S5].
-
-## Sources
-
-- [S1] INFOnline — INFOnline Measurement (methods)
-- [S2] INFOnline Docs — Procedure description
-- [S3] INFOnline Docs — Legal implications for INFOnline Measurement
-- [S4] INFOnline Docs — Manual consent transmission with the Measurement Manager
-- [S5] INFOnline Docs — Checklist for maximum data protection compliance
+- [ ] Pseudonymous measurement requests only after consent.
+- [ ] Valid `ct` variable sent with each request.

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Contentsquare web tag (experience analytics, heatmaps, session replay). Sources were checked on 16 November 2026.
+**Scope.** The Contentsquare web tag (experience analytics, heatmaps, session replay).
 
-**What the service does in this scope.** Contentsquare collects IP addresses, an online unique ID and behavioural data on how visitors interact with the site [S1]. It uses only first-party cookies, with a maximum lifetime of 13 months, for example `_cs_id` (13 months, user data), `_cs_s` (30 minutes, session) and `_cs_c` (consent state for session replay masking) [S2]. By default, IP addresses are stored for no longer than three days; an **IP-less mode** avoids collecting the IP address [S1][S3]. The **cookieless** option replaces cookies with session storage, which expires at the end of the session [S1]. Personal data is kept for up to 13 months by default [S1].
+**What the service does in this scope.** Contentsquare collects IP addresses, an online unique ID and behavioural data on how visitors interact with the site. It uses only first-party cookies, with a maximum lifetime of 13 months, for example `_cs_id` (13 months, user data), `_cs_s` (30 minutes, session) and `_cs_c` (consent state for session replay masking). By default, IP addresses are stored for no longer than three days; an **IP-less mode** avoids collecting the IP address. The **cookieless** option replaces cookies with session storage, which expires at the end of the session. Personal data is kept for up to 13 months by default.
 
 **Configurations included.**
 
@@ -29,7 +29,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration B — Medium risk | Cookieless (session storage) with session replay, loaded after consent. |
 | Configuration C — Higher risk (default) | Standard first-party cookies (13 months), session replay, loaded after consent. |
 
-> ⚠ **Recommendation — Configuration A relies on a self-assessed exemption.** Contentsquare's Exemption Mode is designed to let customers use its cookies without consent under the audience-measurement exemption [S3]. CNIL's formal evaluation programme has ended, so qualifying configurations must be described as a **self-assessed exemption**, not as CNIL-approved. Use A without consent only if your DPO or independent counsel confirms that your configuration meets the exemption conditions; in Germany, § 25 TDDDG contains no equivalent analytics exemption.
+> ⚠ **Recommendation — Configuration A relies on a self-assessed exemption.** Contentsquare's Exemption Mode is designed to let customers use its cookies without consent under the audience-measurement exemption. CNIL's formal evaluation programme has ended, so qualifying configurations must be described as a **self-assessed exemption**, not as CNIL-approved. Use A without consent only if your DPO or independent counsel confirms that your configuration meets the exemption conditions; in Germany, § 25 TDDDG contains no equivalent analytics exemption.
 
 | Action | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default) |
 |---|---|---|---|
@@ -43,16 +43,16 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default) |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service | Improve the service |
-| 2 | Exemption Mode | Contentsquare project settings / Help Center activation [S3] | On | Off | Off |
-| 3 | Cookieless | Project setting [S1] | Off | On | Off |
-| 4 | IP-less mode | Project setting [S3] | On | Off | Off |
-| 5 | Session replay and masking | Session Replay settings; personal-data masking APIs [S4] | Off | On, fully masked | On |
-| 6 | Opt-out handling | `_cs_optout` cookie / opt-out API [S2] | Provide an opt-out | Consenter withdrawal | Consenter withdrawal |
-| 7 | Retention | Contract (default 13 months; extensions on request) [S1][S5] | 13 months | 13 months | 13 months (illustrative; may be extended) |
+| 2 | Exemption Mode | Contentsquare project settings / Help Center activation | On | Off | Off |
+| 3 | Cookieless | Project setting | Off | On | Off |
+| 4 | IP-less mode | Project setting | On | Off | Off |
+| 5 | Session replay and masking | Session Replay settings; personal-data masking APIs | Off | On, fully masked | On |
+| 6 | Opt-out handling | `_cs_optout` cookie / opt-out API | Provide an opt-out | Consenter withdrawal | Consenter withdrawal |
+| 7 | Retention | Contract (default 13 months; extensions on request) | 13 months | 13 months | 13 months (illustrative; may be extended) |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Contentsquare SAS is a French company. Check the storage region and sub-processors in your contract; where US sub-processors are used, list the United States as a potential access location (18 U.S.C. § 2713) [S6].
+**Processing location.** Contentsquare SAS is a French company. Check the storage region and sub-processors in your contract; where US sub-processors are used, list the United States as a potential access location.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default) |
 |---|---|---|---|
@@ -65,23 +65,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Maximum storage duration | 13 months | 13 months | 13 months (or as extended) |
 | Processing location | Per contract (EU); US if US sub-processors | Same | Same |
 
-**Basis.** Cookie lifetimes and identifiers [S2]; IP handling and cookieless session storage [S1]; Exemption Mode and IP-less mode [S3]; Contentsquare processes data on behalf of its customers [S3].
-
 ## Privacy-policy follow-up
 
-- Contentsquare as processor; mode used (exemption, cookieless or standard); cookies [S2]; IP handling [S1]; retention; for A, the opt-out mechanism and the basis for the self-assessed exemption.
+- Contentsquare as processor; mode used (exemption, cookieless or standard); cookies; IP handling; retention; for A, the opt-out mechanism and the basis for the self-assessed exemption.
 
 ## Verification checklist
 
 - [ ] A: no replay data captured; no IP collected; opt-out available.
 - [ ] B/C: no Contentsquare requests before consent.
-- [ ] Masking verified in replays [S4].
-
-## Sources
-
-- [S1] Contentsquare — 10 things to know about Contentsquare data processing
-- [S2] Contentsquare Docs — Cookies (Web)
-- [S3] Contentsquare Privacy Center — Audience measurement exemption
-- [S4] Contentsquare Docs — Session Replay personal data masking (privacy)
-- [S5] Contentsquare — Privacy FAQs guide
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+- [ ] Masking verified in replays.

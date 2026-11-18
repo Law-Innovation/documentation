@@ -17,11 +17,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** This guide covers the Firebase **JavaScript SDK on websites**, specifically the client-side products that collect visitor data: **Performance Monitoring** and **Google Analytics for Firebase**. Firebase back-end products used for the site's own functions (Hosting, Authentication, Firestore, Realtime Database) are infrastructure for the operator's application and are not covered. Sources were checked on 16 November 2026.
+**Scope.** This guide covers the Firebase **JavaScript SDK on websites**, specifically the client-side products that collect visitor data: **Performance Monitoring** and **Google Analytics for Firebase**. Firebase back-end products used for the site's own functions (Hosting, Authentication, Firestore, Realtime Database) are infrastructure for the operator's application and are not covered.
 
-**What the service does in this scope.** Performance Monitoring collects page-load and network-request timings together with Firebase installation IDs and IP addresses [S1]. Google Analytics for Firebase on the web is Google Analytics and "is subject to separate terms" [S1].
+**What the service does in this scope.** Performance Monitoring collects page-load and network-request timings together with Firebase installation IDs and IP addresses. Google Analytics for Firebase on the web is Google Analytics and "is subject to separate terms".
 
-**Legal role.** "When customers use Firebase, Google is generally a data processor under GDPR" under the Firebase Data Processing and Security Terms [S1][S2]. Google Analytics is a separate service with separate terms [S1]; refer to the Google Analytics 4 guide for its configuration and mapping.
+**Legal role.** "When customers use Firebase, Google is generally a data processor under GDPR" under the Firebase Data Processing and Security Terms. Google Analytics is a separate service with separate terms; refer to the Google Analytics 4 guide for its configuration and mapping.
 
 **Configurations included.**
 
@@ -30,7 +30,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Performance Monitoring only; Analytics not initialised; loaded after consent. |
 | Configuration B — Higher risk | Performance Monitoring plus Google Analytics for Firebase; loaded after consent; Analytics configured and mapped per the GA4 guide. |
 
-**No configuration without prior consent.** Performance Monitoring stores a Firebase installation ID in the browser [S1]. No consent-free configuration is documented.
+**No configuration without prior consent.** Performance Monitoring stores a Firebase installation ID in the browser. No consent-free configuration is documented.
 
 | Action | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -43,45 +43,39 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics |
-| 2 | Products initialised | Web app code (`getPerformance()`, `getAnalytics()`) | `getPerformance()` only | `getPerformance()` and `getAnalytics()` |
-| 3 | Data processing terms | Firebase console > Project settings > accept the Firebase Data Processing and Security Terms [S2] | Accepted | Accepted (Analytics: separate GA terms) [S1] |
+| 2 | Products initialised | Web app code (`getPerformance`, `getAnalytics`) | `getPerformance` only | `getPerformance` and `getAnalytics` |
+| 3 | Data processing terms | Firebase console > Project settings > accept the Firebase Data Processing and Security Terms | Accepted | Accepted (Analytics: separate GA terms) |
 | 4 | Loading | Consenter script blocking for the Firebase SDK | Blocked until consent | Blocked until consent |
 | 5 | Performance Monitoring data collection | `instrumentationEnabled` / `dataCollectionEnabled` settings of the Performance SDK | Enabled after consent; disabled on withdrawal | Same |
 | 6 | Retention | **Not configurable** in the Firebase console for Performance Monitoring | — | — |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Google LLC is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S3]. Google participates in the EU–US Data Privacy Framework [S1].
+**Processing location.** Google LLC is a US company and can be required to disclose data in its possession, custody or control regardless of storage location. Google participates in the EU–US Data Privacy Framework.
 
 ### Configuration A — Medium risk
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Improve the service | Performance monitoring. |
-| Tracking method | First party tracking (cross-session) | The Firebase installation ID persists in the browser for the site [S1]. |
-| Identifier | Device identifiers, IP address | Firebase installation IDs; IP addresses [S1]. |
-| Data categories | Device identifiers, IP address, Device characteristics, Browsing and interaction data | Timings of page loads and network requests [S1]. |
-| Legal role of data recipient | Processor | Firebase Data Processing and Security Terms [S1][S2]. |
+| Tracking method | First party tracking (cross-session) | The Firebase installation ID persists in the browser for the site. |
+| Identifier | Device identifiers, IP address | Firebase installation IDs; IP addresses. |
+| Data categories | Device identifiers, IP address, Device characteristics, Browsing and interaction data | Timings of page loads and network requests. |
+| Legal role of data recipient | Processor | Firebase Data Processing and Security Terms. |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Not documented | — |
 | Processing location | United States as potential processing and access location | See note above. |
 
 ### Configuration B — Higher risk
 
-Map the Firebase entry as in Configuration A, and create a separate Google Analytics entry following the Google Analytics 4 guide (Google Analytics is subject to separate terms [S1]).
+Map the Firebase entry as in Configuration A, and create a separate Google Analytics entry following the Google Analytics 4 guide (Google Analytics is subject to separate terms).
 
 ## Privacy-policy follow-up
 
-- Google as processor for Firebase; Performance Monitoring data and installation IDs; for B, Google Analytics as described in the GA4 guide; US transfer, DPF and potential access by US authorities [S1][S3].
+- Google as processor for Firebase; Performance Monitoring data and installation IDs; for B, Google Analytics as described in the GA4 guide; US transfer, DPF and potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] No Firebase installation or performance requests before consent.
-- [ ] A: `getAnalytics()` not called anywhere in the bundle.
+- [ ] A: `getAnalytics` not called anywhere in the bundle.
 - [ ] Firebase Data Processing and Security Terms accepted in the console.
-
-## Sources
-
-- [S1] Firebase — Privacy and Security in Firebase
-- [S2] Firebase Data Processing and Security Terms
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)

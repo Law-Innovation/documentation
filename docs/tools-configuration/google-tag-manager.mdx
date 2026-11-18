@@ -17,11 +17,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** This guide covers the Google Tag Manager (GTM) **web container** (`gtm.js`) on a website, and the option of loading that container through a **server-side tagging** server on the operator's own domain (Google tag gateway). It covers only the container itself. Every tag fired by the container (Google Analytics, Google Ads, Meta Pixel and so on) is a separate recipient with its own purposes and must be entered and assessed separately in the Consenter Manager. Sources were checked on 16 November 2026.
+**Scope.** This guide covers the Google Tag Manager (GTM) **web container** (`gtm.js`) on a website, and the option of loading that container through a **server-side tagging** server on the operator's own domain (Google tag gateway). It covers only the container itself. Every tag fired by the container (Google Analytics, Google Ads, Meta Pixel and so on) is a separate recipient with its own purposes and must be entered and assessed separately in the Consenter Manager.
 
 **Out of scope.** The tags deployed through GTM; Google Analytics and Google Ads consent mode behaviour; GTM for mobile apps.
 
-**What the service does in this scope.** GTM loads a JavaScript container that decides which tags to fire. Google states that, apart from data in standard HTTP request logs (deleted within 14 days) and aggregated diagnostic data about tag firing, GTM "does not collect, retain, or share any information about visitors" to its customers' sites [S1].
+**What the service does in this scope.** GTM loads a JavaScript container that decides which tags to fire. Google states that, apart from data in standard HTTP request logs (deleted within 14 days) and aggregated diagnostic data about tag firing, GTM "does not collect, retain, or share any information about visitors" to its customers' sites.
 
 **Configurations included.**
 
@@ -30,13 +30,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | GTM scripts are served first-party through the operator's own server-side tagging server; the container loads only after consent. |
 | Configuration B — Medium risk (default) | Standard installation: `gtm.js` is loaded from `www.googletagmanager.com`; the container loads only after consent. |
 
-**No configuration without prior consent.** The Administrative Court of Hanover held that GTM accesses the end device and processes data such as IP addresses, that it serves no function the user has requested, and that its use therefore requires consent under § 25(1) TDDDG (VG Hannover, judgment of 19 March 2025, 10 A 5385/22) [S5]. This guide therefore offers no configuration in which GTM loads before consent. Consent mode does not change this: it governs the behaviour of the tags, not whether the container itself is loaded.
+**No configuration without prior consent.** The Administrative Court of Hanover held that GTM accesses the end device and processes data such as IP addresses, that it serves no function the user has requested, and that its use therefore requires consent under § 25(1) TDDDG (VG Hannover, judgment of 19 March 2025, 10 A 5385/22). This guide therefore offers no configuration in which GTM loads before consent. Consent mode does not change this: it governs the behaviour of the tags, not whether the container itself is loaded.
 
 **Prerequisites and limitations.**
 
-- Consenter must load the GTM container only after consent, and each tag in the container must be blocked or consent-gated in its own right [S2].
-- Configuration A requires a GTM server container, a tagging server and a custom domain [S3].
-- GTM itself has no documented settings for IP truncation or retention; HTTP request log retention is fixed at 14 days [S1].
+- Consenter must load the GTM container only after consent, and each tag in the container must be blocked or consent-gated in its own right.
+- Configuration A requires a GTM server container, a tagging server and a custom domain.
+- GTM itself has no documented settings for IP truncation or retention; HTTP request log retention is fixed at 14 days.
 
 | Action | Configuration A — Lower risk | Configuration B — Medium risk (default) |
 |---|---|---|
@@ -50,63 +50,63 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk (default) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Purposes of the tags fired through the container | Purposes of the tags fired through the container |
-| 2 | Script source | Server container > **Clients** > Google Tag Manager: Web Container client; website snippet updated to point to the custom server domain [S3] | First-party source (operator's tagging server) | Default Google source (`www.googletagmanager.com`) [S3] |
-| 3 | Hosting of the tagging server | Server container provisioning (Google Cloud project "or in a different environment of your choosing") [S4] | Operator-controlled infrastructure in the EU (illustrative) | Not applicable |
+| 2 | Script source | Server container > **Clients** > Google Tag Manager: Web Container client; website snippet updated to point to the custom server domain | First-party source (operator's tagging server) | Default Google source (`www.googletagmanager.com`) |
+| 3 | Hosting of the tagging server | Server container provisioning (Google Cloud project "or in a different environment of your choosing") | Operator-controlled infrastructure in the EU (illustrative) | Not applicable |
 | 4 | Container loading | Consenter script blocking for the GTM entry | Blocked until consent | Blocked until consent |
-| 5 | Tag-level consent settings | Tag > **Advanced Settings** > **Consent Settings** > **Additional Consent Checks**; Admin > Container Settings > **Enable consent overview** [S2] | "Require additional consent for tag to fire" for every tag without built-in consent checks | Same as A |
-| 6 | HTTP request log retention | **Not configurable.** Deleted within 14 days [S1] | Fixed by Google | Fixed by Google |
-| 7 | IP address handling for the container request | **Not configurable** in GTM | Request goes to the operator's server; the tagging server forwards the script request to Google [S3] | Visitor's IP address reaches Google with each container request [S1] |
+| 5 | Tag-level consent settings | Tag > **Advanced Settings** > **Consent Settings** > **Additional Consent Checks**; Admin > Container Settings > **Enable consent overview** | "Require additional consent for tag to fire" for every tag without built-in consent checks | Same as A |
+| 6 | HTTP request log retention | **Not configurable.** Deleted within 14 days | Fixed by Google | Fixed by Google |
+| 7 | IP address handling for the container request | **Not configurable** in GTM | Request goes to the operator's server; the tagging server forwards the script request to Google | Visitor's IP address reaches Google with each container request |
 
 ### Configuration A — Lower risk
 
 1. **Intended use.** Tag management in which the visitor's browser does not contact Google servers to load the container.
-2. **Prerequisites.** GTM server container, tagging server and custom server domain [S3]; Consenter can block the container snippet.
+2. **Prerequisites.** GTM server container, tagging server and custom server domain; Consenter can block the container snippet.
 3. **Implementation steps.**
-   1. Set up a server container and tagging server, hosted on infrastructure you control [S4].
-   2. In the server container, configure the client that serves Google scripts, and update the script source on the website to the custom server domain [S3].
-   3. Verify in the browser's developer tools that `gtm.js` loads from your server, not from `www.googletagmanager.com` [S3].
-   4. Configure Consenter to block the container until consent and set consent checks for every tag [S2].
-4. **Resulting processing.** The browser requests `gtm.js` from the operator's domain. The tagging server forwards the script request to Google servers [S3]. Whether visitor-specific request headers are forwarded is not documented (verification point).
+   1. Set up a server container and tagging server, hosted on infrastructure you control.
+   2. In the server container, configure the client that serves Google scripts, and update the script source on the website to the custom server domain.
+   3. Verify in the browser's developer tools that `gtm.js` loads from your server, not from `www.googletagmanager.com`.
+   4. Configure Consenter to block the container until consent and set consent checks for every tag.
+4. **Resulting processing.** The browser requests `gtm.js` from the operator's domain. The tagging server forwards the script request to Google servers. Whether visitor-specific request headers are forwarded is not documented (verification point).
 5. **Why lower risk.** Google does not receive the visitor's request directly, and the operator controls the server and its logs.
 6. **Remaining risks and verification points.** Check the tagging server's request forwarding and logging; the tags themselves still determine most of the privacy risk.
 
 ### Configuration B — Medium risk (default)
 
 1. **Intended use.** Standard GTM installation.
-2. **Implementation steps.** Install the standard container snippet; configure Consenter to block it until consent; configure consent checks for every tag [S2].
-3. **Resulting processing.** Each container request sends the visitor's IP address, requested URL and HTTP headers to Google. Google keeps HTTP request logs for up to 14 days and collects aggregated tag-firing diagnostics without IP addresses or measurement identifiers [S1].
-4. **Why medium risk.** Direct transmission of the IP address to a US-headquartered provider on every page load after consent; no profiling by GTM itself [S1].
+2. **Implementation steps.** Install the standard container snippet; configure Consenter to block it until consent; configure consent checks for every tag.
+3. **Resulting processing.** Each container request sends the visitor's IP address, requested URL and HTTP headers to Google. Google keeps HTTP request logs for up to 14 days and collects aggregated tag-firing diagnostics without IP addresses or measurement identifiers.
+4. **Why medium risk.** Direct transmission of the IP address to a US-headquartered provider on every page load after consent; no profiling by GTM itself.
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 Enter GTM as its own recipient. Every tag fired through GTM needs its own entry.
 
-**Processing location (applies to Configuration B).** Google LLC is a US company. As a US provider, it can be required to disclose data in its possession, custody or control regardless of where the data is stored (18 U.S.C. § 2713) [S6]. The United States is therefore listed as a potential processing and access location. This reflects potential access, not confirmed disclosure.
+**Processing location (applies to Configuration B).** Google LLC is a US company. As a US provider, it can be required to disclose data in its possession, custody or control regardless of where the data is stored. The United States is therefore listed as a potential processing and access location. This reflects potential access, not confirmed disclosure.
 
 ### Configuration A — Lower risk
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Purposes of the tags in the container | GTM has no purpose of its own beyond deploying tags. |
-| Tracking method | No tracking | GTM sets no identifier of its own in this scope [S1]. |
+| Tracking method | No tracking | GTM sets no identifier of its own in this scope. |
 | Identifier | IP address | The IP address is received by the operator's tagging server. |
 | Data categories | IP address, Device characteristics | Request headers (user agent) reach the tagging server. |
-| Legal role of data recipient | Self-hosted | The server container runs in an environment the operator controls [S4]. |
+| Legal role of data recipient | Self-hosted | The server container runs in an environment the operator controls. |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Per the operator's server log policy | Set by the operator. |
-| Processing location | Location of the operator's tagging server | Hosting choice of the operator [S4]. |
+| Processing location | Location of the operator's tagging server | Hosting choice of the operator. |
 
 ### Configuration B — Medium risk (default)
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Purposes of the tags in the container | As in A. |
-| Tracking method | No tracking | No GTM identifier is stored [S1]. |
-| Identifier | IP address | Included in every HTTP request to Google [S1]. |
-| Data categories | IP address, Device characteristics | IP address and HTTP request headers in Google's request logs [S1]. |
-| Legal role of data recipient | Processor | Google refers to the Google Ads Data Processing Terms for GTM customers subject to the GDPR [S1]. |
-| Personalisation model | No personalisation | GTM does not profile visitors [S1]. |
-| Maximum storage duration | 14 days | HTTP request logs are deleted within 14 days [S1]. |
+| Tracking method | No tracking | No GTM identifier is stored. |
+| Identifier | IP address | Included in every HTTP request to Google. |
+| Data categories | IP address, Device characteristics | IP address and HTTP request headers in Google's request logs. |
+| Legal role of data recipient | Processor | Google refers to the Google Ads Data Processing Terms for GTM customers subject to the GDPR. |
+| Personalisation model | No personalisation | GTM does not profile visitors. |
+| Maximum storage duration | 14 days | HTTP request logs are deleted within 14 days. |
 | Processing location | United States (Google LLC); United States as potential access location | See the processing-location note above. |
 
 ## Privacy-policy follow-up
@@ -115,21 +115,12 @@ Enter GTM as its own recipient. Every tag fired through GTM needs its own entry.
 - **Data categories:** IP address and HTTP request headers.
 - **Legal bases and consent handling:** distinguish the ePrivacy / TDDDG consent for access to the device from the GDPR legal basis for the processing.
 - **Retention:** 14 days for Google's HTTP request logs (B).
-- **Processing locations and transfers:** Google LLC in the US; potential access by US authorities [S6].
+- **Processing locations and transfers:** Google LLC in the US; potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] **Before consent:** no request for `gtm.js` (to Google or to the tagging server).
-- [ ] **After consent:** `gtm.js` loads from the expected source [S3].
-- [ ] **Consent overview:** every tag has consent settings configured [S2].
+- [ ] **After consent:** `gtm.js` loads from the expected source.
+- [ ] **Consent overview:** every tag has consent settings configured.
 - [ ] **Tags:** every tag in the container has its own Consenter Manager entry.
 - [ ] **Configuration A:** request forwarding and logs of the tagging server checked.
-
-## Sources
-
-- [S1] Google Tag Manager Help — Data privacy and security
-- [S2] Google Tag Manager Help — Tag Manager consent mode support
-- [S3] Google for Developers — Google tag gateway for advertisers: Load Google scripts first-party (last updated 5 December 2025)
-- [S4] Google for Developers — An introduction to server-side tagging
-- [S5] VG Hannover, judgment of 19 March 2025, 10 A 5385/22 (reported by WBS.LEGAL)
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)

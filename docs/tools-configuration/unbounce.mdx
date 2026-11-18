@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Landing pages built and hosted with Unbounce (Unbounce Marketing Solutions Inc., Vancouver, Canada). Sources were checked on 16 November 2026.
+**Scope.** Landing pages built and hosted with Unbounce (Unbounce Marketing Solutions Inc., Vancouver, Canada).
 
-**What the service does in this scope.** Unbounce pages set the cookies `ubpb`, `ubvs` and `ubvt`; `ubpv` keeps a visitor on the same A/B variant and `ubvt` supports external conversion tracking [S1]. Unbounce offers a built-in cookie banner so visitors can accept or reject cookie tracking on the landing page [S2]. Unbounce is a data processor and provides a DPA on request [S3]. A customer reported that Unbounce adds its own Google Tag Manager and `events.ub-analytics.com` trackers to landing pages [S4].
+**What the service does in this scope.** Unbounce pages set the cookies `ubpb`, `ubvs` and `ubvt`; `ubpv` keeps a visitor on the same A/B variant and `ubvt` supports external conversion tracking. Unbounce offers a built-in cookie banner so visitors can accept or reject cookie tracking on the landing page. Unbounce is a data processor and provides a DPA on request. A customer reported that Unbounce adds its own Google Tag Manager and `events.ub-analytics.com` trackers to landing pages.
 
 **Configurations included.**
 
@@ -28,21 +28,21 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Single-variant landing page; Unbounce cookies after consent; forms with consent text. |
 | Configuration B — Higher risk | A/B tests and conversion tracking (`ubpv`, `ubvt`); after consent. |
 
-**No configuration without prior consent.** Unbounce itself categorises these cookies as performance cookies requiring opt-in on its own site [S1].
+**No configuration without prior consent.** Unbounce itself categorises these cookies as performance cookies requiring opt-in on its own site.
 
 ## Step 1 — Configure Unbounce
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics |
-| 2 | Consent | Consenter on the landing page, or Unbounce cookie banner [S2] | Before tracking | Before tracking |
+| 2 | Consent | Consenter on the landing page, or Unbounce cookie banner | Before tracking | Before tracking |
 | 3 | A/B testing | Page variants | Off | On |
 | 4 | Conversion tracking | Unbounce conversion goals / external tracking | Off | On |
-| 5 | Forms | Form builder; consent checkbox [S3] | Consent text | Consent text |
+| 5 | Forms | Form builder; consent checkbox | Consent text | Consent text |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Unbounce is Canadian; check the DPA for US sub-processors (e.g. CDN and analytics) and list the United States if present (18 U.S.C. § 2713 [S5]).
+**Processing location.** Unbounce is Canadian; check the DPA for US sub-processors (e.g. CDN and analytics) and list the United States if present.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -54,11 +54,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | Per cookie inspection | Per cookie inspection |
 | Processing location | Canada; per DPA | Canada; per DPA |
-
-## Sources
-
-- [S1] Unbounce Community — Landing page without setting any cookies
-- [S2] Unbounce Documentation — Adding a cookie banner to Unbounce
-- [S3] Unbounce — GDPR
-- [S4] Unbounce Community — Unexpected Unbounce trackers on landing pages
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

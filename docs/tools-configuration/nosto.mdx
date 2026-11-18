@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Nosto commerce personalisation (recommendations, search, pop-ups) via its JavaScript. Nosto Solutions Ltd is a Finnish company. Sources were checked on 16 November 2026.
+**Scope.** Nosto commerce personalisation (recommendations, search, pop-ups) via its JavaScript. Nosto Solutions Ltd is a Finnish company.
 
-**What the service does in this scope.** `2c.cId` assigns a unique identifier to each browser for tracking visits and interactions [S1]; Nosto states that its cookies expire after four years [S2]. With `api.visit.setDoNotTrack(true)` (called before any request), Nosto runs without the `2c.cId` cookie; this does not disable cookies entirely [S3]. In the Shopware integration, Nosto without marketing consent runs in `doNotTrack` mode, sets no session identifier and sends no customer data [S4]. Nosto's Data Processing Policy and Record of Processing Activities are available in the admin [S1].
+**What the service does in this scope.** `2c.cId` assigns a unique identifier to each browser for tracking visits and interactions; Nosto states that its cookies expire after four years. With `api.visit.setDoNotTrack(true)` (called before any request), Nosto runs without the `2c.cId` cookie; this does not disable cookies entirely. In the Shopware integration, Nosto without marketing consent runs in `doNotTrack` mode, sets no session identifier and sends no customer data. Nosto's Data Processing Policy and Record of Processing Activities are available in the admin.
 
 **Configurations included.**
 
@@ -28,14 +28,14 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | `doNotTrack` mode: non-personalised recommendations; no `2c.cId`; after consent. |
 | Configuration B — Higher risk | Full tracking with `2c.cId` and customer data; after consent. |
 
-**No configuration without prior consent.** Even in `doNotTrack` mode, cookies are not disabled entirely [S3]; Nosto advises preventing its JavaScript from loading for users who opt out of all tracking [S5].
+**No configuration without prior consent.** Even in `doNotTrack` mode, cookies are not disabled entirely; Nosto advises preventing its JavaScript from loading for users who opt out of all tracking.
 
 ## Step 1 — Configure Nosto
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Personalise the website (non-personalised recommendations) | Personalise the website; Receive personalised marketing offers |
-| 2 | Do-not-track | `nostojs(api => api.visit.setDoNotTrack(true))` before any request [S3] | On | Off |
+| 2 | Do-not-track | `nostojs(api => api.visit.setDoNotTrack(true))` before any request | On | Off |
 | 3 | Customer data | Customer tagging / integration | Not sent | Sent |
 | 4 | Loading | Consenter script blocking | After consent | After consent |
 
@@ -49,15 +49,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Browsing and interaction data, Device characteristics | Browsing and interaction data, Device characteristics, Device identifiers, e-commerce Activity, Users' profiles, direct identifier (if customer data is sent) |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | Group based (properties) | Profile based |
-| Maximum storage duration | Not documented | Cookies up to 4 years [S2] |
+| Maximum storage duration | Not documented | Cookies up to 4 years |
 | Processing location | Per DPA | Per DPA |
-
-**Basis.** Cookies [S1][S2]; do-not-track [S3][S4].
-
-## Sources
-
-- [S1] Nosto Help — Nosto cookies (manual)
-- [S2] Nosto Help — Nosto cookies (cookie lifetime)
-- [S3] Nosto Tech Docs — Supporting opt-out and do-not-track
-- [S4] Nosto Docs — Shopware 6 cookies
-- [S5] Nosto Help — Nosto and cookies

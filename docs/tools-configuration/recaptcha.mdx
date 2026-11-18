@@ -17,13 +17,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** This guide covers reCAPTCHA on websites (score-based "v3" keys and challenge-based checkbox keys) as offered through Google Cloud. Google's current documentation also refers to the product as part of Google Cloud **Fraud Defense** [S1]. Sources were checked on 16 November 2026.
+**Scope.** This guide covers reCAPTCHA on websites (score-based "v3" keys and challenge-based checkbox keys) as offered through Google Cloud. Google's current documentation also refers to the product as part of Google Cloud **Fraud Defense**.
 
-**Out of scope.** reCAPTCHA in native mobile apps; SMS toll-fraud defence; payment-page transaction signals [S1].
+**Out of scope.** reCAPTCHA in native mobile apps; SMS toll-fraud defence; payment-page transaction signals.
 
-**What the service does in this scope.** reCAPTCHA runs a risk analysis to distinguish humans from bots. It sets a cookie named `_GRECAPTCHA` "when executed for the purpose of providing its risk analysis" [S1].
+**What the service does in this scope.** reCAPTCHA runs a risk analysis to distinguish humans from bots. It sets a cookie named `_GRECAPTCHA` "when executed for the purpose of providing its risk analysis".
 
-**Change of legal role on 2 April 2026.** Since 2 April 2026, Google acts as **data processor**; customers are the sole data controller of Customer Data, which Google processes under the Google Cloud Terms of Service and the Cloud Data Processing Addendum [S1][S2]. Google has removed the references to its own Privacy Policy and Terms of Use from the badge, and customers should remove such references from their sites [S1].
+**Change of legal role on 2 April 2026.** Since 2 April 2026, Google acts as **data processor**; customers are the sole data controller of Customer Data, which Google processes under the Google Cloud Terms of Service and the Cloud Data Processing Addendum. Google has removed the references to its own Privacy Policy and Terms of Use from the badge, and customers should remove such references from their sites.
 
 **Configurations included.**
 
@@ -32,19 +32,19 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | reCAPTCHA loaded only on pages containing a protected form, from `www.recaptcha.net`, after consent. |
 | Configuration B — Higher risk (default snippet) | reCAPTCHA (score-based key) loaded on every page from `www.google.com` to score all site traffic, after consent. |
 
-> ⚠ **Recommendation — no-consent use is legally uncertain.** Google describes `_GRECAPTCHA` as a "necessary" cookie [S1]. Whether storing it qualifies for the strictly-necessary exemption (Art. 5(3) ePrivacy Directive / § 25(2) No. 2 TDDDG) has not been settled, and Google's documentation does not list the session data collected or a retention period [S1][S3]. This guide therefore offers no configuration without prior consent. An operator who loads reCAPTCHA before consent on a form page should document the reasoning and have it reviewed by their DPO or independent legal counsel.
+> ⚠ **Recommendation — no-consent use is legally uncertain.** Google describes `_GRECAPTCHA` as a "necessary" cookie. Whether storing it qualifies for the strictly-necessary exemption (Art. 5(3) ePrivacy Directive / § 25(2) No. 2 TDDDG) has not been settled, and Google's documentation does not list the session data collected or a retention period. This guide therefore offers no configuration without prior consent. An operator who loads reCAPTCHA before consent on a form page should document the reasoning and have it reviewed by their DPO or independent legal counsel.
 
 **Prerequisites and limitations.**
 
-- Google does not document the specific data collected, the retention period or the processing location for reCAPTCHA data on its FAQ page [S1].
+- Google does not document the specific data collected, the retention period or the processing location for reCAPTCHA data on its FAQ page.
 - If consent is refused, the protected form needs a fallback (for example, a server-side spam check), because the form cannot be verified without reCAPTCHA.
 
 | Action | Configuration A — Lower risk | Configuration B — Higher risk (default snippet) |
 |---|---|---|
 | Pages where reCAPTCHA loads | Only pages with a protected form | All pages |
-| Script domain | `www.recaptcha.net` [S1] | `www.google.com` |
+| Script domain | `www.recaptcha.net` | `www.google.com` |
 | Loading | Blocked by Consenter until consent | Blocked by Consenter until consent |
-| Badge | Shown, or hidden with the text "This site is protected by reCAPTCHA." [S1] | Shown |
+| Badge | Shown, or hidden with the text "This site is protected by reCAPTCHA." | Shown |
 | Consenter Manager entries | One entry (Google as Processor) | One entry (Google as Processor) |
 
 ## Step 1 — Configure reCAPTCHA
@@ -53,46 +53,46 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features (form protection) | Unlock additional website features (form and site protection) |
 | 2 | Pages on which the script loads | Website code | Only pages with the protected form | Every page (score-based key used to assess all traffic) |
-| 3 | Script domain | Replace `https://www.google.com/recaptcha/api.js` with `https://www.recaptcha.net/recaptcha/api.js` and apply the same change wherever `www.google.com/recaptcha/` is used [S1] | `www.recaptcha.net` | `www.google.com` (default) |
+| 3 | Script domain | Replace `https://www.google.com/recaptcha/api.js` with `https://www.recaptcha.net/recaptcha/api.js` and apply the same change wherever `www.google.com/recaptcha/` is used | `www.recaptcha.net` | `www.google.com` (default) |
 | 4 | Loading | Consenter script blocking for the reCAPTCHA entry | Blocked until consent | Blocked until consent |
-| 5 | Badge and disclosure | CSS `.grecaptcha-badge { visibility: hidden; }` plus the text "This site is protected by reCAPTCHA." in the user flow [S1] | Optional | Badge shown |
-| 6 | References to Google's Privacy Policy and Terms | Website text and privacy policy [S1] | Remove (Google is processor since 2 April 2026) | Remove |
-| 7 | Contractual basis | Google Cloud Terms of Service and Cloud Data Processing Addendum [S1][S2] | Applies | Applies |
-| 8 | Retention of reCAPTCHA data | **Not configurable / not documented** [S1] | — | — |
+| 5 | Badge and disclosure | CSS `.grecaptcha-badge { visibility: hidden; }` plus the text "This site is protected by reCAPTCHA." in the user flow | Optional | Badge shown |
+| 6 | References to Google's Privacy Policy and Terms | Website text and privacy policy | Remove (Google is processor since 2 April 2026) | Remove |
+| 7 | Contractual basis | Google Cloud Terms of Service and Cloud Data Processing Addendum | Applies | Applies |
+| 8 | Retention of reCAPTCHA data | **Not configurable / not documented** | — | — |
 
 ### Configuration A — Lower risk
 
 1. **Intended use.** Bot protection for a specific form (contact, login, registration).
 2. **Implementation steps.**
    1. Load the reCAPTCHA script only on pages containing the protected form.
-   2. Use `www.recaptcha.net` as the script and frame domain [S1].
+   2. Use `www.recaptcha.net` as the script and frame domain.
    3. Configure Consenter to block the script until consent and provide a fallback for visitors who refuse.
-   4. If you hide the badge, add "This site is protected by reCAPTCHA." visibly in the user flow and remove references to Google's Privacy Policy and Terms [S1].
-3. **Resulting processing.** On the form page, the script runs a risk analysis and sets `_GRECAPTCHA` [S1]. Using `www.recaptcha.net` avoids sending other cookies that may exist on the `www.google.com` domain [S1].
+   4. If you hide the badge, add "This site is protected by reCAPTCHA." visibly in the user flow and remove references to Google's Privacy Policy and Terms.
+3. **Resulting processing.** On the form page, the script runs a risk analysis and sets `_GRECAPTCHA`. Using `www.recaptcha.net` avoids sending other cookies that may exist on the `www.google.com` domain.
 4. **Why lower risk.** Processing is limited to the pages where protection is needed, and the `google.com` domain is not contacted.
 
 ### Configuration B — Higher risk (default snippet)
 
 1. **Intended use.** Site-wide bot and abuse detection with a score-based key.
 2. **Implementation steps.** Load the default snippet from `www.google.com` on all pages; block it until consent.
-3. **Resulting processing.** Risk analysis runs on every page view, so browsing and interaction signals from the whole visit are processed. Requests to `www.google.com` may carry other Google cookies present on that domain [S1].
+3. **Resulting processing.** Risk analysis runs on every page view, so browsing and interaction signals from the whole visit are processed. Requests to `www.google.com` may carry other Google cookies present on that domain.
 4. **Why higher risk.** Processing covers the entire visit rather than one form, and requests go to the `google.com` domain.
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location (applies to all entries).** Google does not document a processing location for reCAPTCHA data [S1]. Google LLC is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S4]. The United States is therefore listed as a potential processing and access location.
+**Processing location (applies to all entries).** Google does not document a processing location for reCAPTCHA data. Google LLC is a US company and can be required to disclose data in its possession, custody or control regardless of storage location. The United States is therefore listed as a potential processing and access location.
 
 ### Configuration A — Lower risk
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Unlock additional website features | Protection of the form so that it can be used. |
-| Tracking method | Third party tracking (crosssession, cross-website) | `_GRECAPTCHA` is set on the reCAPTCHA domain, which is shared by all sites using reCAPTCHA [S1]. Its lifetime is not documented by Google. Reasoned mapping: the cookie can recognise the browser across sessions and sites; Google states the data is used only to provide and secure the service [S1]. |
-| Identifier | Device identifiers, IP address | `_GRECAPTCHA` cookie [S1]; IP address with each request. |
-| Data categories | Device identifiers, IP address, Device characteristics, Browsing and interaction data | Risk analysis on the form page. Google does not list the session data collected [S1]. |
-| Legal role of data recipient | Processor | Since 2 April 2026, under the Cloud Data Processing Addendum [S1][S2]. |
-| Personalisation model | No personalisation | Data used only for the service and its security [S1]. |
-| Maximum storage duration | Not documented | No retention period published [S1]. |
+| Tracking method | Third party tracking (crosssession, cross-website) | `_GRECAPTCHA` is set on the reCAPTCHA domain, which is shared by all sites using reCAPTCHA. Its lifetime is not documented by Google. Reasoned mapping: the cookie can recognise the browser across sessions and sites; Google states the data is used only to provide and secure the service. |
+| Identifier | Device identifiers, IP address | `_GRECAPTCHA` cookie; IP address with each request. |
+| Data categories | Device identifiers, IP address, Device characteristics, Browsing and interaction data | Risk analysis on the form page. Google does not list the session data collected. |
+| Legal role of data recipient | Processor | Since 2 April 2026, under the Cloud Data Processing Addendum. |
+| Personalisation model | No personalisation | Data used only for the service and its security. |
+| Maximum storage duration | Not documented | No retention period published. |
 | Processing location | United States as potential processing and access location | See note above. |
 
 ### Configuration B — Higher risk (default snippet)
@@ -103,29 +103,22 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Tracking method | Third party tracking (crosssession, cross-website) | As in A. |
 | Identifier | Device identifiers, IP address | As in A. |
 | Data categories | Device identifiers, IP address, Device characteristics, Browsing and interaction data | Signals from every page of the visit. |
-| Legal role of data recipient | Processor | As in A [S1][S2]. |
+| Legal role of data recipient | Processor | As in A. |
 | Personalisation model | No personalisation | As in A. |
-| Maximum storage duration | Not documented | [S1] |
+| Maximum storage duration | Not documented | — |
 | Processing location | United States as potential processing and access location | See note above. |
 
 ## Privacy-policy follow-up
 
-- **Purpose and recipient:** bot and abuse protection; Google as processor (no longer a reference to Google's Privacy Policy) [S1].
+- **Purpose and recipient:** bot and abuse protection; Google as processor (no longer a reference to Google's Privacy Policy).
 - **Data and storage on the device:** `_GRECAPTCHA` cookie; IP address; device and interaction signals.
 - **Legal bases:** distinguish the ePrivacy / TDDDG consent for the cookie from the GDPR legal basis for the risk analysis.
-- **Transfers:** Google LLC in the US; potential access by US authorities [S4].
+- **Transfers:** Google LLC in the US; potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] **Before consent:** no request to `www.google.com/recaptcha`, `www.recaptcha.net` or `www.gstatic.com/recaptcha`.
 - [ ] **After consent (A):** reCAPTCHA loads only on form pages and only from `www.recaptcha.net`.
-- [ ] **Badge text:** no remaining references to Google's Privacy Policy or Terms of Service [S1].
+- [ ] **Badge text:** no remaining references to Google's Privacy Policy or Terms of Service.
 - [ ] **Fallback:** form remains usable or offers an alternative when consent is refused.
 - [ ] **Open points:** retention period and processing location of reCAPTCHA data.
-
-## Sources
-
-- [S1] Google Cloud — reCAPTCHA / Fraud Defense: Frequently Asked Questions
-- [S2] Google Cloud Community — Switching Google's role with reCAPTCHA from Data Controller to Data Processor (26 January 2026)
-- [S3] Google Cloud Data Processing Addendum
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

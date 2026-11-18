@@ -6,7 +6,7 @@ description: "How to configure DoubleVerify (incl. Meetrics) at different risk l
 Typical processing purposes: Support marketing analytics
 
 <Callout type="info" title="Overview">
-This guide explains how DoubleVerify ad verification is used on websites and how to reflect it in the Consenter Manager. It also covers the index entry "Meetrics", which DoubleVerify acquired in 2021 [S1].
+This guide explains how DoubleVerify ad verification is used on websites and how to reflect it in the Consenter Manager. It also covers the index entry "Meetrics", which DoubleVerify acquired in 2021.
 
 1. Configure the third-party service.
 2. Map the configuration in the Consenter Manager.
@@ -17,9 +17,9 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 ## At a glance
 
-**Scope.** DoubleVerify (DV) verification tags that measure ad impressions (viewability, brand safety, invalid traffic) on a website, either deployed by the publisher or delivered with ads. DoubleVerify, Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** DoubleVerify (DV) verification tags that measure ad impressions (viewability, brand safety, invalid traffic) on a website, either deployed by the publisher or delivered with ads. DoubleVerify, Inc. is a US company.
 
-**What the service does in this scope.** DV states that its technology "does not leverage cookies and does not create profiles or audiences" and measures each ad impression individually without tracking user activity over time [S2]. Under DV's data privacy addendum, DV processes personal data as **processor** for the client, while the fraud-elimination part of the solutions is operated by DV as **controller**; DV's processing is limited to pseudonymous information [S3][S4].
+**What the service does in this scope.** DV states that its technology "does not leverage cookies and does not create profiles or audiences" and measures each ad impression individually without tracking user activity over time. Under DV's data privacy addendum, DV processes personal data as **processor** for the client, while the fraud-elimination part of the solutions is operated by DV as **controller**; DV's processing is limited to pseudonymous information.
 
 **Simplified format.** DV offers no privacy settings for the website operator. The guide uses a single fixed-behaviour configuration.
 
@@ -30,36 +30,28 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Support marketing analytics (ad measurement and verification) |
-| Cookies / profiles | None, per DV [S2] |
-| Roles | Processor; Controller for fraud elimination [S3] |
+| Cookies / profiles | None, per DV |
+| Roles | Processor; Controller for fraud elimination |
 | Loading | With advertising, after consent |
-| DPA | DV Data Privacy Addendum [S3] |
+| DPA | DV Data Privacy Addendum |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Support marketing analytics | Ad verification. |
-| Tracking method | No tracking | No cookies, no tracking over time [S2]. |
-| Identifier | IP address | Pseudonymous information for invalid-traffic detection [S4]. |
+| Tracking method | No tracking | No cookies, no tracking over time. |
+| Identifier | IP address | Pseudonymous information for invalid-traffic detection. |
 | Data categories | IP address, Device characteristics, Browsing and interaction data | Impression context and device signals. |
-| Legal role of data recipient | Processor; Individual Controller for fraud elimination | [S3] Consider a second entry. |
-| Personalisation model | No personalisation | No profiles or audiences [S2]. |
+| Legal role of data recipient | Processor; Individual Controller for fraud elimination | Consider a second entry. |
+| Personalisation model | No personalisation | No profiles or audiences. |
 | Maximum storage duration | Not documented | — |
-| Processing location | United States | DoubleVerify, Inc. is subject to 18 U.S.C. § 2713 [S5]. |
+| Processing location | United States | DoubleVerify, Inc. is subject to the US CLOUD Act. |
 
 ## Privacy-policy follow-up
 
-- DoubleVerify as processor and, for fraud detection, controller [S3]; ad verification; US transfer and potential access by US authorities [S5].
+- DoubleVerify as processor and, for fraud detection, controller; ad verification; US transfer and potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] DV tags load only with consented advertising.
-
-## Sources
-
-- [S1] AdExchanger — DoubleVerify acquires Meetrics
-- [S2] Business Wire — DoubleVerify awarded privacy certification seals (no cookies, no profiles)
-- [S3] DoubleVerify — Hosted DV Data Privacy Addendum (December 2025)
-- [S4] DoubleVerify — Hosted DV Data Privacy Addendum (December 2023)
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Munchkin JavaScript tracking code and Marketo Forms 2.0. Adobe Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** The Munchkin JavaScript tracking code and Marketo Forms 2.0. Adobe Inc. is a US company.
 
-**What the service does in this scope.** Munchkin sets the `_mkto_trk` cookie, specific to each second-level domain, with a default lifespan of 2 years (730 days) [S1]. On a visitor's first visit, an anonymous lead record is created whose primary key is the Munchkin cookie [S2]. `Munchkin.init()` accepts configuration settings: `cookieAnon` controls whether a cookie is created for all leads upon visiting, and `cookieLifeDays` sets the expiry of newly created cookies [S3]. Visitors can opt out with `marketo_opt_out=true`, which sets `mkto_opt_out` [S1]. Forms 2.0 can be embedded without Munchkin, and thus without a new cookie [S4].
+**What the service does in this scope.** Munchkin sets the `_mkto_trk` cookie, specific to each second-level domain, with a default lifespan of 2 years (730 days). On a visitor's first visit, an anonymous lead record is created whose primary key is the Munchkin cookie. `Munchkin.init` accepts configuration settings: `cookieAnon` controls whether a cookie is created for all leads upon visiting, and `cookieLifeDays` sets the expiry of newly created cookies. Visitors can opt out with `marketo_opt_out=true`, which sets `mkto_opt_out`. Forms 2.0 can be embedded without Munchkin, and thus without a new cookie.
 
 **Configurations included.**
 
@@ -29,21 +29,21 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration B — Medium risk | Munchkin after consent; `cookieAnon: false`; 180-day cookie. |
 | Configuration C — Higher risk (default configuration) | Munchkin after consent; anonymous and known leads tracked; 2-year cookie; email link identification. |
 
-**Configuration without prior consent (A).** Without Munchkin no tracking cookie is set [S4]; form data is processed on the legal basis of the form's purpose (Art. 6 GDPR). Whether the Forms library itself accesses device storage should be verified in the browser.
+**Configuration without prior consent (A).** Without Munchkin no tracking cookie is set; form data is processed on the legal basis of the form's purpose (Art. 6 GDPR). Whether the Forms library itself accesses device storage should be verified in the browser.
 
 ## Step 1 — Configure Marketo Engage
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | — (form only) | Support marketing analytics | Support marketing analytics; Receive personalised marketing offers |
-| 2 | Munchkin | Website code | Not loaded | `Munchkin.init()` after consent | `Munchkin.init()` after consent |
-| 3 | `cookieAnon` | `Munchkin.init` config [S3] | — | `false` | `true` (default) |
-| 4 | `cookieLifeDays` | `Munchkin.init` config [S3] | — | 180 | 730 (default) |
+| 2 | Munchkin | Website code | Not loaded | `Munchkin.init` after consent | `Munchkin.init` after consent |
+| 3 | `cookieAnon` | `Munchkin.init` config | — | `false` | `true` (default) |
+| 4 | `cookieLifeDays` | `Munchkin.init` config | — | 180 | 730 (default) |
 | 5 | Email link tracking (`mkt_tok`) | Email settings | — | Off | On |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Adobe is a US enterprise subject to 18 U.S.C. § 2713 [S5]; list the United States in all configurations with an entry.
+**Processing location.** Adobe is a US enterprise subject to the US CLOUD Act; list the United States in all configurations with an entry.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|
@@ -56,11 +56,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | Group based (behaviour) | Profile based |
 | Maximum storage duration | Per lead retention | 180 days (cookie) | 2 years (cookie) |
 | Processing location | Contract region; United States | Contract region; United States | Contract region; United States |
-
-## Sources
-
-- [S1] Adobe Experience League — Munchkin lead tracking (cookie, opt-out)
-- [S2] Marketo Developers — Munchkin anonymous lead record
-- [S3] Adobe Experience League — Munchkin configuration
-- [S4] Adobe Experience League Community — Preventing embed forms from setting cookies before consent
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

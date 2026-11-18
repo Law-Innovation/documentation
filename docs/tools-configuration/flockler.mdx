@@ -17,11 +17,11 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** Flockler social media walls, grids and carousels embedded on the website (Flockler Commerce, Inc. [S1]). Sources were checked on 16 November 2026.
+**Scope.** Flockler social media walls, grids and carousels embedded on the website (Flockler Commerce, Inc.).
 
-**What the service does in this scope.** Flockler states that it does not store data about visitors and does not set cookies or tracking codes [S2]. When the embed is displayed, images and videos are served by the social media channels; Flockler embeds use YouTube's "no cookies" version by default [S2].
+**What the service does in this scope.** Flockler states that it does not store data about visitors and does not set cookies or tracking codes. When the embed is displayed, images and videos are served by the social media channels; Flockler embeds use YouTube's "no cookies" version by default.
 
-> ⚠ **Recommendation — content from social networks.** Flockler itself sets no cookies [S2], but images and videos are loaded from the social networks' servers [S2], which receive the visitor's IP address. Whether those requests read or store device information depends on the network. Load the feed after Consenter consent (or with a click-to-load placeholder) unless your DPO or independent counsel confirms the networks' media requests need no consent.
+> ⚠ **Recommendation — content from social networks.** Flockler itself sets no cookies, but images and videos are loaded from the social networks' servers, which receive the visitor's IP address. Whether those requests read or store device information depends on the network. Load the feed after Consenter consent (or with a click-to-load placeholder) unless your DPO or independent counsel confirms the networks' media requests need no consent.
 
 ## Step 1 — Implement Flockler
 
@@ -30,23 +30,17 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 | Processing purposes | Unlock additional website features |
 | Embed | Flockler display code |
 | Loading | After Consenter consent / click-to-load (see ⚠) |
-| Video sources | Keep YouTube "no cookies" default [S2] |
+| Video sources | Keep YouTube "no cookies" default |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Unlock additional website features | Social feed display |
-| Tracking method | Third party tracking (single session, cross-website) | Media requests to social networks [S2] |
+| Tracking method | Third party tracking (single session, cross-website) | Media requests to social networks |
 | Identifier | IP address | Media requests |
 | Data categories | IP address, Device characteristics | Server requests |
 | Legal role of data recipient | Processor | Flockler; social networks receive requests as Individual Controllers |
 | Personalisation model | No personalisation | — |
-| Maximum storage duration | — | Flockler stores no visitor data [S2] |
-| Processing location | United States (Flockler Commerce, Inc. and social networks) | 18 U.S.C. § 2713 [S3] |
-
-## Sources
-
-- [S1] Flockler — Privacy Policy (Flockler Commerce, Inc.)
-- [S2] Flockler — GDPR
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+| Maximum storage duration | — | Flockler stores no visitor data |
+| Processing location | United States (Flockler Commerce, Inc. and social networks) | the US CLOUD Act |

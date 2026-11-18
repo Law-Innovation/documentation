@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Shopify-managed tracking surfaces on the storefront and checkout. Third-party apps and pixels (e.g. Meta, Google) need their own entries. Sources were checked on 16 November 2026.
+**Scope.** Shopify-managed tracking surfaces on the storefront and checkout. Third-party apps and pixels (e.g. Meta, Google) need their own entries.
 
-**What the service does in this scope.** The Customer Privacy API applies consent decisions to Shopify-managed surfaces such as pixels, audiences and checkout, with the purposes Preferences, Analytics and Marketing [S1]. A CMP sets them with `window.Shopify.customerPrivacy.setTrackingConsent({...})` [S1]. Shopify advises never reading or modifying Shopify cookies directly and links to its full cookie list [S2][S3].
+**What the service does in this scope.** The Customer Privacy API applies consent decisions to Shopify-managed surfaces such as pixels, audiences and checkout, with the purposes Preferences, Analytics and Marketing. A CMP sets them with `window.Shopify.customerPrivacy.setTrackingConsent({...})`. Shopify advises never reading or modifying Shopify cookies directly and links to its full cookie list.
 
 **Configurations included.**
 
@@ -28,19 +28,19 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Consenter passes Analytics and Marketing choices to the Customer Privacy API; both stay `false` until consent. |
 | Configuration B — Higher risk | No consent signal passed; Shopify analytics and marketing surfaces run on Shopify's regional defaults. |
 
-> ⚠ **Recommendation.** Merchants report that some Shopify analytics cookies still appear before consent when the default consent status is passed incorrectly [S4]. Test your storefront after setup and have your DPO review any cookies set before consent.
+> ⚠ **Recommendation.** Merchants report that some Shopify analytics cookies still appear before consent when the default consent status is passed incorrectly. Test your storefront after setup and have your DPO review any cookies set before consent.
 
 ## Step 1 — Configure Shopify
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service; Support marketing analytics; Customise online ads | Improve the service; Support marketing analytics; Customise online ads |
-| 2 | Consent signal | Customer Privacy API, `setTrackingConsent` [S1] | Analytics / Marketing / Preferences set from Consenter; `false` until consent | Not called |
-| 3 | Checkout | Customer Privacy API in checkout UI extensions [S5] | Same signal applied in checkout | Not applied |
+| 2 | Consent signal | Customer Privacy API, `setTrackingConsent` | Analytics / Marketing / Preferences set from Consenter; `false` until consent | Not called |
+| 3 | Checkout | Customer Privacy API in checkout UI extensions | Same signal applied in checkout | Not applied |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Check Shopify's DPA and sub-processor list for the contracting entity and hosting locations; list the United States where US providers are involved (18 U.S.C. § 2713 [S6]).
+**Processing location.** Check Shopify's DPA and sub-processor list for the contracting entity and hosting locations; list the United States where US providers are involved.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -50,14 +50,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Browsing and interaction data, Device identifiers, Device characteristics, e-commerce Activity, Aggregated site statistics, Privacy choices | Browsing and interaction data, Device identifiers, Device characteristics, e-commerce Activity, Aggregated site statistics |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | Group based (behaviour) | Group based (behaviour) |
-| Maximum storage duration | Per Shopify cookie list [S3] | Per Shopify cookie list [S3] |
+| Maximum storage duration | Per Shopify cookie list | Per Shopify cookie list |
 | Processing location | Per Shopify DPA; United States possible (CLOUD Act) | Per Shopify DPA; United States possible (CLOUD Act) |
-
-## Sources
-
-- [S1] Shopify.dev — Consent tracking API
-- [S2] Shopify.dev — Customer Privacy API
-- [S3] Shopify — Cookie Policy
-- [S4] Shopify Developer Community — _shopify_analytics and other cookies loaded without consent
-- [S5] Shopify.dev — Customer Privacy API (checkout UI extensions)
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)

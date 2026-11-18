@@ -17,17 +17,17 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** Webgains onsite script and conversion tracking. Sources were checked on 16 November 2026.
+**Scope.** Webgains onsite script and conversion tracking.
 
-**What the service does in this scope.** Webgains' default method is a first-party cookie, `_CK_WG_`, set by the onsite script on the advertiser domain when a user arrives via an affiliate link [S1][S2]. The cookie stores campaign, programme ID and a unique click reference; the script only drops it on user consent and no user-identifiable information is sent [S2]. A `consent=1` / `consent=0` parameter can be passed in tracking URLs and scripts [S3]. Webgains positions itself as a data processor [S4].
+**What the service does in this scope.** Webgains' default method is a first-party cookie, `_CK_WG_`, set by the onsite script on the advertiser domain when a user arrives via an affiliate link. The cookie stores campaign, programme ID and a unique click reference; the script only drops it on user consent and no user-identifiable information is sent. A `consent=1` / `consent=0` parameter can be passed in tracking URLs and scripts. Webgains positions itself as a data processor.
 
 ## Step 1 — Implement Webgains
 
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Support marketing analytics (affiliate attribution) |
-| Cookie | `_CK_WG_` first-party, set only on consent [S2] |
-| Consent signal | Pass `consent=1/0` from Consenter [S3] |
+| Cookie | `_CK_WG_` first-party, set only on consent |
+| Consent signal | Pass `consent=1/0` from Consenter |
 | Contract | Webgains DPA |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -35,18 +35,10 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Support marketing analytics | — |
-| Tracking method | First party tracking (cross-session) | `_CK_WG_` on advertiser domain [S2] |
-| Identifier | Device identifiers | Click reference [S2] |
-| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Privacy choices | Conversion data; consent parameter [S3] |
-| Legal role of data recipient | Processor | [S4] |
+| Tracking method | First party tracking (cross-session) | `_CK_WG_` on advertiser domain |
+| Identifier | Device identifiers | Click reference |
+| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Privacy choices | Conversion data; consent parameter |
+| Legal role of data recipient | Processor | — |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Per programme cookie period | — |
-| Processing location | Per Webgains DPA | Check for US sub-processors; CLOUD Act [S5] |
-
-## Sources
-
-- [S1] Webgains Knowledge Hub — How does Webgains tracking work
-- [S2] Webgains Knowledge Hub — What is the Webgains cookie
-- [S3] Webgains Knowledge Hub — TCF 2.2 guidance (consent parameter)
-- [S4] Webgains — GDPR and tracking position
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+| Processing location | Per Webgains DPA | Check for US sub-processors; CLOUD Act|

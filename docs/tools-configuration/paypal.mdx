@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** PayPal JavaScript SDK (buttons, Pay Later messaging) and the PayPal Insights SDK. Sources were checked on 16 November 2026.
+**Scope.** PayPal JavaScript SDK (buttons, Pay Later messaging) and the PayPal Insights SDK.
 
-**What the service does in this scope.** The JavaScript SDK renders the eligible PayPal and Pay Later buttons [S1]. PayPal and its service providers use cookies, web beacons and similar technologies when visitors interact with its services [S2]. The Insights SDK lets merchants share visitor activity on their website with PayPal, using the PayPal client ID as the analytics tag ID [S3].
+**What the service does in this scope.** The JavaScript SDK renders the eligible PayPal and Pay Later buttons. PayPal and its service providers use cookies, web beacons and similar technologies when visitors interact with its services. The Insights SDK lets merchants share visitor activity on their website with PayPal, using the PayPal client ID as the analytics tag ID.
 
 **Configurations included.**
 
@@ -36,13 +36,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features | Unlock additional website features; Support marketing analytics |
-| 2 | SDK components | SDK `components` parameter [S1] | `buttons` (checkout only) | `buttons`, `messages` | `buttons`, `messages` |
+| 2 | SDK components | SDK `components` parameter | `buttons` (checkout only) | `buttons`, `messages` | `buttons`, `messages` |
 | 3 | Loading | Theme / shop plugin | On PayPal selection in checkout | After Consenter consent | After Consenter consent |
-| 4 | Insights SDK | Insights SDK snippet [S3] | Off | Off | On |
+| 4 | Insights SDK | Insights SDK snippet | Off | Off | On |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** PayPal's EU services are provided by a Luxembourg entity of a US group; list the United States (18 U.S.C. § 2713 [S4]).
+**Processing location.** PayPal's EU services are provided by a Luxembourg entity of a US group; list the United States.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
 |---|---|---|---|
@@ -53,12 +53,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Device identifiers, Device characteristics, IP address, e-commerce Activity | Device identifiers, Device characteristics, IP address, Browsing and interaction data | Device identifiers, Device characteristics, IP address, Browsing and interaction data, e-commerce Activity |
 | Legal role of data recipient | Individual Controller | Individual Controller | Individual Controller |
 | Personalisation model | No personalisation | No personalisation | Group based (behaviour) |
-| Maximum storage duration | Per PayPal cookie statement [S2] | Per PayPal cookie statement [S2] | Per PayPal cookie statement [S2] |
+| Maximum storage duration | Per PayPal cookie statement | Per PayPal cookie statement | Per PayPal cookie statement |
 | Processing location | EU (Luxembourg) / United States | EU (Luxembourg) / United States | EU (Luxembourg) / United States |
-
-## Sources
-
-- [S1] PayPal Developer — JavaScript SDK reference
-- [S2] PayPal — Statement on Cookies and Tracking Technologies
-- [S3] PayPal Developer — Insights SDK overview
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Marfeel Compass editorial analytics on publisher websites. Marfeel is a Spanish company. Sources were checked on 16 November 2026.
+**Scope.** Marfeel Compass editorial analytics on publisher websites. Marfeel is a Spanish company.
 
-**What the service does in this scope.** Marfeel acts as processor for the publisher [S1]. Without consent, Compass sets no audience-measurement cookie and keeps only page-level information; IP addresses are anonymised to the last octet before processing and location is limited to country level; real-time data is aggregated with at least 5 users, hourly for data under 30 days and daily thereafter [S1]. In exempt mode, personalisation APIs, external data imports, user-level exports, individual navigation paths, UTM parameters and the user ID API (`setSiteUserId`) are disabled [S1]. With consent, Compass uses a first-party cookie [S1]. Consent is read from a TCF v2 CMP (vendor ID 943) or set with `compass.setCookies(false)` [S1].
+**What the service does in this scope.** Marfeel acts as processor for the publisher. Without consent, Compass sets no audience-measurement cookie and keeps only page-level information; IP addresses are anonymised to the last octet before processing and location is limited to country level; real-time data is aggregated with at least 5 users, hourly for data under 30 days and daily thereafter. In exempt mode, personalisation APIs, external data imports, user-level exports, individual navigation paths, UTM parameters and the user ID API (`setSiteUserId`) are disabled. With consent, Compass uses a first-party cookie. Consent is read from a TCF v2 CMP (vendor ID 943) or set with `compass.setCookies(false)`.
 
 **Configurations included.**
 
@@ -28,16 +28,16 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk (⚠ no-consent) | Exempt mode: no cookie, page-level aggregated data. |
 | Configuration B — Higher risk | After consent: first-party cookie, user ID API, personalisation features. |
 
-> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement tracers as exempt only under strict conditions [S2]. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Even without cookies, the script runs on the device; have your DPO or independent counsel review before running A without consent.
+> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement tracers as exempt only under strict conditions. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Even without cookies, the script runs on the device; have your DPO or independent counsel review before running A without consent.
 
 ## Step 1 — Configure Compass
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk (⚠ no-consent) | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website |
-| 2 | Cookie control | `compass.setCookies(false)` until Consenter consent [S1] | Cookies off | Cookies on after consent |
-| 3 | User ID API | `setSiteUserId` (only with consent) [S1] | Not used | Optional |
-| 4 | Personalisation APIs | Compass settings [S1] | Disabled | Enabled |
+| 2 | Cookie control | `compass.setCookies(false)` until Consenter consent | Cookies off | Cookies on after consent |
+| 3 | User ID API | `setSiteUserId` (only with consent) | Not used | Optional |
+| 4 | Personalisation APIs | Compass settings | Disabled | Enabled |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
@@ -55,8 +55,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 ## Privacy-policy follow-up
 
 - Marfeel as processor; exempt vs. consent mode; opt-out ("Paramétrez vos choix" or CMP).
-
-## Sources
-
-- [S1] CNIL — Marfeel Compass configuration guide (exempt audience measurement)
-- [S2] CNIL — Cookies: solutions pour les outils de mesure d'audience (4 July 2025)

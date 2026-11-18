@@ -17,9 +17,9 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** Behamics behavioural nudging and session analysis for e-commerce (behamics AG, St. Gallen, Switzerland; Behamics Inc., New York, United States). Sources were checked on 16 November 2026.
+**Scope.** Behamics behavioural nudging and session analysis for e-commerce (behamics AG, St. Gallen, Switzerland; Behamics Inc., New York, United States).
 
-**What the service does in this scope.** Behamics analyses live session behaviour and "digital body language" and states that it works "100% anonymized and cookieless" [S1]. It describes itself as a processor and states that pseudonymised data is deleted once the purpose of processing no longer applies [S2].
+**What the service does in this scope.** Behamics analyses live session behaviour and "digital body language" and states that it works "100% anonymized and cookieless". It describes itself as a processor and states that pseudonymised data is deleted once the purpose of processing no longer applies.
 
 > ⚠ **Recommendation — "cookieless" does not remove the consent question.** Behamics does not publish which browser storage or device information its script reads. § 25 TDDDG covers any access to information on the device, not only cookies, and the sources do not show that this access is strictly necessary. Load Behamics only after consent unless your DPO or independent counsel confirms a consent-free basis after reviewing the technical implementation.
 
@@ -28,25 +28,19 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Improve the service; Personalise the website (nudges) |
-| Tracking | Live session behaviour, stated as cookieless [S1] |
+| Tracking | Live session behaviour, stated as cookieless |
 | Loading | Consenter script blocking until consent (see ⚠ recommendation) |
-| Contract | Data processing agreement with Behamics [S2] |
+| Contract | Data processing agreement with Behamics |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Improve the service, Personalise the website | Product description [S1] |
-| Tracking method | First party tracking (single session) | Live-session analysis, cookieless [S1] |
-| Identifier | No identifier | No cookie identifier stated [S1]; verify |
-| Data categories | Browsing and interaction data, Device characteristics, e-commerce Activity | Session behaviour [S1] |
-| Legal role of data recipient | Processor | [S2] |
-| Personalisation model | Group based (behaviour) | Nudges based on session behaviour [S1] |
-| Maximum storage duration | Until purpose ends | [S2] |
-| Processing location | Switzerland; United States (Behamics Inc. is a US entity, 18 U.S.C. § 2713 [S3]) | [S1] |
-
-## Sources
-
-- [S1] Behamics — Enterprise-grade privacy and security
-- [S2] Behamics — Data privacy and security
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+| Processing purposes | Improve the service, Personalise the website | Product description |
+| Tracking method | First party tracking (single session) | Live-session analysis, cookieless |
+| Identifier | No identifier | No cookie identifier stated; verify |
+| Data categories | Browsing and interaction data, Device characteristics, e-commerce Activity | Session behaviour |
+| Legal role of data recipient | Processor | — |
+| Personalisation model | Group based (behaviour) | Nudges based on session behaviour |
+| Maximum storage duration | Until purpose ends | — |
+| Processing location | Switzerland; United States (Behamics Inc. is a US entity, the US CLOUD Act) | — |

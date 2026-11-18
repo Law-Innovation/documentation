@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Airship Web SDK (web push notifications and Web Scenes). Airship Group, Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** The Airship Web SDK (web push notifications and Web Scenes). Airship Group, Inc. is a US company.
 
-**What the service does in this scope.** The SDK does not send any data to Airship until a channel is created via `sdk.create`, `sdk.register` (push registration) or a Contact registration [S1]. Collected data includes the Channel ID, notification opt-in status, Contact ID and the VAPID push subscription; Airship states this data is not used to track users across websites, and that the operator is responsible for collecting consent [S1]. Airship states it does not collect browser cookies [S2]. Airship operates an EU data centre and a Data Geofencing policy restricting access by US-based personnel for participating EU customers [S3]. Web Scenes do not require an opt-in prompt [S4].
+**What the service does in this scope.** The SDK does not send any data to Airship until a channel is created via `sdk.create`, `sdk.register` (push registration) or a Contact registration. Collected data includes the Channel ID, notification opt-in status, Contact ID and the VAPID push subscription; Airship states this data is not used to track users across websites, and that the operator is responsible for collecting consent. Airship states it does not collect browser cookies. Airship operates an EU data centre and a Data Geofencing policy restricting access by US-based personnel for participating EU customers. Web Scenes do not require an opt-in prompt.
 
 **Configurations included.**
 
@@ -28,20 +28,20 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Web push only; channel created only on `sdk.register` after consent; EU data centre with Data Geofencing. |
 | Configuration B — Higher risk | Web push plus Web Scenes and Contacts (named users); analytics on; EU or US data centre. |
 
-**No configuration without prior consent.** Airship requires the operator to collect consent before using the SDK [S1].
+**No configuration without prior consent.** Airship requires the operator to collect consent before using the SDK.
 
 ## Step 1 — Configure Airship
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Receive marketing offers | Receive marketing offers; Receive personalised marketing offers |
-| 2 | Channel creation | `sdk.register` / `sdk.create` [S1] | `sdk.register` after consent | `sdk.create` after consent |
-| 3 | Contacts / named users | Contact API [S1] | Not used | Used |
-| 4 | Data centre | Project setup; Data Geofencing [S3] | EU, geofencing elected | EU or US |
+| 2 | Channel creation | `sdk.register` / `sdk.create` | `sdk.register` after consent | `sdk.create` after consent |
+| 3 | Contacts / named users | Contact API | Not used | Used |
+| 4 | Data centre | Project setup; Data Geofencing | EU, geofencing elected | EU or US |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Airship is a US enterprise subject to 18 U.S.C. § 2713 [S5]; the Data Geofencing policy restricts personnel access but does not exclude legal access requests. List the United States in all configurations.
+**Processing location.** Airship is a US enterprise subject to the US CLOUD Act; the Data Geofencing policy restricts personnel access but does not exclude legal access requests. List the United States in all configurations.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -53,11 +53,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | Profile based |
 | Maximum storage duration | For the duration of the subscription | For the duration of the subscription |
 | Processing location | EU; United States | EU or United States; United States |
-
-## Sources
-
-- [S1] Airship Docs — Data collection for the Web SDK
-- [S2] Airship Docs — Data collection (no browser cookies)
-- [S3] Airship — Data Geofencing Compliance Process
-- [S4] Airship Docs — Getting started for the Web SDK
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

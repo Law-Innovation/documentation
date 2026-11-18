@@ -17,9 +17,9 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** Interactive maps rendered with Mapbox GL JS and Mapbox tiles. Mapbox, Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** Interactive maps rendered with Mapbox GL JS and Mapbox tiles. Mapbox, Inc. is a US company.
 
-**What the service does in this scope.** Mapbox GL JS uses browser `localStorage` keys prefixed `mapbox.eventData` to store telemetry data, including a randomly generated ID sent with telemetry events to Mapbox to calculate aggregate usage statistics [S1]. Mapbox applies anonymisation procedures, such as clipping traces, for telemetry that sends location data, and relies on its DPA with the 2021 SCCs for transfers to the US [S2].
+**What the service does in this scope.** Mapbox GL JS uses browser `localStorage` keys prefixed `mapbox.eventData` to store telemetry data, including a randomly generated ID sent with telemetry events to Mapbox to calculate aggregate usage statistics. Mapbox applies anonymisation procedures, such as clipping traces, for telemetry that sends location data, and relies on its DPA with the 2021 SCCs for transfers to the US.
 
 **No configuration without prior consent.** The `localStorage` ID is device access under § 25 TDDDG and is not needed to display the map. Load the map after Consenter consent, or show a click-to-load placeholder.
 
@@ -29,24 +29,18 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 |---|---|
 | Processing purposes | Unlock additional website features |
 | Loading | Consenter script blocking / click-to-load for the map |
-| Telemetry storage | `mapbox.eventData*` in `localStorage` [S1] |
-| Contract | Mapbox DPA with SCCs [S2] |
+| Telemetry storage | `mapbox.eventData*` in `localStorage` |
+| Contract | Mapbox DPA with SCCs |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Unlock additional website features | Map display |
-| Tracking method | First party tracking (cross-session) | `localStorage` ID on your origin [S1] |
-| Identifier | Device identifiers | Random telemetry ID [S1] |
-| Data categories | Aggregated site statistics, Device characteristics, Device identifiers, IP address | Telemetry and tile requests [S1] |
-| Legal role of data recipient | Processor | Per Mapbox DPA [S2]; verify the role for telemetry |
+| Tracking method | First party tracking (cross-session) | `localStorage` ID on your origin |
+| Identifier | Device identifiers | Random telemetry ID |
+| Data categories | Aggregated site statistics, Device characteristics, Device identifiers, IP address | Telemetry and tile requests |
+| Legal role of data recipient | Processor | Per Mapbox DPA; verify the role for telemetry |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Until storage is cleared | `localStorage` has no expiry |
-| Processing location | United States | US enterprise; 18 U.S.C. § 2713 [S3] |
-
-## Sources
-
-- [S1] Mapbox GL JS — STORAGE.md (browser data storage)
-- [S2] Mapbox — Legal: cookies, privacy and security FAQ
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+| Processing location | United States | US enterprise; the US CLOUD Act |

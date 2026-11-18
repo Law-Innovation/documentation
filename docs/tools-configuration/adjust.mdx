@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Adjust Web SDK for web attribution and measurement. Adjust GmbH (Berlin) belongs to AppLovin Corporation, a US company. Sources were checked on 16 November 2026.
+**Scope.** The Adjust Web SDK for web attribution and measurement. Adjust GmbH (Berlin) belongs to AppLovin Corporation, a US company.
 
-**What the service does in this scope.** The URL strategy sets the endpoint and data residency; EU data residency uses `eu.adjust.com` [S1]. `Adjust.trackThirdPartySharing` with a `ThirdPartySharing` instance controls whether Adjust shares the user's data with third parties; granular options pass partner-specific consent (e.g. `google_dma` keys `ad_user_data`, `ad_personalization`) [S2][S3]. `gdprForgetMe` sends an erasure request [S2].
+**What the service does in this scope.** The URL strategy sets the endpoint and data residency; EU data residency uses `eu.adjust.com`. `Adjust.trackThirdPartySharing` with a `ThirdPartySharing` instance controls whether Adjust shares the user's data with third parties; granular options pass partner-specific consent (e.g. `google_dma` keys `ad_user_data`, `ad_personalization`). `gdprForgetMe` sends an erasure request.
 
 **Configurations included.**
 
@@ -35,14 +35,14 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics; Customise online ads |
-| 2 | URL strategy / data residency | `Adjust.initSdk({ urlStrategy … })` [S1] | EU data residency | EU data residency |
-| 3 | Third-party sharing | `Adjust.trackThirdPartySharing(new Adjust.ThirdPartySharing(…))` [S2] | `false` | `true`, with granular partner options |
-| 4 | Google DMA consent | Granular options for `google_dma` [S3] | — | Pass `ad_user_data`, `ad_personalization` from Consenter |
+| 2 | URL strategy / data residency | `Adjust.initSdk({ urlStrategy … })` | EU data residency | EU data residency |
+| 3 | Third-party sharing | `Adjust.trackThirdPartySharing(new Adjust.ThirdPartySharing(…))` | `false` | `true`, with granular partner options |
+| 4 | Google DMA consent | Granular options for `google_dma` | — | Pass `ad_user_data`, `ad_personalization` from Consenter |
 | 5 | Loading | Consenter script blocking | After consent | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** EU data residency [S1]; Adjust belongs to a US group subject to 18 U.S.C. § 2713 [S4]; list the United States. Each ad partner receiving data needs its own entry as an independent controller.
+**Processing location.** EU data residency; Adjust belongs to a US group subject to the US CLOUD Act; list the United States. Each ad partner receiving data needs its own entry as an independent controller.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -54,10 +54,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | Profile based |
 | Maximum storage duration | Per Adjust data retention settings | Per Adjust data retention settings |
 | Processing location | EU; United States | EU; United States |
-
-## Sources
-
-- [S1] Adjust Developer Hub — Web SDK privacy features (URL strategy)
-- [S2] Adjust Help — Privacy features (Web SDK)
-- [S3] Adjust Help — Privacy features (Google DMA granular options)
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

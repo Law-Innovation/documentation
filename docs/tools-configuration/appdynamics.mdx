@@ -17,17 +17,17 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** AppDynamics JavaScript Agent (`adrum`) for Browser RUM. Sources were checked on 16 November 2026.
+**Scope.** AppDynamics JavaScript Agent (`adrum`) for Browser RUM.
 
-**What the service does in this scope.** Browser RUM uses short-lived cookies to collect data and correlate events; AppDynamics states they contain no personally identifiable information and are deleted immediately after being read [S1]. `ADRUM_BT` cookies are written by the server-side agent to correlate browser data with business transactions [S2]. By default, the cookie is set on the broadest version of the originating domain [S3]. Setting `window["adrum-disable"] = true` before the agent loads disables browser monitoring [S4].
+**What the service does in this scope.** Browser RUM uses short-lived cookies to collect data and correlate events; AppDynamics states they contain no personally identifiable information and are deleted immediately after being read. `ADRUM_BT` cookies are written by the server-side agent to correlate browser data with business transactions. By default, the cookie is set on the broadest version of the originating domain. Setting `window["adrum-disable"] = true` before the agent loads disables browser monitoring.
 
 ## Step 1 — Implement AppDynamics Browser RUM
 
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Improve the service (performance monitoring) |
-| Consent gating | Set `window["adrum-disable"] = true` until Consenter consent, or load the agent only after consent [S4] |
-| Cookie domain | Optionally restrict to the exact current domain [S3] |
+| Consent gating | Set `window["adrum-disable"] = true` until Consenter consent, or load the agent only after consent |
+| Cookie domain | Optionally restrict to the exact current domain |
 | Contract | Splunk / Cisco DPA |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -35,18 +35,10 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Improve the service | — |
-| Tracking method | First party tracking (single session) | Short-lived cookies deleted after reading [S1] |
-| Identifier | No identifier | [S1] |
-| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics | Timing, Ajax and error data [S2] |
+| Tracking method | First party tracking (single session) | Short-lived cookies deleted after reading |
+| Identifier | No identifier | — |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics | Timing, Ajax and error data |
 | Legal role of data recipient | Processor | Provider DPA |
 | Personalisation model | No personalisation | — |
-| Maximum storage duration | Until read (cookies); retention per account | [S1] |
-| Processing location | Per controller/EUM region; United States | US enterprise; CLOUD Act [S5] |
-
-## Sources
-
-- [S1] Splunk AppDynamics — EUM data (cookies for browser applications)
-- [S2] Splunk AppDynamics — EUM data (ADRUM_BT cookies)
-- [S3] Splunk AppDynamics — Set the exact current domain in the JavaScript agent cookie
-- [S4] Splunk Community — How to disable EUM dynamically
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+| Maximum storage duration | Until read (cookies); retention per account | — |
+| Processing location | Per controller/EUM region; United States | US enterprise; CLOUD Act|

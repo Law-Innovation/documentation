@@ -17,11 +17,11 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** The Podigee podcast web player embedded on the website (Podigee GmbH, Berlin, Germany). Sources were checked on 16 November 2026.
+**Scope.** The Podigee podcast web player embedded on the website (Podigee GmbH, Berlin, Germany).
 
-**What the service does in this scope.** Podigee processes IP addresses and device information to enable podcast downloads and playback and to determine statistics such as download figures [S1]. Podigee states that additional scripts, analytics tools and external content can change data transfers and cookies, that use of the player alone gives no general privacy guarantee for the website, and that you should check whether consent is necessary [S2].
+**What the service does in this scope.** Podigee processes IP addresses and device information to enable podcast downloads and playback and to determine statistics such as download figures. Podigee states that additional scripts, analytics tools and external content can change data transfers and cookies, that use of the player alone gives no general privacy guarantee for the website, and that you should check whether consent is necessary.
 
-> ⚠ **Recommendation — click-to-load.** The sources do not document whether the player stores anything on the device. Because loading the player transmits the IP address to Podigee [S1], use a Consenter click-to-load placeholder or load the player after consent unless your DPO or independent counsel confirms another legal basis.
+> ⚠ **Recommendation — click-to-load.** The sources do not document whether the player stores anything on the device. Because loading the player transmits the IP address to Podigee, use a Consenter click-to-load placeholder or load the player after consent unless your DPO or independent counsel confirms another legal basis.
 
 ## Step 1 — Implement Podigee
 
@@ -29,24 +29,18 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 |---|---|
 | Processing purposes | Unlock additional website features |
 | Loading | Consenter script blocking / click-to-load |
-| Share option | Configure under **Web Player > Embedded** [S2] |
-| Privacy policy | Describe the embedded player and analytics [S3] |
+| Share option | Configure under **Web Player > Embedded** |
+| Privacy policy | Describe the embedded player and analytics |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Unlock additional website features | Podcast playback |
-| Tracking method | Third party tracking (single session, cross-website) | Requests to Podigee per playback [S1] |
-| Identifier | IP address | [S1] |
-| Data categories | IP address, Device characteristics, Aggregated site statistics | [S1] |
+| Tracking method | Third party tracking (single session, cross-website) | Requests to Podigee per playback |
+| Identifier | IP address | — |
+| Data categories | IP address, Device characteristics, Aggregated site statistics | — |
 | Legal role of data recipient | Processor | Podcast hosting on behalf of the publisher |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Per Podigee privacy policy | Not documented |
 | Processing location | Germany | German company; no CLOUD Act flag unless the DPA lists US sub-processors |
-
-## Sources
-
-- [S1] ERGO — Use of Podigee podcast hosting (processing description)
-- [S2] Podigee Help — The Podigee Podcast Player
-- [S3] Podigee Help — GDPR data protection declaration

@@ -17,15 +17,15 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Dynatrace RUM JavaScript (latest Dynatrace and RUM Classic). Sources were checked on 16 November 2026.
+**Scope.** Dynatrace RUM JavaScript (latest Dynatrace and RUM Classic).
 
-**What the service does in this scope.** RUM uses cookies, web storage and IndexedDB containing random IDs, timestamps, flags and configuration [S1]. Data privacy settings include masking personal data in URIs, masking user actions, user tracking, opt-in mode, Do Not Track and masking IPs and GPS coordinates [S2]. With opt-in mode, RUM is disabled and sets no cookies or storage until `dtrum.enable()` is called; `dtrum.disable()` stops it again [S3][S4]. Opt-in mode is disabled by default [S4]. The `rxVisitor` cookie is stored for two years by default and can be shortened with `rvcl=<months>` (maximum 24) [S5][S4].
+**What the service does in this scope.** RUM uses cookies, web storage and IndexedDB containing random IDs, timestamps, flags and configuration. Data privacy settings include masking personal data in URIs, masking user actions, user tracking, opt-in mode, Do Not Track and masking IPs and GPS coordinates. With opt-in mode, RUM is disabled and sets no cookies or storage until `dtrum.enable` is called; `dtrum.disable` stops it again. Opt-in mode is disabled by default. The `rxVisitor` cookie is stored for two years by default and can be shortened with `rvcl=<months>` (maximum 24).
 
 **Configurations included.**
 
 | Configuration | Summary |
 |---|---|
-| Configuration A — Medium risk | Opt-in mode on (Consenter calls `dtrum.enable()`); user tracking off; IP masking on. |
+| Configuration A — Medium risk | Opt-in mode on (Consenter calls `dtrum.enable`); user tracking off; IP masking on. |
 | Configuration B — Higher risk | Opt-in mode on; persistent user tracking on with 12-month `rxVisitor` lifetime; Session Replay on. |
 | Configuration C — Higher risk (default configuration) | Opt-in mode off; RUM sets cookies on page load. |
 
@@ -34,14 +34,14 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service | Improve the service |
-| 2 | Opt-in mode | Data Privacy > General [S4] | On; `dtrum.enable()` from Consenter | On; `dtrum.enable()` from Consenter | Off |
-| 3 | User tracking (persistent cookies) | Data Privacy > General [S4] | Off | On; `rvcl=12` | Default |
-| 4 | Mask IPs and GPS coordinates | Web → application → data privacy [S2] | On | On | Default |
+| 2 | Opt-in mode | Data Privacy > General | On; `dtrum.enable` from Consenter | On; `dtrum.enable` from Consenter | Off |
+| 3 | User tracking (persistent cookies) | Data Privacy > General | Off | On; `rvcl=12` | Default |
+| 4 | Mask IPs and GPS coordinates | Web → application → data privacy | On | On | Default |
 | 5 | Session Replay | Application settings | Off | On | Default |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Dynatrace is a US-listed enterprise; list the United States (18 U.S.C. § 2713 [S6]). Managed deployments run in your environment.
+**Processing location.** Dynatrace is a US-listed enterprise; list the United States. Managed deployments run in your environment.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|
@@ -51,14 +51,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP address anonymised | Browsing and interaction data, Device identifiers, Device characteristics, IP address anonymised | Browsing and interaction data, Device identifiers, Device characteristics, IP address, Non-precise location data |
 | Legal role of data recipient | Processor | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation | No personalisation |
-| Maximum storage duration | Session | 12 months (`rxVisitor`) | 2 years (`rxVisitor`) [S5] |
+| Maximum storage duration | Session | 12 months (`rxVisitor`) | 2 years (`rxVisitor`) |
 | Processing location | Per tenant region / United States | Per tenant region / United States | Per tenant region / United States |
-
-## Sources
-
-- [S1] Dynatrace Docs — Cookies and client-side storage for RUM and Session Replay
-- [S2] Dynatrace Docs — Configure RUM privacy
-- [S3] Dynatrace Docs — How does Dynatrace use cookies (opt-in mode)
-- [S4] Dynatrace Docs — Configure data privacy settings for web frontends
-- [S5] Dynatrace Docs — Configure RUM according to GDPR (rxVisitor lifetime)
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)

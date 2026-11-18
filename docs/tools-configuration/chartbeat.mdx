@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Chartbeat content analytics script on publisher websites. Chartbeat, Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** Chartbeat content analytics script on publisher websites. Chartbeat, Inc. is a US company.
 
-**What the service does in this scope.** Chartbeat acts as a data processor; it obtains IP addresses and certain online identifiers but states it does not store IP addresses [S1][S2]. Cookies include `_cb` (site-specific visitor ID, 395 days) and `_chartbeat2` (visit timing to distinguish new, returning and loyal visitors, 395 days) [S3]. Setting `_sf_async_config.noCookies = true` prevents `_chartbeat2` from being created [S4]. Visitors can opt out via Chartbeat's opt-out page (`_cb_optout`) [S3].
+**What the service does in this scope.** Chartbeat acts as a data processor; it obtains IP addresses and certain online identifiers but states it does not store IP addresses. Cookies include `_cb` (site-specific visitor ID, 395 days) and `_chartbeat2` (visit timing to distinguish new, returning and loyal visitors, 395 days). Setting `_sf_async_config.noCookies = true` prevents `_chartbeat2` from being created. Visitors can opt out via Chartbeat's opt-out page (`_cb_optout`).
 
 **Configurations included.**
 
@@ -35,13 +35,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
-| 2 | Cookies | `_sf_async_config.noCookies` [S4] | `true` | `false` (default) |
+| 2 | Cookies | `_sf_async_config.noCookies` | `true` | `false` (default) |
 | 3 | Loading | Consenter script blocking | After consent | After consent |
-| 4 | Opt-out | Link to Chartbeat opt-out page [S3] | Provide | Provide |
+| 4 | Opt-out | Link to Chartbeat opt-out page | Provide | Provide |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Chartbeat, Inc. is a US company subject to 18 U.S.C. § 2713 [S5].
+**Processing location.** Chartbeat, Inc. is a US company subject to the US CLOUD Act.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default) |
 |---|---|---|
@@ -51,24 +51,14 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP address | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, IP address |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | Not documented | 395 days (cookies) [S3] |
+| Maximum storage duration | Not documented | 395 days (cookies) |
 | Processing location | United States | United States |
-
-**Basis.** Processor role and IP handling [S1][S2]; cookies [S3]; `noCookies` [S4]. In A, verify in the browser whether `_cb` is also suppressed; if not, use the B mapping for identifier and tracking method.
 
 ## Privacy-policy follow-up
 
-- Chartbeat as processor; engagement measurement; cookies (B); opt-out page; US processing and potential access by US authorities [S5].
+- Chartbeat as processor; engagement measurement; cookies (B); opt-out page; US processing and potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] No `chartbeat.com` / `chartbeat.net` requests before consent.
-- [ ] A: `_chartbeat2` absent [S4].
-
-## Sources
-
-- [S1] Chartbeat Help — Chartbeat & the GDPR
-- [S2] Chartbeat — Data protection
-- [S3] Chartbeat Help — Chartbeat cookies
-- [S4] Chartbeat Blog — EU cookie legislation and your Chartbeat data (`noCookies`)
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+- [ ] A: `_chartbeat2` absent.

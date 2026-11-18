@@ -17,37 +17,28 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** SpeedCurve RUM via `lux.js`. Sources were checked on 16 November 2026.
+**Scope.** SpeedCurve RUM via `lux.js`.
 
-**What the service does in this scope.** LUX measures load speed, responsiveness and session length and uses the `lux_uid` cookie to group a visitor's pages into a session [S1]. The cookie expires 30 minutes after the last page view [S2]. SpeedCurve documents loading `lux.js` only after consent from a cookie banner [S3] and offers a DPA [S4].
+**What the service does in this scope.** LUX measures load speed, responsiveness and session length and uses the `lux_uid` cookie to group a visitor's pages into a session. The cookie expires 30 minutes after the last page view. SpeedCurve documents loading `lux.js` only after consent from a cookie banner and offers a DPA.
 
 ## Step 1 — Implement SpeedCurve
 
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Improve the service |
-| Loading | Inject `lux.js` after Consenter consent [S3] |
-| JavaScript errors | Captured by default; `LUX.trackErrors = false` to disable [S5] |
-| Contract | SpeedCurve DPA [S4] |
+| Loading | Inject `lux.js` after Consenter consent |
+| JavaScript errors | Captured by default; `LUX.trackErrors = false` to disable |
+| Contract | SpeedCurve DPA |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Improve the service | — |
-| Tracking method | First party tracking (single session) | `lux_uid`, 30 minutes [S2] |
-| Identifier | Device identifiers | Session ID [S2] |
-| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers | [S1] |
-| Legal role of data recipient | Processor | DPA [S4] |
+| Tracking method | First party tracking (single session) | `lux_uid`, 30 minutes |
+| Identifier | Device identifiers | Session ID |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers | — |
+| Legal role of data recipient | Processor | DPA |
 | Personalisation model | No personalisation | — |
-| Maximum storage duration | 30 minutes (cookie) | [S2] |
-| Processing location | Per SpeedCurve DPA | Check for US sub-processors; CLOUD Act [S6] |
-
-## Sources
-
-- [S1] SpeedCurve Support — Cookies
-- [S2] SpeedCurve Support — RUM data
-- [S3] SpeedCurve Support — Cookie consent banners
-- [S4] SpeedCurve Support — Data Protection & GDPR
-- [S5] SpeedCurve Support — RUM JS API
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+| Maximum storage duration | 30 minutes (cookie) | — |
+| Processing location | Per SpeedCurve DPA | Check for US sub-processors; CLOUD Act|

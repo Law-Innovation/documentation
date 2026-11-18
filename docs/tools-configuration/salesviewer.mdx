@@ -17,21 +17,21 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 ## At a glance
 
-**Scope.** SalesViewer® B2B company identification script on a website. Sources were checked on 16 November 2026.
+**Scope.** SalesViewer® B2B company identification script on a website.
 
-**What the service does in this scope.** SalesViewer states that its entire tracking works without cookies, that data is collected and stored "without a reference to IP addresses", and that it offers a voluntary opt-out for company-based tracking [S1]. It identifies companies visiting the site (B2B lead generation) [S1].
+**What the service does in this scope.** SalesViewer states that its entire tracking works without cookies, that data is collected and stored "without a reference to IP addresses", and that it offers a voluntary opt-out for company-based tracking. It identifies companies visiting the site (B2B lead generation).
 
 **Simplified format.** SalesViewer documents no alternative privacy settings. The guide uses a single fixed-behaviour configuration.
 
-> ⚠ **Recommendation — running SalesViewer before consent is legally uncertain.** SalesViewer positions its cookieless technology as usable without consent [S1]. The script still runs in the browser and the IP address is processed transiently to identify the company. Have your DPO or independent counsel confirm before loading SalesViewer without consent; otherwise load it after consent.
+> ⚠ **Recommendation — running SalesViewer before consent is legally uncertain.** SalesViewer positions its cookieless technology as usable without consent. The script still runs in the browser and the IP address is processed transiently to identify the company. Have your DPO or independent counsel confirm before loading SalesViewer without consent; otherwise load it after consent.
 
 ## Step 1 — Configure SalesViewer
 
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Support marketing analytics; Receive marketing offers (if identified companies are approached) |
-| Cookies | None for tracking [S1] |
-| IP addresses | Not stored with the collected data [S1] |
+| Cookies | None for tracking |
+| IP addresses | Not stored with the collected data |
 | Opt-out | Provide SalesViewer's opt-out link (sets an opt-out cookie) |
 | Loading | See ⚠ recommendation |
 | Retention | **Not documented** — check the DPA |
@@ -40,8 +40,8 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Support marketing analytics, Receive marketing offers | B2B lead generation [S1]. |
-| Tracking method | No tracking | Cookieless [S1]. |
+| Processing purposes | Support marketing analytics, Receive marketing offers | B2B lead generation. |
+| Tracking method | No tracking | Cookieless. |
 | Identifier | IP address | Processed transiently for company identification. |
 | Data categories | IP address, Browsing and interaction data, Device characteristics | Activity data of company visitors. |
 | Legal role of data recipient | Processor | Verify against your SalesViewer DPA. |
@@ -57,7 +57,3 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 - [ ] No SalesViewer cookies set (except opt-out cookie on request).
 - [ ] Opt-out link published in the privacy policy.
-
-## Sources
-
-- [S1] SalesViewer — GDPR certified label (cookieless tracking, no IP tracking, opt-out)

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** ClickDimensions (Click) web tracking script for Microsoft Dynamics 365 marketing. ClickDimensions, LLC is a US company [S1]. Sources were checked on 16 November 2026.
+**Scope.** ClickDimensions (Click) web tracking script for Microsoft Dynamics 365 marketing. ClickDimensions, LLC is a US company.
 
-**What the service does in this scope.** The Click web tracking script writes the `cuvid` cookie on the first visit; an opt-out cookie is generated if a visitor opts out, and while it is present no web tracking data is generated [S2]. ClickDimensions provides a tracking-notification script (`TrackingCookie.js`) per data-centre region (US, EU, AU, CA), plus an alternative opt-out script [S3]. Web tracking links anonymous visits to known contacts in Dynamics 365 once they are identified.
+**What the service does in this scope.** The Click web tracking script writes the `cuvid` cookie on the first visit; an opt-out cookie is generated if a visitor opts out, and while it is present no web tracking data is generated. ClickDimensions provides a tracking-notification script (`TrackingCookie.js`) per data-centre region (US, EU, AU, CA), plus an alternative opt-out script. Web tracking links anonymous visits to known contacts in Dynamics 365 once they are identified.
 
 **Configurations included.**
 
@@ -27,20 +27,20 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|
 | Configuration A — Higher risk | Web tracking loaded after Consenter consent; EU data centre. |
 
-**No configuration without prior consent.** ClickDimensions' own notification script is an opt-out model [S3]; under § 25 TDDDG the `cuvid` cookie requires prior consent. Load the tracking script only after Consenter consent instead.
+**No configuration without prior consent.** ClickDimensions' own notification script is an opt-out model; under § 25 TDDDG the `cuvid` cookie requires prior consent. Load the tracking script only after Consenter consent instead.
 
 ## Step 1 — Configure ClickDimensions
 
 | # | Configuration area | Where to configure it | Configuration A — Higher risk |
 |---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics; Receive personalised marketing offers |
-| 2 | Data-centre region | Account / script region [S3] | EU (`analytics-eu.clickdimensions.com`) |
+| 2 | Data-centre region | Account / script region | EU (`analytics-eu.clickdimensions.com`) |
 | 3 | Loading | Consenter script blocking | After consent |
-| 4 | ClickDimensions notification script | [S3] | Not used (replaced by Consenter) |
+| 4 | ClickDimensions notification script | — | Not used (replaced by Consenter) |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** EU data centre; ClickDimensions is a US company subject to 18 U.S.C. § 2713 [S4], so list the United States as well.
+**Processing location.** EU data centre; ClickDimensions is a US company subject to the US CLOUD Act, so list the United States as well.
 
 | Consenter Manager field | Configuration A — Higher risk |
 |---|---|
@@ -50,12 +50,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, direct identifier, Users' profiles |
 | Legal role of data recipient | Processor |
 | Personalisation model | Profile based |
-| Maximum storage duration | Per cookie inspection (`cuvid` renewed on visits [S2]) |
+| Maximum storage duration | Per cookie inspection (`cuvid` renewed on visits) |
 | Processing location | EU; United States |
-
-## Sources
-
-- [S1] ClickDimensions — Privacy notice for US residents
-- [S2] ClickDimensions Support — Click web tracking cookies
-- [S3] ClickDimensions Support — Notifying website visitors about tracking
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)
