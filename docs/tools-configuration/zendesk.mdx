@@ -26,13 +26,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration | Summary |
 |---|---|
 | Configuration A — Medium risk | Widget loaded after Consenter consent with `cookies` set to the categories consented to (functional, no analytics). |
-| Configuration B — Higher risk (default behaviour) | Widget loaded after consent with `cookies: "all"`; authenticated visitors. |
+| Configuration B — Higher risk (default configuration) | Widget loaded after consent with `cookies: "all"`; authenticated visitors. |
 
 > ⚠ **Recommendation — widget without storage before consent.** Setting `cookies` to `"none"` prevents storage [S1], but the widget still loads from Zendesk and transmits the IP address and page data. Whether this may run without consent depends on the GDPR legal basis for the chat; have your DPO or independent counsel review before loading the widget before consent.
 
 ## Step 1 — Configure Zendesk
 
-| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
 | 2 | Cookie range | `zE('messenger:set', 'cookies', …)` [S1] | Consented categories only (no analytics) | `"all"` |
@@ -43,7 +43,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 **Processing location.** Zendesk is a US enterprise subject to 18 U.S.C. § 2713 [S3]; list the United States, plus the data-locality region in your Zendesk contract.
 
-| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|
 | Processing purposes | Unlock additional website features | Unlock additional website features |
 | Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |

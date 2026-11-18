@@ -26,13 +26,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration | Summary |
 |---|---|
 | Configuration A — Lower risk | `collectUserIp: false`, `generateAnonymousId: false`. |
-| Configuration B — Higher risk (default behaviour) | IP address and anonymous device ID collected. |
+| Configuration B — Higher risk (default configuration) | IP address and anonymous device ID collected. |
 
 > ⚠ **Recommendation.** Whether error monitoring in A can run without consent is a legal assessment. Have your DPO confirm the legal basis before running A without a consent entry.
 
 ## Step 1 — Configure BugSnag
 
-| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk (default behaviour) |
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
 | 2 | Client IP | `collectUserIp` [S2] | `false` | `true` |
@@ -42,7 +42,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 **Processing location.** SmartBear is a US enterprise; list the United States (18 U.S.C. § 2713 [S4]).
 
-| Consenter Manager field | Configuration A — Lower risk | Configuration B — Higher risk (default behaviour) |
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|
 | Entry needed | Per DPO assessment (⚠) | Yes |
 | Processing purposes | Improve the service | Improve the service |

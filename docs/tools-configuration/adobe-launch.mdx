@@ -26,11 +26,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration | Summary |
 |---|---|
 | Configuration A — Medium risk | `defaultConsent: "pending"`; Consenter triggers `setConsent` (general: in/out). |
-| Configuration B — Higher risk (default behaviour) | `defaultConsent: "in"`; collection and cookies from page load until opt-out. |
+| Configuration B — Higher risk (default configuration) | `defaultConsent: "in"`; collection and cookies from page load until opt-out. |
 
 ## Step 1 — Configure Adobe Tags / Web SDK
 
-| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Per connected Adobe products | Per connected Adobe products |
 | 2 | Default consent | Web SDK extension → Consent [S4] | Pending | In |
@@ -40,7 +40,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 **Processing location.** Adobe is a US enterprise; list the United States (18 U.S.C. § 2713 [S6]).
 
-| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|
 | Processing purposes | Improve the service, Personalise the website, Support marketing analytics | Improve the service, Personalise the website, Support marketing analytics |
 | Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |

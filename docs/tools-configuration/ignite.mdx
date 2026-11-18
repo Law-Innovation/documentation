@@ -30,7 +30,7 @@ Ignite Video (ignite.video) is a European video hosting and streaming platform o
 
 ## Step 1 — Ignite Configuration
 
-| # | Configuration Area | Where in Ignite | Configuration A — Standard (Third-Party Domain) | Configuration B — First-Party Domain |
+| # | Configuration Area | Where in Ignite | Configuration A — Standard (Third-Party Domain) (default configuration) | Configuration B — First-Party Domain |
 | --- | --- | --- | --- | --- |
 | 1 | Video delivery domain | Account Settings → Custom Domain | Videos delivered via Ignite's own CDN domain (e.g. `play.ignite.video`) | Videos delivered via operator's own subdomain (e.g. `videos.yourdomain.com`) via DNS entry |
 | 2 | Cookie usage | Platform-level (not configurable by operator) | No cookies set — by design | No cookies set — by design |
@@ -39,7 +39,7 @@ Ignite Video (ignite.video) is a European video hosting and streaming platform o
 | 5 | Processing location | Platform-level | EU (Germany/France) — Scalingo SAS (Strasbourg) and 3DS OUTSCALE SAS (Saint-Cloud) as sub-processors | EU (Germany/France) — Scalingo SAS (Strasbourg) and 3DS OUTSCALE SAS (Saint-Cloud) as sub-processors; CDN delivery via operator's own domain |
 | 6 | Data processing agreement (DPA) | Available on request from Ignite | Available — contact hallo@ignite.video | Available — contact hallo@ignite.video |
 
-### Configuration A — Standard (Third-Party Domain)
+### Configuration A — Standard (Third-Party Domain) (default configuration)
 
 Use this configuration when embedding Ignite videos on your website using the default Ignite CDN domain (`play.ignite.video` or similar). In this configuration, Ignite handles all video delivery from its own infrastructure. No cookies are set on your visitors' browsers, and no personal data is collected from viewers at any point — not even temporarily. The video player loads and streams content without performing any fingerprinting, storing any identifiers, or logging IP addresses. Video analytics provided within the Ignite dashboard are fully anonymised and aggregated (e.g. total play counts and completion rates); they cannot be used to identify individual viewers. All processing takes place in the EU (Germany and France), with Scalingo SAS and 3DS OUTSCALE SAS acting as sub-processors under their respective DPAs. Because no personal data of website visitors is processed, no legal basis for processing under the GDPR is required, and no consent banner entry for Ignite is needed.
 

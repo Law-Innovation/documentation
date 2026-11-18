@@ -27,11 +27,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|
 | Configuration A — Medium risk | Opt-in mode on (Consenter calls `dtrum.enable()`); user tracking off; IP masking on. |
 | Configuration B — Higher risk | Opt-in mode on; persistent user tracking on with 12-month `rxVisitor` lifetime; Session Replay on. |
-| Configuration C — Higher risk (default behaviour) | Opt-in mode off; RUM sets cookies on page load. |
+| Configuration C — Higher risk (default configuration) | Opt-in mode off; RUM sets cookies on page load. |
 
 ## Step 1 — Configure Dynatrace
 
-| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default behaviour) |
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service | Improve the service |
 | 2 | Opt-in mode | Data Privacy > General [S4] | On; `dtrum.enable()` from Consenter | On; `dtrum.enable()` from Consenter | Off |
@@ -43,7 +43,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 **Processing location.** Dynatrace is a US-listed enterprise; list the United States (18 U.S.C. § 2713 [S6]). Managed deployments run in your environment.
 
-| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default behaviour) |
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|
 | Processing purposes | Improve the service | Improve the service | Improve the service |
 | Tracking method | First party tracking (single session) | First party tracking (cross-session) | First party tracking (cross-session) |

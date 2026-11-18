@@ -27,13 +27,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|
 | Configuration A — Lower risk | Stripe.js loaded only on checkout; advanced fraud signals disabled. |
 | Configuration B — Medium risk | Stripe.js loaded only on checkout; advanced fraud signals enabled. |
-| Configuration C — Higher risk (default behaviour) | Stripe.js loaded on every page with advanced fraud signals enabled. |
+| Configuration C — Higher risk (default configuration) | Stripe.js loaded on every page with advanced fraud signals enabled. |
 
 > ⚠ **Recommendation.** Fraud-prevention signals during a payment the visitor requested may be strictly necessary; collection on pages without a payment flow (C) is harder to justify. Have your DPO confirm whether B needs a consent entry and whether C requires consent.
 
 ## Step 1 — Configure Stripe
 
-| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default behaviour) |
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features | Unlock additional website features |
 | 2 | Loading scope | Theme / front-end | Checkout pages only | Checkout pages only | All pages |
@@ -43,7 +43,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 **Processing location.** Stripe is a US enterprise; list the United States (18 U.S.C. § 2713 [S4]).
 
-| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default behaviour) |
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|
 | Entry needed | Per DPO assessment | Per DPO assessment (⚠) | Yes |
 | Processing purposes | Unlock additional website features | Unlock additional website features | Unlock additional website features |

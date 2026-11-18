@@ -26,12 +26,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration | Summary |
 |---|---|
 | Configuration A — Higher risk | Pixel held with `ttq.holdConsent()` until Consenter consent; first-party cookies off; no Advanced Matching. |
-| Configuration B — Higher risk (default behaviour) | Pixel after consent with default cookie settings (first- and third-party cookies). |
+| Configuration B — Higher risk (default configuration) | Pixel after consent with default cookie settings (first- and third-party cookies). |
 | Configuration C — Higher risk | As B, plus Advanced Matching (hashed email/phone). |
 
 ## Step 1 — Configure the TikTok Pixel
 
-| # | Configuration area | Where to configure it | Configuration A — Higher risk | Configuration B — Higher risk (default behaviour) | Configuration C — Higher risk |
+| # | Configuration area | Where to configure it | Configuration A — Higher risk | Configuration B — Higher risk (default configuration) | Configuration C — Higher risk |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics; Customise online ads | Support marketing analytics; Customise online ads | Support marketing analytics; Customise online ads |
 | 2 | Consent gating | `ttq.holdConsent()` / `grantConsent()` [S4] | Hold until Consenter consent | Hold until Consenter consent | Hold until Consenter consent |
@@ -42,7 +42,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 **Processing location.** Check TikTok's business terms for the contracting entity and third-country transfers, and list the countries named there.
 
-| Consenter Manager field | Configuration A — Higher risk | Configuration B — Higher risk (default behaviour) | Configuration C — Higher risk |
+| Consenter Manager field | Configuration A — Higher risk | Configuration B — Higher risk (default configuration) | Configuration C — Higher risk |
 |---|---|---|---|
 | Processing purposes | Support marketing analytics, Customise online ads | Support marketing analytics, Customise online ads | Support marketing analytics, Customise online ads |
 | Tracking method | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) | Third party tracking (cross-session, cross-website, cross-device) |

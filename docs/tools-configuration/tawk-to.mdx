@@ -26,13 +26,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration | Summary |
 |---|---|
 | Configuration A — Medium risk | Widget after Consenter consent; IP recording disabled; consent form for EU visitors. |
-| Configuration B — Higher risk (default behaviour) | Widget after consent; IP recording on; visitor monitoring visible to agents. |
+| Configuration B — Higher risk (default configuration) | Widget after consent; IP recording on; visitor monitoring visible to agents. |
 
 > ⚠ **Recommendation — "essential" classification.** tawk.to classifies `tawk_uuid_propertyId` (6 months, visitor tracking) as essential [S2]. A 6-month visitor identifier set before the visitor uses the chat is not obviously strictly necessary under § 25(2) TDDDG; load the widget after consent unless your DPO or independent counsel confirms otherwise.
 
 ## Step 1 — Configure tawk.to
 
-| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
 | 2 | Loading | Consenter script blocking | After consent | After consent |
@@ -43,7 +43,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 **Processing location.** Per tawk.to's DPA; tawk.to Inc. is treated here as a US enterprise subject to 18 U.S.C. § 2713 [S6]. Verify the entity and hosting in the DPA.
 
-| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|
 | Processing purposes | Unlock additional website features | Unlock additional website features |
 | Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |

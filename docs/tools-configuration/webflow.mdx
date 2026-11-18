@@ -27,11 +27,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|
 | Configuration A — Medium risk | Analyze only; Consenter calls `wf.allowUserTracking()` after consent and `wf.denyUserTracking()` otherwise. |
 | Configuration B — Higher risk | Analyze and Optimize (personalisation/testing) with the same consent gating. |
-| Configuration C — Higher risk (default behaviour) | Site tracking enabled with no consent signal. |
+| Configuration C — Higher risk (default configuration) | Site tracking enabled with no consent signal. |
 
 ## Step 1 — Configure Webflow
 
-| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default behaviour) |
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website | Improve the service; Personalise the website |
 | 2 | Products | Site settings → Site tracking [S1] | Analyze | Analyze + Optimize | Analyze (+ Optimize) |
@@ -41,7 +41,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 **Processing location.** Webflow is a US enterprise; list the United States (18 U.S.C. § 2713 [S3]).
 
-| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default behaviour) |
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|
 | Processing purposes | Improve the service | Improve the service, Personalise the website | Improve the service, Personalise the website |
 | Tracking method | First party tracking (cross-session) | First party tracking (cross-session) | First party tracking (cross-session) |

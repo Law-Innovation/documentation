@@ -38,7 +38,7 @@ Abla Analytics is a cookieless web audience-measurement tool developed and publi
 
 Astra Porta publishes an official CNIL exemption configuration guide for Abla Analytics, confirming that only the base tier meets the exemption conditions by default, and specifying exactly which features must remain disabled to preserve that status. Certain protections apply identically across **all three tiers** and are not configurable: it is not possible to build visitor cohorts for differentiated content display, location data is limited to country level, visitor IP addresses are anonymised instantaneously, and cross-site or cross-device tracking of a visitor is not possible. All tiers must offer visitors a copy-paste opt-out button that disables all tracking for that visitor.
 
-| # | Configuration Area | Where in Abla Analytics | Configuration A — Lower Risk | Configuration B — Higher Risk |
+| # | Configuration Area | Where in Abla Analytics | Configuration A — Lower Risk (default configuration) | Configuration B — Higher Risk |
 | --- | --- | --- | --- | --- |
 | 1 | Consent requirement | Tier selection at account/contract level | No consent required — base tier is configured by default to meet the CNIL exemption conditions for audience-measurement tools; no manual configuration is needed | Consent required — Abla Analytics+ and Abla Analytics x enable features the official CNIL exemption guide identifies as incompatible with the exemption |
 | 2 | Data import from other tools | Dashboard → Import (disabled on base tier) | Disabled — cannot import historical audience data from competing solutions | Enabled |
@@ -51,7 +51,7 @@ Astra Porta publishes an official CNIL exemption configuration guide for Abla An
 
 ---
 
-### Configuration A — Lower Risk
+### Configuration A — Lower Risk (default configuration)
 
 Use this configuration when Abla Analytics is deployed on its base (free) tier exactly as shipped by default, with no feature upgrades enabled. In this configuration, Astra Porta disables — at the platform level, not merely as a customer setting — the features that its own official CNIL exemption guide identifies as incompatible with consent-free audience measurement: data import from other tools, data export (even export without personal identifiers is unavailable), Google Search Console keyword display, filtering by browser/source/country or other parameters, and event/link tagging. Combined with the baseline protections that apply to all tiers (instantaneous IP anonymisation, country-level-only location, no cohort building, no cross-site/cross-device tracking, and a mandatory visitor opt-out), this configuration was assessed by the CNIL and is intended to meet the ePrivacy/CNIL strictly-necessary audience-measurement exemption, meaning prior visitor consent is not required.
 
@@ -80,7 +80,7 @@ Using the Abla Analytics configurations defined in Step 1, apply the following m
 
 ---
 
-### 2.1 Configuration A — Lower Risk
+### 2.1 Configuration A — Lower Risk (default configuration)
 
 | **Customer Panel Setting** | **Value to Select** |
 | --- | --- |
