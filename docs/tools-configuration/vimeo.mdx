@@ -32,7 +32,7 @@ Vimeo is a video hosting platform operated by Vimeo.com, Inc., a US-based compan
 
 ## Step 1 — Vimeo Embed Configuration
 
-| # | Configuration Area | Where to Configure | Configuration A — Low Risk | Configuration B — Higher Risk |
+| # | Configuration Area | Where to Configure | Configuration A — Low Risk | Configuration B — Higher Risk (default configuration) |
 | --- | --- | --- | --- | --- |
 | 1 | Do Not Track parameter | In the embed URL used in the website source code | Append `?dnt=1` to the player URL: `https://player.vimeo.com/video/[VIDEO_ID]?dnt=1` — Vimeo will not set new tracking cookies; only essential Cloudflare security cookies (`player_clearance`, `cf_clearance`, `_cf_bm`, `_cfuvid`) are placed | Use the standard embed URL without the `?dnt=1` parameter: `https://player.vimeo.com/video/[VIDEO_ID]` — Vimeo sets the `vuid` two-year persistent identifier from page load, before any user interaction |
 
@@ -42,7 +42,7 @@ Append `?dnt=1` to the Vimeo embed URL. According to Vimeo's official documentat
 
 Note that `?dnt=1` only prevents new cookies from being set. If a visitor has previously visited Vimeo.com without DNT enabled, their browser may automatically transmit pre-existing Vimeo cookies to the server — this is standard browser behaviour that is outside either Vimeo's or the website operator's control. As both Vimeo.com, Inc. and Cloudflare, Inc. are US-based companies, all data processed is subject to potential access by US government authorities under the CLOUD Act. Vimeo operates as an Independent Controller under its own Terms of Service and Privacy Policy.
 
-### Configuration B — Higher Risk
+### Configuration B — Higher Risk (default configuration)
 
 Use the standard embed URL without the `?dnt=1` parameter. In this configuration, Vimeo sets the `vuid` cookie — a two-year persistent identifier — as soon as the embed iframe loads, before any user interaction. This identifier is used to generate analytics data for the video owner and, since it persists across sessions and across all websites where Vimeo content is embedded, enables cross-session and cross-website tracking. As Vimeo.com, Inc. is a US-based company, all data processed is subject to potential access by US government authorities under the CLOUD Act. Vimeo operates as an Independent Controller under its own Terms of Service and Privacy Policy.
 
@@ -61,7 +61,7 @@ Use the standard embed URL without the `?dnt=1` parameter. In this configuration
 | Personalisation model | No personalisation |
 | Processing location | US (Vimeo.com, Inc.; Cloudflare, Inc. — CLOUD Act applies) |
 
-### 2.2 Configuration B — Higher Risk
+### 2.2 Configuration B — Higher Risk (default configuration)
 
 | **Customer Panel Setting** | **Value to Select** |
 | --- | --- |

@@ -26,13 +26,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration | Summary |
 |---|---|
 | Configuration A — Medium risk | Consent validation on; `Doofinder.enableCookies()` called from Consenter; search works with reduced functionality before consent. |
-| Configuration B — Higher risk (default behaviour) | Consent validation off; `localStorage` IDs written on script load. |
+| Configuration B — Higher risk (default configuration) | Consent validation off; `localStorage` IDs written on script load. |
 
 > ⚠ **Note on `localStorage`.** Doofinder suggests `localStorage` is not strictly regulated like cookies [S2]. Under § 25 TDDDG, storing and reading information on the device is regulated regardless of the technology. Use A, and have your DPO confirm whether the functional entries written before consent in A are strictly necessary.
 
 ## Step 1 — Configure Doofinder
 
-| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features; Improve the service | Unlock additional website features; Improve the service |
 | 2 | Cookie consent validation | **Configuration > General Settings > Overview** [S4] | On | Off |
@@ -42,7 +42,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 **Processing location.** Doofinder is a Spanish company; check its DPA for US sub-processors and list the United States if present (18 U.S.C. § 2713 [S5]).
 
-| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|
 | Processing purposes | Unlock additional website features, Improve the service | Unlock additional website features, Improve the service |
 | Tracking method | First party tracking (single session) | First party tracking (single session) |

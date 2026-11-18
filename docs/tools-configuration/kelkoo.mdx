@@ -26,13 +26,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration | Summary |
 |---|---|
 | Configuration A — Medium risk | Lead Tag and Conversion Tag both loaded only after Consenter consent. |
-| Configuration B — Medium risk (default behaviour) | Lead Tag after consent; Conversion Tag without consent, as Kelkoo recommends. |
+| Configuration B — Medium risk (default configuration) | Lead Tag after consent; Conversion Tag without consent, as Kelkoo recommends. |
 
 > ⚠ **Recommendation.** In B the Conversion Tag reads a cookie only set after consent, but sends order data on the basis of legitimate interest. Have your DPO confirm this legal basis (GDPR) separately from the device-access question (§ 25 TDDDG).
 
 ## Step 1 — Configure Kelkoo Sales Tracking
 
-| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Medium risk (default behaviour) |
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Medium risk (default configuration) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics |
 | 2 | Lead Tag | Landing pages / tag manager [S3] | After consent | After consent [S4] |
@@ -42,7 +42,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 **Processing location.** Kelkoo Group is a European company; check its terms for US sub-processors and list the United States if present (18 U.S.C. § 2713 [S6]).
 
-| Consenter Manager field | Configuration A — Medium risk | Configuration B — Medium risk (default behaviour) |
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Medium risk (default configuration) |
 |---|---|---|
 | Processing purposes | Support marketing analytics | Support marketing analytics |
 | Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
