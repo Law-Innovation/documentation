@@ -5,13 +5,15 @@ description: "How to configure Compass (Marfeel) at different risk levels and ma
 
 Typical processing purposes: Improve the service, Personalise the website
 
-> This guide explains how to implement different privacy configurations for Marfeel Compass and how to reflect them in the Consenter Manager.
->
-> 1. Configure the third-party service.
-> 2. Map the selected configuration in the Consenter Manager.
-> 3. Update your privacy policy to reflect the actual implementation.
->
-> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+<Callout type="info" title="Overview">
+This guide explains how to implement different privacy configurations for Marfeel Compass and how to reflect them in the Consenter Manager.
+
+1. Configure the third-party service.
+2. Map the selected configuration in the Consenter Manager.
+3. Update your privacy policy to reflect the actual implementation.
+
+The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+</Callout>
 
 ## At a glance
 
@@ -33,7 +35,7 @@ Typical processing purposes: Improve the service, Personalise the website
 | # | Configuration area | Where to configure it | Configuration A — Lower risk (⚠ no-consent) | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website |
-| 2 | Consent signal | TCF v2 CMP (vendor 943) or `compass.setCookies(false)` [S1] | Cookies off | Cookies on after consent |
+| 2 | Cookie control | `compass.setCookies(false)` until Consenter consent [S1] | Cookies off | Cookies on after consent |
 | 3 | User ID API | `setSiteUserId` (only with consent) [S1] | Not used | Optional |
 | 4 | Personalisation APIs | Compass settings [S1] | Disabled | Enabled |
 
@@ -58,6 +60,3 @@ Typical processing purposes: Improve the service, Personalise the website
 
 - [S1] CNIL — Marfeel Compass configuration guide (exempt audience measurement)
 - [S2] CNIL — Cookies: solutions pour les outils de mesure d'audience (4 July 2025)
-
-[S1]: https://Cnil.fr/sites/cnil/files/atoms/files/marfeel_compass_-_guide_de_configuration_-_exemption_de_mesure_daudience.pdf
-[S2]: https://cnil.fr/fr/node/167364

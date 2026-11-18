@@ -5,13 +5,15 @@ description: "How to configure AdPerformance (Realytics) at different risk level
 
 Typical processing purposes: Support marketing analytics
 
-> This guide explains how to implement different privacy configurations for Realytics AdPerformance and how to reflect them in the Consenter Manager.
->
-> 1. Configure the third-party service.
-> 2. Map the selected configuration in the Consenter Manager.
-> 3. Update your privacy policy to reflect the actual implementation.
->
-> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+<Callout type="info" title="Overview">
+This guide explains how to implement different privacy configurations for Realytics AdPerformance and how to reflect them in the Consenter Manager.
+
+1. Configure the third-party service.
+2. Map the selected configuration in the Consenter Manager.
+3. Update your privacy policy to reflect the actual implementation.
+
+The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+</Callout>
 
 ## At a glance
 
@@ -35,7 +37,7 @@ Typical processing purposes: Support marketing analytics
 | 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics |
 | 2 | Exempt settings | "Data Collect" menu [S1] | Exempt configuration | Consent-based configuration |
 | 3 | Personal data in tracker parameters | Must not be sent (emails, user IDs) [S1] | Required | Required |
-| 4 | Consent / opt-out | TCF v2 CMP or `RY.optout()` / `RY.optin()`; global opt-out link [S1] | Opt-out provided | Consent required |
+| 4 | Consent / opt-out | `RY.optout()` / `RY.optin()`; global opt-out link [S1] | Opt-out provided | Consent required |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
@@ -54,6 +56,3 @@ Typical processing purposes: Support marketing analytics
 
 - [S1] CNIL — Realytics configuration guide for exempt audience measurement (V2)
 - [S2] CNIL — Cookies: solutions pour les outils de mesure d'audience (4 July 2025)
-
-[S1]: https://Cnil.fr/sites/cnil/files/2023-09/realytics_guide_de_configuration_de_la_mesure_d_audience_exemptee.pdf
-[S2]: https://cnil.fr/fr/node/167364

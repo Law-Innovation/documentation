@@ -5,13 +5,15 @@ description: "How to configure VLYBY at different risk levels and map it in the 
 
 Typical processing purposes: Customise online ads
 
-> This guide explains how to reflect VLYBY in the Consenter Manager. VLYBY's privacy behaviour is governed by IAB TCF signals rather than configurable settings, so this guide uses a single fixed-behaviour table.
->
-> 1. Implement the service as described below.
-> 2. Map the implementation in the Consenter Manager.
-> 3. Update your privacy policy to reflect the actual implementation.
->
-> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+<Callout type="info" title="Overview">
+This guide explains how to reflect VLYBY in the Consenter Manager. VLYBY has no configurable privacy settings, so this guide uses a single fixed-behaviour table.
+
+1. Implement the service as described below.
+2. Map the implementation in the Consenter Manager.
+3. Update your privacy policy to reflect the actual implementation.
+
+The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+</Callout>
 
 ## At a glance
 
@@ -21,12 +23,13 @@ Typical processing purposes: Customise online ads
 
 **No configuration without prior consent.** Programmatic advertising involves third-party trackers [S1].
 
+> **Note on consent signals.** VLYBY relies on the IAB TCF consent signal [S1]. Consenter does not currently support TCF communication, so this guide does not cover configuring the signal; load VLYBY only after consent in Consenter.
+
 ## Step 1 — Implement VLYBY
 
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Customise online ads |
-| Consent signal | TCF string for vendor 1009 [S1] |
 | Loading | After Consenter consent |
 | Third parties | Disclose the SSPs and demand partners used |
 
@@ -37,14 +40,12 @@ Typical processing purposes: Customise online ads
 | Processing purposes | Customise online ads | [S1] |
 | Tracking method | Third party tracking (crosssession, cross-website) | Programmatic ad partners [S1] |
 | Identifier | Device identifiers | Ad partners |
-| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Privacy choices, Users' profiles | TCF signal [S1] |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Users' profiles | Programmatic ad partners [S1] |
 | Legal role of data recipient | Individual Controller | VLYBY and each SSP process for their own purposes [S1] |
 | Personalisation model | Profile based | Programmatic advertising |
-| Maximum storage duration | Per TCF Global Vendor List | — |
+| Maximum storage duration | Per ad partner disclosures | Not documented |
 | Processing location | Germany; add the United States for US ad partners | German company |
 
 ## Sources
 
 - [S1] VLYBY — Product privacy notice
-
-[S1]: https://www.vlyby.com/product-privacy

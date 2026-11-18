@@ -5,33 +5,37 @@ description: "How to configure Amazon Ads (Amazon Ad Tag) at different risk leve
 
 Typical processing purposes: Support marketing analytics, Customise online ads
 
-> This guide explains how to implement different privacy configurations for the Amazon Ad Tag on an advertiser website and how to reflect them in the Consenter Manager.
->
-> 1. Configure the third-party service.
-> 2. Map the selected configuration in the Consenter Manager.
-> 3. Update your privacy policy to reflect the actual implementation.
->
-> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+<Callout type="info" title="Overview">
+This guide explains how to implement different privacy configurations for the Amazon Ad Tag on an advertiser website and how to reflect them in the Consenter Manager.
+
+1. Configure the third-party service.
+2. Map the selected configuration in the Consenter Manager.
+3. Update your privacy policy to reflect the actual implementation.
+
+The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+</Callout>
 
 ## At a glance
 
 **Scope.** Amazon Ad Tag (`amzn.js`) for conversion measurement and audiences. Amazon Pay is covered separately. Sources were checked on 16 November 2026.
 
-**What the service does in this scope.** Advertisers sending personal information to Amazon Ads must use either the IAB TCF signal or the Amazon Consent Signal (ACS) [S1]. ACS consists of `amzn_user_data` (consent to process personal data for advertising) and `amzn_ad_storage` (consent to read or write advertising cookies), each `GRANTED` or `DENIED` [S2]. Amazon provides `amzn-consent.js`; the Ad Tag listens for the consent event and restricts event triggers and first-party data collection accordingly [S3]. Amazon Ads is IAB TCF vendor 793 [S4].
+**What the service does in this scope.** Amazon Ads measures conversions and builds audiences from events sent by the Ad Tag [S1].
+
+> **Note on consent signals.** Advertisers sending personal information to Amazon Ads must use either the IAB TCF signal or the Amazon Consent Signal (ACS) [S1]. Consenter does not currently support TCF or ACS communication, so this guide does not cover configuring these signals; load the Ad Tag only after consent in Consenter.
 
 **Configurations included.**
 
 | Configuration | Summary |
 |---|---|
-| Configuration A — Higher risk | Ad Tag with ACS from Consenter: both signals `GRANTED` only after consent. |
-| Configuration B — Higher risk | Ad Tag without a consent signal. |
+| Configuration A — Higher risk | Ad Tag loaded only after Consenter consent. |
+| Configuration B — Higher risk | Ad Tag loaded on page load, without consent. |
 
 ## Step 1 — Configure the Amazon Ad Tag
 
 | # | Configuration area | Where to configure it | Configuration A — Higher risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics; Customise online ads | Support marketing analytics; Customise online ads |
-| 2 | Consent signal | `amzn-consent.js` (ACS) or TCF [S1][S3] | `amzn_user_data` / `amzn_ad_storage` from Consenter | None |
+| 2 | Loading | Tag manager / Consenter script blocking | After consent | On page load |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
@@ -42,7 +46,7 @@ Typical processing purposes: Support marketing analytics, Customise online ads
 | Processing purposes | Support marketing analytics, Customise online ads | Support marketing analytics, Customise online ads |
 | Tracking method | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) |
 | Identifier | Device identifiers | Device identifiers |
-| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Users' profiles, Privacy choices | Device identifiers, Browsing and interaction data, e-commerce Activity, Users' profiles |
+| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Users' profiles | Device identifiers, Browsing and interaction data, e-commerce Activity, Users' profiles |
 | Legal role of data recipient | Individual Controller | Individual Controller |
 | Personalisation model | Profile based | Profile based |
 | Maximum storage duration | Per Amazon Ads terms | Per Amazon Ads terms |
@@ -51,13 +55,4 @@ Typical processing purposes: Support marketing analytics, Customise online ads
 ## Sources
 
 - [S1] Amazon Ads — Sending personal information to Amazon Ads & Amazon Consent Signal requirements
-- [S2] Usercentrics Knowledge Hub — Amazon Consent Signal
-- [S3] PPC Land — Amazon Ads consent deadline (amzn-consent.js)
-- [S4] Secure Privacy — Amazon consent signal setup (TCF vendor ID)
 - [S5] 18 U.S.C. § 2713 (CLOUD Act)
-
-[S1]: https://advertising.amazon.com/en-ca/resources/ad-policy/consent-signal-requirements
-[S2]: https://usercentrics.com/knowledge-hub/amazon-consent-signal/
-[S3]: https://ppc.land/amazon-ads-consent-deadline-is-june-30-your-data-wont-work-after-that/
-[S4]: https://secureprivacy.ai/blog/amazon-consent-signal-gdpr-cmp-amazon-ads-consent-setup
-[S5]: https://www.law.cornell.edu/uscode/text/18/2713
