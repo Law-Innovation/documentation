@@ -17,9 +17,9 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 ## At a glance
 
-**Scope.** exactag marketing attribution tracking on an advertiser's website. Sources were checked on 16 November 2026.
+**Scope.** exactag marketing attribution tracking on an advertiser's website.
 
-**What the service does in this scope.** exactag collects data with cookies [S1] and processes it for measuring advertising and content performance, which it lists as consent-based purposes [S1]. Results can be pushed to publishers ("Attribution Push"), for Google Ads via offline conversions [S2]. Users can object with an `optout` cookie set by `exactag.com` [S1].
+**What the service does in this scope.** exactag collects data with cookies and processes it for measuring advertising and content performance, which it lists as consent-based purposes. Results can be pushed to publishers ("Attribution Push"), for Google Ads via offline conversions. Users can object with an `optout` cookie set by `exactag.com`.
 
 **Simplified format.** exactag's public documentation does not describe privacy settings the operator can change (such as IP truncation or retention). The guide uses a single fixed-behaviour configuration.
 
@@ -28,20 +28,20 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Support marketing analytics |
-| Loading | Blocked by Consenter until consent (exactag lists these purposes as consent-based [S1]) |
-| Tracking technology | Cookies [S1] |
-| Opt-out | `optout` cookie on `exactag.com` [S1] |
-| Attribution Push to ad platforms | Contractual option [S2]; if used, the receiving platform needs its own entry |
+| Loading | Blocked by Consenter until consent (exactag lists these purposes as consent-based) |
+| Tracking technology | Cookies |
+| Opt-out | `optout` cookie on `exactag.com` |
+| Attribution Push to ad platforms | Contractual option; if used, the receiving platform needs its own entry |
 | Retention / IP handling | **Not documented** — request from exactag |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Support marketing analytics | Attribution of conversions to channels [S1][S2]. |
-| Tracking method | First party tracking (cross-session) | Cookies on tracking subdomains of the customer domain (for example `et.<customer domain>`) [S1]. Verify in the browser. |
+| Processing purposes | Support marketing analytics | Attribution of conversions to channels. |
+| Tracking method | First party tracking (cross-session) | Cookies on tracking subdomains of the customer domain (for example `et.<customer domain>`). Verify in the browser. |
 | Identifier | Device identifiers, IP address | Cookie ID; IP with each request. |
-| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, IP address, e-commerce Activity | Customer journey and conversion data [S2]. |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, IP address, e-commerce Activity | Customer journey and conversion data. |
 | Legal role of data recipient | Processor | Verify against your contract with exactag. |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Not documented | — |
@@ -55,8 +55,3 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 - [ ] No exactag requests before consent.
 - [ ] Contract confirms role, retention and sub-processors.
-
-## Sources
-
-- [S1] exactag — Information on data protection with regard to the services provided
-- [S2] exactag — Attribution Push: how it works

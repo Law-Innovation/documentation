@@ -17,11 +17,11 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** The LiveChat chat widget (Text group). Sources were checked on 16 November 2026.
+**Scope.** The LiveChat chat widget (Text group).
 
-**What the service does in this scope.** LiveChat sets two primary cookies, `lc_cid` (customer ID) and `lc_cst` (customer secure token), which it describes as necessary for widget operation; they maintain chat sessions, reconnect visitors with previous agents and remember conversations over multiple visits [S1]. The Text group's GDPR FAQ names Text, Inc., Boston, United States, as the processing entity [S2].
+**What the service does in this scope.** LiveChat sets two primary cookies, `lc_cid` (customer ID) and `lc_cst` (customer secure token), which it describes as necessary for widget operation; they maintain chat sessions, reconnect visitors with previous agents and remember conversations over multiple visits. The Text group's GDPR FAQ names Text, Inc., Boston, United States, as the processing entity.
 
-> ⚠ **Recommendation — "necessary" classification.** LiveChat classifies its cookies as necessary for the widget [S1], but the cookies persist across visits to recognise returning visitors. Whether that is strictly necessary for a chat the visitor has not opened is not established by the sources. Load the widget after Consenter consent, or only after the visitor clicks a chat placeholder, unless your DPO or independent counsel confirms otherwise.
+> ⚠ **Recommendation — "necessary" classification.** LiveChat classifies its cookies as necessary for the widget, but the cookies persist across visits to recognise returning visitors. Whether that is strictly necessary for a chat the visitor has not opened is not established by the sources. Load the widget after Consenter consent, or only after the visitor clicks a chat placeholder, unless your DPO or independent counsel confirms otherwise.
 
 ## Step 1 — Implement LiveChat
 
@@ -29,7 +29,7 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 |---|---|
 | Processing purposes | Unlock additional website features |
 | Loading | Consenter script blocking, or click-to-load placeholder |
-| Cookies | `lc_cid`, `lc_cst` [S1] |
+| Cookies | `lc_cid`, `lc_cst` |
 | Contract | DPA with the Text group |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -37,16 +37,10 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Unlock additional website features | Live chat |
-| Tracking method | First party tracking (cross-session) | Visitor recognised across visits [S1] |
-| Identifier | Device identifiers | `lc_cid` [S1] |
+| Tracking method | First party tracking (cross-session) | Visitor recognised across visits |
+| Identifier | Device identifiers | `lc_cid` |
 | Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, User-provided data | Chat context and messages |
 | Legal role of data recipient | Processor | Provider on behalf of the operator |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Per cookie inspection | Not documented |
-| Processing location | United States | Text, Inc. [S2]; 18 U.S.C. § 2713 [S3] |
-
-## Sources
-
-- [S1] LiveChat Help — Improving your cookie banner: a guide for LiveChat
-- [S2] HelpDesk (Text) — GDPR FAQ
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+| Processing location | United States | Text, Inc.; the US CLOUD Act |

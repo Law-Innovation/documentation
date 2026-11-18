@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** XING Share and Follow buttons on the website (New Work SE, Hamburg, Germany). Sources were checked on 16 November 2026.
+**Scope.** XING Share and Follow buttons on the website (New Work SE, Hamburg, Germany).
 
-**What the service does in this scope.** When a page with the XING Share button loads, a connection to the XING server is established automatically; XING states in its privacy notice that the IP addresses are not stored [S1]. If a visitor clicks a XING button, XING assigns this information to the visitor's XING account [S2]. Shariff-style buttons are plain links that load nothing from the network until clicked [S3].
+**What the service does in this scope.** When a page with the XING Share button loads, a connection to the XING server is established automatically; XING states in its privacy notice that the IP addresses are not stored. If a visitor clicks a XING button, XING assigns this information to the visitor's XING account. Shariff-style buttons are plain links that load nothing from the network until clicked.
 
 **Configurations included.**
 
@@ -28,14 +28,14 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | Plain share link (e.g. Shariff) to XING; nothing loaded before the click. |
 | Configuration B — Medium risk | Official XING Share/Follow plugin loaded after Consenter consent. |
 
-**Configuration A without consent.** A plain link sets nothing and transfers nothing before the click [S3]; mention XING in the privacy policy.
+**Configuration A without consent.** A plain link sets nothing and transfers nothing before the click; mention XING in the privacy policy.
 
 ## Step 1 — Configure XING
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | — | Unlock additional website features |
-| 2 | Button type | Website code | Link / Shariff [S3] | XING plugin script |
+| 2 | Button type | Website code | Link / Shariff | XING plugin script |
 | 3 | Loading | Consenter script blocking | — | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -49,13 +49,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | — | IP address, Browsing and interaction data, Social media interaction data |
 | Legal role of data recipient | — | Joint Controller |
 | Personalisation model | — | No personalisation |
-| Maximum storage duration | — | IP not stored per XING [S1] |
+| Maximum storage duration | — | IP not stored per XING |
 | Processing location | — | Germany |
-
-**Basis.** Plugin connection [S1]; click attribution [S2]. Joint controllership follows the CJEU's Fashion ID reasoning for social plugins; confirm with your DPO. New Work SE is German, so no CLOUD Act flag.
-
-## Sources
-
-- [S1] Dr. Datenschutz — XING and data protection (Share button)
-- [S2] Dlubal — Privacy information on XING buttons
-- [S3] Gosign — rx_shariff (link-based share buttons)

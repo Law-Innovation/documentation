@@ -17,13 +17,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** This guide covers the Microsoft Clarity tracking script on a website (session recordings, heatmaps, insights), with Consenter passing consent to Clarity through the Consent API v2 (`consentv2`). Sources were checked on 16 November 2026.
+**Scope.** This guide covers the Microsoft Clarity tracking script on a website (session recordings, heatmaps, insights), with Consenter passing consent to Clarity through the Consent API v2 (`consentv2`).
 
-**Out of scope.** Clarity for mobile apps; custom identifiers set through the Clarity client API (`custom-id`), which would link recordings to known users and require separate assessment [S6].
+**Out of scope.** Clarity for mobile apps; custom identifiers set through the Clarity client API (`custom-id`), which would link recordings to known users and require separate assessment.
 
-**What the service does in this scope.** Clarity captures how the page renders and user interactions such as mouse movements, clicks and scrolls [S1]. It sets the first-party cookies `_clck` (Clarity user ID, persisted per site) and `_clsk` (session), and, when advertising storage is granted, Microsoft cookies including `MUID` ("Identifies unique web browsers visiting Microsoft sites … used for advertising, site analytics, and other operational purposes") [S2][S3].
+**What the service does in this scope.** Clarity captures how the page renders and user interactions such as mouse movements, clicks and scrolls. It sets the first-party cookies `_clck` (Clarity user ID, persisted per site) and `_clsk` (session), and, when advertising storage is granted, Microsoft cookies including `MUID` ("Identifies unique web browsers visiting Microsoft sites … used for advertising, site analytics, and other operational purposes").
 
-**Legal role.** Microsoft states that Clarity "operates as a data controller" [S1]. Clarity customers in the EU contract with Microsoft Ireland Operations Limited (MIOL) [S1].
+**Legal role.** Microsoft states that Clarity "operates as a data controller". Clarity customers in the EU contract with Microsoft Ireland Operations Limited (MIOL).
 
 **Configurations included.**
 
@@ -32,7 +32,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | Script loads after analytics consent; `ad_Storage` denied (no `MUID`); **Strict** masking. |
 | Configuration B — Higher risk (default settings) | Script loads after consent; `ad_Storage` and `analytics_Storage` granted (`MUID` set); **Balanced** masking (default). |
 
-**No configuration without prior consent.** Microsoft requires a valid consent signal for visitors from the EEA, the UK and Switzerland [S1][S4]. When consent is denied, Clarity continues to run without cookies and still sends `/collect` calls [S4]. Recording sessions without consent still processes personal data, and Microsoft does not document this mode as a consent-free configuration. In both configurations below, Consenter blocks the script until consent.
+**No configuration without prior consent.** Microsoft requires a valid consent signal for visitors from the EEA, the UK and Switzerland. When consent is denied, Clarity continues to run without cookies and still sends `/collect` calls. Recording sessions without consent still processes personal data, and Microsoft does not document this mode as a consent-free configuration. In both configurations below, Consenter blocks the script until consent.
 
 | Action | Configuration A — Lower risk | Configuration B — Higher risk (default settings) |
 |---|---|---|
@@ -47,42 +47,42 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk (default settings) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website (only if insights are used to adapt the site) |
-| 2 | Setting cookies by default | **Settings > Setup**, turn off setting cookies by default [S4] | Off | Off |
+| 2 | Setting cookies by default | **Settings > Setup**, turn off setting cookies by default | Off | Off |
 | 3 | Script loading | Consenter script blocking for the Clarity entry | Blocked until consent | Blocked until consent |
-| 4 | Consent signal | `window.clarity('consentv2', {analytics_Storage, ad_Storage})` [S5] | Analytics granted, ads denied | Both granted |
-| 5 | Masking mode | **Settings > Masking > Masking mode** [S6] | **Strict** — entire content masked | **Balanced** (default) — numbers, email addresses and input content masked [S6] |
-| 6 | Element-level masking | **Settings > Masking > Mask by element** [S6] | Add elements containing personal data | Optional |
-| 7 | Data retention | **Not configurable.** Recordings 30 days; labelled or favourited sessions 13 months; heatmaps and click data 13 months [S7] | Fixed | Fixed |
-| 8 | Withdrawal | `consentv2` with both values `"denied"`; Clarity stops writing cookies for that user [S4] | Configure and test | Configure and test |
+| 4 | Consent signal | `window.clarity('consentv2', {analytics_Storage, ad_Storage})` | Analytics granted, ads denied | Both granted |
+| 5 | Masking mode | **Settings > Masking > Masking mode** | **Strict** — entire content masked | **Balanced** (default) — numbers, email addresses and input content masked |
+| 6 | Element-level masking | **Settings > Masking > Mask by element** | Add elements containing personal data | Optional |
+| 7 | Data retention | **Not configurable.** Recordings 30 days; labelled or favourited sessions 13 months; heatmaps and click data 13 months | Fixed | Fixed |
+| 8 | Withdrawal | `consentv2` with both values `"denied"`; Clarity stops writing cookies for that user | Configure and test | Configure and test |
 
 ### Configuration A — Lower risk
 
 - **Intended use:** UX analysis with minimal content capture.
-- **Resulting processing:** interaction data and page structure; text content masked; `_clck` and `_clsk` only [S3][S6].
+- **Resulting processing:** interaction data and page structure; text content masked; `_clck` and `_clsk` only.
 - **Why lower risk:** no Microsoft advertising identifier; page text not captured.
-- **Remaining risk:** Microsoft is controller of the data [S1]; retention is fixed [S7].
+- **Remaining risk:** Microsoft is controller of the data; retention is fixed.
 
 ### Configuration B — Higher risk (default settings)
 
 - **Intended use:** UX analysis with readable page content and the Microsoft Advertising link.
-- **Resulting processing:** as A, plus non-sensitive page text, and `MUID` and related third-party cookies used across Microsoft sites [S2][S6].
+- **Resulting processing:** as A, plus non-sensitive page text, and `MUID` and related third-party cookies used across Microsoft sites.
 - **Why higher risk:** a cross-site Microsoft identifier is set and more page content is captured.
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location (applies to all entries).** EU customers contract with MIOL [S1]. Clarity data is stored in Microsoft Azure [S1]. Microsoft Corporation is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S8]. The United States is listed as a potential processing and access location.
+**Processing location (applies to all entries).** EU customers contract with MIOL. Clarity data is stored in Microsoft Azure. Microsoft Corporation is a US company and can be required to disclose data in its possession, custody or control regardless of storage location. The United States is listed as a potential processing and access location.
 
 ### Configuration A — Lower risk
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Improve the service | Session recordings and heatmaps for UX analysis. |
-| Tracking method | First party tracking (cross-session) | `_clck` persists the Clarity user ID per site [S3]. |
-| Identifier | Device identifiers, IP address | `_clck` user ID [S3]; IP address with each request. |
-| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Aggregated site statistics | Interactions and rendering [S1]; heatmaps. |
-| Legal role of data recipient | Individual Controller | Clarity "operates as a data controller" [S1]. |
+| Tracking method | First party tracking (cross-session) | `_clck` persists the Clarity user ID per site. |
+| Identifier | Device identifiers, IP address | `_clck` user ID; IP address with each request. |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Aggregated site statistics | Interactions and rendering; heatmaps. |
+| Legal role of data recipient | Individual Controller | Clarity "operates as a data controller". |
 | Personalisation model | No personalisation | — |
-| Maximum storage duration | 13 months | Heatmaps and labelled sessions; recordings 30 days [S7]. |
+| Maximum storage duration | 13 months | Heatmaps and labelled sessions; recordings 30 days. |
 | Processing location | EU contracting entity (MIOL); Microsoft Azure; United States as potential processing and access location | See note above. |
 
 ### Configuration B — Higher risk (default settings)
@@ -90,32 +90,21 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Improve the service; Personalise the website (if applicable) | As used by the operator. |
-| Tracking method | Third party tracking (crosssession, cross-website) | `MUID` identifies browsers across Microsoft sites [S2]. |
-| Identifier | Device identifiers, IP address | `_clck`, `MUID` [S2][S3]. |
-| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Aggregated site statistics | As A, with less masking [S6]. Add "User-provided data" only if unmasked elements display content the visitor entered. |
-| Legal role of data recipient | Individual Controller | [S1] |
+| Tracking method | Third party tracking (crosssession, cross-website) | `MUID` identifies browsers across Microsoft sites. |
+| Identifier | Device identifiers, IP address | `_clck`, `MUID`. |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Aggregated site statistics | As A, with less masking. Add "User-provided data" only if unmasked elements display content the visitor entered. |
+| Legal role of data recipient | Individual Controller | — |
 | Personalisation model | No personalisation | Select "Group based (behaviour)" only if Clarity insights drive site variants. |
-| Maximum storage duration | 13 months | [S7] |
+| Maximum storage duration | 13 months | — |
 | Processing location | As A | See note above. |
 
 ## Privacy-policy follow-up
 
-- Microsoft (MIOL / Microsoft Corporation) as independent controller [S1]; session recording and heatmaps; cookies `_clck`, `_clsk` and, for B, `MUID` and related Microsoft cookies [S2][S3]; masking applied; retention 30 days / 13 months [S7]; consent under ePrivacy / TDDDG and GDPR legal basis stated separately; US transfer and potential access by US authorities [S8].
+- Microsoft (MIOL / Microsoft Corporation) as independent controller; session recording and heatmaps; cookies `_clck`, `_clsk` and, for B, `MUID` and related Microsoft cookies; masking applied; retention 30 days / 13 months; consent under ePrivacy / TDDDG and GDPR legal basis stated separately; US transfer and potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] **Before consent:** no request to `clarity.ms`; no `_clck`, `_clsk` or `MUID`.
 - [ ] **After consent (A):** `_clck`/`_clsk` set; no `MUID`.
-- [ ] **Masking:** recordings reviewed for unmasked personal data [S6].
-- [ ] **Withdrawal:** cookies no longer written after `consentv2` denied [S4].
-
-## Sources
-
-- [S1] Microsoft Learn — Clarity FAQ
-- [S2] Microsoft Learn — Clarity cookie list
-- [S3] Microsoft Learn — Clarity CMP integration guide
-- [S4] Microsoft Learn — Clarity cookie consent
-- [S5] Microsoft Learn — Clarity Consent API v2
-- [S6] Microsoft Learn — Clarity masking
-- [S7] Microsoft Learn — Clarity data retention
-- [S8] 18 U.S.C. § 2713 (CLOUD Act)
+- [ ] **Masking:** recordings reviewed for unmasked personal data.
+- [ ] **Withdrawal:** cookies no longer written after `consentv2` denied.

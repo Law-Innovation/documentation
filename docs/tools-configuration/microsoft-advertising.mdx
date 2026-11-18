@@ -17,13 +17,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** This guide covers the Microsoft Advertising **Universal Event Tracking (UET)** tag on a website, used for conversion tracking (Bing Conversion) and remarketing (Bing Remarketing, Bing Remarketing Conversion), with UET Consent Mode. Sources were checked on 16 November 2026.
+**Scope.** This guide covers the Microsoft Advertising **Universal Event Tracking (UET)** tag on a website, used for conversion tracking (Bing Conversion) and remarketing (Bing Remarketing, Bing Remarketing Conversion), with UET Consent Mode.
 
-**Out of scope.** Customer Match list uploads (separate data processing terms in which Microsoft is processor) [S4]; Microsoft Clarity (separate guide).
+**Out of scope.** Customer Match list uploads (separate data processing terms in which Microsoft is processor); Microsoft Clarity (separate guide).
 
-**What the service does in this scope.** The UET tag sends page and event data to Microsoft Advertising to attribute conversions to ads and to build remarketing audiences. It uses the first-party cookies `_uetsid` (session ID) and `_uetvid` (visitor ID) and Microsoft's third-party `MUID` cookie [S2][S5]. Consent is passed through the `ad_storage` property [S1].
+**What the service does in this scope.** The UET tag sends page and event data to Microsoft Advertising to attribute conversions to ads and to build remarketing audiences. It uses the first-party cookies `_uetsid` (session ID) and `_uetvid` (visitor ID) and Microsoft's third-party `MUID` cookie. Consent is passed through the `ad_storage` property.
 
-**Legal role.** Under the Microsoft Advertising terms, advertiser and Microsoft are independent controllers for processing other than Customer Match uploads [S4]. Microsoft requires advertisers to have a valid basis, such as notice and consent, to collect personal information on their sites [S3].
+**Legal role.** Under the Microsoft Advertising terms, advertiser and Microsoft are independent controllers for processing other than Customer Match uploads. Microsoft requires advertisers to have a valid basis, such as notice and consent, to collect personal information on their sites.
 
 **Configurations included.**
 
@@ -32,7 +32,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | UET loads after consent and is used for conversion tracking only; no remarketing lists; enhanced conversions off. |
 | Configuration B — Higher risk | As A, plus remarketing / dynamic remarketing audiences and enhanced conversions (hashed customer data). |
 
-**No configuration without prior consent.** Microsoft enforces UET Consent Mode for the EEA, UK and Switzerland; if `ad_storage` is not set, UET defaults to `granted` outside those regions [S1]. With `ad_storage: denied`, UET still sends requests without cookies [S1]. Microsoft does not document this as a consent-free configuration, so in both configurations Consenter blocks the tag until consent and sets `ad_storage` explicitly.
+**No configuration without prior consent.** Microsoft enforces UET Consent Mode for the EEA, UK and Switzerland; if `ad_storage` is not set, UET defaults to `granted` outside those regions. With `ad_storage: denied`, UET still sends requests without cookies. Microsoft does not document this as a consent-free configuration, so in both configurations Consenter blocks the tag until consent and sets `ad_storage` explicitly.
 
 | Action | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -47,17 +47,17 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics; Receive personalised marketing offers; Customise online ads |
-| 2 | Consent default | `window.uetq.push('consent', 'default', {'ad_storage': 'denied'})` before the UET tag [S1] | `denied` | `denied` |
-| 3 | Consent update | `window.uetq.push('consent', 'update', {'ad_storage': 'granted'})` from the Consenter callback, on every page [S1] | After consent | After consent |
+| 2 | Consent default | `window.uetq.push('consent', 'default', {'ad_storage': 'denied'})` before the UET tag | `denied` | `denied` |
+| 3 | Consent update | `window.uetq.push('consent', 'update', {'ad_storage': 'granted'})` from the Consenter callback, on every page | After consent | After consent |
 | 4 | Tag loading | Consenter script blocking | Blocked until consent | Blocked until consent |
 | 5 | Remarketing / dynamic remarketing | Microsoft Advertising > **Audiences** (remarketing lists linked to the UET tag) | No lists created | Lists created |
 | 6 | Enhanced conversions | UET tag settings / conversion goal settings | Off | On |
-| 7 | Cookie lifetimes and Microsoft retention | **Not configurable** in the account [S2] | Fixed | Fixed |
+| 7 | Cookie lifetimes and Microsoft retention | **Not configurable** in the account | Fixed | Fixed |
 
 ### Configuration A — Medium risk
 
 - **Intended use:** measure which Microsoft ads lead to conversions.
-- **Resulting processing:** page and conversion events with `_uetsid`, `_uetvid` and `MUID` after consent [S2][S5].
+- **Resulting processing:** page and conversion events with `_uetsid`, `_uetvid` and `MUID` after consent.
 - **Why medium risk:** cross-site Microsoft identifier, but no audience building by the operator.
 
 ### Configuration B — Higher risk
@@ -68,19 +68,19 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location (applies to all entries).** EU advertisers contract with Microsoft Ireland Operations Limited; Microsoft Corporation is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S6]. The United States is listed as a potential processing and access location.
+**Processing location (applies to all entries).** EU advertisers contract with Microsoft Ireland Operations Limited; Microsoft Corporation is a US company and can be required to disclose data in its possession, custody or control regardless of storage location. The United States is listed as a potential processing and access location.
 
 ### Configuration A — Medium risk
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Support marketing analytics | Conversion attribution. |
-| Tracking method | Third party tracking (crosssession, cross-website) | `MUID` recognises browsers across Microsoft sites [S5]; `_uetvid` persists across sessions [S2]. |
-| Identifier | Device identifiers, IP address | UET cookies [S2]. |
-| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, IP address, Privacy choices, e-commerce Activity (if revenue is sent) | The `ad_storage` consent state is transmitted with each UET request [S1]. |
-| Legal role of data recipient | Individual Controller | Independent controllers [S4]. |
+| Tracking method | Third party tracking (crosssession, cross-website) | `MUID` recognises browsers across Microsoft sites; `_uetvid` persists across sessions. |
+| Identifier | Device identifiers, IP address | UET cookies. |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, IP address, Privacy choices, e-commerce Activity (if revenue is sent) | The `ad_storage` consent state is transmitted with each UET request. |
+| Legal role of data recipient | Individual Controller | Independent controllers. |
 | Personalisation model | No personalisation | No audiences built. |
-| Maximum storage duration | Not documented | Cookie lifetimes per Microsoft's UET cookie list [S2]; Microsoft's server-side retention is not documented. |
+| Maximum storage duration | Not documented | Cookie lifetimes per Microsoft's UET cookie list; Microsoft's server-side retention is not documented. |
 | Processing location | EU contracting entity; United States as potential processing and access location | See note above. |
 
 ### Configuration B — Higher risk
@@ -91,27 +91,18 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Tracking method | Third party tracking (crosssession, cross-website) | As A. |
 | Identifier | Device identifiers, IP address, Direct identifier | Enhanced conversions send hashed customer data. |
 | Data categories | Browsing and interaction data, Device identifiers, Device characteristics, IP address, Privacy choices, e-commerce Activity, direct identifier, Users' profiles | Remarketing lists are behavioural profiles. |
-| Legal role of data recipient | Individual Controller | [S4] |
+| Legal role of data recipient | Individual Controller | — |
 | Personalisation model | Profile based | Ads selected on the basis of individual site behaviour. |
-| Maximum storage duration | Not documented | [S2] |
+| Maximum storage duration | Not documented | — |
 | Processing location | As A | See note above. |
 
 ## Privacy-policy follow-up
 
-- Microsoft as independent controller [S4]; conversion tracking and, for B, remarketing and enhanced conversions; UET cookies and `MUID` [S2][S5]; consent under ePrivacy / TDDDG and the GDPR legal basis stated separately; US transfer and potential access by US authorities [S6].
+- Microsoft as independent controller; conversion tracking and, for B, remarketing and enhanced conversions; UET cookies and `MUID`; consent under ePrivacy / TDDDG and the GDPR legal basis stated separately; US transfer and potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] **Before consent:** no request to `bat.bing.com`; no `_uetsid`, `_uetvid`, `MUID`.
-- [ ] **After consent:** requests carry the granted consent state (UET Tag Helper) [S1].
+- [ ] **After consent:** requests carry the granted consent state (UET Tag Helper).
 - [ ] **A:** no remarketing lists linked to the tag; enhanced conversions off.
-- [ ] **Withdrawal:** `ad_storage` updated to `denied` on all subsequent pages [S1].
-
-## Sources
-
-- [S1] Microsoft Advertising Help — Setting up UET for consent mode
-- [S2] Microsoft Advertising Help — UET cookies
-- [S3] Microsoft Advertising — Legal, privacy and personalisation policies
-- [S4] Microsoft Advertising — Customer Match Terms of Use, Exhibit 1 (Data Processing Terms)
-- [S5] Microsoft Learn — Clarity cookie list (definition of `MUID`)
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+- [ ] **Withdrawal:** `ad_storage` updated to `denied` on all subsequent pages.

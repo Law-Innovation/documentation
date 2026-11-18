@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Kameleoon web experimentation and personalisation (JavaScript tag). Sources were checked on 16 November 2026.
+**Scope.** Kameleoon web experimentation and personalisation (JavaScript tag).
 
-**What the service does in this scope.** Kameleoon stores the `kameleoonVisitorCode` identifier [S1]. The consent management policy is set in **Admin > Projects** [S2]. With **Consent required**, Kameleoon starts in **restricted mode** and switches to normal mode when `Kameleoon.API.Core.enableLegalConsent()` is called, remembering the choice for the visitor [S3]. Consent can be granted separately for `AB_TESTING` and `PERSONALIZATION` [S4]. For certain rule types, Kameleoon recommends classifying Kameleoon as a "strictly necessary cookie" so that they run without consent [S5].
+**What the service does in this scope.** Kameleoon stores the `kameleoonVisitorCode` identifier. The consent management policy is set in **Admin > Projects**. With **Consent required**, Kameleoon starts in **restricted mode** and switches to normal mode when `Kameleoon.API.Core.enableLegalConsent` is called, remembering the choice for the visitor. Consent can be granted separately for `AB_TESTING` and `PERSONALIZATION`. For certain rule types, Kameleoon recommends classifying Kameleoon as a "strictly necessary cookie" so that they run without consent.
 
 **Configurations included.**
 
@@ -28,15 +28,15 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Consent required; `enableLegalConsent("AB_TESTING")` only. |
 | Configuration B — Higher risk | Consent required; `enableLegalConsent("BOTH")` (testing and personalisation). |
 
-> ⚠ **Recommendation — "strictly necessary" classification is legally uncertain.** Kameleoon's suggestion to run some rules as strictly necessary [S5] has no basis in this guide's sources for German or EU law. Do not classify Kameleoon as strictly necessary without review by your DPO or independent counsel.
+> ⚠ **Recommendation — "strictly necessary" classification is legally uncertain.** Kameleoon's suggestion to run some rules as strictly necessary has no basis in this guide's sources for German or EU law. Do not classify Kameleoon as strictly necessary without review by your DPO or independent counsel.
 
 ## Step 1 — Configure Kameleoon
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website |
-| 2 | Consent management policy | **Admin > Projects** [S2] | Consent required | Consent required |
-| 3 | Consent signal | `enableLegalConsent(type)` / `disableLegalConsent(type)` [S3][S4] | `AB_TESTING` | `BOTH` |
+| 2 | Consent management policy | **Admin > Projects** | Consent required | Consent required |
+| 3 | Consent signal | `enableLegalConsent(type)` / `disableLegalConsent(type)` | `AB_TESTING` | `BOTH` |
 | 4 | Loading | Tag in restricted mode until consent; or Consenter blocking | Restricted until consent | Restricted until consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -51,11 +51,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | Group based (behaviour) |
 | Maximum storage duration | Not documented | Not documented |
 | Processing location | Per DPA | Per DPA |
-
-## Sources
-
-- [S1] Kameleoon Docs — Data collection client-side (`kameleoonVisitorCode`)
-- [S2] Kameleoon Help — Consent management policy
-- [S3] Kameleoon Developers — Legal consent
-- [S4] Kameleoon Help — Didomi integration (`AB_TESTING`, `PERSONALIZATION`)
-- [S5] Kameleoon Docs — Consent management policy (strictly necessary recommendation)

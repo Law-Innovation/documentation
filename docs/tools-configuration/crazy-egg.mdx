@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Crazy Egg tracking script (heatmaps/snapshots, recordings, surveys, A/B testing). Crazy Egg, Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** The Crazy Egg tracking script (heatmaps/snapshots, recordings, surveys, A/B testing). Crazy Egg, Inc. is a US company.
 
-**What the service does in this scope.** The Crazy Egg pixel "only uses 1st party cookies" and records, among other things, whether a visitor is new or returning and the referrer [S1]. Visitors receive a UUID; "IP addresses of visitors are always anonymized before being stored"; keystroke data in all input fields is suppressed client-side [S2]. Additional elements can be masked and whole pages skipped in recordings [S3]. Advanced tracking options (Recording Identifier, Custom User Variables) can link recordings to known users [S4]. A GDPR DPA and SCCs are available on request [S4].
+**What the service does in this scope.** The Crazy Egg pixel "only uses 1st party cookies" and records, among other things, whether a visitor is new or returning and the referrer. Visitors receive a UUID; "IP addresses of visitors are always anonymized before being stored"; keystroke data in all input fields is suppressed client-side. Additional elements can be masked and whole pages skipped in recordings. Advanced tracking options (Recording Identifier, Custom User Variables) can link recordings to known users. A GDPR DPA and SCCs are available on request.
 
 **Configurations included.**
 
@@ -28,22 +28,22 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | Heatmaps and recordings with default suppression, sensitive elements masked and sensitive pages skipped; no advanced tracking options; after consent. |
 | Configuration B — Higher risk | As A, plus Recording Identifier and Custom User Variables linking recordings to known users; after consent. |
 
-**No configuration without prior consent.** A returning-visitor identifier is stored [S1][S2]; no consent-free configuration is documented.
+**No configuration without prior consent.** A returning-visitor identifier is stored; no consent-free configuration is documented.
 
 ## Step 1 — Configure Crazy Egg
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
-| 2 | Masking | Recordings dashboard > **Customize Recordings** > **Mask Elements** [S3] | Mask sensitive elements | Default |
-| 3 | Page skipping | Recordings settings (skip page / end recording) [S3] | Skip checkout and account pages | Not used |
-| 4 | Advanced tracking options | Recording Identifier, Custom User Variables [S4] | Not used | Used |
-| 5 | DPA / SCCs | Request by email [S4] | Concluded | Concluded |
+| 2 | Masking | Recordings dashboard > **Customize Recordings** > **Mask Elements** | Mask sensitive elements | Default |
+| 3 | Page skipping | Recordings settings (skip page / end recording) | Skip checkout and account pages | Not used |
+| 4 | Advanced tracking options | Recording Identifier, Custom User Variables | Not used | Used |
+| 5 | DPA / SCCs | Request by email | Concluded | Concluded |
 | 6 | Loading | Consenter script blocking | After consent | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Crazy Egg, Inc. is a US company subject to 18 U.S.C. § 2713 [S5]; the United States is listed as a processing and potential access location.
+**Processing location.** Crazy Egg, Inc. is a US company subject to the US CLOUD Act; the United States is listed as a processing and potential access location.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Higher risk |
 |---|---|---|
@@ -56,22 +56,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Maximum storage duration | Not documented | Not documented |
 | Processing location | United States | United States |
 
-**Basis.** First-party cookies, new/returning visitor recognition [S1]; UUID, IP anonymisation and keystroke suppression [S2]; Recording Identifier and Custom User Variables [S4]. Add "direct identifier" in B if the identifier or variables contain email addresses or names.
-
 ## Privacy-policy follow-up
 
-- Crazy Egg as processor; heatmaps and recordings; first-party cookies; masking; identification (B); US processing and potential access by US authorities [S5].
+- Crazy Egg as processor; heatmaps and recordings; first-party cookies; masking; identification (B); US processing and potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] No Crazy Egg requests before consent.
 - [ ] Skipped pages produce no recordings.
 - [ ] DPA and SCCs on file.
-
-## Sources
-
-- [S1] Crazy Egg — FAQ (cookies and data collected)
-- [S2] Crazy Egg Support — Privacy & Data Practices
-- [S3] Crazy Egg Support — Video Recordings & Masking Elements
-- [S4] Crazy Egg Support — Crazy Egg Privacy (advanced tracking options, DPA)
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

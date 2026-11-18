@@ -17,11 +17,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Rakuten Advertising affiliate site tracking and conversion tag. Sources were checked on 16 November 2026.
+**Scope.** Rakuten Advertising affiliate site tracking and conversion tag.
 
-**What the service does in this scope.** Rakuten Advertising lists the cookies and storage its customers may use, including `__rmco` and `__rmco_cs` in first-party `localStorage` for consent information [S1]. CMP integrations set the `__rmcp2` consent signal for EU/UK visitors; tracking stays restricted until marketing consent is given [S2].
+**What the service does in this scope.** Rakuten Advertising lists the cookies and storage its customers may use, including `__rmco` and `__rmco_cs` in first-party `localStorage` for consent information. CMP integrations set the `__rmcp2` consent signal for EU/UK visitors; tracking stays restricted until marketing consent is given.
 
-> **Note on consent signals.** Rakuten Advertising expects the `__rmcp2` consent signal from a CMP integration [S2]. Consenter does not currently provide this signal, so this guide does not cover configuring it; load the tag only after consent in Consenter. Rakuten Advertising processes digital identifiers such as cookie IDs and may act as a processor under the GDPR in some cases [S3].
+> **Note on consent signals.** Rakuten Advertising expects the `__rmcp2` consent signal from a CMP integration. Consenter does not currently provide this signal, so this guide does not cover configuring it; load the tag only after consent in Consenter. Rakuten Advertising processes digital identifiers such as cookie IDs and may act as a processor under the GDPR in some cases.
 
 **Configurations included.**
 
@@ -39,7 +39,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Rakuten Advertising is operated by a US entity of a Japanese group; list the United States (18 U.S.C. § 2713 [S4]).
+**Processing location.** Rakuten Advertising is operated by a US entity of a Japanese group; list the United States.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -49,12 +49,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity | Device identifiers, Browsing and interaction data, e-commerce Activity |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | Per Rakuten cookie policy [S1] | Per Rakuten cookie policy [S1] |
+| Maximum storage duration | Per Rakuten cookie policy | Per Rakuten cookie policy |
 | Processing location | United States / EU | United States / EU |
-
-## Sources
-
-- [S1] Rakuten Advertising — Cookie and Tracking Technology Policy
-- [S2] Pandectes Help — Rakuten Advertising integration guide
-- [S3] Rakuten Advertising — Services Privacy Request Form
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

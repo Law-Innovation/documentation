@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Klaviyo.js (onsite tracking and sign-up forms). Klaviyo, Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** Klaviyo.js (onsite tracking and sign-up forms). Klaviyo, Inc. is a US company.
 
-**What the service does in this scope.** When tracking is allowed, Klaviyo.js uses the first-party `__kla_id` cookie to recognise visitors; it can temporarily hold personally identifiable information [S1]. Tracking scripts are served from `static-tracking.klaviyo.com` and sign-up form scripts from `static.klaviyo.com`, so tracking can be blocked while forms still load [S1]. Setting `__kla_off=true` toggles tracking off while keeping Klaviyo JavaScript [S2]. `__kla_id` expires after 2 years (browsers may shorten this); after identification it contains an encrypted `$exchange_id` that can include email, phone number, external ID and anonymous ID [S3]. **Extended ID** and **First-party ID** (a server-set `__kle_id` cookie that restores `__kla_id`) extend identification [S3].
+**What the service does in this scope.** When tracking is allowed, Klaviyo.js uses the first-party `__kla_id` cookie to recognise visitors; it can temporarily hold personally identifiable information. Tracking scripts are served from `static-tracking.klaviyo.com` and sign-up form scripts from `static.klaviyo.com`, so tracking can be blocked while forms still load. Setting `__kla_off=true` toggles tracking off while keeping Klaviyo JavaScript. `__kla_id` expires after 2 years (browsers may shorten this); after identification it contains an encrypted `$exchange_id` that can include email, phone number, external ID and anonymous ID. **Extended ID** and **First-party ID** (a server-set `__kle_id` cookie that restores `__kla_id`) extend identification.
 
 **Configurations included.**
 
@@ -29,19 +29,19 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration B — Higher risk | Onsite tracking after consent with `__kla_id`; standard identification. |
 | Configuration C — Higher risk | As B, plus Extended ID / First-party ID. |
 
-**Configuration A.** Klaviyo designs forms to load without tracking [S1], but form scripts still load from Klaviyo and form data is processed. Load them after consent or on the form's own legal basis after review.
+**Configuration A.** Klaviyo designs forms to load without tracking, but form scripts still load from Klaviyo and form data is processed. Load them after consent or on the form's own legal basis after review.
 
 ## Step 1 — Configure Klaviyo
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Receive marketing offers | Receive marketing offers; Receive personalised marketing offers | Receive marketing offers; Receive personalised marketing offers |
-| 2 | Tracking script | Block `static-tracking.klaviyo.com` until consent [S1] | Blocked / `__kla_off=true` [S2] | After consent | After consent |
-| 3 | Extended ID / First-party ID | Klaviyo settings [S3] | Off | Off | On |
+| 2 | Tracking script | Block `static-tracking.klaviyo.com` until consent | Blocked / `__kla_off=true` | After consent | After consent |
+| 3 | Extended ID / First-party ID | Klaviyo settings | Off | Off | On |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Klaviyo is a US enterprise subject to 18 U.S.C. § 2713 [S4]; list the United States in all configurations.
+**Processing location.** Klaviyo is a US enterprise subject to the US CLOUD Act; list the United States in all configurations.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
 |---|---|---|---|
@@ -53,10 +53,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | Profile based | Profile based |
 | Maximum storage duration | Per profile retention | 2 years (`__kla_id`) | 2 years, renewed via `__kle_id` |
 | Processing location | United States | United States | United States |
-
-## Sources
-
-- [S1] Klaviyo Help — OneTrust configuration (`__kla_id`, script domains)
-- [S2] Klaviyo Help — Understanding cookies in Klaviyo (`__kla_off`)
-- [S3] Klaviyo Help — Cookies in Klaviyo (lifetime, Extended ID, First-party ID)
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

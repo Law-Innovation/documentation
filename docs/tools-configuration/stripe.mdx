@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Stripe.js (Elements, Checkout) on the merchant website. Sources were checked on 16 November 2026.
+**Scope.** Stripe.js (Elements, Checkout) on the merchant website.
 
-**What the service does in this scope.** Stripe.js provides advanced fraud detection based on signals about device characteristics and user activity; collection is disclosed in Stripe's privacy and cookie policies [S1]. The signals are sent to Stripe via periodic requests to `m.stripe.com` [S2]. Merchants can disable them with the `advancedFraudSignals` parameter (or `setLoadParameters` in the module), which increases fraud risk such as card testing [S1][S2]. Stripe states these signals are used only for security and anti-fraud and are not shared or sold to advertisers [S3].
+**What the service does in this scope.** Stripe.js provides advanced fraud detection based on signals about device characteristics and user activity; collection is disclosed in Stripe's privacy and cookie policies. The signals are sent to Stripe via periodic requests to `m.stripe.com`. Merchants can disable them with the `advancedFraudSignals` parameter (or `setLoadParameters` in the module), which increases fraud risk such as card testing. Stripe states these signals are used only for security and anti-fraud and are not shared or sold to advertisers.
 
 **Configurations included.**
 
@@ -37,11 +37,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features | Unlock additional website features |
 | 2 | Loading scope | Theme / front-end | Checkout pages only | Checkout pages only | All pages |
-| 3 | Advanced fraud signals | `advancedFraudSignals` / `setLoadParameters` [S2] | Disabled | Enabled | Enabled |
+| 3 | Advanced fraud signals | `advancedFraudSignals` / `setLoadParameters` | Disabled | Enabled | Enabled |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Stripe is a US enterprise; list the United States (18 U.S.C. § 2713 [S4]).
+**Processing location.** Stripe is a US enterprise; list the United States.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|
@@ -54,10 +54,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation | No personalisation |
 | Maximum storage duration | Per Stripe cookie policy | Per Stripe cookie policy | Per Stripe cookie policy |
 | Processing location | EU / United States | EU / United States | EU / United States |
-
-## Sources
-
-- [S1] Stripe Docs — Advanced fraud detection
-- [S2] Stripe Docs — Advanced fraud detection (disable signals)
-- [S3] Stripe Blog — Updates to Stripe's advanced fraud detection
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

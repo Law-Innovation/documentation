@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Realytics AdPerformance v3 tracker, used by advertisers on TV and radio to analyse the resulting website audience. Realytics SAS is a French company; data is processed in the EEA (Paris and Dublin) [S1]. Sources were checked on 16 November 2026.
+**Scope.** Realytics AdPerformance v3 tracker, used by advertisers on TV and radio to analyse the resulting website audience. Realytics SAS is a French company; data is processed in the EEA (Paris and Dublin).
 
-**What the service does in this scope.** AdPerformance produces anonymous, aggregated statistics (visits, device type, advertiser events, geography, creative names, investment) [S1]. It uses only first-party, pseudonymised statistical cookies tied to the publisher's domain, with the anonymous identifier `mu.uid`; the IP address is truncated to its first three octets on receipt; raw data is kept for at most 13 months and then deleted [S1]. Realytics is processor [S1]. Exempt mode excludes cohorts, external imports, non-aggregated exports (groups of 10 or fewer hidden) and individual journeys [S1]. The product is TCF v2 compatible; without TCF, `RY.optout()` / `RY.optin()` can be called [S1].
+**What the service does in this scope.** AdPerformance produces anonymous, aggregated statistics (visits, device type, advertiser events, geography, creative names, investment). It uses only first-party, pseudonymised statistical cookies tied to the publisher's domain, with the anonymous identifier `mu.uid`; the IP address is truncated to its first three octets on receipt; raw data is kept for at most 13 months and then deleted. Realytics is processor. Exempt mode excludes cohorts, external imports, non-aggregated exports (groups of 10 or fewer hidden) and individual journeys. The product is TCF v2 compatible; without TCF, `RY.optout` / `RY.optin` can be called.
 
 **Configurations included.**
 
@@ -28,16 +28,16 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk (⚠ no-consent) | Exempt mode: aggregated statistics, truncated IP, no exports beyond aggregates. |
 | Configuration B — Higher risk | After consent: additional tracked keys, non-aggregated exports, external imports, finer location. |
 
-> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement tracers as exempt only under strict conditions [S2]. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run A without consent only after review by your DPO or independent counsel.
+> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement tracers as exempt only under strict conditions. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run A without consent only after review by your DPO or independent counsel.
 
 ## Step 1 — Configure AdPerformance
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk (⚠ no-consent) | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics |
-| 2 | Exempt settings | "Data Collect" menu [S1] | Exempt configuration | Consent-based configuration |
-| 3 | Personal data in tracker parameters | Must not be sent (emails, user IDs) [S1] | Required | Required |
-| 4 | Consent / opt-out | `RY.optout()` / `RY.optin()`; global opt-out link [S1] | Opt-out provided | Consent required |
+| 2 | Exempt settings | "Data Collect" menu | Exempt configuration | Consent-based configuration |
+| 3 | Personal data in tracker parameters | Must not be sent (emails, user IDs) | Required | Required |
+| 4 | Consent / opt-out | `RY.optout` / `RY.optin`; global opt-out link | Opt-out provided | Consent required |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
@@ -51,8 +51,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | 13 months | 13 months |
 | Processing location | EEA (Paris, Dublin) | EEA (Paris, Dublin) |
-
-## Sources
-
-- [S1] CNIL — Realytics configuration guide for exempt audience measurement (V2)
-- [S2] CNIL — Cookies: solutions pour les outils de mesure d'audience (4 July 2025)

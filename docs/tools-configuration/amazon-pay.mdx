@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Amazon Pay Checkout v2 (`checkout.js`). Sources were checked on 16 November 2026.
+**Scope.** Amazon Pay Checkout v2 (`checkout.js`).
 
-**What the service does in this scope.** The `checkout.js` script renders the Amazon Pay button; Amazon recommends placing the Express button wherever checkout starts, such as the mini cart, cart page or checkout page, or in the payment selection at the end of checkout [S1]. Amazon Payments uses cookies to recognise the browser or device [S2]. Shop modules document loading all Amazon Pay scripts only after consent through a CMP [S3].
+**What the service does in this scope.** The `checkout.js` script renders the Amazon Pay button; Amazon recommends placing the Express button wherever checkout starts, such as the mini cart, cart page or checkout page, or in the payment selection at the end of checkout. Amazon Payments uses cookies to recognise the browser or device. Shop modules document loading all Amazon Pay scripts only after consent through a CMP.
 
 **Configurations included.**
 
@@ -35,12 +35,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
-| 2 | Button placement | Shop integration [S1] | Payment selection at end of checkout | Mini cart / cart / product pages |
-| 3 | Loading | Shop template / CMP [S3] | On selection | After Consenter consent |
+| 2 | Button placement | Shop integration | Payment selection at end of checkout | Mini cart / cart / product pages |
+| 3 | Loading | Shop template / CMP | On selection | After Consenter consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Amazon Payments Europe operates from Luxembourg as part of a US group; list the United States (18 U.S.C. § 2713 [S4]).
+**Processing location.** Amazon Payments Europe operates from Luxembourg as part of a US group; list the United States.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk |
 |---|---|---|
@@ -53,10 +53,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | Per Amazon Payments cookie notice | Per Amazon Payments cookie notice |
 | Processing location | EU (Luxembourg) / United States | EU (Luxembourg) / United States |
-
-## Sources
-
-- [S1] Amazon Developer — Add the Amazon Pay button
-- [S2] Amazon Payments UK — Privacy Notice
-- [S3] OXID eSales — Amazon Pay: Integrating Consent Management Platforms
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

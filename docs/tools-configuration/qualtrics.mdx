@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Qualtrics Website / App Insights intercepts (Site Intercept, `QSI` script) and Digital Experience Analytics. Qualtrics is a US company. Sources were checked on 16 November 2026.
+**Scope.** Qualtrics Website / App Insights intercepts (Site Intercept, `QSI` script) and Digital Experience Analytics. Qualtrics is a US company.
 
-**What the service does in this scope.** All cookies used by Website / App Insights are first-party cookies on the website's domain [S1]. For Site History and Page Count you can choose to store the information as cookies or in session storage, as a setting for the whole project [S1]. Intercepts use cookies such as Prevent Repeated Display to track whether a user has already seen an intercept [S2]. Qualtrics advises consulting legal counsel on the consent needed for Digital Experience Analytics and documents a OneTrust integration [S3].
+**What the service does in this scope.** All cookies used by Website / App Insights are first-party cookies on the website's domain. For Site History and Page Count you can choose to store the information as cookies or in session storage, as a setting for the whole project. Intercepts use cookies such as Prevent Repeated Display to track whether a user has already seen an intercept. Qualtrics advises consulting legal counsel on the consent needed for Digital Experience Analytics and documents a OneTrust integration.
 
 **Configurations included.**
 
@@ -35,14 +35,14 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
-| 2 | Site History / Page Count storage | Project options [S1] | Session storage | Cookies |
-| 3 | Prevent Repeated Display | Intercept settings [S1] | Off | On |
-| 4 | Digital Experience Analytics | DXA project [S3] | Off | On |
-| 5 | Loading | Consenter script blocking; `QSI.API.load()` after consent | After consent | After consent |
+| 2 | Site History / Page Count storage | Project options | Session storage | Cookies |
+| 3 | Prevent Repeated Display | Intercept settings | Off | On |
+| 4 | Digital Experience Analytics | DXA project | Off | On |
+| 5 | Loading | Consenter script blocking; `QSI.API.load` after consent | After consent | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Qualtrics is a US enterprise subject to 18 U.S.C. § 2713 [S4]; list the United States in addition to the data centre in your contract.
+**Processing location.** Qualtrics is a US enterprise subject to the US CLOUD Act; list the United States in addition to the data centre in your contract.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -52,12 +52,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Browsing and interaction data, Device characteristics, User-provided data | Browsing and interaction data, Device characteristics, Device identifiers, User-provided data |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | Session | Per Qualtrics cookie documentation [S1] |
+| Maximum storage duration | Session | Per Qualtrics cookie documentation |
 | Processing location | Contract data centre; United States | Contract data centre; United States |
-
-## Sources
-
-- [S1] Qualtrics Support — Website / App Insights browser cookies
-- [S2] Qualtrics Community — Impact of Chrome cookie changes on Digital CX
-- [S3] Qualtrics Support — Integrating consent managers with Digital Experience Analytics
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

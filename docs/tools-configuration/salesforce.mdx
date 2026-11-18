@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Account Engagement website tracking code and Tracking & Consent JavaScript API. Salesforce, Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** The Account Engagement website tracking code and Tracking & Consent JavaScript API. Salesforce, Inc. is a US company.
 
-**What the service does in this scope.** Account Engagement uses two cookies, `visitor_id` (with the account ID appended) and `pi_opt_in` [S1]. With first-party tracking, tracking moves from the Pardot domain to the customer's tracker domain [S2]; it was enabled by default for new business units from February 2023 [S3]. Pardot sets first-party cookies for tracking and third-party cookies for redundancy [S4]. With the Tracking & Consent API (activated in **Settings > Edit > Activate the Tracking & Consent JavaScript API**), `sendPageView` makes no request if `pi_opt_in` is false [S5][S6]. When a visitor converts (e.g. by form), activity is associated with a prospect record [S1].
+**What the service does in this scope.** Account Engagement uses two cookies, `visitor_id` (with the account ID appended) and `pi_opt_in`. With first-party tracking, tracking moves from the Pardot domain to the customer's tracker domain; it was enabled by default for new business units from February 2023. Pardot sets first-party cookies for tracking and third-party cookies for redundancy. With the Tracking & Consent API (activated in **Settings > Edit > Activate the Tracking & Consent JavaScript API**), `sendPageView` makes no request if `pi_opt_in` is false. When a visitor converts (e.g. by form), activity is associated with a prospect record.
 
 **Configurations included.**
 
@@ -28,20 +28,20 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | First-party tracking only; anonymous visitor analytics; after consent. |
 | Configuration B — Higher risk (default configuration) | Tracking with third-party redundancy cookies; prospects identified via forms and email links; after consent. |
 
-**No configuration without prior consent.** Both cookies are persistent visitor identifiers [S1].
+**No configuration without prior consent.** Both cookies are persistent visitor identifiers.
 
 ## Step 1 — Configure Account Engagement
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics; Receive personalised marketing offers |
-| 2 | Tracking domain | **Settings > First-Party Tracking**; **Domain Management** [S2][S3] | First-party tracker domain only | First-party with third-party redundancy |
-| 3 | Consent | Tracking & Consent API; `pi_opt_in` [S5][S6] | Set after Consenter consent | Set after Consenter consent |
+| 2 | Tracking domain | **Settings > First-Party Tracking**; **Domain Management** | First-party tracker domain only | First-party with third-party redundancy |
+| 3 | Consent | Tracking & Consent API; `pi_opt_in` | Set after Consenter consent | Set after Consenter consent |
 | 4 | Prospect identification | Forms, email link tracking | Not used | Used |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Salesforce is a US enterprise subject to 18 U.S.C. § 2713 [S7]; list the United States in all configurations, in addition to the hosting region in your contract.
+**Processing location.** Salesforce is a US enterprise subject to the US CLOUD Act; list the United States in all configurations, in addition to the hosting region in your contract.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|
@@ -53,15 +53,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | Profile based |
 | Maximum storage duration | Per cookie settings | Per cookie settings |
 | Processing location | Contract region; United States | Contract region; United States |
-
-**Basis.** Cookies [S1]; third-party redundancy cookies [S4]; `pi_opt_in` [S6], hence "Privacy choices".
-
-## Sources
-
-- [S1] Salesforce Ben — What cookies does Pardot use
-- [S2] Salesforce Ben — Cookieless future and Pardot first-party tracking
-- [S3] Etumos — How to track web activity with Account Engagement
-- [S4] Forvis Mazars — Cookies and tracking in Salesforce Pardot
-- [S5] Salesforce Developers — Getting started with the Tracking and Consent JavaScript API
-- [S6] Salesforce Developers — Tracking and Consent functions
-- [S7] 18 U.S.C. § 2713 (CLOUD Act)

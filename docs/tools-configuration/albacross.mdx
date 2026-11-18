@@ -17,46 +17,39 @@ The configuration is a comparative example, not a guarantee of legal compliance.
 
 ## At a glance
 
-**Scope.** The Albacross Tracking Script for B2B company identification and intent data. Albacross is headquartered in Stockholm. Sources were checked on 16 November 2026.
+**Scope.** The Albacross Tracking Script for B2B company identification and intent data. Albacross is headquartered in Stockholm.
 
-**What the service does in this scope.** Albacross identifies visitors by mapping data points such as IP addresses and cookies to company information, focusing on company-level identification [S1]. Albacross states that, to use it compliantly, customers must obtain valid cookie consent and inform visitors that Albacross uses information from cookies set on their devices "to improve our Lead Generation Service" [S2]. It provides cookie information and privacy-policy wording in its GDPR checklist [S3].
+**What the service does in this scope.** Albacross identifies visitors by mapping data points such as IP addresses and cookies to company information, focusing on company-level identification. Albacross states that, to use it compliantly, customers must obtain valid cookie consent and inform visitors that Albacross uses information from cookies set on their devices "to improve our Lead Generation Service". It provides cookie information and privacy-policy wording in its GDPR checklist.
 
-**Simplified format.** Albacross documents no alternative privacy settings. The guide uses a single fixed-behaviour configuration, loaded after consent as Albacross itself requires [S2].
+**Simplified format.** Albacross documents no alternative privacy settings. The guide uses a single fixed-behaviour configuration, loaded after consent as Albacross itself requires.
 
 ## Step 1 — Configure Albacross
 
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Support marketing analytics; Receive marketing offers |
-| Loading | Blocked by Consenter until consent [S2] |
-| Cookies | Set by the tracking script; list per Albacross GDPR checklist [S3] |
-| Privacy-policy text | Albacross-provided wording [S3] |
-| DPA | Albacross Data Processing Agreement [S4] |
+| Loading | Blocked by Consenter until consent |
+| Cookies | Set by the tracking script; list per Albacross GDPR checklist |
+| Privacy-policy text | Albacross-provided wording |
+| DPA | Albacross Data Processing Agreement |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Support marketing analytics, Receive marketing offers | Company identification for sales [S1]. |
-| Tracking method | Third party tracking (crosssession, cross-website) | Albacross uses cookie information across its customers' sites to improve its lead-generation service [S2]. |
-| Identifier | Device identifiers, IP address | Cookies and IP addresses [S1]. |
-| Data categories | IP address, Device identifiers, Browsing and interaction data, Device characteristics, Users' profiles | Company-level profiles and intent data [S1]. |
-| Legal role of data recipient | Processor; Individual Controller for Albacross's own service improvement | DPA [S4]; own use stated in [S2]. Consider a second entry. |
+| Processing purposes | Support marketing analytics, Receive marketing offers | Company identification for sales. |
+| Tracking method | Third party tracking (crosssession, cross-website) | Albacross uses cookie information across its customers' sites to improve its lead-generation service. |
+| Identifier | Device identifiers, IP address | Cookies and IP addresses. |
+| Data categories | IP address, Device identifiers, Browsing and interaction data, Device characteristics, Users' profiles | Company-level profiles and intent data. |
+| Legal role of data recipient | Processor; Individual Controller for Albacross's own service improvement | DPA; own use stated in. Consider a second entry. |
 | Personalisation model | Group based (properties) | Company-level segmentation. |
 | Maximum storage duration | Not documented | — |
 | Processing location | EU (Sweden/Poland offices); check sub-processors for US providers | — |
 
 ## Privacy-policy follow-up
 
-- Albacross as recipient and for its own service improvement [S2]; cookies [S3]; company identification.
+- Albacross as recipient and for its own service improvement; cookies; company identification.
 
 ## Verification checklist
 
 - [ ] No Albacross requests or cookies before consent.
-
-## Sources
-
-- [S1] Albacross Help — How do you identify visitors on my website?
-- [S2] Albacross Newsroom — Albacross and GDPR (FAQ)
-- [S3] Albacross Help — GDPR compliance checklist
-- [S4] Albacross — Albacross and GDPR (DPA reference)

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Zendesk messaging Web Widget and Web Widget (Classic). Zendesk, Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** The Zendesk messaging Web Widget and Web Widget (Classic). Zendesk, Inc. is a US company.
 
-**What the service does in this scope.** The messaging Web Widget uses cookies and local and session storage, grouped into essential, functional and analytics categories; by default it stores all three [S1]. `zE('messenger:set', 'cookies', range)` tells the widget which categories it may use: `"all"` when the user opted in to all cookies, `"none"` when the user opted out, in which case the widget is unable to use any of these storage options [S1]. The widgets use `ZD-suid` (session ID) and `ZD-buid` (device ID) [S2].
+**What the service does in this scope.** The messaging Web Widget uses cookies and local and session storage, grouped into essential, functional and analytics categories; by default it stores all three. `zE('messenger:set', 'cookies', range)` tells the widget which categories it may use: `"all"` when the user opted in to all cookies, `"none"` when the user opted out, in which case the widget is unable to use any of these storage options. The widgets use `ZD-suid` (session ID) and `ZD-buid` (device ID).
 
 **Configurations included.**
 
@@ -28,20 +28,20 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Widget loaded after Consenter consent with `cookies` set to the categories consented to (functional, no analytics). |
 | Configuration B — Higher risk (default configuration) | Widget loaded after consent with `cookies: "all"`; authenticated visitors. |
 
-> ⚠ **Recommendation — widget without storage before consent.** Setting `cookies` to `"none"` prevents storage [S1], but the widget still loads from Zendesk and transmits the IP address and page data. Whether this may run without consent depends on the GDPR legal basis for the chat; have your DPO or independent counsel review before loading the widget before consent.
+> ⚠ **Recommendation — widget without storage before consent.** Setting `cookies` to `"none"` prevents storage, but the widget still loads from Zendesk and transmits the IP address and page data. Whether this may run without consent depends on the GDPR legal basis for the chat; have your DPO or independent counsel review before loading the widget before consent.
 
 ## Step 1 — Configure Zendesk
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
-| 2 | Cookie range | `zE('messenger:set', 'cookies', …)` [S1] | Consented categories only (no analytics) | `"all"` |
+| 2 | Cookie range | `zE('messenger:set', 'cookies', …)` | Consented categories only (no analytics) | `"all"` |
 | 3 | Loading | Consenter script blocking | After consent | After consent |
 | 4 | Authenticated visitors | JWT sign-in for messaging | Off | On |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Zendesk is a US enterprise subject to 18 U.S.C. § 2713 [S3]; list the United States, plus the data-locality region in your Zendesk contract.
+**Processing location.** Zendesk is a US enterprise subject to the US CLOUD Act; list the United States, plus the data-locality region in your Zendesk contract.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|
@@ -53,9 +53,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | Per Zendesk In-Product Cookie Policy | Per Zendesk In-Product Cookie Policy |
 | Processing location | Contract region; United States | Contract region; United States |
-
-## Sources
-
-- [S1] Zendesk Developer Docs — Web Widget SDK API reference (set cookies)
-- [S2] Zendesk Support — Cookies used by Web Widget (Classic) and Web Widget
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)

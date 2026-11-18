@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Kelkoo Sales Tracking Lead Tag and Conversion Tag. Sources were checked on 16 November 2026.
+**Scope.** Kelkoo Sales Tracking Lead Tag and Conversion Tag.
 
-**What the service does in this scope.** KST uses first-party cookies set on the merchant's own domain [S1]. The Lead Tag sets the tracking cookie when a user arrives from a Kelkoo Group ad; the Conversion Tag reads it on the confirmation page and sends order data [S2][S3]. The `kelkooId` cookie lasts 12 months [S1]. Kelkoo states that the Lead Tag must be gated behind consent while the Conversion Tag does not require separate consent, relying on legitimate interest for the order data it sends [S1][S4]. A server-to-server option exists, with consent managed directly by the merchant [S5].
+**What the service does in this scope.** KST uses first-party cookies set on the merchant's own domain. The Lead Tag sets the tracking cookie when a user arrives from a Kelkoo Group ad; the Conversion Tag reads it on the confirmation page and sends order data. The `kelkooId` cookie lasts 12 months. Kelkoo states that the Lead Tag must be gated behind consent while the Conversion Tag does not require separate consent, relying on legitimate interest for the order data it sends. A server-to-server option exists, with consent managed directly by the merchant.
 
 **Configurations included.**
 
@@ -35,12 +35,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Medium risk (default configuration) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics |
-| 2 | Lead Tag | Landing pages / tag manager [S3] | After consent | After consent [S4] |
-| 3 | Conversion Tag | Confirmation page [S3] | After consent | Without consent [S1] |
+| 2 | Lead Tag | Landing pages / tag manager | After consent | After consent |
+| 3 | Conversion Tag | Confirmation page | After consent | Without consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Kelkoo Group is a European company; check its terms for US sub-processors and list the United States if present (18 U.S.C. § 2713 [S6]).
+**Processing location.** Kelkoo Group is a European company; check its terms for US sub-processors and list the United States if present.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Medium risk (default configuration) |
 |---|---|---|
@@ -50,14 +50,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity | Device identifiers, Browsing and interaction data, e-commerce Activity |
 | Legal role of data recipient | Individual Controller | Individual Controller |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | 12 months [S1] | 12 months [S1] |
+| Maximum storage duration | 12 months | 12 months |
 | Processing location | EU | EU |
-
-## Sources
-
-- [S1] Kelkoo Group Docs — GDPR Notice for Kelkoo Sales Tracking
-- [S2] Kelkoo Group Docs — How Kelkoo Sales Tracking works
-- [S3] Kelkoo Group Docs — Manual installation for Kelkoo Sales Tracking
-- [S4] Kelkoo Group Docs — Shopify/Shopify Plus installation
-- [S5] Kelkoo Group Docs — Server to server integration
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)

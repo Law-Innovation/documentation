@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Brevo sign-up forms and the Brevo tracker on the customer's website. Brevo is a French company. Email pixel tracking is handled through Brevo's per-contact pixel tracking consent (**Settings > Contacts > Per-contact pixel tracking consent**) and is outside the cookie banner [S1]. Sources were checked on 16 November 2026.
+**Scope.** Brevo sign-up forms and the Brevo tracker on the customer's website. Brevo is a French company. Email pixel tracking is handled through Brevo's per-contact pixel tracking consent (**Settings > Contacts > Per-contact pixel tracking consent**) and is outside the cookie banner.
 
-**What the service does in this scope.** The Brevo tracker connects Brevo apps (Automations, Segments, Conversations) to the website [S2]. Before installing it, you choose first-party or third-party cookies [S3]. By default, a cookie is placed on the visitor's computer, and the visitor can be associated with an existing contact after identifying themselves (e.g. via an email click or form) [S2]. With first-party cookies, Brevo appends `_sc` (marketing) or `_se` (transactional) parameters to links [S4].
+**What the service does in this scope.** The Brevo tracker connects Brevo apps (Automations, Segments, Conversations) to the website. Before installing it, you choose first-party or third-party cookies. By default, a cookie is placed on the visitor's computer, and the visitor can be associated with an existing contact after identifying themselves (e.g. via an email click or form). With first-party cookies, Brevo appends `_sc` (marketing) or `_se` (transactional) parameters to links.
 
 **Configurations included.**
 
@@ -36,12 +36,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Receive marketing offers | Receive marketing offers; Receive personalised marketing offers | Receive marketing offers; Receive personalised marketing offers |
-| 2 | Brevo tracker | Install via plugin, GTM or manually [S2][S3] | Not installed | After consent | After consent |
-| 3 | Cookie settings | Tracker setup, Step 1 [S3] | — | First-party cookies | Third-party cookies |
+| 2 | Brevo tracker | Install via plugin, GTM or manually | Not installed | After consent | After consent |
+| 3 | Cookie settings | Tracker setup, Step 1 | — | First-party cookies | Third-party cookies |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Per Brevo's DPA; add the United States if the DPA lists US cloud sub-processors (18 U.S.C. § 2713 [S5]).
+**Processing location.** Per Brevo's DPA; add the United States if the DPA lists US cloud sub-processors.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
 |---|---|---|---|
@@ -53,11 +53,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | Profile based | Profile based |
 | Maximum storage duration | Per contact retention | Per cookie inspection | Per cookie inspection |
 | Processing location | Per DPA | Per DPA | Per DPA |
-
-## Sources
-
-- [S1] Brevo Help — Email tracking pixels and the CNIL recommendation
-- [S2] Brevo Help — Install the Brevo tracker using Google Tag Manager
-- [S3] Brevo Help — Install the Brevo tracker manually
-- [S4] Brevo Help — Implementing first-party cookies on your website
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** This guide covers Google Customer Reviews (GCR) as managed in Google Merchant Center: the **survey opt-in module** on the order confirmation page and the optional **badge** [S1][S2]. Sources were checked on 16 November 2026.
+**Scope.** This guide covers Google Customer Reviews (GCR) as managed in Google Merchant Center: the **survey opt-in module** on the order confirmation page and the optional **badge**.
 
-**What the service does in this scope.** The opt-in module "lets customers choose whether to participate in Google Customer Reviews and also transmits the necessary transaction information to Google" [S1]. Required fields are the Merchant Center ID, order ID, customer email, delivery country and estimated delivery date; product GTINs are optional [S1]. By integrating the opt-in, the merchant agrees "to share your customer's order confirmation email address with Google" [S3]. For customers who opt in, Google may email a survey invitation after the purchase arrives [S4]. Displaying the badge is optional [S5].
+**What the service does in this scope.** The opt-in module "lets customers choose whether to participate in Google Customer Reviews and also transmits the necessary transaction information to Google". Required fields are the Merchant Center ID, order ID, customer email, delivery country and estimated delivery date; product GTINs are optional. By integrating the opt-in, the merchant agrees "to share your customer's order confirmation email address with Google". For customers who opt in, Google may email a survey invitation after the purchase arrives. Displaying the badge is optional.
 
 **Configurations included.**
 
@@ -28,7 +28,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Opt-in module on the order confirmation page only; no product GTINs; no badge. |
 | Configuration B — Higher risk | Opt-in module with product GTINs, plus the badge on all pages. |
 
-**Consent.** The opt-in module loads `apis.google.com/js/platform.js` [S1] and transmits the order email to Google before the customer has chosen in the Google dialog. Load the module only after consent. The badge contacts Google on every page where it appears and should also load only after consent.
+**Consent.** The opt-in module loads `apis.google.com/js/platform.js` and transmits the order email to Google before the customer has chosen in the Google dialog. Load the module only after consent. The badge contacts Google on every page where it appears and should also load only after consent.
 
 | Action | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -42,15 +42,15 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features (review invitation) | Same |
-| 2 | Opt-in module | Snippet on the order confirmation page [S1] | Required fields only | Required fields plus `products` (GTINs) [S1] |
-| 3 | Opt-in style | `opt_in_style` (`CENTER_DIALOG`, `BOTTOM_RIGHT_DIALOG`, …) [S2] | Any | Any |
-| 4 | Badge | Badge code on chosen pages [S5] | Not used | All pages |
+| 2 | Opt-in module | Snippet on the order confirmation page | Required fields only | Required fields plus `products` (GTINs) |
+| 3 | Opt-in style | `opt_in_style` (`CENTER_DIALOG`, `BOTTOM_RIGHT_DIALOG`, …) | Any | Any |
+| 4 | Badge | Badge code on chosen pages | Not used | All pages |
 | 5 | Loading | Consenter script blocking | After consent | After consent |
-| 6 | Survey timing | **Not configurable.** Google manages the survey delivery date [S6] | — | — |
+| 6 | Survey timing | **Not configurable.** Google manages the survey delivery date | — | — |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Google LLC is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S7].
+**Processing location.** Google LLC is a US company and can be required to disclose data in its possession, custody or control regardless of storage location.
 
 ### Configuration A — Medium risk
 
@@ -58,9 +58,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|---|
 | Processing purposes | Unlock additional website features | Invitation to review the purchase. |
 | Tracking method | No tracking | No tracking identifier is documented for the module. |
-| Identifier | Direct identifier, IP address | Customer email address [S1][S3]. |
-| Data categories | direct identifier, e-commerce Activity, IP address, Non-precise location data | Order ID, delivery country and delivery date [S1]. |
-| Legal role of data recipient | Individual Controller | Google contacts the customer itself and collects the survey response [S4]. Verify against the GCR Program Agreement. |
+| Identifier | Direct identifier, IP address | Customer email address. |
+| Data categories | direct identifier, e-commerce Activity, IP address, Non-precise location data | Order ID, delivery country and delivery date. |
+| Legal role of data recipient | Individual Controller | Google contacts the customer itself and collects the survey response. Verify against the GCR Program Agreement. |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Not documented | — |
 | Processing location | United States as potential processing and access location | See note above. |
@@ -72,7 +72,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Processing purposes | Unlock additional website features | As A. |
 | Tracking method | No tracking | As A; re-assess if the badge sets cookies in your browser test. |
 | Identifier | Direct identifier, IP address | As A. |
-| Data categories | direct identifier, e-commerce Activity, IP address, Non-precise location data, Browsing and interaction data | Purchased products (GTINs) [S1]; badge requests on every page. |
+| Data categories | direct identifier, e-commerce Activity, IP address, Non-precise location data, Browsing and interaction data | Purchased products (GTINs); badge requests on every page. |
 | Legal role of data recipient | Individual Controller | As A. |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Not documented | — |
@@ -80,20 +80,10 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## Privacy-policy follow-up
 
-- Google as recipient of the order email, order details and (B) product GTINs [S1][S3]; survey email sent by Google to customers who opt in [S4]; US transfer and potential access by US authorities [S7].
+- Google as recipient of the order email, order details and (B) product GTINs; survey email sent by Google to customers who opt in; US transfer and potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] No request to `apis.google.com` before consent.
 - [ ] A: no `products` array; no badge code on any page.
-- [ ] Opt-in data accurate, as Google requires [S1].
-
-## Sources
-
-- [S1] Google Merchant Center Help — Integrate the survey opt-in module
-- [S2] Google Merchant Center Help — Survey opt-in module (legacy article)
-- [S3] Google Merchant Center Help — Google Customer Reviews data sharing (customise survey opt-in placement)
-- [S4] Google Merchant Center Help — Google Customer Reviews opt-in and survey
-- [S5] Google Merchant Center Help — Google Customer Reviews FAQ (badge optional)
-- [S6] Google Merchant Center Help — FAQs for Google Customer Reviews
-- [S7] 18 U.S.C. § 2713 (CLOUD Act)
+- [ ] Opt-in data accurate, as Google requires.

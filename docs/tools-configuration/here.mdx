@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** HERE Maps API for JavaScript and HERE Location Services (HERE Technologies). Sources were checked on 16 November 2026.
+**Scope.** HERE Maps API for JavaScript and HERE Location Services (HERE Technologies).
 
-**What the service does in this scope.** When location-based services are used (e.g. search, routing or map data requests), location data is sent to HERE to serve the content [S1]. HERE Location Services Self-Hosted provides on-premises location services, including map rendering tiles for client-side rendering with the Maps API for JavaScript, giving customers control over their user data [S2].
+**What the service does in this scope.** When location-based services are used (e.g. search, routing or map data requests), location data is sent to HERE to serve the content. HERE Location Services Self-Hosted provides on-premises location services, including map rendering tiles for client-side rendering with the Maps API for JavaScript, giving customers control over their user data.
 
 **Configurations included.**
 
@@ -28,14 +28,14 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | HERE Location Services Self-Hosted; tiles and search served from your own infrastructure. |
 | Configuration B — Medium risk | HERE cloud Maps API for JavaScript; loaded after Consenter consent or click-to-load. |
 
-**Configuration A.** With self-hosting, requests stay on your infrastructure [S2]; map it as self-hosted. Whether a Consenter entry is needed depends on whether the self-hosted setup stores anything on the device; verify.
+**Configuration A.** With self-hosting, requests stay on your infrastructure; map it as self-hosted. Whether a Consenter entry is needed depends on whether the self-hosted setup stores anything on the device; verify.
 
 ## Step 1 — Configure HERE
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
-| 2 | Hosting | HERE contract [S2] | Self-hosted | HERE cloud |
+| 2 | Hosting | HERE contract | Self-hosted | HERE cloud |
 | 3 | Loading | Consenter script blocking / click-to-load | Per verification | After consent |
 | 4 | Location search | Only on user action | User-initiated | User-initiated |
 
@@ -49,11 +49,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Non-precise location data (if searched) | IP address, Device characteristics, Non-precise location data |
 | Legal role of data recipient | Self-hosted | Processor |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | Per your server logs | Per HERE privacy policy [S3] |
+| Maximum storage duration | Per your server logs | Per HERE privacy policy |
 | Processing location | Your infrastructure | Per HERE contract; check the DPA for US sub-processors |
-
-## Sources
-
-- [S1] HERE — Privacy Policy
-- [S2] MarTech Series — HERE Location Services Self-Hosted
-- [S3] HERE Legal — Privacy (legal basis per supplement)

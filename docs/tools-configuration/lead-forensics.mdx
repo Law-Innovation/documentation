@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Lead Forensics tracking code for reverse business-IP identification. Sources were checked on 16 November 2026.
+**Scope.** The Lead Forensics tracking code for reverse business-IP identification.
 
-**What the service does in this scope.** The JavaScript collects non-personal attributes and the IP address and matches business IP addresses to organisations [S1][S2]. The **basic code** does not drop a cookie; the optional **advanced code** sets the `lfuuid` cookie (a random GUID) to improve match rates and "should be placed behind a consent banner" [S1]. Lead Forensics acts as data processor under a DPA [S1][S3]. Data may be processed by group companies including Lead Forensics Limited (UK) and Lead Forensics, Inc. (US) [S4].
+**What the service does in this scope.** The JavaScript collects non-personal attributes and the IP address and matches business IP addresses to organisations. The **basic code** does not drop a cookie; the optional **advanced code** sets the `lfuuid` cookie (a random GUID) to improve match rates and "should be placed behind a consent banner". Lead Forensics acts as data processor under a DPA. Data may be processed by group companies including Lead Forensics Limited (UK) and Lead Forensics, Inc. (US).
 
 **Configurations included.**
 
@@ -28,21 +28,21 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk (⚠ no-consent) | Basic code only (no cookie). |
 | Configuration B — Higher risk | Advanced code with `lfuuid` cookie, after consent. |
 
-> ⚠ **Recommendation — running the basic code before consent is legally uncertain.** Lead Forensics requires consent only for the advanced (cookie) code [S1]. The basic script still runs in the browser and processes the IP address. Have your DPO or independent counsel confirm before loading it without consent.
+> ⚠ **Recommendation — running the basic code before consent is legally uncertain.** Lead Forensics requires consent only for the advanced (cookie) code. The basic script still runs in the browser and processes the IP address. Have your DPO or independent counsel confirm before loading it without consent.
 
 ## Step 1 — Configure Lead Forensics
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics; Receive marketing offers | Same |
-| 2 | Code version | Lead Forensics portal: basic vs. advanced code [S1] | Basic | Advanced |
+| 2 | Code version | Lead Forensics portal: basic vs. advanced code | Basic | Advanced |
 | 3 | Loading | Consenter script blocking | See ⚠ recommendation | After consent |
-| 4 | Contact data feature | Portal feature [S1] | Not used | Optional (add "direct identifier") |
-| 5 | DPA | Lead Forensics DPA [S3] | Concluded | Concluded |
+| 4 | Contact data feature | Portal feature | Not used | Optional (add "direct identifier") |
+| 5 | DPA | Lead Forensics DPA | Concluded | Concluded |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Group processing includes Lead Forensics, Inc. in the US [S4], subject to 18 U.S.C. § 2713 [S5].
+**Processing location.** Group processing includes Lead Forensics, Inc. in the US, subject to the US CLOUD Act.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -57,17 +57,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## Privacy-policy follow-up
 
-- Lead Forensics as processor; business IP identification; cookie (B); group transfers to the US [S4].
+- Lead Forensics as processor; business IP identification; cookie (B); group transfers to the US.
 
 ## Verification checklist
 
 - [ ] A: no `lfuuid` cookie.
 - [ ] B: advanced code only after consent.
-
-## Sources
-
-- [S1] Lead Forensics — Data compliance
-- [S2] Lead Forensics — California privacy guidance (how the product works)
-- [S3] Lead Forensics — Data Processing Agreement
-- [S4] Lead Forensics — Sub-processors
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

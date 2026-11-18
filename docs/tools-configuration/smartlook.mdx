@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Smartlook web SDK for session recordings, heatmaps and events. Smartlook.com, s.r.o. (Brno, Czech Republic) acts as processor under its DPA [S1]; Smartlook is part of Cisco. Sources were checked on 16 November 2026.
+**Scope.** The Smartlook web SDK for session recordings, heatmaps and events. Smartlook.com, s.r.o. (Brno, Czech Republic) acts as processor under its DPA; Smartlook is part of Cisco.
 
-**What the service does in this scope.** Smartlook records visitor sessions. Smartlook states that all its data is stored on EU servers and lists, as the situations in which customers process personal data, recording forms with personal data, **not anonymising IP addresses**, and using the visitor-info API or integrations [S2]. The data retention period depends on the purchased plan [S1]. Its first-party cookies include a session ID and a visitor ID (`SL_C_…_SID`, `SL_C_…_VID`) [S3].
+**What the service does in this scope.** Smartlook records visitor sessions. Smartlook states that all its data is stored on EU servers and lists, as the situations in which customers process personal data, recording forms with personal data, **not anonymising IP addresses**, and using the visitor-info API or integrations. The data retention period depends on the purchased plan. Its first-party cookies include a session ID and a visitor ID (`SL_C_…_SID`, `SL_C_…_VID`).
 
 **Configurations included.**
 
@@ -28,22 +28,22 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | IP anonymisation on; forms and sensitive elements masked; no user identification; after consent. |
 | Configuration B — Higher risk | IP addresses stored; visitor identification through the API (name, email); after consent. |
 
-**No configuration without prior consent.** A persistent visitor ID cookie is set [S3]. Smartlook's old GDPR consent API is marked discontinued [S4]; block the SDK in Consenter until consent.
+**No configuration without prior consent.** A persistent visitor ID cookie is set. Smartlook's old GDPR consent API is marked discontinued; block the SDK in Consenter until consent.
 
 ## Step 1 — Configure Smartlook
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
-| 2 | IP address anonymisation | Project privacy settings [S2] | On | Off |
+| 2 | IP address anonymisation | Project privacy settings | On | Off |
 | 3 | Form and element masking | Privacy settings; CSS classes on sensitive elements | All form inputs masked | Default |
-| 4 | Visitor identification | `smartlook('identify', …)` / visitor-info API [S2] | Not used | Used |
+| 4 | Visitor identification | `smartlook('identify', …)` / visitor-info API | Not used | Used |
 | 5 | Loading | Consenter script blocking | After consent | After consent |
-| 6 | Retention | Plan-dependent [S1] | Shortest plan option | Plan default |
+| 6 | Retention | Plan-dependent | Shortest plan option | Plan default |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** EU servers [S2]. Smartlook belongs to Cisco Systems, Inc., a US enterprise subject to 18 U.S.C. § 2713 [S5]; the United States is listed as a potential access location.
+**Processing location.** EU servers. Smartlook belongs to Cisco Systems, Inc., a US enterprise subject to the US CLOUD Act; the United States is listed as a potential access location.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Higher risk |
 |---|---|---|
@@ -53,23 +53,15 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address anonymised | Browsing and interaction data, Device characteristics, Device identifiers, IP address, direct identifier, User-provided data, Users' profiles |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | Per plan [S1] | Per plan [S1] |
+| Maximum storage duration | Per plan | Per plan |
 | Processing location | EU; United States as potential access location | EU; United States as potential access location |
 
 ## Privacy-policy follow-up
 
-- Smartlook as processor [S1]; recordings; cookies [S3]; IP anonymisation (A); identification (B); EU storage; potential access by US authorities [S5].
+- Smartlook as processor; recordings; cookies; IP anonymisation (A); identification (B); EU storage; potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] No Smartlook requests before consent.
 - [ ] IP anonymisation setting matches the mapping.
 - [ ] Recordings reviewed for unmasked personal data.
-
-## Sources
-
-- [S1] Smartlook — Data Processing Agreement
-- [S2] Smartlook Blog — GDPR and Smartlook
-- [S3] Smartsupp/Smartlook Help — Cookies stored when using Smartlook recordings
-- [S4] Smartlook Developer Docs — GDPR (API discontinued)
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

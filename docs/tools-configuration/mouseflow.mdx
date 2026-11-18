@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Mouseflow tracking script (session recordings, heatmaps, funnels, forms) on a website. Mouseflow ApS is a Danish company. Sources were checked on 16 November 2026.
+**Scope.** The Mouseflow tracking script (session recordings, heatmaps, funnels, forms) on a website. Mouseflow ApS is a Danish company.
 
-**What the service does in this scope.** Mouseflow states that it uses only first-party statistics cookies with a lifetime of no more than 90 days, no third-party cookies and no cross-site tracking [S1]. Customers can delay data collection until consent or "disable cookies entirely and still capture sessions, heatmaps, and funnels" [S2]. EU customer data is stored in the EU; international transfers rely on SCCs and the EU–US Data Privacy Framework [S3]. Content can be excluded or masked with the Visual Privacy Tool [S1].
+**What the service does in this scope.** Mouseflow states that it uses only first-party statistics cookies with a lifetime of no more than 90 days, no third-party cookies and no cross-site tracking. Customers can delay data collection until consent or "disable cookies entirely and still capture sessions, heatmaps, and funnels". EU customer data is stored in the EU; international transfers rely on SCCs and the EU–US Data Privacy Framework. Content can be excluded or masked with the Visual Privacy Tool.
 
 **Configurations included.**
 
@@ -28,23 +28,23 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | Cookies disabled; content masked; loaded after consent. |
 | Configuration B — Medium risk (default) | First-party cookies (≤ 90 days); default masking; loaded after consent. |
 
-**No configuration without prior consent.** Even with cookies disabled, Mouseflow records sessions and transmits interaction data. Mouseflow documents integration with consent tools [S1] but does not document a consent-free configuration, so both configurations load after consent.
+**No configuration without prior consent.** Even with cookies disabled, Mouseflow records sessions and transmits interaction data. Mouseflow documents integration with consent tools but does not document a consent-free configuration, so both configurations load after consent.
 
 ## Step 1 — Configure Mouseflow
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk (default) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
-| 2 | Cookies | Website/tracking settings (disable cookies) [S2] | Disabled | Enabled (first-party, ≤ 90 days) [S1] |
-| 3 | Masking and exclusion | Visual Privacy Tool (exclude, mask, whitelist) [S1] | Mask all text containing personal data; exclude sensitive pages | Default masking |
-| 4 | Do Not Track | Account privacy settings (automatic for EU/EEA accounts) [S4] | On | On |
+| 2 | Cookies | Website/tracking settings (disable cookies) | Disabled | Enabled (first-party, ≤ 90 days) |
+| 3 | Masking and exclusion | Visual Privacy Tool (exclude, mask, whitelist) | Mask all text containing personal data; exclude sensitive pages | Default masking |
+| 4 | Do Not Track | Account privacy settings (automatic for EU/EEA accounts) | On | On |
 | 5 | Data location | Account region | EU | EU |
 | 6 | Loading | Consenter script blocking | After consent | After consent |
-| 7 | Retention | Plan-dependent; per DPA [S3] | Shortest available | Plan default |
+| 7 | Retention | Plan-dependent; per DPA | Shortest available | Plan default |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** EU storage for EU customers [S3]. Check Mouseflow's sub-processor list; where US sub-processors are used, list the United States as a potential access location (18 U.S.C. § 2713) [S5].
+**Processing location.** EU storage for EU customers. Check Mouseflow's sub-processor list; where US sub-processors are used, list the United States as a potential access location.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk (default) |
 |---|---|---|
@@ -54,25 +54,15 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Browsing and interaction data, Device characteristics, IP address | Browsing and interaction data, Device characteristics, Device identifiers, IP address |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | Per plan / DPA | Cookies ≤ 90 days [S1]; data per plan / DPA |
+| Maximum storage duration | Per plan / DPA | Cookies ≤ 90 days; data per plan / DPA |
 | Processing location | EU; US if US sub-processors | EU; US if US sub-processors |
-
-**Basis.** Cookie policy and cross-site statement [S1]; cookieless capture [S2]; DPA, EU storage and transfer mechanisms [S3]. Mouseflow's IP-address handling is described in its help article on visitor privacy [S1]; select "IP address anonymised" instead of "IP address" if your account settings anonymise IPs.
 
 ## Privacy-policy follow-up
 
-- Mouseflow as processor; recordings and heatmaps; cookies (B) or cookieless (A); masking; EU storage; transfer mechanisms [S3].
+- Mouseflow as processor; recordings and heatmaps; cookies (B) or cookieless (A); masking; EU storage; transfer mechanisms.
 
 ## Verification checklist
 
 - [ ] No Mouseflow requests before consent.
 - [ ] A: no `mf_*` cookies set.
 - [ ] Recordings reviewed for unmasked personal data.
-
-## Sources
-
-- [S1] Mouseflow — Privacy Whitepaper
-- [S2] Mouseflow — CX analytics tools (consent and cookieless capture)
-- [S3] Mouseflow — GDPR compliance and privacy standards
-- [S4] Mouseflow — Privacy feature comparison (Do Not Track)
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Comscore Publisher Web Page Impression Tag for Media Metrix audience measurement (beacon to `sb.scorecardresearch.com`). Comscore, Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** The Comscore Publisher Web Page Impression Tag for Media Metrix audience measurement (beacon to `sb.scorecardresearch.com`). Comscore, Inc. is a US company.
 
-**What the service does in this scope.** The tag sends page impression data such as page URL, referrer, browser type and cookie values with each call [S1][S2]. Consent for audience research is communicated with the `cs_ucfr` label (`1` = consent, `0` = no consent, blank = no action); Comscore requires recipients to have an auditable consent trail [S3][S4]. An optional publisher-specific first-party cookie `_scor_uid` is disabled by default; when enabled, it is set only with a consent signal from a CMP or `cs_ucfr=1`, unless the publisher sets `bypassUserConsentRequirementFor1PCookie` [S2][S5].
+**What the service does in this scope.** The tag sends page impression data such as page URL, referrer, browser type and cookie values with each call. Consent for audience research is communicated with the `cs_ucfr` label (`1` = consent, `0` = no consent, blank = no action); Comscore requires recipients to have an auditable consent trail. An optional publisher-specific first-party cookie `_scor_uid` is disabled by default; when enabled, it is set only with a consent signal from a CMP or `cs_ucfr=1`, unless the publisher sets `bypassUserConsentRequirementFor1PCookie`.
 
 **Configurations included.**
 
@@ -28,21 +28,21 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Higher risk | Publisher tag after consent with `cs_ucfr=1`; first-party cookie disabled (default). |
 | Configuration B — Highest risk | As A, plus the first-party `_scor_uid` cookie enabled. |
 
-**No configuration without prior consent.** The tag sends cookie values and is used for cross-publisher audience research [S1][S3]. Do not use the consent-bypass setting for EU visitors; block the tag until consent.
+**No configuration without prior consent.** The tag sends cookie values and is used for cross-publisher audience research. Do not use the consent-bypass setting for EU visitors; block the tag until consent.
 
 ## Step 1 — Configure the Comscore tag
 
 | # | Configuration area | Where to configure it | Configuration A — Higher risk | Configuration B — Highest risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics |
-| 2 | Consent label | `cs_ucfr` in the tag (`1` after consent) [S3][S4] | `1` | `1` |
-| 3 | First-party cookie | `enableFirstPartyCookie` [S2] | Off (default) | On |
-| 4 | Consent bypass | `bypassUserConsentRequirementFor1PCookie` [S2] | Not set | Not set |
+| 2 | Consent label | `cs_ucfr` in the tag (`1` after consent) | `1` | `1` |
+| 3 | First-party cookie | `enableFirstPartyCookie` | Off (default) | On |
+| 4 | Consent bypass | `bypassUserConsentRequirementFor1PCookie` | Not set | Not set |
 | 5 | Loading | Consenter script blocking | After consent | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Comscore, Inc. is a US company subject to 18 U.S.C. § 2713 [S6].
+**Processing location.** Comscore, Inc. is a US company subject to the US CLOUD Act.
 
 | Consenter Manager field | Configuration A — Higher risk | Configuration B — Highest risk |
 |---|---|---|
@@ -55,22 +55,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Maximum storage duration | Not documented | Not documented |
 | Processing location | United States | United States |
 
-**Basis.** Data passed with the tag call [S1]; `cs_ucfr` consent label transmitted to Comscore [S3]; `_scor_uid` [S2][S5]. Comscore uses the data for its own syndicated audience research; verify the controller role against your Comscore agreement.
-
 ## Privacy-policy follow-up
 
-- Comscore as recipient for audience measurement; cookies (third-party Scorecard Research cookies; `_scor_uid` in B); consent transmission; US transfer and potential access by US authorities [S6].
+- Comscore as recipient for audience measurement; cookies (third-party Scorecard Research cookies; `_scor_uid` in B); consent transmission; US transfer and potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] No `scorecardresearch.com` requests before consent.
-- [ ] Requests carry `cs_ucfr=1` after consent [S4].
-
-## Sources
-
-- [S1] Comscore — Media Metrix Reporting: Publisher Web Page Impression Tag (v2.9.2)
-- [S2] Tealium Docs — Comscore tag setup guide (`enableFirstPartyCookie`, consent bypass)
-- [S3] Comscore Support — What does GDPR mean for digital data collection?
-- [S4] Comscore — GDPR compliance: capturing user consent (addendum)
-- [S5] Comscore — Publisher Tag documentation (`_scor_uid`)
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+- [ ] Requests carry `cs_ucfr=1` after consent.

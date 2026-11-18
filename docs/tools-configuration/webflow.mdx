@@ -17,15 +17,15 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Webflow Analyze (analytics) and Webflow Optimize (personalisation and AI-powered testing). Sources were checked on 16 November 2026.
+**Scope.** Webflow Analyze (analytics) and Webflow Optimize (personalisation and AI-powered testing).
 
-**What the service does in this scope.** Site tracking records analytics, personalises experiences and runs AI-powered tests using Analyze and Optimize; it must be enabled to use the consent management APIs [S1]. A CMP signals choices with `wf.allowUserTracking()` and `wf.denyUserTracking()`; `wf.getUserTrackingChoice()` shows the current status [S1]. Webflow publishes separate guidance on Analyze and Optimize compliance [S2].
+**What the service does in this scope.** Site tracking records analytics, personalises experiences and runs AI-powered tests using Analyze and Optimize; it must be enabled to use the consent management APIs. A CMP signals choices with `wf.allowUserTracking` and `wf.denyUserTracking`; `wf.getUserTrackingChoice` shows the current status. Webflow publishes separate guidance on Analyze and Optimize compliance.
 
 **Configurations included.**
 
 | Configuration | Summary |
 |---|---|
-| Configuration A — Medium risk | Analyze only; Consenter calls `wf.allowUserTracking()` after consent and `wf.denyUserTracking()` otherwise. |
+| Configuration A — Medium risk | Analyze only; Consenter calls `wf.allowUserTracking` after consent and `wf.denyUserTracking` otherwise. |
 | Configuration B — Higher risk | Analyze and Optimize (personalisation/testing) with the same consent gating. |
 | Configuration C — Higher risk (default configuration) | Site tracking enabled with no consent signal. |
 
@@ -34,12 +34,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website | Improve the service; Personalise the website |
-| 2 | Products | Site settings → Site tracking [S1] | Analyze | Analyze + Optimize | Analyze (+ Optimize) |
-| 3 | Consent signal | Browser API [S1] | `allowUserTracking` / `denyUserTracking` from Consenter | `allowUserTracking` / `denyUserTracking` from Consenter | None |
+| 2 | Products | Site settings → Site tracking | Analyze | Analyze + Optimize | Analyze (+ Optimize) |
+| 3 | Consent signal | Browser API | `allowUserTracking` / `denyUserTracking` from Consenter | `allowUserTracking` / `denyUserTracking` from Consenter | None |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Webflow is a US enterprise; list the United States (18 U.S.C. § 2713 [S3]).
+**Processing location.** Webflow is a US enterprise; list the United States.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default configuration) |
 |---|---|---|---|
@@ -51,9 +51,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | Group based (behaviour) | Group based (behaviour) |
 | Maximum storage duration | Per Webflow documentation | Per Webflow documentation | Per Webflow documentation |
 | Processing location | United States | United States | United States |
-
-## Sources
-
-- [S1] Webflow Developers — Site Tracking and Consent Management
-- [S2] Webflow Help — Analyze & Optimize compliance with privacy laws
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)

@@ -17,11 +17,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** This guide covers the Application Insights **JavaScript SDK** (browser monitoring: page views, performance, exceptions, dependency calls) as part of Azure Monitor. Server-side telemetry from the operator's own backend is out of scope. Sources were checked on 16 November 2026.
+**Scope.** This guide covers the Application Insights **JavaScript SDK** (browser monitoring: page views, performance, exceptions, dependency calls) as part of Azure Monitor. Server-side telemetry from the operator's own backend is out of scope.
 
-**What the service does in this scope.** The SDK sends page views, timings and errors to the operator's Application Insights resource. By default it uses cookies to recognise users and sessions; the `disableCookiesUsage` setting stops the SDK storing or reading any cookie data [S1]. Microsoft notes that without cookies some features are lost, as each page view is treated separately [S2].
+**What the service does in this scope.** The SDK sends page views, timings and errors to the operator's Application Insights resource. By default it uses cookies to recognise users and sessions; the `disableCookiesUsage` setting stops the SDK storing or reading any cookie data. Microsoft notes that without cookies some features are lost, as each page view is treated separately.
 
-**Legal role.** Application Insights is an Azure service used under the operator's Azure subscription; Microsoft processes customer data as processor under the Microsoft Products and Services Data Protection Addendum (DPA) [S3].
+**Legal role.** Application Insights is an Azure service used under the operator's Azure subscription; Microsoft processes customer data as processor under the Microsoft Products and Services Data Protection Addendum (DPA).
 
 **Configurations included.**
 
@@ -30,7 +30,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | Cookies disabled (`disableCookiesUsage: true`); performance and error monitoring without persistent identifiers; resource in an EU region. |
 | Configuration B — Medium risk (default) | Cookies enabled (default); users and sessions recognised across page views and visits; loaded only after consent. |
 
-> ⚠ **Recommendation — Configuration A without consent is legally uncertain.** With cookies disabled, the SDK does not store or read cookie data [S1], so § 25 TDDDG may not be triggered by cookies. The script still runs in the browser and transmits page and device data. Whether loading it without consent is permissible depends on your assessment of the GDPR legal basis (legitimate interest in error and performance monitoring) and on whether any other storage (such as session storage buffering) is used. Document the reasoning and have it reviewed by your DPO or independent counsel; otherwise load A only after consent.
+> ⚠ **Recommendation — Configuration A without consent is legally uncertain.** With cookies disabled, the SDK does not store or read cookie data, so § 25 TDDDG may not be triggered by cookies. The script still runs in the browser and transmits page and device data. Whether loading it without consent is permissible depends on your assessment of the GDPR legal basis (legitimate interest in error and performance monitoring) and on whether any other storage (such as session storage buffering) is used. Document the reasoning and have it reviewed by your DPO or independent counsel; otherwise load A only after consent.
 
 | Action | Configuration A — Lower risk | Configuration B — Medium risk (default) |
 |---|---|---|
@@ -44,25 +44,25 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk (default) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
-| 2 | Cookies | SDK configuration `disableCookiesUsage` [S1] | `true` | `false` (default) |
-| 3 | Cookie scope | `cookieCfg`, `cookieDomain`, `cookiePath` [S1] | Not applicable | Restrict to the site's own domain |
+| 2 | Cookies | SDK configuration `disableCookiesUsage` | `true` | `false` (default) |
+| 3 | Cookie scope | `cookieCfg`, `cookieDomain`, `cookiePath` | Not applicable | Restrict to the site's own domain |
 | 4 | Resource region | Azure portal, when creating the Application Insights / Log Analytics resource | EU region | EU region |
 | 5 | Data retention | Log Analytics workspace retention settings in the Azure portal | Short period, e.g. 30 days (illustrative) | Longer period, e.g. 90 days (illustrative) |
 | 6 | Custom user identifiers | SDK `setAuthenticatedUserContext` | Not used | Not used (if used, add "Authentication-derived identifiers") |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Data is stored in the Azure region chosen for the resource. Microsoft Corporation is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S4].
+**Processing location.** Data is stored in the Azure region chosen for the resource. Microsoft Corporation is a US company and can be required to disclose data in its possession, custody or control regardless of storage location.
 
 ### Configuration A — Lower risk
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Improve the service | Performance and error monitoring. |
-| Tracking method | First party tracking (single session) | No cookies [S1]; each page view stands alone [S2]. If even the single-session link is absent in your setup, select "No tracking". |
+| Tracking method | First party tracking (single session) | No cookies; each page view stands alone. If even the single-session link is absent in your setup, select "No tracking". |
 | Identifier | IP address | Transmitted with each telemetry request. |
 | Data categories | Browsing and interaction data, Device characteristics, IP address, Aggregated site statistics | Page views, timings, errors. |
-| Legal role of data recipient | Processor | Microsoft DPA [S3]. |
+| Legal role of data recipient | Processor | Microsoft DPA. |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | 30 days (illustrative) | Per workspace retention setting. |
 | Processing location | Chosen EU Azure region; United States as potential access location | See note above. |
@@ -72,27 +72,20 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Improve the service | As A. |
-| Tracking method | First party tracking (cross-session) | User and session cookies on the site's domain [S1]. |
+| Tracking method | First party tracking (cross-session) | User and session cookies on the site's domain. |
 | Identifier | Device identifiers, IP address | Cookie-based user ID. |
 | Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Aggregated site statistics | — |
-| Legal role of data recipient | Processor | [S3] |
+| Legal role of data recipient | Processor | — |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | 90 days (illustrative) | Per workspace retention setting. |
 | Processing location | As A | See note above. |
 
 ## Privacy-policy follow-up
 
-- Microsoft as processor; telemetry collected; cookies (B); retention period chosen; Azure region; potential access by US authorities [S4].
+- Microsoft as processor; telemetry collected; cookies (B); retention period chosen; Azure region; potential access by US authorities.
 
 ## Verification checklist
 
-- [ ] **A:** no Application Insights cookies set (`disableCookiesUsage` effective) [S1].
+- [ ] **A:** no Application Insights cookies set (`disableCookiesUsage` effective).
 - [ ] **B, before consent:** no request to the Application Insights ingestion endpoint.
 - [ ] Workspace region and retention match the mapping.
-
-## Sources
-
-- [S1] Microsoft Learn — Application Insights JavaScript SDK configuration
-- [S2] Microsoft Azure Blog — Application Insights JavaScript SDK: reliability and performance improvements (option to disable cookies)
-- [S3] Microsoft Products and Services Data Protection Addendum
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

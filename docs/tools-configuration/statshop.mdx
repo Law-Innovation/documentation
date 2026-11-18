@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Statshop audience measurement tag, published by Web2Roi. Servers are in France, maintained by OVH [S1]. Sources were checked on 16 November 2026.
+**Scope.** Statshop audience measurement tag, published by Web2Roi. Servers are in France, maintained by OVH.
 
-**What the service does in this scope.** By default, Statshop is configured for the consent exemption: one first-party cookie; anonymised IPs; page audience aggregated hourly; device, browser and screen size, referrer domain, time on page, bounce rate and scroll depth aggregated daily [S1]. Exempt mode disables third-party ad-platform imports, non-aggregated exports, individual visitor paths and the `usid` user identifier [S1]. A **"with consent" version** lifts these restrictions [S1]. Web2Roi acts as processor and does not share data with third parties [S1].
+**What the service does in this scope.** By default, Statshop is configured for the consent exemption: one first-party cookie; anonymised IPs; page audience aggregated hourly; device, browser and screen size, referrer domain, time on page, bounce rate and scroll depth aggregated daily. Exempt mode disables third-party ad-platform imports, non-aggregated exports, individual visitor paths and the `usid` user identifier. A **"with consent" version** lifts these restrictions. Web2Roi acts as processor and does not share data with third parties.
 
 **Configurations included.**
 
@@ -28,16 +28,16 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk (⚠ no-consent) | Default exempt mode. |
 | Configuration B — Higher risk | "With consent" version: `usid`, ad-platform imports, individual paths; after consent. |
 
-> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement cookies as exempt only under strict conditions [S2]. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run A without consent only after review by your DPO or independent counsel.
+> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement cookies as exempt only under strict conditions. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run A without consent only after review by your DPO or independent counsel.
 
 ## Step 1 — Configure Statshop
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk (⚠ no-consent) | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics |
-| 2 | Version | Statshop Manager [S1] | Exempt (default) | With consent |
-| 3 | `usid` | Tag parameter, only with consent [S1] | Not set | Set after consent |
-| 4 | Opt-out | CMP or page calling `window._optimusConsent.statshop = consent` [S1] | Provide | Consent withdrawal |
+| 2 | Version | Statshop Manager | Exempt (default) | With consent |
+| 3 | `usid` | Tag parameter, only with consent | Not set | Set after consent |
+| 4 | Opt-out | CMP or page calling `window._optimusConsent.statshop = consent` | Provide | Consent withdrawal |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
@@ -51,8 +51,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | Not documented | Not documented |
 | Processing location | France (OVH) | France (OVH) |
-
-## Sources
-
-- [S1] CNIL — Statshop user guide: audience measurement consent exemption
-- [S2] CNIL — Cookies: solutions pour les outils de mesure d'audience (4 July 2025)

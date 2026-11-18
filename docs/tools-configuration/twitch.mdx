@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Twitch embedded video, clips and chat (Twitch Interactive, Inc., an Amazon company, US). Sources were checked on 16 November 2026.
+**Scope.** Twitch embedded video, clips and chat (Twitch Interactive, Inc., an Amazon company, US).
 
-**What the service does in this scope.** Twitch embeds require a `parent` parameter naming the embedding domain; without it, playback shows an error directing viewers to Twitch [S1]. Twitch confirmed that the embedded player serves ads [S2]. Twitch's cookie notice describes the cookies it stores on devices [S3].
+**What the service does in this scope.** Twitch embeds require a `parent` parameter naming the embedding domain; without it, playback shows an error directing viewers to Twitch. Twitch confirmed that the embedded player serves ads. Twitch's cookie notice describes the cookies it stores on devices.
 
 **Configurations included.**
 
@@ -33,12 +33,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | — | Unlock additional website features; Customise online ads |
-| 2 | Integration | Website code [S1] | Link | `player.twitch.tv` iframe or JS embed with `parent` |
+| 2 | Integration | Website code | Link | `player.twitch.tv` iframe or JS embed with `parent` |
 | 3 | Loading | Consenter script blocking / click-to-load | — | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Twitch is a US enterprise subject to 18 U.S.C. § 2713 [S4]; list the United States.
+**Processing location.** Twitch is a US enterprise subject to the US CLOUD Act; list the United States.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Higher risk |
 |---|---|---|
@@ -49,12 +49,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | — | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Users' profiles |
 | Legal role of data recipient | — | Individual Controller |
 | Personalisation model | — | Profile based |
-| Maximum storage duration | — | Per Twitch cookie notice [S3] |
+| Maximum storage duration | — | Per Twitch cookie notice |
 | Processing location | — | United States |
-
-## Sources
-
-- [S1] Twitch Developers — Embedding Twitch in your website
-- [S2] Twitch Developer Forums — Embedded player migration (ads)
-- [S3] Twitch — Cookie Notice
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

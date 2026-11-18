@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Siteimprove Analytics script (`siteanalyze_[account_id].js`) used for Marketing/Content Analytics or Traffic Analytics. Siteimprove A/S is a Danish company. Sources were checked on 16 November 2026.
+**Scope.** The Siteimprove Analytics script (`siteanalyze_[account_id].js`) used for Marketing/Content Analytics or Traffic Analytics. Siteimprove A/S is a Danish company.
 
-**What the service does in this scope.** By default, the script sets the `nmstat` cookie (persistent, 1,000 days) with a random ID to recognise the browser, and Siteimprove's web server collects the IP address [S1][S2]. **IP anonymisation** can be enabled under Visitor Privacy; after a 72-hour delay, incoming and historical IPs are purged [S3]. **Cookieless tracking** collects data without setting a cookie and activates **enhanced IP anonymisation**, where IPs are immediately truncated and hashed [S4]. Siteimprove notes that its script is loaded via `siteimproveanalytics.com`, which is sometimes flagged as a US transfer [S5].
+**What the service does in this scope.** By default, the script sets the `nmstat` cookie (persistent, 1,000 days) with a random ID to recognise the browser, and Siteimprove's web server collects the IP address. **IP anonymisation** can be enabled under Visitor Privacy; after a 72-hour delay, incoming and historical IPs are purged. **Cookieless tracking** collects data without setting a cookie and activates **enhanced IP anonymisation**, where IPs are immediately truncated and hashed. Siteimprove notes that its script is loaded via `siteimproveanalytics.com`, which is sometimes flagged as a US transfer.
 
 **Configurations included.**
 
@@ -28,22 +28,22 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk (⚠ no-consent) | Cookieless tracking with enhanced IP anonymisation; Do Not Track respected. |
 | Configuration B — Medium risk (default) | `nmstat` cookie (1,000 days) with IP anonymisation; after consent. |
 
-> ⚠ **Recommendation — Configuration A without consent is legally uncertain.** Siteimprove designed cookieless tracking to comply with the GDPR and recommends a separate legal review of applicable consent laws [S4][S6]. The script still runs on the device. Have your DPO or independent counsel confirm before running A without consent.
+> ⚠ **Recommendation — Configuration A without consent is legally uncertain.** Siteimprove designed cookieless tracking to comply with the GDPR and recommends a separate legal review of applicable consent laws. The script still runs on the device. Have your DPO or independent counsel confirm before running A without consent.
 
 ## Step 1 — Configure Siteimprove Analytics
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk (default) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
-| 2 | Cookieless tracking | Analytics > Analytics Settings > **Cookieless Tracking** [S4] | On | Off |
-| 3 | IP address anonymisation | Analytics > Analytics Settings > Privacy > **Visitor Privacy** [S3] | Enhanced (automatic with cookieless) [S4] | On (72-hour delay) [S3] |
-| 4 | Do Not Track | Same page [S3] | Respect | Respect |
-| 5 | Opt-out | `_sz.push(['notrack'])` [S7] | Provide opt-out | Use for consent withdrawal |
+| 2 | Cookieless tracking | Analytics > Analytics Settings > **Cookieless Tracking** | On | Off |
+| 3 | IP address anonymisation | Analytics > Analytics Settings > Privacy > **Visitor Privacy** | Enhanced (automatic with cookieless) | On (72-hour delay) |
+| 4 | Do Not Track | Same page | Respect | Respect |
+| 5 | Opt-out | `_sz.push(['notrack'])` | Provide opt-out | Use for consent withdrawal |
 | 6 | Loading | Consenter script blocking | See ⚠ recommendation | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Siteimprove is EU-based; the script is delivered from `siteimproveanalytics.com` [S5]. Check the sub-processor list; where US CDN or hosting providers are used, list the United States as a potential access location (18 U.S.C. § 2713) [S8].
+**Processing location.** Siteimprove is EU-based; the script is delivered from `siteimproveanalytics.com`. Check the sub-processor list; where US CDN or hosting providers are used, list the United States as a potential access location.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk (default) |
 |---|---|---|
@@ -53,7 +53,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP address anonymised | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, IP address anonymised |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | Per contract | 1,000 days (cookie) [S2] |
+| Maximum storage duration | Per contract | 1,000 days (cookie) |
 | Processing location | EU; US if US sub-processors | EU; US if US sub-processors |
 
 ## Privacy-policy follow-up
@@ -62,16 +62,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## Verification checklist
 
-- [ ] A: no `nmstat` cookie set [S4].
-- [ ] B: no Siteimprove requests before consent; IP anonymisation active [S3].
-
-## Sources
-
-- [S1] Siteimprove Help — Data collected by the Analytics script
-- [S2] Siteimprove Help — Cookies set by Siteimprove Analytics (`nmstat`)
-- [S3] Siteimprove Help — Settings: IP Address Anonymization and Do Not Track
-- [S4] Siteimprove Help — Cookieless tracking
-- [S5] Siteimprove Help — Siteimprove Analytics: Data flows and compliance
-- [S6] Siteimprove Blog — Don't get caught without a post-cookie plan
-- [S7] Siteimprove Help — How to let users opt out of Siteimprove Analytics tracking
-- [S8] 18 U.S.C. § 2713 (CLOUD Act)
+- [ ] A: no `nmstat` cookie set.
+- [ ] B: no Siteimprove requests before consent; IP anonymisation active.

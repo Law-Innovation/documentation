@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The tawk.to chat widget, published by tawk.to Inc. [S1]. Sources were checked on 16 November 2026.
+**Scope.** The tawk.to chat widget, published by tawk.to Inc..
 
-**What the service does in this scope.** The widget sets `tawk_uuid_propertyId` (visitor tracking, 6 months), `twk_idm_key` (session), `TawkConnectionTime` (session) and `twk_token_*` in local storage; tawk.to classifies most of them as essential [S2]. IP addresses are processed using cookies [S3]. Property settings allow disabling IP recording, and a consent form can be required on the widget for all visitors or only for visitors from the EU [S4][S5].
+**What the service does in this scope.** The widget sets `tawk_uuid_propertyId` (visitor tracking, 6 months), `twk_idm_key` (session), `TawkConnectionTime` (session) and `twk_token_*` in local storage; tawk.to classifies most of them as essential. IP addresses are processed using cookies. Property settings allow disabling IP recording, and a consent form can be required on the widget for all visitors or only for visitors from the EU.
 
 **Configurations included.**
 
@@ -28,7 +28,7 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Widget after Consenter consent; IP recording disabled; consent form for EU visitors. |
 | Configuration B — Higher risk (default configuration) | Widget after consent; IP recording on; visitor monitoring visible to agents. |
 
-> ⚠ **Recommendation — "essential" classification.** tawk.to classifies `tawk_uuid_propertyId` (6 months, visitor tracking) as essential [S2]. A 6-month visitor identifier set before the visitor uses the chat is not obviously strictly necessary under § 25(2) TDDDG; load the widget after consent unless your DPO or independent counsel confirms otherwise.
+> ⚠ **Recommendation — "essential" classification.** tawk.to classifies `tawk_uuid_propertyId` (6 months, visitor tracking) as essential. A 6-month visitor identifier set before the visitor uses the chat is not obviously strictly necessary under § 25(2) TDDDG; load the widget after consent unless your DPO or independent counsel confirms otherwise.
 
 ## Step 1 — Configure tawk.to
 
@@ -36,12 +36,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
 | 2 | Loading | Consenter script blocking | After consent | After consent |
-| 3 | IP recording | Property settings [S4] | Disabled | Enabled |
-| 4 | Consent form | **Require consent form**: None / All / Only for visitors from EU [S5] | Only for visitors from EU | None |
+| 3 | IP recording | Property settings | Disabled | Enabled |
+| 4 | Consent form | **Require consent form**: None / All / Only for visitors from EU | Only for visitors from EU | None |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Per tawk.to's DPA; tawk.to Inc. is treated here as a US enterprise subject to 18 U.S.C. § 2713 [S6]. Verify the entity and hosting in the DPA.
+**Processing location.** Per tawk.to's DPA; tawk.to Inc. is treated here as a US enterprise subject to the US CLOUD Act. Verify the entity and hosting in the DPA.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|
@@ -51,14 +51,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | Browsing and interaction data, Device characteristics, Device identifiers, User-provided data | As A, plus IP address, Non-precise location data |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | 6 months [S2] | 6 months [S2] |
+| Maximum storage duration | 6 months | 6 months |
 | Processing location | Per DPA; United States | Per DPA; United States |
-
-## Sources
-
-- [S1] RoPA Pilot — tawk.to and GDPR (publisher)
-- [S2] tawk.to Help — What are tawk.to cookies and what do they do
-- [S3] tawk.to Help — Why do you need my personal data
-- [S4] tawk.to — GDPR compliance (IP recording setting)
-- [S5] tawk.to Help — Enabling and managing your consent form
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)

@@ -17,9 +17,9 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** Cloudflare Web Analytics, collected via the JavaScript beacon or at Cloudflare's edge [S1]. Sources were checked on 16 November 2026.
+**Scope.** Cloudflare Web Analytics, collected via the JavaScript beacon or at Cloudflare's edge.
 
-**What the service does in this scope.** Web Analytics does not use client-side state such as cookies or localStorage to collect usage metrics [S1], and Cloudflare states it does not fingerprint individuals via IP address or user agent for analytics [S2]. It counts "visits" based on referrer rather than unique visitors [S2].
+**What the service does in this scope.** Web Analytics does not use client-side state such as cookies or localStorage to collect usage metrics, and Cloudflare states it does not fingerprint individuals via IP address or user agent for analytics. It counts "visits" based on referrer rather than unique visitors.
 
 > ⚠ **Recommendation.** No device storage is used, but the beacon is still loaded from Cloudflare and page-view data is transmitted to a US company. If you load it without consent, treat this as a self-assessed exemption and have your DPO confirm the legal basis (GDPR) separately from the device-access question (§ 25 TDDDG). Otherwise load it after Consenter consent.
 
@@ -28,7 +28,7 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 | Configuration area | Fixed behaviour / required action |
 |---|---|
 | Processing purposes | Improve the service |
-| Collection | JavaScript beacon or edge collection [S1] |
+| Collection | JavaScript beacon or edge collection |
 | Loading | After Consenter consent, or without consent per the ⚠ note |
 | Contract | Cloudflare DPA |
 
@@ -37,16 +37,10 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Improve the service | — |
-| Tracking method | No tracking | No client-side state [S1] |
-| Identifier | No identifier | No fingerprinting [S2] |
+| Tracking method | No tracking | No client-side state |
+| Identifier | No identifier | No fingerprinting |
 | Data categories | Aggregated site statistics, Device characteristics | Page views, referrers, performance |
 | Legal role of data recipient | Processor | Cloudflare DPA |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Per Cloudflare documentation | — |
-| Processing location | United States | US enterprise; CLOUD Act [S3] |
-
-## Sources
-
-- [S1] Cloudflare — Web Analytics
-- [S2] Cloudflare Blog — Free, privacy-first analytics for a better web
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+| Processing location | United States | US enterprise; CLOUD Act|

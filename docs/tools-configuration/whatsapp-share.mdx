@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** WhatsApp share links (`wa.me/?text=…`) and click-to-chat links (`wa.me/<number>`) on the website. WhatsApp is operated by Meta (WhatsApp Ireland Limited in the EU; Meta Platforms, Inc., US). Sources were checked on 16 November 2026.
+**Scope.** WhatsApp share links (`wa.me/?text=…`) and click-to-chat links (`wa.me/<number>`) on the website. WhatsApp is operated by Meta (WhatsApp Ireland Limited in the EU; Meta Platforms, Inc., US).
 
-**What the service does in this scope.** A click-to-chat or share link is a plain URL to `wa.me` that opens WhatsApp with an optional pre-filled message [S1]. Implemented as a plain link, it sends no request to WhatsApp before the visitor clicks [S2]. Third-party JavaScript widgets for WhatsApp buttons exist and may load additional scripts [S3].
+**What the service does in this scope.** A click-to-chat or share link is a plain URL to `wa.me` that opens WhatsApp with an optional pre-filled message. Implemented as a plain link, it sends no request to WhatsApp before the visitor clicks. Third-party JavaScript widgets for WhatsApp buttons exist and may load additional scripts.
 
 **Configurations included.**
 
@@ -28,14 +28,14 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | Plain `wa.me` link; nothing loaded before the click. |
 | Configuration B — Medium risk | Third-party WhatsApp widget script; loaded after Consenter consent. |
 
-**Configuration A without consent.** A plain link sets nothing on your website [S2]; mention WhatsApp in the privacy policy. For B, map the widget provider (not WhatsApp) as the data recipient.
+**Configuration A without consent.** A plain link sets nothing on your website; mention WhatsApp in the privacy policy. For B, map the widget provider (not WhatsApp) as the data recipient.
 
 ## Step 1 — Configure WhatsApp Share
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | — | Unlock additional website features |
-| 2 | Button type | Website code | `<a href="https://wa.me/...">` [S1] | Widget script [S3] |
+| 2 | Button type | Website code | `<a href="https://wa.me/...">` | Widget script |
 | 3 | Loading | Consenter script blocking | — | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -51,9 +51,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | — | No personalisation |
 | Maximum storage duration | — | Per widget provider |
 | Processing location | — | Per widget provider |
-
-## Sources
-
-- [S1] Userlike — How to integrate WhatsApp in your website (click-to-chat link)
-- [S2] WordPress.org — Brightery Click to Chat (no request before click)
-- [S3] NowButtons — Privacy policy (WhatsApp widget)

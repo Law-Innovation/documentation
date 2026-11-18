@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Userlike website Messenger (Userlike UG, Cologne, Germany; developed and hosted in Germany [S1]). Sources were checked on 16 November 2026.
+**Scope.** The Userlike website Messenger (Userlike UG, Cologne, Germany; developed and hosted in Germany).
 
-**What the service does in this scope.** The Messenger creates the cookie `uslk_umm_{organization-id}_s`, which holds widget and messenger status and the IDs of existing contacts so that they are recognised on later visits; Userlike states the cookie is on the customer's domain and cannot be used by Userlike to track visitors [S2]. Userlike advises loading its JavaScript after consent if you do not consider the cookie technically essential [S2]. Userlike offers a privacy mode and an integrated cookie consent management for the chat [S3][S4].
+**What the service does in this scope.** The Messenger creates the cookie `uslk_umm_{organization-id}_s`, which holds widget and messenger status and the IDs of existing contacts so that they are recognised on later visits; Userlike states the cookie is on the customer's domain and cannot be used by Userlike to track visitors. Userlike advises loading its JavaScript after consent if you do not consider the cookie technically essential. Userlike offers a privacy mode and an integrated cookie consent management for the chat.
 
 **Configurations included.**
 
@@ -28,15 +28,15 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Messenger loaded after Consenter consent; privacy mode with privacy notice before the chat. |
 | Configuration B — Higher risk | Messenger loaded after consent; contacts recognised across visits; contact data (name, email) collected. |
 
-> ⚠ **Recommendation — loading without consent.** Userlike leaves the classification of its cookie to you [S2]. Because it stores contact IDs for recognition on later visits, load the Messenger after consent unless your DPO or independent counsel confirms it is strictly necessary.
+> ⚠ **Recommendation — loading without consent.** Userlike leaves the classification of its cookie to you. Because it stores contact IDs for recognition on later visits, load the Messenger after consent unless your DPO or independent counsel confirms it is strictly necessary.
 
 ## Step 1 — Configure Userlike
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
-| 2 | Loading | Consenter script blocking [S2] | After consent | After consent |
-| 3 | Privacy mode / privacy notice | Widget settings [S3] | On | Optional |
+| 2 | Loading | Consenter script blocking | After consent | After consent |
+| 3 | Privacy mode / privacy notice | Widget settings | On | Optional |
 | 4 | Contact data | Widget data fields | Not required | Name, email |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -50,13 +50,4 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | Per cookie inspection | Per cookie inspection |
-| Processing location | Germany [S1] | Germany [S1] |
-
-**Basis.** Cookie [S2]; German hosting [S1], so no CLOUD Act flag unless the DPA lists US sub-processors.
-
-## Sources
-
-- [S1] Usercentrics — Userlike developed and hosted in Germany
-- [S2] Userlike FAQ — Does Userlike use cookies and if yes, what for
-- [S3] eRecht24 — Privacy policy for Userlike (privacy mode)
-- [S4] Userlike FAQ (LIME Connect) — Integrated cookie consent management
+| Processing location | Germany | Germany |

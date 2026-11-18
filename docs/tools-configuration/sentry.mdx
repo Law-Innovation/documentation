@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Sentry JavaScript browser SDK. Sources were checked on 16 November 2026.
+**Scope.** Sentry JavaScript browser SDK.
 
-**What the service does in this scope.** Session Replay records user sessions; by default it masks all text with `*` and blocks media elements on the client before sending [S1]. `maskAllText`, `maskAllInputs` and `blockAllMedia` default to `true` [S2]. Disabling masking is only intended for sites with no sensitive data [S3].
+**What the service does in this scope.** Session Replay records user sessions; by default it masks all text with `*` and blocks media elements on the client before sending. `maskAllText`, `maskAllInputs` and `blockAllMedia` default to `true`. Disabling masking is only intended for sites with no sensitive data.
 
 **Configurations included.**
 
@@ -36,13 +36,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service | Improve the service |
-| 2 | Session Replay | `Sentry.replayIntegration()` [S2] | Not added | Added | Added |
-| 3 | Masking | `maskAllText`, `maskAllInputs`, `blockAllMedia` [S2] | — | Defaults (`true`) | `maskAllText: false`, `blockAllMedia: false` |
+| 2 | Session Replay | `Sentry.replayIntegration` | Not added | Added | Added |
+| 3 | Masking | `maskAllText`, `maskAllInputs`, `blockAllMedia` | — | Defaults (`true`) | `maskAllText: false`, `blockAllMedia: false` |
 | 4 | Loading | Front-end | Per DPO assessment | After Consenter consent | After Consenter consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Sentry is a US enterprise; list the United States (18 U.S.C. § 2713 [S4]).
+**Processing location.** Sentry is a US enterprise; list the United States.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
 |---|---|---|---|
@@ -55,10 +55,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation | No personalisation |
 | Maximum storage duration | Per Sentry data retention | Per Sentry data retention | Per Sentry data retention |
 | Processing location | Per account data region / United States | Per account data region / United States | Per account data region / United States |
-
-## Sources
-
-- [S1] Sentry Docs — Session Replay privacy (masking defaults)
-- [S2] Sentry Docs — Session Replay configuration
-- [S3] Sentry Docs — Session Replay privacy (opting out of masking)
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

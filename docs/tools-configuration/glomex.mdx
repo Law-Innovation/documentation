@@ -17,11 +17,11 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** The glomex embed player and Media Exchange Service (glomex GmbH, Unterföhring, Germany; a subsidiary of ProSiebenSat.1 Media SE [S1]). Sources were checked on 16 November 2026.
+**Scope.** The glomex embed player and Media Exchange Service (glomex GmbH, Unterföhring, Germany; a subsidiary of ProSiebenSat.1 Media SE).
 
-**What the service does in this scope.** The glomex player is compliant with IAB TCF 2.2, automatically retrieves consent from the website's CMP and works with a specific set of technology vendors; `window.__tcfapi` must be available before the player is added to the page [S2]. glomex and the publisher, or glomex and advertising partners, may be responsible for processing depending on the activity [S3].
+**What the service does in this scope.** The glomex player is compliant with IAB TCF 2.2, automatically retrieves consent from the website's CMP and works with a specific set of technology vendors; `window.__tcfapi` must be available before the player is added to the page. glomex and the publisher, or glomex and advertising partners, may be responsible for processing depending on the activity.
 
-> **Note on consent signals.** The glomex player requires a TCF consent signal [S2]. Consenter does not currently support TCF communication, so this guide does not cover configuring the signal; load the player only after consent in Consenter and expect monetisation to be limited.
+> **Note on consent signals.** The glomex player requires a TCF consent signal. Consenter does not currently support TCF communication, so this guide does not cover configuring the signal; load the player only after consent in Consenter and expect monetisation to be limited.
 
 ## Step 1 — Implement glomex
 
@@ -29,23 +29,17 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 |---|---|
 | Processing purposes | Unlock additional website features; Customise online ads |
 | Loading | After Consenter consent |
-| Vendors | Disclose glomex's vendor list in the privacy policy [S2] |
+| Vendors | Disclose glomex's vendor list in the privacy policy |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
-| Processing purposes | Unlock additional website features, Customise online ads | Video content and monetisation [S2] |
+| Processing purposes | Unlock additional website features, Customise online ads | Video content and monetisation |
 | Tracking method | Third party tracking (crosssession, cross-website) | Player and ad vendors |
 | Identifier | Device identifiers | Ad vendors |
-| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Users' profiles | Player and ad vendors [S2] |
-| Legal role of data recipient | Joint Controller | glomex and publisher may be jointly responsible [S3]; ad partners as Individual Controller |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Users' profiles | Player and ad vendors |
+| Legal role of data recipient | Joint Controller | glomex and publisher may be jointly responsible; ad partners as Individual Controller |
 | Personalisation model | Profile based | Advertising |
 | Maximum storage duration | Per glomex vendor list | Not documented |
 | Processing location | Germany; add the United States for US ad vendors | German company; vendors per glomex list |
-
-## Sources
-
-- [S1] glomex — About us
-- [S2] glomex Docs — GDPR (TCF 2.2)
-- [S3] glomex — Privacy notice for the glomex player

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Freshchat web messenger (conversations widget) and self-service widget. Freshworks Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** The Freshchat web messenger (conversations widget) and self-service widget. Freshworks Inc. is a US company.
 
-**What the service does in this scope.** Freshworks recommends not loading the web messenger or self-service widget until the visitor has accepted the cookie policy, and using `window.fcWidget.init({})` so the website decides when to load the widget [S1]. Freshchat offers EU data-centre hosting for EU customers and a DPA [S2]. Freshworks does not publish a Freshchat-specific cookie list in the sources; verify the `fc_*` cookies in the browser.
+**What the service does in this scope.** Freshworks recommends not loading the web messenger or self-service widget until the visitor has accepted the cookie policy, and using `window.fcWidget.init({})` so the website decides when to load the widget. Freshchat offers EU data-centre hosting for EU customers and a DPA. Freshworks does not publish a Freshchat-specific cookie list in the sources; verify the `fc_*` cookies in the browser.
 
 **Configurations included.**
 
@@ -33,14 +33,14 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
-| 2 | Loading | `window.fcWidget.init({})` after Consenter consent [S1] | After consent | After consent |
-| 3 | Data centre | Account region [S2] | EU | EU or US |
+| 2 | Loading | `window.fcWidget.init({})` after Consenter consent | After consent | After consent |
+| 3 | Data centre | Account region | EU | EU or US |
 | 4 | User identification | `externalId`, email in `init` | Not passed | Passed |
-| 5 | Events timeline | Freshchat settings [S3] | Off | On |
+| 5 | Events timeline | Freshchat settings | Off | On |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Freshworks is a US enterprise subject to 18 U.S.C. § 2713 [S4]; list the United States in all configurations.
+**Processing location.** Freshworks is a US enterprise subject to the US CLOUD Act; list the United States in all configurations.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -52,10 +52,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | Per cookie inspection | Per cookie inspection |
 | Processing location | EU; United States | EU or United States; United States |
-
-## Sources
-
-- [S1] Freshworks Support — How do I get consent before collecting data / storing cookies
-- [S2] Freshworks Support — Steps Freshchat has taken to be GDPR compliant
-- [S3] Freshworks — Freshchat GDPR FAQ (events timeline)
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

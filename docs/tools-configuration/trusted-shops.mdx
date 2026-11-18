@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Trusted Shops Trustbadge and review widgets (Trusted Shops SE, Cologne, Germany). The online shop and Trusted Shops are joint controllers under Art. 26 GDPR [S1][S2]. Sources were checked on 16 November 2026.
+**Scope.** The Trusted Shops Trustbadge and review widgets (Trusted Shops SE, Cologne, Germany). The online shop and Trusted Shops are joint controllers under Art. 26 GDPR.
 
-**What the service does in this scope.** Trusted Shops states that it does not use cookies when integrating widgets and stores nothing in the visitors' local storage; session cookies are set only when interacting with the #trstd login and Trustbadge AI+ [S3]. Displaying the Trustbadge processes the IP address, which is anonymised immediately, and access data; the Trustbadge is delivered via AWS as CDN on servers in Europe [S4][S5]. In the order process, the Trustbadge can transmit order data with a hashed email address to recognise registered Trusted Shops customers and offer buyer protection and review invites [S6]. With **Enable Trustbadge consent request**, the badge is integrated so that order data is not transmitted automatically [S6].
+**What the service does in this scope.** Trusted Shops states that it does not use cookies when integrating widgets and stores nothing in the visitors' local storage; session cookies are set only when interacting with the #trstd login and Trustbadge AI+. Displaying the Trustbadge processes the IP address, which is anonymised immediately, and access data; the Trustbadge is delivered via AWS as CDN on servers in Europe. In the order process, the Trustbadge can transmit order data with a hashed email address to recognise registered Trusted Shops customers and offer buyer protection and review invites. With **Enable Trustbadge consent request**, the badge is integrated so that order data is not transmitted automatically.
 
 **Configurations included.**
 
@@ -28,20 +28,20 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk | Trustbadge display only; "Enable Trustbadge consent request" on; no automatic order data transfer. |
 | Configuration B — Medium risk | Trustbadge with automatic order data transfer (hashed email, order number) for buyer protection and review invites; after Consenter consent. |
 
-> ⚠ **Recommendation — Configuration A without consent.** Trusted Shops provides privacy-policy text for a variant where consent is not obtained for displaying the Trustbadge [S2]; no cookies are set [S3]. The display still transmits the IP address (immediately anonymised) to Trusted Shops and its CDN [S4]. Have your DPO or independent counsel confirm the legal basis before showing the badge without consent.
+> ⚠ **Recommendation — Configuration A without consent.** Trusted Shops provides privacy-policy text for a variant where consent is not obtained for displaying the Trustbadge; no cookies are set. The display still transmits the IP address (immediately anonymised) to Trusted Shops and its CDN. Have your DPO or independent counsel confirm the legal basis before showing the badge without consent.
 
 ## Step 1 — Configure Trusted Shops
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features; Receive marketing offers |
-| 2 | Trustbadge consent request | eTrusted Trustbadge settings [S6] | On | Off (consent via Consenter) |
-| 3 | Order data transfer | Checkout integration [S6] | No automatic transfer | Automatic after consent |
-| 4 | Privacy policy text | Trusted Shops template [S2] | Variation 2 | Variation 1 |
+| 2 | Trustbadge consent request | eTrusted Trustbadge settings | On | Off (consent via Consenter) |
+| 3 | Order data transfer | Checkout integration | No automatic transfer | Automatic after consent |
+| 4 | Privacy policy text | Trusted Shops template | Variation 2 | Variation 1 |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Servers in Europe [S5]; the CDN provider AWS is a US enterprise subject to 18 U.S.C. § 2713 [S7], so list the United States as a potential access location.
+**Processing location.** Servers in Europe; the CDN provider AWS is a US enterprise subject to the US CLOUD Act, so list the United States as a potential access location.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk |
 |---|---|---|
@@ -51,15 +51,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | IP address anonymised | IP address anonymised, Probabilistic identifiers, e-commerce Activity |
 | Legal role of data recipient | Joint Controller | Joint Controller |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | — (no device storage [S3]) | — (no device storage [S3]) |
+| Maximum storage duration | — (no device storage) | — (no device storage) |
 | Processing location | EU; United States (potential access) | EU; United States (potential access) |
-
-## Sources
-
-- [S1] eTrusted Help — Data protection guideline: displaying the Trusted Shops widgets
-- [S2] eTrusted Help — Template text for your privacy declaration
-- [S3] eTrusted Help — Data protection guideline: information about cookies
-- [S4] eTrusted Help — FAQ on Trusted Shops data protection
-- [S5] eTrusted Help — Trustbadge documentation for online retailers
-- [S6] eTrusted Help — Recognition of registered Trusted Shops customers
-- [S7] 18 U.S.C. § 2713 (CLOUD Act)

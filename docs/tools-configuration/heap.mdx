@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Heap web SDK (`heap.js`) with autocapture and optional Session Replay. Heap is part of the Contentsquare group; Heap's DPA includes SCCs for EU–US transfers [S1]. Sources were checked on 16 November 2026.
+**Scope.** The Heap web SDK (`heap.js`) with autocapture and optional Session Replay. Heap is part of the Contentsquare group; Heap's DPA includes SCCs for EU–US transfers.
 
-**What the service does in this scope.** Heap autocaptures interactions and sets first-party cookies including `_hp2_id.{APP_ID}` (user cookie) [S2]. By default, Heap identifies geolocation but does not capture the IP address; **IP Autocapture** and **Geolocation Autocapture** can be toggled [S3][S4]. Target text capture can be disabled globally (setting or `disableTextCapture`), and elements can be ignored or attributes redacted [S1][S5]. Session Replay inherits these settings [S6].
+**What the service does in this scope.** Heap autocaptures interactions and sets first-party cookies including `_hp2_id.{APP_ID}` (user cookie). By default, Heap identifies geolocation but does not capture the IP address; **IP Autocapture** and **Geolocation Autocapture** can be toggled. Target text capture can be disabled globally (setting or `disableTextCapture`), and elements can be ignored or attributes redacted. Session Replay inherits these settings.
 
 **Configurations included.**
 
@@ -28,24 +28,24 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | IP and geolocation autocapture off; text capture disabled; no Session Replay; no identify; after consent. |
 | Configuration B — Higher risk | Geolocation on; text capture on; Session Replay; `identify` with user properties; after consent. |
 
-**No configuration without prior consent.** `_hp2_id` persists a user identifier [S2]; no consent-free configuration is documented.
+**No configuration without prior consent.** `_hp2_id` persists a user identifier; no consent-free configuration is documented.
 
 ## Step 1 — Configure Heap
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics |
-| 2 | IP Autocapture | Account > Manage > Privacy and Security [S4] | Off | Off (default) |
-| 3 | Geolocation Autocapture | Same [S4] | Off | On |
-| 4 | Target text capture | Privacy settings toggle or `disableTextCapture` [S1][S5] | Disabled | Enabled |
-| 5 | Element-level controls | `heap-ignore`, `data-heap-redact-attributes` [S5] | Sensitive elements | Sensitive elements |
-| 6 | Session Replay | Session Replay settings [S6] | Off | On |
-| 7 | Identify / user properties | `heap.identify()`, `addUserProperties()` | Not used | Used |
+| 2 | IP Autocapture | Account > Manage > Privacy and Security | Off | Off (default) |
+| 3 | Geolocation Autocapture | Same | Off | On |
+| 4 | Target text capture | Privacy settings toggle or `disableTextCapture` | Disabled | Enabled |
+| 5 | Element-level controls | `heap-ignore`, `data-heap-redact-attributes` | Sensitive elements | Sensitive elements |
+| 6 | Session Replay | Session Replay settings | Off | On |
+| 7 | Identify / user properties | `heap.identify`, `addUserProperties` | Not used | Used |
 | 8 | Loading | Consenter script blocking | After consent | After consent |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Data transfers from the EU/EEA to the US are covered by SCCs in Heap's DPA [S1]. Heap's US entity can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S7].
+**Processing location.** Data transfers from the EU/EEA to the US are covered by SCCs in Heap's DPA. Heap's US entity can be required to disclose data in its possession, custody or control regardless of storage location.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -58,23 +58,11 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Maximum storage duration | Per contract | Per contract |
 | Processing location | United States | United States |
 
-**Basis.** Cookies [S2]; IP/geolocation toggles [S3][S4]; text capture [S5]. Even with IP Autocapture off, geolocation is derived from the IP before it is discarded if Geolocation is on [S4].
-
 ## Privacy-policy follow-up
 
-- Heap as processor; autocapture; replay (B); identification (B); US transfer with SCCs [S1]; potential access by US authorities [S7].
+- Heap as processor; autocapture; replay (B); identification (B); US transfer with SCCs; potential access by US authorities.
 
 ## Verification checklist
 
 - [ ] No `heapanalytics.com` requests or `_hp2_*` cookies before consent.
-- [ ] Privacy toggles match the configuration [S4].
-
-## Sources
-
-- [S1] Heap Help — Heap privacy features
-- [S2] Heap Help — Data privacy FAQs (cookies)
-- [S3] Heap Help — IP and geolocation default behaviour
-- [S4] Heap Help — How do I block the collection of IP or geolocation information?
-- [S5] Heap Developers — Ignoring sensitive data and PII
-- [S6] Heap Help — What privacy settings does Session Replay inherit from Heap?
-- [S7] 18 U.S.C. § 2713 (CLOUD Act)
+- [ ] Privacy toggles match the configuration.

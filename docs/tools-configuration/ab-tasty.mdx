@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The AB Tasty client-side tag for A/B testing and personalisation. AB Tasty is a French company. Sources were checked on 16 November 2026.
+**Scope.** The AB Tasty client-side tag for A/B testing and personalisation. AB Tasty is a French company.
 
-**What the service does in this scope.** The first-party `ABTasty` cookie (13 months) holds the visitor ID, campaign history and timestamps; `ABTastySession` holds session data [S1][S2]. The cookie deposit method is selected in **Settings > Privacy** [S3]. With a consent condition, AB Tasty offers a **default mode** (the tag executes but collects and stores no data until consent) and a **strict mode** (the tag does not execute until consent) [S4]. Proof of consent is sent to AB Tasty's servers and stored for 13 months [S3].
+**What the service does in this scope.** The first-party `ABTasty` cookie (13 months) holds the visitor ID, campaign history and timestamps; `ABTastySession` holds session data. The cookie deposit method is selected in **Settings > Privacy**. With a consent condition, AB Tasty offers a **default mode** (the tag executes but collects and stores no data until consent) and a **strict mode** (the tag does not execute until consent). Proof of consent is sent to AB Tasty's servers and stored for 13 months.
 
 **Configurations included.**
 
@@ -28,21 +28,21 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Strict mode: tag blocked until consent; tests only. |
 | Configuration B — Higher risk | Personalisation campaigns with audience segments, after consent. |
 
-**No configuration without prior consent.** In default mode the tag runs before consent and can display variants, though it stores no data [S4][S5]. Because running test variants still reads the device, this guide uses strict mode / Consenter blocking in both configurations.
+**No configuration without prior consent.** In default mode the tag runs before consent and can display variants, though it stores no data. Because running test variants still reads the device, this guide uses strict mode / Consenter blocking in both configurations.
 
 ## Step 1 — Configure AB Tasty
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website |
-| 2 | Cookie deposit method | **Settings > Privacy** (consent condition, e.g. CMP or specific cookie) [S3] | Consent condition set | Consent condition set |
-| 3 | Mode | `waitForConsent.isStrict` [S6] | Strict | Strict |
+| 2 | Cookie deposit method | **Settings > Privacy** (consent condition, e.g. CMP or specific cookie) | Consent condition set | Consent condition set |
+| 3 | Mode | `waitForConsent.isStrict` | Strict | Strict |
 | 4 | Campaign types | Campaign editor | A/B tests | Tests and personalisation |
-| 5 | URL sanitising | Regex to remove sensitive data from URLs sent to the collect [S6] | Configure | Configure |
+| 5 | URL sanitising | Regex to remove sensitive data from URLs sent to the collect | Configure | Configure |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** AB Tasty is a French company; check hosting and sub-processors in the DPA, and list the United States as a potential access location if US providers are used (18 U.S.C. § 2713) [S7].
+**Processing location.** AB Tasty is a French company; check hosting and sub-processors in the DPA, and list the United States as a potential access location if US providers are used.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
 |---|---|---|
@@ -54,15 +54,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | Group based (behaviour) |
 | Maximum storage duration | 13 months | 13 months |
 | Processing location | Per DPA | Per DPA |
-
-**Basis.** Cookies [S1][S2]; consent proof stored by AB Tasty [S3], hence "Privacy choices".
-
-## Sources
-
-- [S1] AB Tasty Docs — Cookies and browser storage
-- [S2] AB Tasty Docs — Consent policy, cookies storage and privacy
-- [S3] AB Tasty Docs — How to choose your cookies deposit method
-- [S4] AB Tasty Docs — Didomi integration (default and strict mode)
-- [S5] DataGrail Docs — AB Tasty modes
-- [S6] AB Tasty Docs — `window.ABTasty` (`waitForConsent`)
-- [S7] 18 U.S.C. § 2713 (CLOUD Act)

@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Médiamétrie eStat Streaming tag for measuring audio and video streaming audiences on websites. Médiamétrie is a French company. Sources were checked on 16 November 2026.
+**Scope.** Médiamétrie eStat Streaming tag for measuring audio and video streaming audiences on websites. Médiamétrie is a French company.
 
-**What the service does in this scope.** The tag supports three `consentType` values: `optin` (measurement with the user's consent), `exempted` (measurement under the CNIL exemption) and `optout` (tag deactivated, no data collected) [S1]. In exempted mode, no UID, IDFA or ADID is sent and no third-party cookie is set; the IP address is used only to determine the country and is then hashed with murmur3 using a monthly-rotating random key, kept for one month and three days; campaign measurement is disabled [S1]. Médiamétrie acts as processor and does not process exempted-mode data for its own purposes [S1].
+**What the service does in this scope.** The tag supports three `consentType` values: `optin` (measurement with the user's consent), `exempted` (measurement under the CNIL exemption) and `optout` (tag deactivated, no data collected). In exempted mode, no UID, IDFA or ADID is sent and no third-party cookie is set; the IP address is used only to determine the country and is then hashed with murmur3 using a monthly-rotating random key, kept for one month and three days; campaign measurement is disabled. Médiamétrie acts as processor and does not process exempted-mode data for its own purposes.
 
 **Configurations included.**
 
@@ -28,16 +28,16 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Lower risk (⚠ no-consent) | `consentType = exempted` for visitors without consent. |
 | Configuration B — Medium risk | `consentType = optin` after consent (identifiers and campaign measurement enabled). |
 
-> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement tracers as exempt only where they serve solely the publisher's audience measurement, produce anonymous statistics, are not cross-referenced or passed on and do not allow tracking across sites [S2]. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run A without consent only after review by your DPO or independent counsel; otherwise set `optout` until consent.
+> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement tracers as exempt only where they serve solely the publisher's audience measurement, produce anonymous statistics, are not cross-referenced or passed on and do not allow tracking across sites. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run A without consent only after review by your DPO or independent counsel; otherwise set `optout` until consent.
 
 ## Step 1 — Configure eStat Streaming
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk (⚠ no-consent) | Configuration B — Medium risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics |
-| 2 | `consentType` | Tag configuration, set from the CMP decision [S1] | `exempted` (or `optout` on refusal) | `optin` |
-| 3 | Personal data in tagging plan | Must not be included [S1] | Required | Required |
-| 4 | Campaign measurement | Automatically disabled in exempted mode [S1] | Off | On |
+| 2 | `consentType` | Tag configuration, set from the CMP decision | `exempted` (or `optout` on refusal) | `optin` |
+| 3 | Personal data in tagging plan | Must not be included | Required | Required |
+| 4 | Campaign measurement | Automatically disabled in exempted mode | Off | On |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
@@ -52,13 +52,6 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Maximum storage duration | 1 month and 3 days (hash key) | Per contract |
 | Processing location | Not documented | Not documented |
 
-**Basis.** Exempted mode details [S1]. "Privacy choices" is selected in B because the consent mode is passed to Médiamétrie through `consentType` [S1]. B identifiers are inferred from the absence of the exempted-mode restrictions; verify against Médiamétrie's contract annex.
-
 ## Privacy-policy follow-up
 
 - Médiamétrie as processor; streaming audience measurement; mode used; IP hashing (A).
-
-## Sources
-
-- [S1] CNIL — eStat'Streaming configuration guide (February 2022)
-- [S2] CNIL — Cookies: solutions pour les outils de mesure d'audience (4 July 2025)

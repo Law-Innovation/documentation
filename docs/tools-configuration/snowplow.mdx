@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** The Snowplow JavaScript / browser tracker sending events to a Snowplow collector. The collector and pipeline can be self-hosted (open source) or operated by Snowplow as a managed service; the legal role depends on which. Sources were checked on 16 November 2026.
+**Scope.** The Snowplow JavaScript / browser tracker sending events to a Snowplow collector. The collector and pipeline can be self-hosted (open source) or operated by Snowplow as a managed service; the legal role depends on which.
 
-**What the service does in this scope.** By default, Snowplow captures user and session cookie IDs and the IP address [S1]. The tracker uses a domain cookie and a session cookie (default names `_sp_id` and `_sp_ses`) [S2]. Three anonymisation levels exist: client-side anonymisation, client-side anonymisation **with session tracking**, and **full anonymisation / cookieless** with server anonymisation (`anonymousTracking: { withServerAnonymisation: true }`, `stateStorageStrategy: 'none'`), in which the collector neither sets nor reads its cookie and does not capture IP addresses [S3][S4].
+**What the service does in this scope.** By default, Snowplow captures user and session cookie IDs and the IP address. The tracker uses a domain cookie and a session cookie (default names `_sp_id` and `_sp_ses`). Three anonymisation levels exist: client-side anonymisation, client-side anonymisation **with session tracking**, and **full anonymisation / cookieless** with server anonymisation (`anonymousTracking: { withServerAnonymisation: true }`, `stateStorageStrategy: 'none'`), in which the collector neither sets nor reads its cookie and does not capture IP addresses.
 
 **Configurations included.**
 
@@ -29,22 +29,22 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration B — Medium risk | Anonymous session tracking (no user identifiers; session in client storage); IP anonymisation enrichment; after consent. |
 | Configuration C — Higher risk (default) | Full tracking with `_sp_id`/`_sp_ses`, network user ID and IP; after consent. |
 
-> ⚠ **Recommendation — Configuration A without consent is legally uncertain.** In full anonymisation mode, no identifiers or IP addresses are captured [S3][S4], but the tracker still runs on the device. Have your DPO or independent counsel confirm before running A without consent.
+> ⚠ **Recommendation — Configuration A without consent is legally uncertain.** In full anonymisation mode, no identifiers or IP addresses are captured, but the tracker still runs on the device. Have your DPO or independent counsel confirm before running A without consent.
 
 ## Step 1 — Configure Snowplow
 
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default) |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service | Improve the service; Support marketing analytics |
-| 2 | Anonymous tracking | Tracker init `anonymousTracking` [S3] | `{ withServerAnonymisation: true }` | `{ withSessionTracking: true }` | `false` (default) [S2] |
-| 3 | State storage | `stateStorageStrategy` [S3] | `'none'` | `'cookieAndLocalStorage'` | Default |
-| 4 | IP handling | Server anonymisation header / IP anonymisation enrichment [S4] | Not captured | IP anonymisation enrichment | Full IP |
+| 2 | Anonymous tracking | Tracker init `anonymousTracking` | `{ withServerAnonymisation: true }` | `{ withSessionTracking: true }` | `false` (default) |
+| 3 | State storage | `stateStorageStrategy` | `'none'` | `'cookieAndLocalStorage'` | Default |
+| 4 | IP handling | Server anonymisation header / IP anonymisation enrichment | Not captured | IP anonymisation enrichment | Full IP |
 | 5 | Collector hosting | Own infrastructure or managed service | Self-hosted, EU | Self-hosted or managed, EU | Self-hosted or managed |
-| 6 | Toggle on consent | `enableAnonymousTracking` / `disableAnonymousTracking` [S3] | — | Switch to C after consent if desired | — |
+| 6 | Toggle on consent | `enableAnonymousTracking` / `disableAnonymousTracking` | — | Switch to C after consent if desired | — |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Location of your collector and warehouse. For the managed service, check Snowplow's hosting region and sub-processors; list the United States as a potential access location where US providers are involved (18 U.S.C. § 2713) [S5].
+**Processing location.** Location of your collector and warehouse. For the managed service, check Snowplow's hosting region and sub-processors; list the United States as a potential access location where US providers are involved.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default) |
 |---|---|---|---|
@@ -63,13 +63,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## Verification checklist
 
-- [ ] A: no `_sp_*` cookies; requests carry the `SP-Anonymous` header [S4].
+- [ ] A: no `_sp_*` cookies; requests carry the `SP-Anonymous` header.
 - [ ] C: no tracker requests before consent.
-
-## Sources
-
-- [S1] Snowplow Docs — Recipe: anonymous tracking
-- [S2] Snowplow Docs — JavaScript tracker initialisation options (cookie names)
-- [S3] Snowplow Docs — Opt-outs and anonymous tracking on web
-- [S4] Snowplow Docs — Anonymous tracking (server-side anonymisation)
-- [S5] 18 U.S.C. § 2713 (CLOUD Act)

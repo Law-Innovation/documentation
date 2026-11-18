@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Adobe Fonts (formerly Typekit) web projects served from Adobe's servers. Adobe Inc. is a US company. Sources were checked on 16 November 2026.
+**Scope.** Adobe Fonts (formerly Typekit) web projects served from Adobe's servers. Adobe Inc. is a US company.
 
-**What the service does in this scope.** Adobe does not set or use cookies to serve fonts for websites [S1]. For each request Adobe collects the fonts served, Web Project ID, JavaScript version, project type, embed type (JavaScript or CSS), account ID, serving service and server, and the hostname of the page; the IP address is received to deliver the font but not stored [S1][S2]. Adobe uses this to provide the service, diagnose problems and pay foundries, and shares only aggregate reports with foundries [S1]. The JavaScript embed loads a `p.gif` image from typekit.net; Adobe describes it as an image, not a cookie [S3].
+**What the service does in this scope.** Adobe does not set or use cookies to serve fonts for websites. For each request Adobe collects the fonts served, Web Project ID, JavaScript version, project type, embed type (JavaScript or CSS), account ID, serving service and server, and the hostname of the page; the IP address is received to deliver the font but not stored. Adobe uses this to provide the service, diagnose problems and pay foundries, and shares only aggregate reports with foundries. The JavaScript embed loads a `p.gif` image from typekit.net; Adobe describes it as an image, not a cookie.
 
 **Configurations included.**
 
@@ -28,19 +28,19 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | CSS embed code (no JavaScript); fonts loaded after Consenter consent. |
 | Configuration B — Medium risk | JavaScript embed code (dynamic subsetting, `p.gif`); fonts loaded after consent. |
 
-> ⚠ **Recommendation — loading fonts before consent.** Adobe sets no cookies [S1], so § 25 TDDDG consent is not triggered by cookies. However, each font request transmits the visitor's IP address to a US provider. LG München I (judgment of 20 January 2022, 3 O 17493/20) held that transmitting the IP address to Google Fonts without consent breached the GDPR where self-hosting was possible. Adobe Fonts web projects are served by Adobe [S1]; have your DPO or independent counsel decide whether the same reasoning applies, and otherwise load the fonts after consent with a fallback font.
+> ⚠ **Recommendation — loading fonts before consent.** Adobe sets no cookies, so § 25 TDDDG consent is not triggered by cookies. However, each font request transmits the visitor's IP address to a US provider. LG München I (judgment of 20 January 2022, 3 O 17493/20) held that transmitting the IP address to Google Fonts without consent breached the GDPR where self-hosting was possible. Adobe Fonts web projects are served by Adobe; have your DPO or independent counsel decide whether the same reasoning applies, and otherwise load the fonts after consent with a fallback font.
 
 ## Step 1 — Configure Adobe Fonts
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Medium risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
-| 2 | Embed type | Web Project embed code [S2] | CSS | JavaScript |
+| 2 | Embed type | Web Project embed code | CSS | JavaScript |
 | 3 | Loading | Consenter (see ⚠) | After consent / per DPO | After consent / per DPO |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Adobe is a US enterprise subject to 18 U.S.C. § 2713 [S4]; list the United States.
+**Processing location.** Adobe is a US enterprise subject to the US CLOUD Act; list the United States.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Medium risk |
 |---|---|---|
@@ -50,12 +50,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | IP address, Device characteristics | IP address, Device characteristics, Aggregated site statistics |
 | Legal role of data recipient | Processor | Processor |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | IP not stored [S1] | IP not stored [S1] |
+| Maximum storage duration | IP not stored | IP not stored |
 | Processing location | United States | United States |
-
-## Sources
-
-- [S1] Adobe — Adobe Fonts privacy information
-- [S2] Adobe — Adobe Fonts privacy (data collected for web projects)
-- [S3] Adobe Community — Use of font versus `p.gif` from typekit.net
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)

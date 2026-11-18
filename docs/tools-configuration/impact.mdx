@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** impact.com UTT and Consent Mode for brands. Sources were checked on 16 November 2026.
+**Scope.** impact.com UTT and Consent Mode for brands.
 
-**What the service does in this scope.** The UTT uses first-party cookie tracking and runs on every page [S1]. The UTT sets first-party cookies on your domain storing a UUID and timestamp to identify the customer later [S2]. Consent Mode (beta) is enabled via a support ticket; the default consent status should be declared via `impactDataLayer` before the UTT loads [S3]. Partners can append `im_rewards=1` to loyalty or rewards links [S4]. UTT version 3 can read consent directly from a standard-framework CMP; the Publisher Tag withholds `identifyUser` until consent and hides values such as `customerEmailHash` [S5].
+**What the service does in this scope.** The UTT uses first-party cookie tracking and runs on every page. The UTT sets first-party cookies on your domain storing a UUID and timestamp to identify the customer later. Consent Mode (beta) is enabled via a support ticket; the default consent status should be declared via `impactDataLayer` before the UTT loads. Partners can append `im_rewards=1` to loyalty or rewards links. UTT version 3 can read consent directly from a standard-framework CMP; the Publisher Tag withholds `identifyUser` until consent and hides values such as `customerEmailHash`.
 
 **Configurations included.**
 
@@ -36,13 +36,13 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
 |---|---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics; Receive marketing offers | Support marketing analytics; Receive marketing offers |
-| 2 | Consent Mode | Support ticket; `impactDataLayer` [S3] | On; default denied | On; default denied | Off |
-| 3 | Rewards exemption | `im_rewards=1` on partner links [S4] | Not used | Used | — |
-| 4 | Customer identification | `ire('identify')` [S3][S5] | Only after consent, no email hash | Only after consent | Customer ID and email hash |
+| 2 | Consent Mode | Support ticket; `impactDataLayer` | On; default denied | On; default denied | Off |
+| 3 | Rewards exemption | `im_rewards=1` on partner links | Not used | Used | — |
+| 4 | Customer identification | `ire('identify')` | Only after consent, no email hash | Only after consent | Customer ID and email hash |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** impact.com is a US enterprise; list the United States (18 U.S.C. § 2713 [S6]).
+**Processing location.** impact.com is a US enterprise; list the United States.
 
 **Legal role.** Confirm the role in your impact.com agreement; the table uses Processor for the brand-side tag.
 
@@ -56,12 +56,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation | Profile based |
 | Maximum storage duration | Per programme referral window | Per programme referral window | Per programme referral window |
 | Processing location | United States | United States | United States |
-
-## Sources
-
-- [S1] impact.com Help — Tracking with Universal Tracking Tag (UTT)
-- [S2] impact.com Help — impact.com cookies explained
-- [S3] impact.com Integrations — Integrate Consent Mode on impact.com
-- [S4] impact.com Help — Ensure GDPR compliance using Consent Mode
-- [S5] impact.com Help — UTT version 3 explained
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)

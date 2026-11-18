@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** Monotype web fonts self-hosted with the Monotype tracking script, or served from Monotype's CDN. Monotype Imaging Holdings Inc. is a US company [S1]. Sources were checked on 16 November 2026.
+**Scope.** Monotype web fonts self-hosted with the Monotype tracking script, or served from Monotype's CDN. Monotype Imaging Holdings Inc. is a US company.
 
-**What the service does in this scope.** Webfont licences count each page load that calls the webfont kit CSS as a pageview [S2]. With self-hosted fonts, the Monotype tracking script collects the anonymised project ID, the licensed website URL linked to a customer ID, and the referrer URL; the visitor's IP address is transferred to Monotype's third-party service provider [S3]. Monotype does not use cookies for web font tracking [S4]. With Monotype's CDN, the kit links to a tracking CSS (`1.css`) that pushes usage data to Monotype for reporting and licensing [S5].
+**What the service does in this scope.** Webfont licences count each page load that calls the webfont kit CSS as a pageview. With self-hosted fonts, the Monotype tracking script collects the anonymised project ID, the licensed website URL linked to a customer ID, and the referrer URL; the visitor's IP address is transferred to Monotype's third-party service provider. Monotype does not use cookies for web font tracking. With Monotype's CDN, the kit links to a tracking CSS (`1.css`) that pushes usage data to Monotype for reporting and licensing.
 
 **Configurations included.**
 
@@ -28,19 +28,19 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Configuration A — Medium risk | Self-hosted fonts with the mandatory Monotype tracking script/CSS. |
 | Configuration B — Medium risk | Fonts served from Monotype's CDN with tracking CSS. |
 
-> ⚠ **Recommendation — pageview tracking before consent.** No cookies are used [S4], but the tracking request transmits the visitor's IP address to a US provider on every page load [S3]. The tracking is a licence condition, not a visitor-facing function. Whether it may run without consent (e.g. under Art. 6(1)(f) GDPR) should be decided by your DPO or independent counsel; otherwise use a font licence without pageview tracking.
+> ⚠ **Recommendation — pageview tracking before consent.** No cookies are used, but the tracking request transmits the visitor's IP address to a US provider on every page load. The tracking is a licence condition, not a visitor-facing function. Whether it may run without consent (e.g. under Art. 6(1)(f) GDPR) should be decided by your DPO or independent counsel; otherwise use a font licence without pageview tracking.
 
 ## Step 1 — Configure Monotype web fonts
 
 | # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Medium risk |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
-| 2 | Hosting | Web project / kit [S5] | Self-hosted kit | Monotype CDN |
-| 3 | Tracking | Licence requirement [S2][S3] | Tracking script/CSS | Tracking CSS `1.css` [S5] |
+| 2 | Hosting | Web project / kit | Self-hosted kit | Monotype CDN |
+| 3 | Tracking | Licence requirement | Tracking script/CSS | Tracking CSS `1.css` |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** Monotype is a US enterprise subject to 18 U.S.C. § 2713 [S6]; list the United States.
+**Processing location.** Monotype is a US enterprise subject to the US CLOUD Act; list the United States.
 
 | Consenter Manager field | Configuration A — Medium risk | Configuration B — Medium risk |
 |---|---|---|
@@ -50,14 +50,5 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Data categories | IP address, Aggregated site statistics | IP address, Aggregated site statistics, Device characteristics |
 | Legal role of data recipient | Individual Controller (licence counting) | Individual Controller (licence counting) |
 | Personalisation model | No personalisation | No personalisation |
-| Maximum storage duration | Per Monotype web font tracking policy [S3] | Per Monotype web font tracking policy [S3] |
+| Maximum storage duration | Per Monotype web font tracking policy | Per Monotype web font tracking policy |
 | Processing location | United States | United States |
-
-## Sources
-
-- [S1] Monotype — Website Use Privacy Policy
-- [S2] Monotype Foundry Support — Webfont licence (pageview counting)
-- [S3] Monotype — Web Font Tracking Privacy Policy
-- [S4] Monotype — Web Font Tracking Privacy Policy (no cookies)
-- [S5] Monotype Support — Hosting web fonts and reporting
-- [S6] 18 U.S.C. § 2713 (CLOUD Act)

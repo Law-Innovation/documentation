@@ -17,9 +17,9 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 
 ## At a glance
 
-**Scope.** The Tidio live chat and chatbot widget (including Lyro AI). Data is transmitted to Tidio LLC, San Francisco, United States, represented by Tidio Poland Sp. z o.o. [S1]. Sources were checked on 16 November 2026.
+**Scope.** The Tidio live chat and chatbot widget (including Lyro AI). Data is transmitted to Tidio LLC, San Francisco, United States, represented by Tidio Poland Sp. z o.o..
 
-**What the service does in this scope.** Tidio states that cookies are not used under normal conditions because most widget data is stored in `localStorage` [S2].
+**What the service does in this scope.** Tidio states that cookies are not used under normal conditions because most widget data is stored in `localStorage`.
 
 **No configuration without prior consent.** `localStorage` access falls under § 25 TDDDG in the same way as cookies; load Tidio only after consent.
 
@@ -29,7 +29,7 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 |---|---|
 | Processing purposes | Unlock additional website features |
 | Loading | Consenter script blocking until consent |
-| Storage | `localStorage` [S2] |
+| Storage | `localStorage` |
 | Contract | Tidio DPA |
 
 ## Step 2 — Map the configuration in the Consenter Manager
@@ -37,16 +37,10 @@ The mapping is an example, not a guarantee of legal compliance. Verify it agains
 | Consenter Manager field | Value to select | Basis and conditions |
 |---|---|---|
 | Processing purposes | Unlock additional website features | Chat |
-| Tracking method | First party tracking (cross-session) | `localStorage` persists across visits [S2] |
+| Tracking method | First party tracking (cross-session) | `localStorage` persists across visits |
 | Identifier | Device identifiers | Visitor ID in storage |
 | Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, User-provided data | Chat context and messages |
-| Legal role of data recipient | Processor | [S1] |
+| Legal role of data recipient | Processor | — |
 | Personalisation model | No personalisation | — |
 | Maximum storage duration | Until storage is cleared | `localStorage` has no expiry |
-| Processing location | United States | Tidio LLC [S1]; 18 U.S.C. § 2713 [S3] |
-
-## Sources
-
-- [S1] Legal Web — Use Tidio chat GDPR compliant (data processor details)
-- [S2] Tidio Help — Privacy Policy & GDPR compliance
-- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+| Processing location | United States | Tidio LLC; the US CLOUD Act |

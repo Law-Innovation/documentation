@@ -17,9 +17,9 @@ The configurations are comparative examples, not guarantees of legal compliance.
 
 ## At a glance
 
-**Scope.** BugSnag browser JavaScript error monitoring. Sources were checked on 16 November 2026.
+**Scope.** BugSnag browser JavaScript error monitoring.
 
-**What the service does in this scope.** By default BugSnag records the user's IP address as the user ID; `collectUserIp` prevents this [S1][S2]. It generates an anonymous device ID, which can be prevented via `generateAnonymousId` [S3]. User agent and locale are also captured and can be modified in a callback [S3].
+**What the service does in this scope.** By default BugSnag records the user's IP address as the user ID; `collectUserIp` prevents this. It generates an anonymous device ID, which can be prevented via `generateAnonymousId`. User agent and locale are also captured and can be modified in a callback.
 
 **Configurations included.**
 
@@ -35,12 +35,12 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|---|---|
 | 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
-| 2 | Client IP | `collectUserIp` [S2] | `false` | `true` |
-| 3 | Device ID | `generateAnonymousId` [S3] | `false` | `true` |
+| 2 | Client IP | `collectUserIp` | `false` | `true` |
+| 3 | Device ID | `generateAnonymousId` | `false` | `true` |
 
 ## Step 2 — Map the configuration in the Consenter Manager
 
-**Processing location.** SmartBear is a US enterprise; list the United States (18 U.S.C. § 2713 [S4]).
+**Processing location.** SmartBear is a US enterprise; list the United States.
 
 | Consenter Manager field | Configuration A — Lower risk | Configuration B — Higher risk (default configuration) |
 |---|---|---|
@@ -53,10 +53,3 @@ The configurations are comparative examples, not guarantees of legal compliance.
 | Personalisation model | No personalisation | No personalisation |
 | Maximum storage duration | Per BugSnag retention | Per BugSnag retention |
 | Processing location | United States | United States |
-
-## Sources
-
-- [S1] BugSnag Docs — Automatically captured data (JavaScript)
-- [S2] BugSnag JS — plugin-client-ip README
-- [S3] BugSnag Docs — Automatically captured data (Vue)
-- [S4] 18 U.S.C. § 2713 (CLOUD Act)
