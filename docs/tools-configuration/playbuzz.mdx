@@ -1,0 +1,51 @@
+---
+title: "EX.CO (formerly Playbuzz)"
+description: "How to configure EX.CO (formerly Playbuzz) at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features, Customise online ads
+
+> This guide explains how to reflect EX.CO in the Consenter Manager. The sources do not document configurable privacy settings for EX.CO embeds, so this guide uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** EX.CO interactive content and EX.CO Channels video units (EX.CO Technologies Ltd., Israel [S1][S2]). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** EX.CO describes its platform as generating leads and providing audience insights for targeting and segmentation; EX.CO Channels is a video unit for publishers; Evidon classifies it under ad serving and analytics/measurement [S1]. EX.CO's DPA requires each party to maintain its own privacy policy and references the ePrivacy Directive [S2].
+
+**No configuration without prior consent.** Ad serving and audience segmentation [S1].
+
+## Step 1 — Implement EX.CO
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Unlock additional website features; Customise online ads |
+| Loading | After Consenter consent |
+| Contract | EX.CO DPA [S2] |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features, Customise online ads | [S1] |
+| Tracking method | Third party tracking (crosssession, cross-website) | Ad serving [S1] |
+| Identifier | Device identifiers | Ad serving |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, User-provided data (lead forms), Users' profiles | [S1] |
+| Legal role of data recipient | Individual Controller | Each party maintains its own privacy policy [S2]; verify against the DPA |
+| Personalisation model | Profile based | Targeting and segmentation [S1] |
+| Maximum storage duration | Per EX.CO cookie notice | Not documented |
+| Processing location | Israel (adequacy decision); check for US sub-processors | [S1] |
+
+## Sources
+
+- [S1] Evidon — EX.CO (formerly Playbuzz) company profile
+- [S2] EX.CO — Data Processing Addendum
+
+[S1]: https://cop.evidon.com/companies/excoformerlyknownasplaybuzz
+[S2]: https://ex.co/dpa

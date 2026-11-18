@@ -1,0 +1,54 @@
+---
+title: "New Relic Browser"
+description: "How to configure New Relic Browser at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service
+
+> This guide explains how to reflect the New Relic browser agent (real user monitoring) in the Consenter Manager. Server-side APM is out of scope. The current agent offers no visitor-facing privacy switches beyond those noted, so this guide uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** New Relic browser agent v1220 and later. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** For agent v1220 and later, the session cookies (`JSESSIONID`, `NREUM`) are deprecated [S1]. New Relic briefly collects the end user's IP address to look up country, region, city and ASN details, and no longer retains it once mapping is complete (typically minutes, up to 24 hours) [S2]. New Relic notes that a consent manager with a conditional script loader can load the agent only after consent [S2].
+
+> ⚠ **Recommendation.** Check the agent version and any session features you enable (such as session replay or traces) in your browser app settings, and inspect browser storage before finalising this mapping.
+
+## Step 1 — Implement New Relic Browser
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Improve the service (performance monitoring) |
+| Agent version | v1220 or later [S1] |
+| Loading | After Consenter consent via conditional loading [S2] |
+| Contract | New Relic DPA |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Improve the service | — |
+| Tracking method | First party tracking (single session) | Verify session features in use |
+| Identifier | IP address | Briefly, for geo lookup [S2] |
+| Data categories | Aggregated site statistics, Device characteristics, Browsing and interaction data, Non-precise location data, IP address | [S2] |
+| Legal role of data recipient | Processor | New Relic DPA |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | IP: up to 24 hours [S2]; other data per retention settings | — |
+| Processing location | United States / EU region per account | US enterprise; CLOUD Act [S3] |
+
+## Sources
+
+- [S1] New Relic Docs — Browser agent cookies (deprecated)
+- [S2] New Relic Docs — New Relic cookies (data privacy)
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://docs.newrelic.com/docs/browser/new-relic-browser/page-load-timing-resources/new-relic-cookies
+[S2]: https://docs.newrelic.com/docs/new-relic-browser/new-relic-cookies
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

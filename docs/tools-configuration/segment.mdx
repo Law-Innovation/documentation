@@ -1,0 +1,81 @@
+---
+title: "Segment (Twilio)"
+description: "How to configure Segment (Twilio) at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for Twilio Segment and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Segment Analytics.js on a website as a customer data platform that collects events and forwards them to destinations. Each **destination** (for example an analytics or ad tool) is a separate recipient and must be assessed and entered separately. Twilio Inc. is a US company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Analytics.js sets first-party cookies `ajs_anonymous_id` (anonymous visitor), `ajs_user_id` (logged-in user, after `identify()`) and `ajs_group_id` (after `group()`) as soon as the site loads [S1]; IDs are also persisted in local storage [S2]. Segment's Consent Management (Business tier) enforces consent across destinations [S3]. EU data residency requires an EU workspace and the EU endpoint `events.eu1.segmentapis.com`; only EU workspaces store data exclusively in the EU [S4].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | EU workspace; Analytics.js loads after consent; no `identify()`; cloud-mode destinations limited to analytics. |
+| Configuration B — Higher risk | US workspace; `identify()` with traits (email); device-mode and advertising destinations; after consent. |
+
+**No configuration without prior consent.** `ajs_anonymous_id` is set on load [S1]; no consent-free configuration is documented.
+
+## Step 1 — Configure Segment
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics; Receive personalised marketing offers (if ad destinations) |
+| 2 | Workspace region | Create EU workspace or request migration; `apiHost: "events.eu1.segmentapis.com/v1"` [S4] | EU | US |
+| 3 | Loading | Consenter blocks Analytics.js until consent | After consent | After consent |
+| 4 | Consent Management | Segment Consent Management / consent wrapper [S3] | Map destinations to consent categories | Map destinations to consent categories |
+| 5 | Identify / traits | `analytics.identify(userId, traits)` | Not used | Used |
+| 6 | Destinations | Connections > Destinations | Cloud-mode analytics only | Device-mode and advertising destinations |
+| 7 | Persistence | `user.persist`, cookie/localStorage keys [S2] | Default | Default |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Twilio Inc. is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S5].
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Improve the service | Improve the service, Support marketing analytics |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers, IP address | Device identifiers, IP address, Authentication-derived identifiers, Direct identifier |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Authentication-derived identifiers, direct identifier, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | Profile based (if profiles feed personalised marketing) |
+| Maximum storage duration | Per contract | Per contract |
+| Processing location | EU workspace; United States as potential access location | United States |
+
+**Basis.** Cookies and identity [S1][S2]; region [S4]. Every destination receiving data must have its own Consenter Manager entry.
+
+## Privacy-policy follow-up
+
+- Segment as processor; identifiers; destinations and their roles; region; potential access by US authorities [S5].
+
+## Verification checklist
+
+- [ ] No `cdn.segment.com` load and no `ajs_*` cookies before consent.
+- [ ] Destinations receive data only for granted categories [S3].
+
+## Sources
+
+- [S1] Twilio Support — First-party cookies for Analytics.js to function
+- [S2] Segment Docs — Client-side persistence in Analytics.js
+- [S3] Twilio Docs — Segment Consent Management
+- [S4] Twilio Docs — Regional Segment (EU data residency)
+- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://support.twilio.com/hc/en-us/articles/51556786109083-First-Party-Cookies-for-Analytics-js-to-Function
+[S2]: https://preview.segment.build/docs/connections/sources/catalog/libraries/website/javascript/cookie-validity-update
+[S3]: https://www.twilio.com/docs/segment/privacy/consent-management
+[S4]: https://static0.twilio.com/docs/segment/guides/regional-segment
+[S5]: https://www.law.cornell.edu/uscode/text/18/2713

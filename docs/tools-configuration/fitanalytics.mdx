@@ -1,0 +1,62 @@
+---
+title: "Fit Analytics (Fit Finder)"
+description: "How to configure Fit Analytics (Fit Finder) at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features, Personalise the website, Improve the service
+
+> This guide explains how to implement different privacy configurations for the Fit Analytics Fit Finder size advisor on a shop's product pages and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Fit Finder widget and Shopping Assistant on product detail pages. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Fit Analytics states that loading its products on a store's website requires consent, given either through the store's cookie banner (analytics consent) or directly in the Fit Finder widget or Shopping Assistant; it obtains explicit consent for analytics and personalised size recommendations [S1]. The integration object passes a `consent.hasAnalyticsConsent()` callback, a shop session ID and whether the shopper is logged in [S2]. The widget collects shop data needed for a recommendation [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | `hasAnalyticsConsent()` returns the Consenter analytics choice; Fit Finder loads after consent. |
+| Configuration B — Higher risk | Store consent not passed; shoppers consent inside the Fit Finder widget, and logged-in shop data is shared. |
+
+## Step 1 — Configure Fit Analytics
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features; Personalise the website; Improve the service | Unlock additional website features; Personalise the website; Improve the service |
+| 2 | Consent source | `consent.hasAnalyticsConsent()` [S2] | Consenter analytics choice | Fit Finder in-widget consent [S1] |
+| 3 | Shop user data | `hasLoggedIn`, `shopSessionId` [S2] | Session ID only | Session ID and logged-in status |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Fit Analytics Innovation GmbH is based in Berlin; check its DPA for US sub-processors or group entities and list the United States if present (18 U.S.C. § 2713 [S4]).
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Unlock additional website features, Personalise the website, Improve the service | Unlock additional website features, Personalise the website, Improve the service |
+| Tracking method | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) |
+| Identifier | Device identifiers | Device identifiers, Authentication-derived identifiers |
+| Data categories | Device identifiers, Browsing and interaction data, User-provided data, Privacy choices | Device identifiers, Authentication-derived identifiers, Browsing and interaction data, User-provided data, Users' profiles, Privacy choices |
+| Legal role of data recipient | Individual Controller | Individual Controller |
+| Personalisation model | Profile based | Profile based |
+| Maximum storage duration | Per Fit Analytics privacy policy [S1] | Per Fit Analytics privacy policy [S1] |
+| Processing location | Germany / EU; per DPA | Germany / EU; per DPA |
+
+## Sources
+
+- [S1] Fit Analytics — Privacy Policy (products)
+- [S2] Fit Analytics Developers — Fit Finder widget integration (staging docs)
+- [S3] Fit Analytics Developers — About Fit Finder
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://products.fitanalytics.com/policies/en/privacy-policy.html
+[S2]: https://developers-staging1.fitanalytics.com/about-fit-finder/
+[S3]: https://developers.fitanalytics.com/about-fit-finder/
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

@@ -1,0 +1,66 @@
+---
+title: "ActiveCampaign"
+description: "How to configure ActiveCampaign at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Support marketing analytics, Receive personalised marketing offers
+
+> This guide explains how to implement different privacy configurations for ActiveCampaign site tracking and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** ActiveCampaign forms and the Site Tracking code. ActiveCampaign, LLC is a US company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Site Tracking uses first-party cookies to track visits to every page with the tracking code; contacts are identified after submitting an ActiveCampaign form (with redirect to a tracked page) or via `vgo('setEmail', …)` [S1]. For consent, ActiveCampaign instructs changing `vgo('setTrackByDefault', true)` to `false` and calling `vgo('process', 'allowTracking')` after the visitor agrees [S2].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Forms only; Site Tracking not installed. |
+| Configuration B — Higher risk | Site Tracking with `setTrackByDefault(false)`; `allowTracking` after Consenter consent; contacts identified. |
+
+**Default behaviour.** The standard snippet contains `setTrackByDefault(true)` [S2]; this is not suitable for EU visitors without prior consent.
+
+## Step 1 — Configure ActiveCampaign
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Receive marketing offers (form) | Support marketing analytics; Receive personalised marketing offers |
+| 2 | Site Tracking | **Website > Site Tracking**; snippet [S1] | Off | On |
+| 3 | Track by default | `vgo('setTrackByDefault', …)` [S2] | — | `false` |
+| 4 | Consent signal | `vgo('process', 'allowTracking')` on Consenter consent [S2] | — | Yes |
+| 5 | Contact identification | Form redirect / `vgo('setEmail', …)` [S1] | — | Yes |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** ActiveCampaign is a US enterprise subject to 18 U.S.C. § 2713 [S3]; list the United States.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Receive marketing offers | Support marketing analytics, Receive personalised marketing offers |
+| Tracking method | No tracking | First party tracking (cross-session) |
+| Identifier | Direct identifier (on submission) | Device identifiers, Direct identifier |
+| Data categories | User-provided data, direct identifier | Browsing and interaction data, Device identifiers, User-provided data, direct identifier, Users' profiles, Privacy choices |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | Profile based |
+| Maximum storage duration | Per contact retention | Per cookie inspection |
+| Processing location | United States | United States |
+
+**Basis.** First-party cookies and identification [S1]; consent signal via `allowTracking` [S2], hence "Privacy choices".
+
+## Sources
+
+- [S1] ActiveCampaign Help — An overview of Site Tracking
+- [S2] ActiveCampaign Help — Site tracking and the GDPR
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://help.activecampaign.com/hc/en-us/articles/221542267
+[S2]: https://help.activecampaign.com/hc/en-us/articles/360000872064
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

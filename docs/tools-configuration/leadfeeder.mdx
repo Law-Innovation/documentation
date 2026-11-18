@@ -1,0 +1,83 @@
+---
+title: "Leadfeeder (Dealfront)"
+description: "How to configure Leadfeeder (Dealfront) at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Support marketing analytics, Receive marketing offers
+
+> This guide explains how to implement different privacy configurations for the Leadfeeder Tracker and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Leadfeeder Tracker (Dealfront) for B2B company identification on a website. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The tracker analyses technical signals such as the IP address, matches them against company databases and enriches the visit with firmographic details; the script is served via AWS CloudFront [S1]. It can set the `_lfa` cookie (1 year) as a visitor ID [S2]. With consent-manager support, the tracker sets cookies only after the CMP calls `window.ldfdr.acceptCookie()` [S3]; until then, no cookie is dropped [S4]. **IP anonymisation** stores only a shortened IP address and keeps the actual IP out of all systems including logs [S4][S5]. Dealfront states that it processes website traffic data on its own legitimate interest (Art. 6(1)(f) GDPR) in optimising its products, services, sales and marketing [S4].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk (⚠ no-consent) | Cookieless company identification; IP anonymisation on; cookie only after consent. |
+| Configuration B — Higher risk | Tracker with `_lfa` visitor cookie after consent; IP anonymisation off; CRM integration. |
+
+> ⚠ **Recommendation — running the tracker before consent is legally uncertain.** Dealfront positions company-level identification on legitimate interest [S1][S4]. The script still runs in the visitor's browser and processes the IP address, which can be personal data; Dealfront itself notes that a balancing test is needed [S6]. Have your DPO or independent counsel confirm before loading the tracker without consent.
+
+## Step 1 — Configure Leadfeeder
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics; Receive marketing offers |
+| 2 | Cookie consent integration | Tracker settings: consent-manager support; CMP calls `window.ldfdr.acceptCookie()` [S3] | Cookie only after consent | Cookie only after consent |
+| 3 | IP anonymisation | Tracker settings [S5] | On | Off |
+| 4 | Tracker loading | Consenter / tag manager | See ⚠ recommendation | After consent |
+| 5 | CRM integrations | Dealfront integrations (e.g. HubSpot, Salesforce, Pipedrive) | Not used | Used |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Dealfront is an EU group; the script is delivered via AWS CloudFront [S1]. Amazon Web Services is a US enterprise subject to 18 U.S.C. § 2713 [S7]; list the United States as a potential access location.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Support marketing analytics | Support marketing analytics, Receive marketing offers |
+| Tracking method | No tracking | First party tracking (cross-session) |
+| Identifier | IP address | Device identifiers, IP address |
+| Data categories | IP address anonymised, Browsing and interaction data, Device characteristics | IP address, Device identifiers, Browsing and interaction data, Device characteristics, Users' profiles |
+| Legal role of data recipient | Processor; Dealfront also Individual Controller for its own product purposes [S4] | Same |
+| Personalisation model | No personalisation | Group based (properties) |
+| Maximum storage duration | Not documented | `_lfa` 1 year [S2] |
+| Processing location | EU; United States as potential access location | Same |
+
+**Basis.** IP processing and enrichment [S1]; cookie [S2]; IP anonymisation [S5]; Dealfront's own legitimate-interest processing [S4]. "Group based (properties)" in B reflects company-level (firmographic) segmentation for sales outreach. Because Dealfront also processes data for its own purposes, consider a second entry with "Individual Controller".
+
+## Privacy-policy follow-up
+
+- Dealfront (Leadfeeder) as recipient and, for its own purposes, controller [S4]; IP-based company identification; cookies (B); opt-out; transfers.
+
+## Verification checklist
+
+- [ ] A: no `_lfa` cookie before consent [S3].
+- [ ] IP anonymisation setting matches the mapping [S5].
+
+## Sources
+
+- [S1] Dealfront Help — Leadfeeder Tracker installation FAQ
+- [S2] Dealfront Help — What is the Leadfeeder Tracker? (cookie information)
+- [S3] Leadfeeder Help — Using Leadfeeder Tracker with consent to comply with GDPR
+- [S4] Dealfront Help — Website tracker data processing roles
+- [S5] Dealfront Help — Frequently asked questions about the Leadfeeder Tracker (IP anonymisation)
+- [S6] Leadfeeder Blog — Website visitor tracking in a post-GDPR world
+- [S7] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://help.dealfront.com/en/articles/13192047-leadfeeder-tracker-installation-faq
+[S2]: https://help.dealfront.com/en/articles/3700007-what-is-the-leadfeeder-tracker
+[S3]: https://help.leadfeeder.com/en/articles/5882613-using-leadfeeder-tracker-with-consent-to-comply-with-gdpr
+[S4]: https://help.dealfront.com/en/articles/7936730-website-tracker-data-processing-roles
+[S5]: https://help.dealfront.com/en/articles/3769703-frequently-asked-questions-about-the-dealfront-tracker
+[S6]: https://www.leadfeeder.com/blog/website-visitor-identification/website-visitor-tracking-in-a-post-gdpr-world-what-b2bs-need-to-know/
+[S7]: https://www.law.cornell.edu/uscode/text/18/2713

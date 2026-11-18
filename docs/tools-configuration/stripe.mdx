@@ -1,0 +1,66 @@
+---
+title: "Stripe"
+description: "How to configure Stripe at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for Stripe.js and its advanced fraud detection signals and how to reflect them in the Consenter Manager. Processing a payment the visitor has chosen is out of scope.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Stripe.js (Elements, Checkout) on the merchant website. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Stripe.js provides advanced fraud detection based on signals about device characteristics and user activity; collection is disclosed in Stripe's privacy and cookie policies [S1]. The signals are sent to Stripe via periodic requests to `m.stripe.com` [S2]. Merchants can disable them with the `advancedFraudSignals` parameter (or `setLoadParameters` in the module), which increases fraud risk such as card testing [S1][S2]. Stripe states these signals are used only for security and anti-fraud and are not shared or sold to advertisers [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Stripe.js loaded only on checkout; advanced fraud signals disabled. |
+| Configuration B — Medium risk | Stripe.js loaded only on checkout; advanced fraud signals enabled. |
+| Configuration C — Higher risk (default behaviour) | Stripe.js loaded on every page with advanced fraud signals enabled. |
+
+> ⚠ **Recommendation.** Fraud-prevention signals during a payment the visitor requested may be strictly necessary; collection on pages without a payment flow (C) is harder to justify. Have your DPO confirm whether B needs a consent entry and whether C requires consent.
+
+## Step 1 — Configure Stripe
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default behaviour) |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features | Unlock additional website features |
+| 2 | Loading scope | Theme / front-end | Checkout pages only | Checkout pages only | All pages |
+| 3 | Advanced fraud signals | `advancedFraudSignals` / `setLoadParameters` [S2] | Disabled | Enabled | Enabled |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Stripe is a US enterprise; list the United States (18 U.S.C. § 2713 [S4]).
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default behaviour) |
+|---|---|---|---|
+| Entry needed | Per DPO assessment | Per DPO assessment (⚠) | Yes |
+| Processing purposes | Unlock additional website features | Unlock additional website features | Unlock additional website features |
+| Tracking method | Third party tracking (single session, cross-website) | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) |
+| Identifier | No identifier | Device identifiers, Probabilistic identifiers | Device identifiers, Probabilistic identifiers |
+| Data categories | Device characteristics, IP address | Device characteristics, Device identifiers, Browsing and interaction data, IP address | Device characteristics, Device identifiers, Browsing and interaction data, IP address |
+| Legal role of data recipient | Individual Controller | Individual Controller | Individual Controller |
+| Personalisation model | No personalisation | No personalisation | No personalisation |
+| Maximum storage duration | Per Stripe cookie policy | Per Stripe cookie policy | Per Stripe cookie policy |
+| Processing location | EU / United States | EU / United States | EU / United States |
+
+## Sources
+
+- [S1] Stripe Docs — Advanced fraud detection
+- [S2] Stripe Docs — Advanced fraud detection (disable signals)
+- [S3] Stripe Blog — Updates to Stripe's advanced fraud detection
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://docs.stripe.com/disputes/prevention/advanced-fraud-detection
+[S2]: https://edge-docs.stripe.com/disputes/prevention/advanced-fraud-detection
+[S3]: https://stripe.com/zh-my/blog/advanced-fraud-detection-updates
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

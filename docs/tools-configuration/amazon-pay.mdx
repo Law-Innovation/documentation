@@ -1,0 +1,65 @@
+---
+title: "Amazon Pay"
+description: "How to configure Amazon Pay at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for the Amazon Pay button on a merchant website and how to reflect them in the Consenter Manager. Processing a payment the visitor has chosen is out of scope.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Amazon Pay Checkout v2 (`checkout.js`). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The `checkout.js` script renders the Amazon Pay button; Amazon recommends placing the Express button wherever checkout starts, such as the mini cart, cart page or checkout page, or in the payment selection at the end of checkout [S1]. Amazon Payments uses cookies to recognise the browser or device [S2]. Shop modules document loading all Amazon Pay scripts only after consent through a CMP [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Amazon Pay offered only in the payment selection at the end of checkout; script loaded when selected. |
+| Configuration B — Medium risk | Express button on mini cart / cart pages; script loaded after Consenter consent. |
+
+> ⚠ **Recommendation.** Whether loading `checkout.js` in A is strictly necessary for the payment the visitor requested is a legal assessment. Have your DPO confirm it before running A without a consent entry.
+
+## Step 1 — Configure Amazon Pay
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
+| 2 | Button placement | Shop integration [S1] | Payment selection at end of checkout | Mini cart / cart / product pages |
+| 3 | Loading | Shop template / CMP [S3] | On selection | After Consenter consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Amazon Payments Europe operates from Luxembourg as part of a US group; list the United States (18 U.S.C. § 2713 [S4]).
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|
+| Entry needed | Per DPO assessment (⚠) | Yes |
+| Processing purposes | Unlock additional website features | Unlock additional website features |
+| Tracking method | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) |
+| Identifier | Device identifiers, Authentication-derived identifiers | Device identifiers, Authentication-derived identifiers |
+| Data categories | Device identifiers, Device characteristics, Authentication-derived identifiers, e-commerce Activity | Device identifiers, Device characteristics, Authentication-derived identifiers, Browsing and interaction data, e-commerce Activity |
+| Legal role of data recipient | Individual Controller | Individual Controller |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | Per Amazon Payments cookie notice | Per Amazon Payments cookie notice |
+| Processing location | EU (Luxembourg) / United States | EU (Luxembourg) / United States |
+
+## Sources
+
+- [S1] Amazon Developer — Add the Amazon Pay button
+- [S2] Amazon Payments UK — Privacy Notice
+- [S3] OXID eSales — Amazon Pay: Integrating Consent Management Platforms
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://developer.amazon.com/es/docs/amazon-pay-checkout/add-the-amazon-pay-button.html
+[S2]: https://payments-uk.amazon.com/help/FWPNETEJVDQM6E2
+[S3]: https://docs.oxid-esales.com/modules/amazon-pay/en/latest/cmp-integration.html
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

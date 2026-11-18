@@ -1,0 +1,92 @@
+---
+title: "Contentsquare"
+description: "How to configure Contentsquare at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service
+
+> This guide explains how to implement different privacy configurations for Contentsquare and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Contentsquare web tag (experience analytics, heatmaps, session replay). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Contentsquare collects IP addresses, an online unique ID and behavioural data on how visitors interact with the site [S1]. It uses only first-party cookies, with a maximum lifetime of 13 months, for example `_cs_id` (13 months, user data), `_cs_s` (30 minutes, session) and `_cs_c` (consent state for session replay masking) [S2]. By default, IP addresses are stored for no longer than three days; an **IP-less mode** avoids collecting the IP address [S1][S3]. The **cookieless** option replaces cookies with session storage, which expires at the end of the session [S1]. Personal data is kept for up to 13 months by default [S1].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk (⚠ no-consent option) | **Exemption Mode** for audience measurement, with IP-less mode and no session replay. Self-assessed exemption. |
+| Configuration B — Medium risk | Cookieless (session storage) with session replay, loaded after consent. |
+| Configuration C — Higher risk (default) | Standard first-party cookies (13 months), session replay, loaded after consent. |
+
+> ⚠ **Recommendation — Configuration A relies on a self-assessed exemption.** Contentsquare's Exemption Mode is designed to let customers use its cookies without consent under the audience-measurement exemption [S3]. CNIL's formal evaluation programme has ended, so qualifying configurations must be described as a **self-assessed exemption**, not as CNIL-approved. Use A without consent only if your DPO or independent counsel confirms that your configuration meets the exemption conditions; in Germany, § 25 TDDDG contains no equivalent analytics exemption.
+
+| Action | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default) |
+|---|---|---|---|
+| Storage technology | First-party cookies under Exemption Mode | Session storage (cookieless) | First-party cookies |
+| IP address | IP-less mode | Stored ≤ 3 days (default) | Stored ≤ 3 days (default) |
+| Session replay | Off | On (masked) | On |
+| Loading | See ⚠ recommendation | After consent | After consent |
+
+## Step 1 — Configure Contentsquare
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default) |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service | Improve the service |
+| 2 | Exemption Mode | Contentsquare project settings / Help Center activation [S3] | On | Off | Off |
+| 3 | Cookieless | Project setting [S1] | Off | On | Off |
+| 4 | IP-less mode | Project setting [S3] | On | Off | Off |
+| 5 | Session replay and masking | Session Replay settings; personal-data masking APIs [S4] | Off | On, fully masked | On |
+| 6 | Opt-out handling | `_cs_optout` cookie / opt-out API [S2] | Provide an opt-out | Consenter withdrawal | Consenter withdrawal |
+| 7 | Retention | Contract (default 13 months; extensions on request) [S1][S5] | 13 months | 13 months | 13 months (illustrative; may be extended) |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Contentsquare SAS is a French company. Check the storage region and sub-processors in your contract; where US sub-processors are used, list the United States as a potential access location (18 U.S.C. § 2713) [S6].
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk (default) |
+|---|---|---|---|
+| Processing purposes | Improve the service | Improve the service | Improve the service |
+| Tracking method | First party tracking (cross-session) | First party tracking (single session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers, IP address | Device identifiers, IP address |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers | Browsing and interaction data, Device characteristics, Device identifiers, IP address | Browsing and interaction data, Device characteristics, Device identifiers, IP address |
+| Legal role of data recipient | Processor | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation | No personalisation |
+| Maximum storage duration | 13 months | 13 months | 13 months (or as extended) |
+| Processing location | Per contract (EU); US if US sub-processors | Same | Same |
+
+**Basis.** Cookie lifetimes and identifiers [S2]; IP handling and cookieless session storage [S1]; Exemption Mode and IP-less mode [S3]; Contentsquare processes data on behalf of its customers [S3].
+
+## Privacy-policy follow-up
+
+- Contentsquare as processor; mode used (exemption, cookieless or standard); cookies [S2]; IP handling [S1]; retention; for A, the opt-out mechanism and the basis for the self-assessed exemption.
+
+## Verification checklist
+
+- [ ] A: no replay data captured; no IP collected; opt-out available.
+- [ ] B/C: no Contentsquare requests before consent.
+- [ ] Masking verified in replays [S4].
+
+## Sources
+
+- [S1] Contentsquare — 10 things to know about Contentsquare data processing
+- [S2] Contentsquare Docs — Cookies (Web)
+- [S3] Contentsquare Privacy Center — Audience measurement exemption
+- [S4] Contentsquare Docs — Session Replay personal data masking (privacy)
+- [S5] Contentsquare — Privacy FAQs guide
+- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://contentsquare.com/wp-content/uploads/2023/02/10-things-to-know-about-CS-data-processing-v1.2023-EXTERNAL.pdf
+[S2]: https://docs.contentsquare.com/en/web/cookies/
+[S3]: https://contentsquare.com/it-it/privacy-center/audience-measurement-exemption/
+[S4]: https://docs.contentsquare.com/en/csq-sdk-android/privacy
+[S5]: https://contentsquare.com/support/faqs/
+[S6]: https://www.law.cornell.edu/uscode/text/18/2713

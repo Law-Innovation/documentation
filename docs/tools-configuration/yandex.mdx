@@ -1,0 +1,60 @@
+---
+title: "Yandex Metrica"
+description: "How to configure Yandex Metrica at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service
+
+> This guide explains how to implement different privacy configurations for Yandex Metrica and how to reflect them in the Consenter Manager. Yandex Direct (advertising) is not covered; the research ran out before its documentation could be checked.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Yandex Metrica tag on the website. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** To count users, Metrica uses anonymous browser identifiers stored in cookies or `localStorage` on the top-level domain [S1]. `_ym_uid` identifies site users for 1 year; `_ym_visorc_*` (30 minutes) allows Session Replay to work; `gdpr` and `is_gdpr` identify users under GDPR jurisdiction [S1]. Metrica also sets identifiers on Yandex domains such as `yandexuid` and `ymex` (1 year) [S2].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Higher risk | Metrica after Consenter consent; Session Replay off. |
+| Configuration B — Higher risk | Metrica after consent with Session Replay on. |
+
+## Step 1 — Configure Yandex Metrica
+
+| # | Configuration area | Where to configure it | Configuration A — Higher risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
+| 2 | Loading | Tag manager / Consenter | After consent | After consent |
+| 3 | Session Replay | Metrica tag settings [S1] | Off | On |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Yandex is a Russian company; list the Russian Federation as a third country and check Yandex's terms for the contracting entity.
+
+| Consenter Manager field | Configuration A — Higher risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Improve the service | Improve the service |
+| Tracking method | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics, User-provided data |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | 1 year (`_ym_uid`) [S1] | 1 year (`_ym_uid`) [S1] |
+| Processing location | Russian Federation | Russian Federation |
+
+> **Note on legal role and tracking method.** Yandex-domain identifiers (`yandexuid`, `ymex`) are set across Yandex properties [S2], which is why the table uses third-party tracking. Confirm Yandex's role (processor or controller) in its Metrica terms.
+
+## Sources
+
+- [S1] Yandex Metrica Help — Temporary files installed by Yandex Metrica
+- [S2] Yandex Metrica Help — Temporary files installed by Yandex Metrica (Yandex domains)
+
+[S1]: https://www.yandex.com/support/metrica/en/general/cookie-usage
+[S2]: https://yandex.com/support/metrica/zh/general/cookie-usage

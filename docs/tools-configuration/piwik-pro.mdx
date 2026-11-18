@@ -1,0 +1,88 @@
+---
+title: "Piwik PRO"
+description: "How to configure Piwik PRO at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for Piwik PRO Analytics and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Piwik PRO Analytics (cloud), with Consenter as the consent tool. Piwik PRO's own Consent Manager is no longer offered to new accounts [S1]. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Piwik PRO can be configured to "ask visitors for consent" and to "collect anonymous data from non-consenting visitors", with optional session hash and optional visitor cookies; IP masking can be added [S2]. The basic cookies are `_pk_id.*` (13 months for non-anonymous visitors, changeable) and `_pk_ses.*` (30 minutes); in cookie-free mode they are not set [S3]. Hosting location can be chosen [S4].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk (⚠ no-consent) | Anonymous data from non-consenting visitors: no visitor cookies, no session hash, IP masked. |
+| Configuration B — Medium risk | Consenting visitors only: `_pk_id` (shortened to 6 months, illustrative), IP masked. |
+| Configuration C — Higher risk | Consenting visitors: `_pk_id` 13 months, full IP, User ID and Data Activation (CDP) audiences. |
+
+> ⚠ **Recommendation — Configuration A without consent is legally uncertain.** With cookies and session hash off, Piwik PRO sets no identifier [S2][S3], but the script still runs on the device and transmits data. Piwik PRO publishes a separate article on TDDDG compliance [S5]. Document your assessment and have it reviewed by your DPO or independent counsel before running A without consent.
+
+## Step 1 — Configure Piwik PRO
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service | Improve the service; Support marketing analytics |
+| 2 | Ask visitors for consent | Administration > Sites & apps > Privacy [S6] | On | On | On |
+| 3 | Collect anonymous data from non-consenting visitors | Same [S6] | On | Off | Off |
+| 4 | Session hash / visitor cookies for anonymous visitors | Same [S6] | Both off | — | — |
+| 5 | Visitor cookie lifetime | UI or JS API [S3] | — | 6 months (illustrative) | 13 months (default) |
+| 6 | IP masking | Privacy settings [S2] | On | On | Off |
+| 7 | User ID / Data Activation | Tracking code; Data Activation module | Off | Off | On |
+| 8 | Hosting | Account hosting choice [S4] | EU | EU | EU |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Piwik PRO is a European company with selectable EU hosting [S4]. Check the sub-processor list; where a US cloud provider hosts the data, list the United States as a potential access location (18 U.S.C. § 2713) [S7].
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
+|---|---|---|---|
+| Processing purposes | Improve the service | Improve the service | Improve the service, Support marketing analytics |
+| Tracking method | No tracking | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | No identifier | Device identifiers | Device identifiers, IP address, Authentication-derived identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, IP address anonymised | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, IP address anonymised, Non-precise location data | As B with IP address instead of anonymised, plus Authentication-derived identifiers, Users' profiles |
+| Legal role of data recipient | Processor | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation | Group based (behaviour) |
+| Maximum storage duration | Per plan retention | 6 months (cookie, illustrative) | 13 months (cookie) [S3] |
+| Processing location | EU; US if US sub-processors | Same | Same |
+
+**Basis.** Consent and anonymous-data settings [S2][S6]; cookies [S3]. C uses "Group based (behaviour)" when Data Activation audiences are built from behaviour.
+
+## Privacy-policy follow-up
+
+- Piwik PRO as processor; anonymous tracking (A) and its legal basis; cookies and lifetimes [S3]; IP masking; hosting.
+
+## Verification checklist
+
+- [ ] A: no `_pk_*` cookies for non-consenting visitors.
+- [ ] B/C: cookies only after consent.
+- [ ] IP masking setting matches the mapping.
+
+## Sources
+
+- [S1] Piwik PRO Help — How can I comply with applicable data protection laws?
+- [S2] Piwik PRO Help — Collect data in a privacy-friendly way
+- [S3] Piwik PRO Help — Cookies created for visitors by Piwik PRO
+- [S4] Piwik PRO Help — GDPR compliance (hosting)
+- [S5] Piwik PRO Help — Privacy laws (TDDDG article index)
+- [S6] Piwik PRO Help — Privacy settings comparison
+- [S7] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://help.piwik.pro/support/privacy/how-can-i-comply-with-applicable-data-protection-laws/
+[S2]: https://help.piwik.pro/support/privacy/collect-data-in-a-privacy-friendly-way/
+[S3]: https://help.piwik.pro/support/privacy/cookies-created-for-visitors-by-piwik-pro/
+[S4]: https://help.piwik.pro/analytics/gdpr-compliance/
+[S5]: https://help.piwik.pro/support/privacy/
+[S6]: https://help.piwik.pro/?p=16240
+[S7]: https://www.law.cornell.edu/uscode/text/18/2713

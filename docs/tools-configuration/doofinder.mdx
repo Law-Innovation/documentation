@@ -1,0 +1,66 @@
+---
+title: "Doofinder"
+description: "How to configure Doofinder at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features, Improve the service
+
+> This guide explains how to implement different privacy configurations for Doofinder site search and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Doofinder search layer, recommendations and Quiz Maker (Doofinder S.L., Madrid, Spain [S1]). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Doofinder uses `localStorage` instead of cookies, including a unique random ID that tracks interactions on the website for 24 hours per session when the script loads [S2]. Storage keys include `df-random-userid` (analytical), `df-session` (functional) and `df-cookies-allowed` [S3]. The **Cookie Consent for Full Product Functionality** toggle (**Configuration > General Settings > Overview**) enables consent validation; the site then calls `Doofinder.enableCookies()` once the user consents, and without consent latest searches and session-based data such as `user_id` are unavailable [S3][S4].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Consent validation on; `Doofinder.enableCookies()` called from Consenter; search works with reduced functionality before consent. |
+| Configuration B — Higher risk (default behaviour) | Consent validation off; `localStorage` IDs written on script load. |
+
+> ⚠ **Note on `localStorage`.** Doofinder suggests `localStorage` is not strictly regulated like cookies [S2]. Under § 25 TDDDG, storing and reading information on the device is regulated regardless of the technology. Use A, and have your DPO confirm whether the functional entries written before consent in A are strictly necessary.
+
+## Step 1 — Configure Doofinder
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features; Improve the service | Unlock additional website features; Improve the service |
+| 2 | Cookie consent validation | **Configuration > General Settings > Overview** [S4] | On | Off |
+| 3 | Consent signal | `Doofinder.enableCookies()` [S3] | On Consenter consent | — |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Doofinder is a Spanish company; check its DPA for US sub-processors and list the United States if present (18 U.S.C. § 2713 [S5]).
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+|---|---|---|
+| Processing purposes | Unlock additional website features, Improve the service | Unlock additional website features, Improve the service |
+| Tracking method | First party tracking (single session) | First party tracking (single session) |
+| Identifier | Device identifiers (after consent) | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Aggregated site statistics, Privacy choices | Browsing and interaction data, Device identifiers, Aggregated site statistics |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | 24 hours per session ID [S2] | 24 hours per session ID [S2] |
+| Processing location | Spain; per DPA | Spain; per DPA |
+
+## Sources
+
+- [S1] Doofinder — Privacy Policy (Doofinder, S.L.)
+- [S2] Doofinder Support — Doofinder and the data usage
+- [S3] Doofinder Support — Implementing cookie consent for Doofinder services (storage keys)
+- [S4] Doofinder Support — Implementing cookie consent for Doofinder services (toggle)
+- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://www.doofinder.com/de/privacy-policy%C2%A0
+[S2]: https://support.doofinder.com/troubleshooting-articles/doofinder-and-the-data-usage
+[S3]: https://support.doofinder.com/troubleshooting-articles/implementing-cookie-consent-for-doofinder-services.html
+[S4]: https://support.doofinder.com/troubleshooting-articles/implementing-cookie-consent-for-doofinder-services
+[S5]: https://www.law.cornell.edu/uscode/text/18/2713

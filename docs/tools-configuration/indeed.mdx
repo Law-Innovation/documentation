@@ -1,0 +1,57 @@
+---
+title: "Indeed"
+description: "How to configure Indeed at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to reflect Indeed integrations on your website (such as the "Apply with Indeed" button on a careers page) in the Consenter Manager. The sources document no visitor-facing privacy settings, so this guide uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** "Apply with Indeed" / Indeed Apply integrations on an employer's careers site. Plain links to job listings on indeed.com need no entry. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** If the Indeed integration is enabled on a careers site, Indeed may place cookies [S1]. Domains that are not country-specific, such as indeed.com or apply.indeed.com, place cookies on the browser when the user interacts with them [S2]. For application materials submitted through Indeed Apply, Indeed can act as a processor for the employer [S3].
+
+## Step 1 — Implement Indeed
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Unlock additional website features (apply with an Indeed profile) |
+| Integration | Apply with Indeed button / Indeed Apply |
+| Loading | Load the button only after Consenter consent, or use a plain link to the Indeed listing |
+| Contract | Indeed employer terms and data protection terms |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Entry needed | Only for an embedded button/widget | Plain link: no entry |
+| Processing purposes | Unlock additional website features | — |
+| Tracking method | Third party tracking (crosssession, cross-website) | Cookies on indeed.com domains [S2] |
+| Identifier | Device identifiers, Authentication-derived identifiers | Cookies; Indeed account login |
+| Data categories | Browsing and interaction data, Device identifiers, User-provided data (application materials), Direct identifier | [S1][S3] |
+| Legal role of data recipient | Processor | For Indeed Apply application materials [S3]; Indeed is controller for its own site cookies |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Per Indeed cookie list [S4] | — |
+| Processing location | United States | US enterprise; CLOUD Act [S5] |
+
+## Sources
+
+- [S1] Recruitee Help — Cookies on your careers site (Apply with Indeed)
+- [S2] Indeed — Cookie Policy
+- [S3] HR Tech Privacy — Indeed Privacy Policy
+- [S4] Indeed — Cookie List
+- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://support.recruitee.com/en/articles/3022929-cookies-on-your-careers-site
+[S2]: https://in.indeed.com/legal/cookies
+[S3]: https://hrtechprivacy.com/?p=10728
+[S4]: https://uk.indeed.com/legal/cookies
+[S5]: https://www.law.cornell.edu/uscode/text/18/2713

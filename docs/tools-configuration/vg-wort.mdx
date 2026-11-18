@@ -1,0 +1,70 @@
+---
+title: "VG Wort (METIS counting pixel)"
+description: "How to configure VG Wort (METIS counting pixel) at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement the VG Wort counting pixel (Zählmarke) and how to reflect it in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configuration is a comparative example, not a guarantee of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** VG Wort counting pixels (Zählmarken) embedded in texts via the METIS system so that authors and publishers can claim statutory remuneration. Verwertungsgesellschaft Wort is a German collecting society. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Each text carries a counting pixel that reports page accesses to the VG Wort counting server [S1]. Access counting recognises systems either by a **session cookie** with a random session ID or by a signature formed from information the browser transmits automatically [S2]. VG Wort's position, as reported, is that counting is anonymous and the cookie only serves to prevent incorrect counts and fraud [S3].
+
+**Simplified format.** VG Wort documents no privacy options for publishers. The guide uses a single fixed-behaviour configuration.
+
+> ⚠ **Recommendation — consent status is disputed.** Commentators argue that the session cookie is not technically necessary and therefore needs consent under § 25 TDDDG [S4]; others treat counting for statutory remuneration as necessary [S5]. The alternative signature method reads browser information and raises the same question. Load the pixel after consent unless your DPO or independent counsel confirms an exemption; note that without counting, remuneration claims may be lost.
+
+## Step 1 — Configure VG Wort
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Unlock additional website features (statutory remuneration counting) |
+| Pixel placement | Per METIS documentation, one pixel per text [S1] |
+| Recognition method | Session cookie or browser signature [S2] |
+| Loading | See ⚠ recommendation |
+| Retention | **Not documented** |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Closest available purpose; the processing serves statutory author remuneration. Taxonomy gap: no purpose describes rights-management counting. |
+| Tracking method | First party tracking (single session) | Session cookie or signature for the current session [S2]. |
+| Identifier | Device identifiers, Probabilistic identifiers | Session ID or browser signature [S2]. |
+| Data categories | IP address, Device characteristics, Browsing and interaction data, Probabilistic identifiers | Pixel request data [S2]. |
+| Legal role of data recipient | Individual Controller | VG Wort counts for its own statutory distribution purposes. |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Session (cookie) | [S2] |
+| Processing location | Germany | VG Wort, Munich. |
+
+## Privacy-policy follow-up
+
+- VG Wort as recipient; counting of text accesses; session cookie or signature; purpose (statutory remuneration).
+
+## Verification checklist
+
+- [ ] Pixel loading matches the consent decision.
+- [ ] Privacy policy includes VG Wort counting.
+
+## Sources
+
+- [S1] VG Wort — METIS documentation (Zählmarken)
+- [S2] Example privacy notice describing VG Wort session cookie or signature (alcasthq.com)
+- [S3] eRecht24 — Datenschutzerklärung für VG Wort Zählpixel
+- [S4] IT-Recht Kanzlei — Cookies der VG Wort: Einwilligungspflicht mangels technischer Notwendigkeit?
+- [S5] Dr. DSGVO — Cookies that may be considered necessary (VG Wort billing)
+
+[S1]: https://tom.vgwort.de/Documents/pdfs/dokumentation/metis/DOC_Urhebermeldung.pdf
+[S2]: https://alcasthq.com/vg-wort-datenschutzerklarung/
+[S3]: https://www.e-recht24.de/dsg/12967-vg-wort-zaehlpixel.html
+[S4]: https://www.it-recht-kanzlei.de/cookies-vg-wort-einwilligungspflicht.html
+[S5]: https://dr-dsgvo.de/?p=3800

@@ -1,0 +1,82 @@
+---
+title: "Mixpanel"
+description: "How to configure Mixpanel at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for Mixpanel and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Mixpanel JavaScript SDK (`mixpanel-browser`) on a website, including the optional session replay and heatmap features. Mixpanel, Inc. is a US company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The SDK tracks events and user properties and stores a distinct ID in a cookie or local storage (`persistence`) [S1]. Mixpanel "does not store IP addresses" but uses them to assign geolocation properties on ingestion; geolocation can be disabled (`ip: false` / `ip = 0`) [S2]. Users can be opted out by default with `opt_out_tracking_by_default: true` and opted in after consent [S2]. Projects can be created with **EU Data Residency**, which requires sending data to the EU ingestion host [S3]. Session replay (`record_sessions_percent`) and heatmap capture are optional init settings [S1].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | EU Data Residency; geolocation disabled; opted out by default and opted in after consent; no session replay; no identification. |
+| Configuration B — Higher risk | US project (default); geolocation on; session replay and heatmaps; `identify` with user IDs and profile properties; after consent. |
+
+**No configuration without prior consent.** The SDK persists an identifier [S1]; no consent-free configuration is documented.
+
+## Step 1 — Configure Mixpanel
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics |
+| 2 | Data residency | "EU Data Residency" when creating the project; `api_host: "https://api-eu.mixpanel.com"` [S1][S3] | EU | US (default) |
+| 3 | Consent gating | `opt_out_tracking_by_default: true`, then `opt_in_tracking()` after consent [S2] | Yes | Yes |
+| 4 | Geolocation / IP use | `ip: false` in config or `ip = 0` per payload [S2] | Disabled | Enabled |
+| 5 | Session replay and heatmaps | `record_sessions_percent`, `record_heatmap_data` [S1] | Off | On |
+| 6 | Identification | `identify()`, people properties | Not used | Used |
+| 7 | Data retention | Data retention policy in project settings [S4] | Shortest suitable | Default |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Mixpanel, Inc. is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S5]. The United States is listed as a potential access location in all configurations.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Improve the service | Improve the service, Support marketing analytics |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers, IP address, Authentication-derived identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, IP address, Non-precise location data, Authentication-derived identifiers, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | Per retention policy [S4] | Per retention policy [S4] |
+| Processing location | EU (Frankfurt); United States as potential access location | United States |
+
+**Basis.** Persistence and replay options [S1]; IP and opt-out handling [S2]; EU residency [S3]. In B, "IP address" is selected because the IP address is processed on ingestion for geolocation, even though it is not stored [S2].
+
+## Privacy-policy follow-up
+
+- Mixpanel as processor; events and identifiers; replay (B); residency; retention; potential access by US authorities [S5].
+
+## Verification checklist
+
+- [ ] No events sent before `opt_in_tracking()`.
+- [ ] A: requests go to `api-eu.mixpanel.com`; no geolocation properties in events.
+- [ ] Withdrawal calls `opt_out_tracking()`.
+
+## Sources
+
+- [S1] Mixpanel Docs — Install Mixpanel (JavaScript init options)
+- [S2] Mixpanel Docs — Protecting user data
+- [S3] Mixpanel Docs — EU Residency
+- [S4] Mixpanel Docs — Data privacy workflow (data retention policy)
+- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://docs.mixpanel.com/docs/overview/install-mixpanel
+[S2]: https://docs.mixpanel.com/docs/privacy/protecting-user-data
+[S3]: https://docs.mixpanel.com/docs/privacy/eu-residency
+[S4]: https://docs.mixpanel.com/guides/guides-by-workflow/data-privacy.md
+[S5]: https://www.law.cornell.edu/uscode/text/18/2713

@@ -1,0 +1,61 @@
+---
+title: "Webflow"
+description: "How to configure Webflow at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Personalise the website
+
+> This guide explains how to implement different privacy configurations for Webflow's site tracking (Analyze and Optimize) and how to reflect them in the Consenter Manager. Webflow hosting is strictly necessary and is out of scope.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Webflow Analyze (analytics) and Webflow Optimize (personalisation and AI-powered testing). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Site tracking records analytics, personalises experiences and runs AI-powered tests using Analyze and Optimize; it must be enabled to use the consent management APIs [S1]. A CMP signals choices with `wf.allowUserTracking()` and `wf.denyUserTracking()`; `wf.getUserTrackingChoice()` shows the current status [S1]. Webflow publishes separate guidance on Analyze and Optimize compliance [S2].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Analyze only; Consenter calls `wf.allowUserTracking()` after consent and `wf.denyUserTracking()` otherwise. |
+| Configuration B — Higher risk | Analyze and Optimize (personalisation/testing) with the same consent gating. |
+| Configuration C — Higher risk (default behaviour) | Site tracking enabled with no consent signal. |
+
+## Step 1 — Configure Webflow
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default behaviour) |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website | Improve the service; Personalise the website |
+| 2 | Products | Site settings → Site tracking [S1] | Analyze | Analyze + Optimize | Analyze (+ Optimize) |
+| 3 | Consent signal | Browser API [S1] | `allowUserTracking` / `denyUserTracking` from Consenter | `allowUserTracking` / `denyUserTracking` from Consenter | None |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Webflow is a US enterprise; list the United States (18 U.S.C. § 2713 [S3]).
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk (default behaviour) |
+|---|---|---|---|
+| Processing purposes | Improve the service | Improve the service, Personalise the website | Improve the service, Personalise the website |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers | Device identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics, Privacy choices | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics, Non-precise location data, Privacy choices | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics, Non-precise location data |
+| Legal role of data recipient | Processor | Processor | Processor |
+| Personalisation model | No personalisation | Group based (behaviour) | Group based (behaviour) |
+| Maximum storage duration | Per Webflow documentation | Per Webflow documentation | Per Webflow documentation |
+| Processing location | United States | United States | United States |
+
+## Sources
+
+- [S1] Webflow Developers — Site Tracking and Consent Management
+- [S2] Webflow Help — Analyze & Optimize compliance with privacy laws
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://developers.webflow.com/browser/reference/consent-management
+[S2]: https://help.webflow.com/hc/en-us/articles/34273101581715
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

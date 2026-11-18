@@ -1,0 +1,54 @@
+---
+title: "Tidio"
+description: "How to configure Tidio at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to reflect the Tidio chat widget in the Consenter Manager. Tidio does not document configurable privacy settings for the widget's storage, so this guide uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** The Tidio live chat and chatbot widget (including Lyro AI). Data is transmitted to Tidio LLC, San Francisco, United States, represented by Tidio Poland Sp. z o.o. [S1]. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Tidio states that cookies are not used under normal conditions because most widget data is stored in `localStorage` [S2].
+
+**No configuration without prior consent.** `localStorage` access falls under § 25 TDDDG in the same way as cookies; load Tidio only after consent.
+
+## Step 1 — Implement Tidio
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Unlock additional website features |
+| Loading | Consenter script blocking until consent |
+| Storage | `localStorage` [S2] |
+| Contract | Tidio DPA |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Chat |
+| Tracking method | First party tracking (cross-session) | `localStorage` persists across visits [S2] |
+| Identifier | Device identifiers | Visitor ID in storage |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, User-provided data | Chat context and messages |
+| Legal role of data recipient | Processor | [S1] |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Until storage is cleared | `localStorage` has no expiry |
+| Processing location | United States | Tidio LLC [S1]; 18 U.S.C. § 2713 [S3] |
+
+## Sources
+
+- [S1] Legal Web — Use Tidio chat GDPR compliant (data processor details)
+- [S2] Tidio Help — Privacy Policy & GDPR compliance
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://legalweb.io/en/gdpr/livechats_tidio/
+[S2]: https://help.tidio.com/hc/en-us/articles/5462910440220-Privacy-Policy-GDPR-Compliance
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

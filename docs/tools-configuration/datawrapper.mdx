@@ -1,0 +1,53 @@
+---
+title: "Datawrapper"
+description: "How to configure Datawrapper at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to reflect embedded Datawrapper charts in the Consenter Manager. Datawrapper's embeds have no privacy settings to choose between, so this guide uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** Datawrapper charts, maps and tables embedded on the website (Datawrapper GmbH, Berlin, Germany [S1]). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Datawrapper states that embedded visualisations do not set cookies, do not use third-party scripts and are free of tracking, and that it never uses readers' information for tracking, reselling or advertising [S2].
+
+> ⚠ **Recommendation — no consent banner entry, but a GDPR legal basis.** Based on Datawrapper's statement [S2], no information is stored on or read from the device, so § 25 TDDDG consent does not appear to be required. Loading the embed still transmits the visitor's IP address to Datawrapper's servers; the GDPR legal basis for that (typically Art. 6(1)(f) GDPR) is separate from the TDDDG question. An older version of Datawrapper's privacy policy described a self-hosted tracking system with cookies for embeds [S1]; verify in the browser that the current embeds set nothing, and have your DPO confirm the no-consent setup.
+
+## Step 1 — Implement Datawrapper
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Unlock additional website features |
+| Embed | Standard responsive iframe embed |
+| Loading | Without consent, subject to the ⚠ recommendation |
+| Privacy policy | Mention Datawrapper as provider of embedded charts |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Entry needed | Optional (for transparency) | No device access per [S2] |
+| Processing purposes | Unlock additional website features | Chart display |
+| Tracking method | No tracking | [S2] |
+| Identifier | No identifier | [S2] |
+| Data categories | IP address, Device characteristics | Server request |
+| Legal role of data recipient | Processor | Provider on behalf of the operator; verify the DPA |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Per Datawrapper server logs | — |
+| Processing location | Germany | German company; no CLOUD Act flag unless the DPA lists US sub-processors |
+
+## Sources
+
+- [S1] Datawrapper — Privacy policy (archived version)
+- [S2] Datawrapper — Embed privacy
+
+[S1]: https://www.datawrapper.de/privacy?tid=133574810
+[S2]: https://datawrapper.de/embed-privacy

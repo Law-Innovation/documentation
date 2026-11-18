@@ -1,0 +1,65 @@
+---
+title: "SurveyMonkey"
+description: "How to configure SurveyMonkey at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service
+
+> This guide explains how to implement different privacy configurations for SurveyMonkey surveys on a website and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** SurveyMonkey surveys linked from or embedded on the website. SurveyMonkey (SurveyMonkey Inc., US) generally provides services to EU, UK and Swiss customers through SurveyMonkey Europe UC (Ireland) [S1]. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** SurveyMonkey has data centres in the US, Ireland and Canada; EU data hosting has been offered to new Enterprise customers [S1][S2]. SurveyMonkey relies on DPF certification and SCCs for transfers [S1]. Its cookie notice distinguishes required cookies from others used on its sites and services [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Link to the hosted survey; anonymous responses. |
+| Configuration B — Higher risk | Embedded website survey or pop-up loaded after Consenter consent. |
+
+## Step 1 — Configure SurveyMonkey
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service |
+| 2 | Integration | Collector type | Web link | Website embed / pop-up |
+| 3 | Anonymous responses | Collector settings | On | Off |
+| 4 | Data hosting | Contract [S2] | EU (Enterprise) | US |
+| 5 | Loading | Consenter script blocking | — | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** SurveyMonkey Inc. is a US enterprise subject to 18 U.S.C. § 2713 [S4]; list the United States.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Entry needed | No (mention in the privacy policy) | Yes |
+| Processing purposes | — | Improve the service |
+| Tracking method | No tracking | Third party tracking (crosssession, cross-website) |
+| Identifier | No identifier | Device identifiers, IP address |
+| Data categories | — | Browsing and interaction data, Device characteristics, Device identifiers, IP address, User-provided data |
+| Legal role of data recipient | — | Processor |
+| Personalisation model | — | No personalisation |
+| Maximum storage duration | — | Per SurveyMonkey cookie notice [S3] |
+| Processing location | — | Ireland / United States; United States |
+
+## Sources
+
+- [S1] SurveyMonkey Help — Data processing agreements, storage and transfers (EU)
+- [S2] SurveyMonkey — GDPR
+- [S3] SurveyMonkey — Cookies notice
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://help.surveymonkey.com/sv/policy/data-processing-agreements-eu/
+[S2]: https://www.surveymonkey.com/mp/gdpr/
+[S3]: https://surveymonkey.com/mp/legal/cookies/
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

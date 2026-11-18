@@ -1,0 +1,61 @@
+---
+title: "ProvenExpert"
+description: "How to configure ProvenExpert at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for ProvenExpert rating seals and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** ProvenExpert rating seals, widgets and Google rich snippets (Expert Systems AG, Berlin, Germany [S1]). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** ProvenExpert states that integrated features (rating seals, widgets, rich snippets) do not use cookies and do not store website visitors' data, and that users generally do not need a DPA [S2]. Seals are available in several formats; some (e.g. the landing-page widget) include script or link tags that make third-party requests [S3]. An integration can fetch seals via the ProvenExpert API and cache the images on your own server [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Seal fetched via API and served from your own server (image only). |
+| Configuration B — Medium risk | ProvenExpert seal/widget code loaded directly from ProvenExpert. |
+
+> ⚠ **Recommendation — Configuration B without consent.** ProvenExpert sets no cookies [S2], but loading the seal from its servers transmits the visitor's IP address. Have your DPO decide whether this can run without consent; otherwise use A or load B after Consenter consent.
+
+## Step 1 — Configure ProvenExpert
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — | Unlock additional website features |
+| 2 | Seal delivery | ProvenExpert API / widget code [S3] | API, cached locally | Widget code (**Reputations-Boost > Bewertungssiegel**) |
+| 3 | Loading | Consenter (see ⚠) | — | Per DPO decision |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|
+| Entry needed | No | Yes |
+| Processing purposes | — | Unlock additional website features |
+| Tracking method | No tracking | No tracking |
+| Identifier | No identifier | IP address |
+| Data categories | — | IP address, Device characteristics |
+| Legal role of data recipient | Self-hosted | Individual Controller |
+| Personalisation model | — | No personalisation |
+| Maximum storage duration | — | No visitor data stored [S2] |
+| Processing location | Your server | Germany (German company; no CLOUD Act flag) |
+
+## Sources
+
+- [S1] ProvenExpert — Privacy Policy (Expert Systems AG)
+- [S2] ProvenExpert — Data protection and transparency FAQ
+- [S3] Packagist — postyou/contao-proven-expert (widget types, API caching)
+
+[S1]: https://www.provenexpert.com/datenschutzbestimmungen/
+[S2]: https://www.provenexpert.com/en-gb/we-care-about-privacy-and-transparency/
+[S3]: https://packagist.org/packages/postyou/contao-proven-expert

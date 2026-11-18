@@ -1,0 +1,79 @@
+---
+title: "matelso"
+description: "How to configure matelso at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for matelso call tracking and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** matelso call tracking on a website: static tracking numbers, and dynamic call tracking with the matelso **Search & Replace (S&R) script**. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Static call tracking uses a single number per advertising measure; dynamic call tracking embeds a script that "plays out an individual call number to each visitor" [S1]. The S&R script collects web data of the visitor and must set a cookie to work [S2]. matelso states that its platform uses only first-party cookies, "for which we request the user's consent", and that without consent no web data is collected [S3]. Conversions can be transferred to tools such as Google Ads or GA4 [S4].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Static single-number pools placed directly in the page, without the S&R script. |
+| Configuration B — Higher risk | Dynamic call tracking with the S&R script and conversion transfer to ad platforms; after consent. |
+
+**Consent.** matelso itself recommends integrating dynamic call tracking into consent management [S1][S5]. Configuration A involves no script on the website; the call data is processed when the visitor calls, not through the website.
+
+## Step 1 — Configure matelso
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Support marketing analytics (per channel, aggregate) | Support marketing analytics |
+| 2 | Number type | matelso control panel: book single number or dynamic pool [S6] | Single number per channel, inserted in page HTML | Dynamic pool |
+| 3 | S&R script | Website / tag manager [S6] | Not embedded | Embedded, blocked until consent |
+| 4 | Fallback for refusals | Single-pool number as search text in the dynamic pool [S6] | — | Configure |
+| 5 | Conversion transfer | Integrations (Google Ads, GA4) [S4] | Not used | Used (each receiving platform needs its own entry) |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Configuration A** requires no Consenter Manager entry for website tracking (no script or cookie on the website).
+
+| Consenter Manager field | Configuration B — Higher risk | Basis and conditions |
+|---|---|---|
+| Processing purposes | Support marketing analytics | Attribution of calls to campaigns [S1]. |
+| Tracking method | First party tracking (cross-session) | First-party cookie set by the S&R script [S2][S3]. |
+| Identifier | Device identifiers, IP address | Cookie; IP with each request. |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, IP address, User-provided data | Web data of the visitor [S2]; caller data linked through the dynamic number. Add "direct identifier" if caller phone numbers are linked to the web session. |
+| Legal role of data recipient | Processor | Verify against your matelso DPA. |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Not documented | — |
+| Processing location | Per contract | matelso is a German company; check sub-processors for US providers. |
+
+## Privacy-policy follow-up
+
+- matelso as recipient; dynamic number allocation and linking of calls to web sessions; cookies; conversion transfers to ad platforms.
+
+## Verification checklist
+
+- [ ] B: no S&R script and no matelso cookie before consent.
+- [ ] B: refusers see the single-pool fallback number [S6].
+
+## Sources
+
+- [S1] matelso — Call tracking (static and dynamic)
+- [S2] matelso Knowledge — Number exchange on page does not work?
+- [S3] matelso — Platform for sales (first-party cookies and consent)
+- [S4] matelso — Call tracking product page (conversion transfer)
+- [S5] matelso Blog — GDPR-compliant call tracking: a 4-step plan
+- [S6] matelso Knowledge — How can I track calls if the S&R script is blocked?
+
+[S1]: https://Matelso.de/en/call-tracking/
+[S2]: https://www.matelso.com/en/knowledge/call-tracking/number-exchange-on-page-does-not-work/
+[S3]: https://matelso.com/en/platform/matelso-platform-for-sales/
+[S4]: https://matelso.com/en/call-tracking/
+[S5]: https://www.matelso.com/en/blog/gdpr-compliant-call-tracking-a-4-step-plan/
+[S6]: https://www.matelso.com/en/knowledge/call-tracking/how-can-i-track-calls-if-the-sr-script-is-blocked/

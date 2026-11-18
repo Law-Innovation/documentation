@@ -1,0 +1,65 @@
+---
+title: "Mautic"
+description: "How to configure Mautic at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Support marketing analytics, Receive personalised marketing offers
+
+> This guide explains how to implement different privacy configurations for Mautic and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Mautic open-source marketing automation: the `mtc.js` tracking script on the website and Mautic forms. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The tracking script is loaded from the Mautic instance (`https://<your-mautic>/mtc.js`) [S1]. Mautic sets the first-party cookies `mautic_device_id`, `mtc_id`, `mautic_referer_id` and `mtc_sid` [S2]; Mautic's own site lists `mautic_device_id` with 12 months [S3]. Mautic merges actions into the contact with the same cookie or creates one based on the device ID [S4]. The tracking pixel (`mtracking.gif`) in emails and landing pages can set cookies without checking consent [S2].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Self-hosted Mautic in the EU; `mtc.js` loaded after consent; anonymous visits and form-identified contacts. |
+| Configuration B — Higher risk | Mautic hosted by a third party (e.g. Mautic SaaS partner); `mtc.js` after consent; contact tracking linked to email clicks. |
+
+**No configuration without prior consent.** All four cookies are set by `mtc.js` [S2]. Note that Mautic landing pages and tracking pixels can set cookies independently of the website script [S2][S5]; block or configure these as well.
+
+## Step 1 — Configure Mautic
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics; Receive personalised marketing offers |
+| 2 | Hosting | Operator infrastructure | Self-hosted (EU) | Third-party host |
+| 3 | Tracking script | `mtc.js` via Consenter script blocking [S1] | After consent | After consent |
+| 4 | Mautic landing pages / tracking pixel | Mautic configuration | Avoid on pages without consent [S5] | Used in emails |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Support marketing analytics | Support marketing analytics, Receive personalised marketing offers |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers, Direct identifier (after form submission) | Device identifiers, Direct identifier |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address, User-provided data | As A, plus direct identifier, Users' profiles |
+| Legal role of data recipient | Self-hosted | Processor |
+| Personalisation model | Group based (behaviour) | Profile based |
+| Maximum storage duration | 12 months (`mautic_device_id`, per Mautic's own site [S3]) | 12 months |
+| Processing location | Own EU server | Per hosting contract; add the United States if a US provider hosts the instance |
+
+## Sources
+
+- [S1] Mautic Documentation — Tracking script
+- [S2] Mautic Forum — RFC: improving Mautic's GDPR compliance (cookie management)
+- [S3] Mautic — Cookie policy
+- [S4] Mautic Documentation — Managing contacts
+- [S5] Mautic Forum — Disable landing page tracking
+
+[S1]: https://mautic-documentation-spanish.readthedocs.io/es/latest/configuration/tracking_script.html
+[S2]: https://forum.mautic.org/t/rfc-improving-mautics-gdpr-compliance-cookie-management/27801
+[S3]: https://mautic.org/cookie-policy
+[S4]: https://mautic-documentation.readthedocs.io/en/5.x/contacts/manage_contacts.html
+[S5]: https://forum.mautic.org/t/disable-landing-page-tracking/14374

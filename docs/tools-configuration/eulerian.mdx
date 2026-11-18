@@ -1,0 +1,68 @@
+---
+title: "Eulerian"
+description: "How to configure Eulerian at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for Eulerian and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Eulerian Technologies analytics and marketing attribution tag. Eulerian is a French company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Eulerian acts as processor and never becomes controller [S1]. The Eulerian cookie lasts 13 months by default (changeable via the Customer Success Manager); retention is set with the automatic purge module (CNIL recommends 25 months); the IP address is anonymised at least on the last octet by default and can be fully hashed with SHA-256 [S1]. For exempt measurement, a **minimal collection** replaces the usual collection when a user refuses, and a long list of features must be disabled (engagement profiles, device data, profile enrichment, CRM identifiers, conversion details, product data, audience creation and activation) [S1].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk (⚠ no-consent) | Minimal collection for refusers; exempt-mode feature set; IP hashed; 25-month purge. |
+| Configuration B — Higher risk | Full collection after consent: attribution, CRM identifiers, audiences. |
+
+> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement cookies as exempt only where they serve solely the publisher's audience measurement, produce anonymous statistics, are not cross-referenced or passed on and do not allow tracking across sites; it recommends about 13 months cookie lifetime and at most 25 months retention [S2]. Describe A as a **self-assessed exemption**. § 25 TDDDG in Germany contains no equivalent exemption. Run A without consent only after review by your DPO or independent counsel.
+
+## Step 1 — Configure Eulerian
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk (⚠ no-consent) | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Support marketing analytics; Receive personalised marketing offers (if audiences are activated) |
+| 2 | Opt-out mechanism | CMP or per-client opt-out link (Collecte > Options du site) [S1] | Required | Required |
+| 3 | Retention | Automatic purge module [S1] | 25 months | Per contract |
+| 4 | Cookie lifetime | Default 13 months; change via CSM [S1] | 13 months | 13 months |
+| 5 | Minimal collection | Configure "collecte minimale" for refusals [S1] | On | — |
+| 6 | IP handling | Default last-octet anonymisation; SHA-256 option [S1] | SHA-256 | Default |
+| 7 | Exempt-mode feature list | Disable listed reports and audience features [S1] | Disabled | Enabled |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Lower risk (⚠ no-consent) | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Improve the service | Improve the service, Support marketing analytics |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers, Authentication-derived identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device identifiers, IP address anonymised | Aggregated site statistics, Browsing and interaction data, Device characteristics, Device identifiers, IP address anonymised, Authentication-derived identifiers, e-commerce Activity, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | Profile based (if audiences are activated) |
+| Maximum storage duration | 25 months | Per contract |
+| Processing location | Not documented | Not documented |
+
+**Basis.** Eulerian configuration guide [S1].
+
+## Privacy-policy follow-up
+
+- Eulerian as processor; collection mode; cookie lifetime; retention; opt-out link.
+
+## Sources
+
+- [S1] CNIL — Eulerian guide de paramétrage (exempt audience measurement)
+- [S2] CNIL — Cookies: solutions pour les outils de mesure d'audience (4 July 2025)
+
+[S1]: https://www.cnil.fr/sites/cnil/files/atoms/files/eulerian_-_guide_de_parametrage.pdf
+[S2]: https://cnil.fr/fr/node/167364

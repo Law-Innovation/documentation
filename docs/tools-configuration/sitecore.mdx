@@ -1,0 +1,64 @@
+---
+title: "Sitecore"
+description: "How to configure Sitecore at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service, Personalise the website, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for Sitecore Experience Platform (XP) web tracking (xDB) and how to reflect them in the Consenter Manager. Content delivery itself is strictly necessary and is out of scope.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Sitecore XP 10.x web tracking and contact identification. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** `SC_ANALYTICS_GLOBAL_COOKIE` stores a device ID used to identify returning contacts and is only issued if tracking is enabled [S1]. If a website requires explicit tracking, contacts are not tracked until they give consent; the choice is stored in `SC_TRACKING_CONSENT` via `IConsentManager` [S2]. Contacts can additionally be identified (e.g. on login) against xDB [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Explicit tracking; Consenter consent passed via `IConsentManager`; anonymous contacts only. |
+| Configuration B — Higher risk | Explicit tracking plus contact identification (login or form) for personalisation. |
+| Configuration C — Higher risk | Tracking without explicit consent. |
+
+## Step 1 — Configure Sitecore
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service; Personalise the website; Support marketing analytics | Improve the service; Personalise the website; Support marketing analytics |
+| 2 | Tracking consent | Explicit tracking / `IConsentManager` [S2] | Required | Required | Not required |
+| 3 | Contact identification | Tracker identification API [S3] | Off | On | On |
+| 4 | Cookie lifetime | Analytics cookie lifetime setting [S1] | Short | Default | Default |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Self-hosted XP runs on your infrastructure; for Sitecore-managed cloud hosting check the DPA and list the United States where US entities are involved (18 U.S.C. § 2713 [S4]).
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
+|---|---|---|---|
+| Processing purposes | Improve the service | Improve the service, Personalise the website, Support marketing analytics | Improve the service, Personalise the website, Support marketing analytics |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers, Authentication-derived identifiers | Device identifiers, Authentication-derived identifiers |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device identifiers, Device characteristics | Browsing and interaction data, Device identifiers, Device characteristics, Authentication-derived identifiers, User-provided data, Users' profiles | Browsing and interaction data, Device identifiers, Device characteristics, Authentication-derived identifiers, User-provided data, Users' profiles |
+| Legal role of data recipient | Self-hosted | Self-hosted | Self-hosted |
+| Personalisation model | No personalisation | Profile based | Profile based |
+| Maximum storage duration | Per configured cookie lifetime | Per configured cookie lifetime | Per configured cookie lifetime |
+| Processing location | Your hosting location | Your hosting location | Your hosting location |
+
+## Sources
+
+- [S1] Sitecore Documentation — Cookies used by Sitecore
+- [S2] Sitecore Documentation — Manage a contact's tracking consent choices
+- [S3] Sitecore Documentation — Tracking contacts
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://doc.sitecore.com/xp/en/developers/102/platform-administration-and-architecture/cookies-used-by-sitecore.html
+[S2]: https://doc.sitecore.com/en/developers/100/sitecore-experience-platform/manage-a-contact-s-tracking-consent-choices.html
+[S3]: https://doc.sitecore.com/developers/93/sitecore-experience-platform/en/tracking-contacts.html
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

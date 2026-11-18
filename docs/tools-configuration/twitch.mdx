@@ -1,0 +1,63 @@
+---
+title: "Twitch"
+description: "How to configure Twitch at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features, Customise online ads
+
+> This guide explains how to implement different privacy configurations for Twitch content on a website and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Twitch embedded video, clips and chat (Twitch Interactive, Inc., an Amazon company, US). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Twitch embeds require a `parent` parameter naming the embedding domain; without it, playback shows an error directing viewers to Twitch [S1]. Twitch confirmed that the embedded player serves ads [S2]. Twitch's cookie notice describes the cookies it stores on devices [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Link to the Twitch channel; no embed. |
+| Configuration B — Higher risk | Embedded player (with ads) loaded after Consenter consent. |
+
+## Step 1 — Configure Twitch
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — | Unlock additional website features; Customise online ads |
+| 2 | Integration | Website code [S1] | Link | `player.twitch.tv` iframe or JS embed with `parent` |
+| 3 | Loading | Consenter script blocking / click-to-load | — | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Twitch is a US enterprise subject to 18 U.S.C. § 2713 [S4]; list the United States.
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Higher risk |
+|---|---|---|
+| Entry needed | No | Yes |
+| Processing purposes | — | Unlock additional website features, Customise online ads |
+| Tracking method | No tracking | Third party tracking (crosssession, cross-website) |
+| Identifier | No identifier | Device identifiers, Authentication-derived identifiers (logged-in viewers) |
+| Data categories | — | Browsing and interaction data, Device characteristics, Device identifiers, IP address, Users' profiles |
+| Legal role of data recipient | — | Individual Controller |
+| Personalisation model | — | Profile based |
+| Maximum storage duration | — | Per Twitch cookie notice [S3] |
+| Processing location | — | United States |
+
+## Sources
+
+- [S1] Twitch Developers — Embedding Twitch in your website
+- [S2] Twitch Developer Forums — Embedded player migration (ads)
+- [S3] Twitch — Cookie Notice
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://dev.twitch.tv/docs/embed/
+[S2]: https://discuss.dev.twitch.com/t/twitch-embedded-player-migration-timeline-update/25588
+[S3]: https://legal.twitch.com/legal/cookie-notice
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

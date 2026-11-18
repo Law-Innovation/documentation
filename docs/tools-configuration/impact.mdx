@@ -1,0 +1,72 @@
+---
+title: "impact.com"
+description: "How to configure impact.com at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Support marketing analytics, Receive marketing offers
+
+> This guide explains how to implement different privacy configurations for impact.com's Universal Tracking Tag (UTT) on a brand website and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** impact.com UTT and Consent Mode for brands. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The UTT uses first-party cookie tracking and runs on every page [S1]. The UTT sets first-party cookies on your domain storing a UUID and timestamp to identify the customer later [S2]. Consent Mode (beta) is enabled via a support ticket; the default consent status should be declared via `impactDataLayer` before the UTT loads [S3]. Partners can append `im_rewards=1` to loyalty or rewards links [S4]. UTT version 3 can read consent directly from a standard-framework CMP; the Publisher Tag withholds `identifyUser` until consent and hides values such as `customerEmailHash` [S5].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Consent Mode on; default denied via `impactDataLayer`; Consenter updates consent; no rewards exemption. |
+| Configuration B — Higher risk | As A, plus rewards/loyalty links (`im_rewards=1`) tracked without consent. |
+| Configuration C — Higher risk | UTT without Consent Mode; `identify` with customer IDs/email hash. |
+
+> ⚠ **Recommendation.** Tracking rewards traffic without consent (B) relies on a regulator position on cashback/loyalty cookies. Have your DPO assess whether it applies to your programme and jurisdiction.
+
+## Step 1 — Configure impact.com
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics; Receive marketing offers | Support marketing analytics; Receive marketing offers |
+| 2 | Consent Mode | Support ticket; `impactDataLayer` [S3] | On; default denied | On; default denied | Off |
+| 3 | Rewards exemption | `im_rewards=1` on partner links [S4] | Not used | Used | — |
+| 4 | Customer identification | `ire('identify')` [S3][S5] | Only after consent, no email hash | Only after consent | Customer ID and email hash |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** impact.com is a US enterprise; list the United States (18 U.S.C. § 2713 [S6]).
+
+**Legal role.** Confirm the role in your impact.com agreement; the table uses Processor for the brand-side tag.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk | Configuration C — Higher risk |
+|---|---|---|---|
+| Processing purposes | Support marketing analytics | Support marketing analytics, Receive marketing offers | Support marketing analytics, Receive marketing offers |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Device identifiers | Device identifiers | Device identifiers, Authentication-derived identifiers |
+| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Privacy choices | Device identifiers, Browsing and interaction data, e-commerce Activity, Privacy choices | Device identifiers, Authentication-derived identifiers, Browsing and interaction data, e-commerce Activity |
+| Legal role of data recipient | Processor | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation | Profile based |
+| Maximum storage duration | Per programme referral window | Per programme referral window | Per programme referral window |
+| Processing location | United States | United States | United States |
+
+## Sources
+
+- [S1] impact.com Help — Tracking with Universal Tracking Tag (UTT)
+- [S2] impact.com Help — impact.com cookies explained
+- [S3] impact.com Integrations — Integrate Consent Mode on impact.com
+- [S4] impact.com Help — Ensure GDPR compliance using Consent Mode
+- [S5] impact.com Help — UTT version 3 explained
+- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://help.impact.com/brand/what-would-you-like-to-learn-about/platform-features/tracking/javascript-tag-tracking/tracking-with-universal-tracking-tag-utt
+[S2]: https://help.impact.com/en/support/solutions/articles/48001235676-impact-com-cookies-explained
+[S3]: https://integrations.impact.com/impact-brand/docs/integrate-consent-mode-on-impactcom
+[S4]: https://help.impact.com/en/support/solutions/articles/155000003822
+[S5]: https://help.impact.com/other/reference-documentation/utt-version-3-explained
+[S6]: https://www.law.cornell.edu/uscode/text/18/2713

@@ -1,0 +1,67 @@
+---
+title: "Sentry"
+description: "How to configure Sentry at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service
+
+> This guide explains how to implement different privacy configurations for the Sentry browser SDK (error monitoring and Session Replay) and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Sentry JavaScript browser SDK. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Session Replay records user sessions; by default it masks all text with `*` and blocks media elements on the client before sending [S1]. `maskAllText`, `maskAllInputs` and `blockAllMedia` default to `true` [S2]. Disabling masking is only intended for sites with no sensitive data [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Error monitoring only; no Session Replay. |
+| Configuration B — Medium risk | Session Replay with default masking and blocking, after Consenter consent. |
+| Configuration C — Higher risk | Session Replay with `maskAllText: false` / `blockAllMedia: false`, after consent. |
+
+> ⚠ **Recommendation.** Whether error monitoring in A can run without consent depends on what data your events carry. Have your DPO confirm the legal basis before running A without a consent entry.
+
+## Step 1 — Configure Sentry
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Improve the service | Improve the service | Improve the service |
+| 2 | Session Replay | `Sentry.replayIntegration()` [S2] | Not added | Added | Added |
+| 3 | Masking | `maskAllText`, `maskAllInputs`, `blockAllMedia` [S2] | — | Defaults (`true`) | `maskAllText: false`, `blockAllMedia: false` |
+| 4 | Loading | Front-end | Per DPO assessment | After Consenter consent | After Consenter consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Sentry is a US enterprise; list the United States (18 U.S.C. § 2713 [S4]).
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk | Configuration C — Higher risk |
+|---|---|---|---|
+| Entry needed | Per DPO assessment (⚠) | Yes | Yes |
+| Processing purposes | Improve the service | Improve the service | Improve the service |
+| Tracking method | No tracking | First party tracking (single session) | First party tracking (single session) |
+| Identifier | IP address | IP address | IP address |
+| Data categories | Device characteristics, IP address | Device characteristics, IP address, Browsing and interaction data | Device characteristics, IP address, Browsing and interaction data, User-provided data |
+| Legal role of data recipient | Processor | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation | No personalisation |
+| Maximum storage duration | Per Sentry data retention | Per Sentry data retention | Per Sentry data retention |
+| Processing location | Per account data region / United States | Per account data region / United States | Per account data region / United States |
+
+## Sources
+
+- [S1] Sentry Docs — Session Replay privacy (masking defaults)
+- [S2] Sentry Docs — Session Replay configuration
+- [S3] Sentry Docs — Session Replay privacy (opting out of masking)
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://docs.sentry.io/platforms/javascript/guides/capacitor//session-replay/privacy/
+[S2]: https://docs.sentry.io/platforms/javascript/session-replay/configuration/
+[S3]: https://docs.sentry.io/platforms/javascript/guides/capacitor/session-replay/privacy
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

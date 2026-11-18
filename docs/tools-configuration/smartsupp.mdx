@@ -1,0 +1,68 @@
+---
+title: "Smartsupp"
+description: "How to configure Smartsupp at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features, Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for the Smartsupp chat box and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Smartsupp chat box (Smartsupp.com, s.r.o., Brno, Czech Republic). Smartsupp states that its data is stored only within the EU [S1]. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** `ssupp.vid` identifies visitors so that a conversation can be paired with the visitor on reload; `ssupp.visits` and its local-storage equivalent are marketing information that should not be stored without marketing consent [S2]. Cookie consent is enabled in **Settings → Security and privacy → Cookie consent**; when enabled, only necessary cookies are stored, and analytics and marketing cookies are stored only after `smartsupp('analyticsConsent', true)` / `smartsupp('marketingConsent', true)` [S3][S4]. Smartsupp is the processor under its DPA [S5].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Cookie consent mode on; chat box after Consenter consent; analytics and marketing consent not passed. |
+| Configuration B — Higher risk | Cookie consent mode on; analytics and marketing consent passed from Consenter; visitor recordings used. |
+
+> ⚠ **Recommendation — chat box before consent.** Smartsupp states that no consent is needed for basic Flow (formerly chatbots) only [S2], and its consent mode still stores `ssupp.vid` before consent [S3][S4]. Load the chat box after Consenter consent unless your DPO or independent counsel confirms `ssupp.vid` is strictly necessary.
+
+## Step 1 — Configure Smartsupp
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features; Support marketing analytics |
+| 2 | Cookie consent mode | **Settings → Security and privacy → Cookie consent** [S3] | On | On |
+| 3 | Consent signals | `smartsupp('analyticsConsent', …)`, `smartsupp('marketingConsent', …)` [S4] | `false` | Mapped from Consenter |
+| 4 | Visitor recordings | Smartsupp recordings | Off | On |
+| 5 | Loading | Consenter script blocking | After consent | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Unlock additional website features, Support marketing analytics |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, User-provided data | As A, plus Device characteristics, Privacy choices, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | Group based (behaviour) |
+| Maximum storage duration | Until deleted (persistent storage) [S2] | Until deleted [S2] |
+| Processing location | EU [S1] | EU [S1]; check the DPA for the recordings sub-processor |
+
+**Basis.** Cookies [S2]; consent signals [S4], hence "Privacy choices" in B. Smartsupp is a Czech company; no CLOUD Act flag unless the DPA lists US sub-processors.
+
+## Sources
+
+- [S1] Smartsupp Help (DE) — Does Smartsupp comply with the GDPR
+- [S2] Smartsupp Help — Privacy (cookies and local storage)
+- [S3] Smartsupp Help — Cookie consent
+- [S4] Smartsupp Help — Cookies (consent code)
+- [S5] Smartsupp — Data processing agreement
+
+[S1]: https://www.smartsupp.com/wh-de/help/privacy/
+[S2]: https://help.smartsupp.com/en_US/privacy?affil=1124
+[S3]: https://help.smartsupp.com/cookie-consent
+[S4]: https://help.smartsupp.com/en_US/cookies-2
+[S5]: https://smartsupp.com/dpa

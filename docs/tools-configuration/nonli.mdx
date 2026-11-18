@@ -1,0 +1,66 @@
+---
+title: "Nonli Analytics"
+description: "How to configure Nonli Analytics at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Improve the service
+
+> This guide explains how to implement Nonli Analytics and how to reflect it in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configuration is a comparative example, not a guarantee of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Nonli analytics SDK served from a custom domain delegated by the publisher. Nonli is a French company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Nonli works only in exempt mode; no specific configuration is required [S1]. It sets the cookie `nli` with a unique identifier for 13 months, not extended while the user keeps browsing, and `nli_consent` to record an opt-out, which disables tracking completely [S1]. The last octet of the IP address is removed before processing, and location is stored at city level at most [S1]. Data is not consolidated across domains, and each brand's cookies carry different identifiers [S1]. Nonli acts as processor (sous-traitant) [S1].
+
+**Simplified format.** Nonli has a single mode. The guide uses one fixed-behaviour configuration.
+
+> ⚠ **Recommendation — exemption is self-assessed and France-specific.** CNIL treats audience-measurement cookies as exempt from consent only where they serve solely the publisher's audience measurement, produce anonymous statistics, are not cross-referenced or passed on, and do not allow tracking across sites; it recommends a cookie lifetime of about 13 months without automatic extension and data retention of at most 25 months [S2]. CNIL now offers a self-evaluation tool rather than an approval programme [S2], so describe the configuration as a **self-assessed exemption**, not as "CNIL-approved". § 25 TDDDG in Germany contains no equivalent audience-measurement exemption. Run Nonli without consent only after review by your DPO or independent counsel.
+
+## Step 1 — Configure Nonli
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Improve the service (audience measurement) |
+| Custom domain | Delegate a subdomain (CNAME) or root domain (A record) and create the custom domain in the Nonli account [S1] |
+| SDK | Generated per brand; place before `</body>` [S1] |
+| Cookies | `nli` (13 months, not extended), `nli_consent` (opt-out) [S1] |
+| IP handling | Last octet removed before processing [S1] |
+| Opt-out | Link to `https://<custom-domain>/cookie/consent` or embed the opt-out button [S1] |
+| Loading | See ⚠ recommendation |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Improve the service | Audience measurement only [S1]. |
+| Tracking method | First party tracking (cross-session) | `nli`, 13 months [S1]. |
+| Identifier | Device identifiers | Unique identifier in `nli` [S1]. |
+| Data categories | Aggregated site statistics, Browsing and interaction data, Device identifiers, IP address anonymised, Non-precise location data | [S1] |
+| Legal role of data recipient | Processor | [S1] |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | 13 months (cookie) | Data retention not stated; CNIL recommends at most 25 months [S2]. |
+| Processing location | Not documented | Request hosting information; Nonli is a French company. |
+
+## Privacy-policy follow-up
+
+- Nonli as processor; exempt audience measurement; cookies; IP truncation; opt-out link [S1].
+
+## Verification checklist
+
+- [ ] Opt-out link works and sets `nli_consent`.
+- [ ] Exemption assessment documented.
+
+## Sources
+
+- [S1] CNIL — Nonli configuration guide (exempt audience measurement)
+- [S2] CNIL — Cookies: solutions pour les outils de mesure d'audience (4 July 2025)
+
+[S1]: https://Cnil.fr/sites/cnil/files/atoms/files/nonli_-_guide_de_configuration_-_solution_de_mesure_daudience_exemptee.pdf
+[S2]: https://cnil.fr/fr/node/167364

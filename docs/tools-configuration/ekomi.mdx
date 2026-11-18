@@ -1,0 +1,52 @@
+---
+title: "eKomi"
+description: "How to configure eKomi at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to reflect eKomi review widgets in the Consenter Manager. eKomi does not publish privacy settings for its widgets, so this guide uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** eKomi seal, review widgets and product review (PRC) widgets on the website. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The eKomi widget is a web component that shows the eKomi seal with a randomly selected review and the current rating average [S1]. Widgets are integrated via scripts or shop plugins that insert widget code or shortcodes [S2].
+
+> ⚠ **Research gap.** eKomi does not document which cookies or device storage its widgets use or which data they transmit. Load the widget after Consenter consent and inspect it in the browser before finalising the mapping.
+
+## Step 1 — Implement eKomi
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Unlock additional website features |
+| Integration | eKomi widget script or shop plugin [S2] |
+| Loading | After Consenter consent |
+| Review invitations | Order data transfer to eKomi requires its own legal basis and disclosure |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Review display [S1] |
+| Tracking method | Third party tracking (single session, cross-website) | Assumed; verify |
+| Identifier | IP address | Widget request |
+| Data categories | IP address, Device characteristics | Widget request |
+| Legal role of data recipient | Individual Controller | Review platform; verify against eKomi's terms |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Per eKomi privacy policy | Not documented |
+| Processing location | Per eKomi privacy policy | Check for US sub-processors |
+
+## Sources
+
+- [S1] eKomi — Terms and conditions (definition of widget and seal)
+- [S2] eKomi Knowledge Base — Official JTL4 plugin
+
+[S1]: https://www.ekomi.co.uk/uk/terms-and-conditions/
+[S2]: https://ekomi01.atlassian.net/wiki/spaces/KB/pages/1163297161/eKomi+Official+JTL4+Plugin

@@ -1,0 +1,65 @@
+---
+title: "Gravatar"
+description: "How to configure Gravatar at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for Gravatar avatars and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Gravatar avatars (Automattic Inc., US), typically in WordPress comments. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** WordPress checks for a Gravatar by sending an MD5 hash of each displayed author's email address to gravatar.com; even the default avatars are served from gravatar.com [S1]. When a visitor opens the page, gravatar.com receives the visitor's IP address and the hashed email addresses [S2]. WordPress' suggested privacy text notes that the hash may be provided to Gravatar [S3]. Avatars can be disabled with `add_filter( 'get_avatar', '__return_empty_string', 1000 );` [S2].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Gravatar disabled; local avatars or none. |
+| Configuration B — Medium risk | Gravatar enabled; avatars loaded from gravatar.com. |
+
+> ⚠ **Recommendation — Configuration B.** Avatar images are plain image requests, but they disclose the visitor's IP address and commenters' email hashes to a US provider [S1][S2]. Whether this needs consent or can rely on Art. 6(1)(f) GDPR is debated in the WordPress community [S4]; have your DPO decide, or load comments with avatars after Consenter consent.
+
+## Step 1 — Configure Gravatar
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — | Unlock additional website features |
+| 2 | Avatars | **Settings > Discussion > Avatars** or `get_avatar` filter [S2] | Off / local | Gravatar |
+| 3 | Loading | Consenter (see ⚠) | — | Per DPO decision |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|
+| Entry needed | No | Yes |
+| Processing purposes | — | Unlock additional website features |
+| Tracking method | No tracking | Third party tracking (single session, cross-website) |
+| Identifier | No identifier | IP address, Probabilistic identifiers (email hash) |
+| Data categories | — | IP address, Device characteristics, Probabilistic identifiers |
+| Legal role of data recipient | — | Individual Controller |
+| Personalisation model | — | No personalisation |
+| Maximum storage duration | — | Per Automattic privacy policy |
+| Processing location | — | United States (Automattic; 18 U.S.C. § 2713 [S5]) |
+
+## Sources
+
+- [S1] Redirect Gravatar requests (WordPress plugin description)
+- [S2] WordPress Trac — #43799 (IP and hashed email to gravatar.com)
+- [S3] Works in Progress — Privacy policy (WordPress suggested text)
+- [S4] WordPress Trac — #55062 GDPR compliance of Gravatar loading
+- [S5] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://discover.commoninja.com/wordpress/plugin/redirect-gravatar-requests
+[S2]: https://core.trac.wordpress.org/ticket/43799
+[S3]: https://worksinprogress.co/privacy-policy/
+[S4]: https://core.trac.wordpress.org/ticket/55062
+[S5]: https://www.law.cornell.edu/uscode/text/18/2713

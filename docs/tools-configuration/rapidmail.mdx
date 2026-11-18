@@ -1,0 +1,51 @@
+---
+title: "rapidmail"
+description: "How to configure rapidmail at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Receive marketing offers
+
+> This guide explains how to reflect rapidmail in the Consenter Manager. On the website, rapidmail is used for newsletter sign-up forms; email open and click tracking is governed by the newsletter consent, not the cookie banner. This guide therefore uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** rapidmail sign-up forms on the website (rapidmail GmbH, Freiburg, Germany). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** rapidmail processes address data on behalf of the customer to send newsletters as a processor under a data processing agreement; processing takes place in Germany or another EU/EEA member state [S1]. Website operators must obtain newsletter consent and conclude the agreement [S2].
+
+## Step 1 — Implement rapidmail
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Receive marketing offers |
+| Sign-up form | Double opt-in; inform about email tracking in the consent text [S2] |
+| Website cookies | None documented for the form; verify in the browser |
+| Contract | Data processing agreement [S1] |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Entry needed | Optional — only to disclose form data processing | Website footprint limited to forms |
+| Processing purposes | Receive marketing offers | Newsletter |
+| Tracking method | No tracking | No website tracking in scope |
+| Identifier | Direct identifier | Email address on sign-up |
+| Data categories | User-provided data, direct identifier | Form data |
+| Legal role of data recipient | Processor | [S1] |
+| Personalisation model | No personalisation | — |
+| Maximum storage duration | Until unsubscribe | — |
+| Processing location | Germany / EU | [S1]; German company, no CLOUD Act flag |
+
+## Sources
+
+- [S1] rapidmail — Data processing agreement (template, status 04/18)
+- [S2] eRecht24 — Privacy policy for rapidmail
+
+[S1]: https://www.stabilus-safety.de/download/Rapidmail.pdf
+[S2]: https://www.e-recht24.de/dsg/12719-rapidmail.html

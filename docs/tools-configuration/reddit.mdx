@@ -1,0 +1,66 @@
+---
+title: "Reddit Pixel"
+description: "How to configure Reddit Pixel at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Support marketing analytics, Customise online ads
+
+> This guide explains how to implement different privacy configurations for the Reddit Pixel and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Reddit Pixel on the advertiser website. The Conversions API is not covered. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The pixel `init` call accepts `optOut` (sent as `opt_out=1`), `disableFirstPartyCookies`, an email or SHA-256 email hash for matching, and `aam` for automatic advanced matching [S1]. First-party cookies can also be switched with `rdt('disableFirstPartyCookies')` / `rdt('enableFirstPartyCookies')` [S2]. Reddit recommends advanced matching for conversion accuracy; Data Processing Mode with Limited Data Use (`dpm`, `dpcc`, `dprc`) can be set for opted-out users [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Higher risk | Pixel after Consenter consent; `disableFirstPartyCookies`; no advanced matching. |
+| Configuration B — Higher risk | Pixel after consent with first-party cookies enabled. |
+| Configuration C — Higher risk | As B, plus advanced matching (email or `aam`). |
+
+## Step 1 — Configure the Reddit Pixel
+
+| # | Configuration area | Where to configure it | Configuration A — Higher risk | Configuration B — Higher risk | Configuration C — Higher risk |
+|---|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Support marketing analytics; Customise online ads | Support marketing analytics; Customise online ads | Support marketing analytics; Customise online ads |
+| 2 | Loading | Tag manager / Consenter | After consent | After consent | After consent |
+| 3 | First-party cookies | `disableFirstPartyCookies` [S1][S2] | Disabled | Enabled | Enabled |
+| 4 | Advanced matching | `email`, `aam` [S1][S3] | Off | Off | On |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Reddit is a US enterprise; list the United States (18 U.S.C. § 2713 [S4]).
+
+| Consenter Manager field | Configuration A — Higher risk | Configuration B — Higher risk | Configuration C — Higher risk |
+|---|---|---|---|
+| Processing purposes | Support marketing analytics, Customise online ads | Support marketing analytics, Customise online ads | Support marketing analytics, Customise online ads |
+| Tracking method | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) | Third party tracking (cross-session, cross-website, cross-device) |
+| Identifier | Device identifiers | Device identifiers | Device identifiers, Direct identifier |
+| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity, Users' profiles | Device identifiers, Browsing and interaction data, e-commerce Activity, Users' profiles | Device identifiers, Direct identifier, Browsing and interaction data, e-commerce Activity, Users' profiles |
+| Legal role of data recipient | Joint Controller | Joint Controller | Joint Controller |
+| Personalisation model | Profile based | Profile based | Profile based |
+| Maximum storage duration | Per Reddit cookie notice | Per Reddit cookie notice | Per Reddit cookie notice |
+| Processing location | United States | United States | United States |
+
+> **Note on legal role.** The table uses Joint Controller for the collection via the pixel; confirm the role in Reddit's advertising terms.
+
+## Sources
+
+- [S1] c15t Docs — Reddit Pixel integration (init options)
+- [S2] c15t Docs — Reddit Pixel integration (first-party cookie controls)
+- [S3] Tealium Docs — Reddit Pixel tag setup guide
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://cdn.jsdelivr.net/npm/c15t@2.1.0/docs/integrations/reddit-pixel.md
+[S2]: https://c15t.com/docs/integrations/reddit-pixel.md
+[S3]: https://docs.tealium.com/client-side-tags/reddit-pixel-tag/
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

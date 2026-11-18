@@ -1,0 +1,63 @@
+---
+title: "Flickr"
+description: "How to configure Flickr at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for Flickr photos on a website and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Flickr photos embedded on the website (Flickr, Inc., part of Awes.me, Inc., US [S1]). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Flickr's embed code calls the image from Flickr and adds an attribution bar with links to the photographer's photostream [S2]. Flickr's privacy policy states that it collects information using cookies, web beacons ("tracking pixels") and similar technologies [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Photo (licence permitting) served from your own server with a text attribution link. |
+| Configuration B — Medium risk | Flickr embed code loaded after Consenter consent / click-to-load. |
+
+## Step 1 — Configure Flickr
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — | Unlock additional website features |
+| 2 | Integration | Website code | Self-hosted image + link | Flickr embed code [S2] |
+| 3 | Loading | Consenter script blocking / click-to-load | — | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Flickr is a US enterprise subject to 18 U.S.C. § 2713 [S4]; list the United States.
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk |
+|---|---|---|
+| Entry needed | No | Yes |
+| Processing purposes | — | Unlock additional website features |
+| Tracking method | No tracking | Third party tracking (crosssession, cross-website) |
+| Identifier | No identifier | Device identifiers |
+| Data categories | — | Browsing and interaction data, Device characteristics, Device identifiers, IP address |
+| Legal role of data recipient | — | Individual Controller |
+| Personalisation model | — | No personalisation |
+| Maximum storage duration | — | Per Flickr cookie policy |
+| Processing location | — | United States |
+
+## Sources
+
+- [S1] Flickr — Privacy Policy (Awes.me, Inc. d/b/a Flickr, Inc.)
+- [S2] Plagiarism Today — Flickr adds photo embeds and attribution
+- [S3] Flickr — Privacy Policy (cookies and tracking technologies, archived)
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://www.flickr.com/help/privacy-policy
+[S2]: https://www.plagiarismtoday.com/2013/12/19/flickr-adds-photo-embeds-attribution-images/
+[S3]: https://unoceans.un.org/www.flickr.com/help/privacy/index.html
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

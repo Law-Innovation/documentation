@@ -1,0 +1,102 @@
+---
+title: "Google Fonts"
+description: "How to configure Google Fonts at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to implement different privacy configurations for Google Fonts and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** This guide covers web fonts from the Google Fonts library used on a website, either self-hosted or embedded through the Google Fonts Web API (`fonts.googleapis.com` / `fonts.gstatic.com`). Sources were checked on 16 November 2026.
+
+**Out of scope.** Fonts loaded indirectly by other Google products (for example Google Maps or YouTube embeds), which are covered by those products' entries.
+
+**What the service does in this scope.** When fonts are embedded through the Web API, the browser requests a stylesheet and font files from Google. Each request contains the visitor's IP address, the requested URL and HTTP headers including the user agent and referrer [S1]. Google states that the API is unauthenticated, that it "does not set or log cookies", and that Google receives the IP address "to respond to the visitor's request and for security purposes" [S1]. Google also states it does not use information collected by Google Fonts to create end-user profiles or for targeted advertising [S1].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Font files downloaded from Google Fonts and self-hosted on the operator's own server. No request to Google from the visitor's browser. |
+| Configuration B — Medium risk (default embed code) | Fonts embedded through the Google Fonts Web API; requests from the visitor's browser go to Google after consent. |
+
+**Consent and the Web API.** The Web API sets no cookies [S1], so the ePrivacy / TDDDG consent requirement for storage on the device is not the issue. The issue is the GDPR legal basis for transmitting the IP address to Google. The Munich Regional Court held that dynamic embedding without consent was unlawful because the operator had no overriding legitimate interest when the fonts could be used without connecting to Google's servers (LG München I, judgment of 20 January 2022, 3 O 17493/20) [S2]. Configuration B is therefore loaded only after consent. Configuration A involves no transfer to Google and needs no entry for Google in the Consenter Manager.
+
+| Action | Configuration A — Lower risk | Configuration B — Medium risk (default embed code) |
+|---|---|---|
+| Font delivery | Self-hosted font files | `fonts.googleapis.com` / `fonts.gstatic.com` |
+| Loading | No consent gate needed for Google (no Google request) | Blocked by Consenter until consent; fallback system font before consent |
+| Consenter Manager entries | None for Google | One entry (Google as Individual Controller) |
+
+## Step 1 — Configure Google Fonts
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk (default embed code) |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | — (no transfer to Google) | Unlock additional website features (display of web fonts) |
+| 2 | Delivery method | Website code / theme settings | Download the font files and serve them from your own domain | `<link>` or `@import` to `fonts.googleapis.com` |
+| 3 | Indirect Google Fonts requests | Theme and plug-in settings; browser network inspection | Remove every remaining reference to `fonts.googleapis.com` / `fonts.gstatic.com` | Consent-gate every reference |
+| 4 | Loading | Consenter script/stylesheet blocking | Not applicable | Blocked until consent |
+| 5 | Cookies | **Not configurable.** The Web API sets no cookies [S1] | — | — |
+| 6 | Server-side logging and retention at Google | **Not configurable / not documented** [S1] | — | — |
+
+### Configuration A — Lower risk
+
+1. **Intended use.** Use Google Fonts typefaces without any connection to Google.
+2. **Implementation steps.** Download the font files, upload them to your web server, reference them with `@font-face` from your own domain, and remove all links to Google's font domains, including those added by themes or plug-ins.
+3. **Resulting processing.** Fonts are delivered by your own server; Google receives no request [S2].
+4. **Why lower risk.** No third-party recipient.
+
+### Configuration B — Medium risk (default embed code)
+
+1. **Intended use.** Use the Web API for its automatic font updates and optimisations [S1].
+2. **Implementation steps.** Configure Consenter to block the stylesheet until consent and define a fallback font stack for visitors who refuse.
+3. **Resulting processing.** Each request transmits IP address, requested URL, user agent and referrer to Google [S1]. No cookies are set [S1].
+4. **Why medium risk.** The IP address and the page URL (referrer) reach a US-headquartered provider; no tracking identifiers or profiling are documented [S1].
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Configuration A** requires no Consenter Manager entry for Google.
+
+**Processing location (Configuration B).** Google does not document a processing location for Google Fonts requests [S1]. Google LLC is a US company and can be required to disclose data in its possession, custody or control regardless of storage location (18 U.S.C. § 2713) [S3].
+
+### Configuration B — Medium risk (default embed code)
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Display of web fonts. |
+| Tracking method | No tracking | The API is unauthenticated and sets no cookies [S1]. |
+| Identifier | IP address | Included in each request [S1]. |
+| Data categories | IP address, Device characteristics, Browsing and interaction data | IP address; user agent (browser and operating system); referrer, i.e. the page on which the font is displayed [S1]. |
+| Legal role of data recipient | Individual Controller | Google Fonts is provided under Google's general API terms without a data processing agreement; Google processes the IP address for its own security purposes [S1]. |
+| Personalisation model | No personalisation | No profiling or targeted advertising [S1]. |
+| Maximum storage duration | Not documented | Google states it logs CSS and font file requests but publishes no retention period [S1]. |
+| Processing location | United States as potential processing and access location | See note above. |
+
+## Privacy-policy follow-up
+
+- **A:** fonts are hosted locally; no mention of Google required.
+- **B:** recipient Google (own controller), data transmitted (IP address, URL, user agent, referrer), consent as legal basis, transfer to the US and potential access by US authorities [S1][S3].
+
+## Verification checklist
+
+- [ ] **A:** browser network tab shows no requests to `fonts.googleapis.com` or `fonts.gstatic.com` on any page.
+- [ ] **B, before consent:** no request to Google font domains; fallback font displayed.
+- [ ] **B, after consent:** fonts load; no cookies set by the font domains.
+
+## Sources
+
+- [S1] Google Fonts — Privacy and Data Collection (FAQ)
+- [S2] LG München I, judgment of 20 January 2022, 3 O 17493/20 (Gesetze Bayern)
+- [S3] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://developers.google.com/fonts/faq/privacy
+[S2]: https://www.gesetze-bayern.de/Content/Document/Y-300-Z-BECKRS-B-2022-N-612
+[S3]: https://www.law.cornell.edu/uscode/text/18/2713

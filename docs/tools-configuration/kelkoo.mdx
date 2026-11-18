@@ -1,0 +1,68 @@
+---
+title: "Kelkoo Sales Tracking"
+description: "How to configure Kelkoo Sales Tracking at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Support marketing analytics
+
+> This guide explains how to implement different privacy configurations for Kelkoo Sales Tracking (KST) on a merchant website and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Kelkoo Sales Tracking Lead Tag and Conversion Tag. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** KST uses first-party cookies set on the merchant's own domain [S1]. The Lead Tag sets the tracking cookie when a user arrives from a Kelkoo Group ad; the Conversion Tag reads it on the confirmation page and sends order data [S2][S3]. The `kelkooId` cookie lasts 12 months [S1]. Kelkoo states that the Lead Tag must be gated behind consent while the Conversion Tag does not require separate consent, relying on legitimate interest for the order data it sends [S1][S4]. A server-to-server option exists, with consent managed directly by the merchant [S5].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Lead Tag and Conversion Tag both loaded only after Consenter consent. |
+| Configuration B — Medium risk (default behaviour) | Lead Tag after consent; Conversion Tag without consent, as Kelkoo recommends. |
+
+> ⚠ **Recommendation.** In B the Conversion Tag reads a cookie only set after consent, but sends order data on the basis of legitimate interest. Have your DPO confirm this legal basis (GDPR) separately from the device-access question (§ 25 TDDDG).
+
+## Step 1 — Configure Kelkoo Sales Tracking
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Medium risk (default behaviour) |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics |
+| 2 | Lead Tag | Landing pages / tag manager [S3] | After consent | After consent [S4] |
+| 3 | Conversion Tag | Confirmation page [S3] | After consent | Without consent [S1] |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Kelkoo Group is a European company; check its terms for US sub-processors and list the United States if present (18 U.S.C. § 2713 [S6]).
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Medium risk (default behaviour) |
+|---|---|---|
+| Processing purposes | Support marketing analytics | Support marketing analytics |
+| Tracking method | First party tracking (cross-session) | First party tracking (cross-session) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Device identifiers, Browsing and interaction data, e-commerce Activity | Device identifiers, Browsing and interaction data, e-commerce Activity |
+| Legal role of data recipient | Individual Controller | Individual Controller |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | 12 months [S1] | 12 months [S1] |
+| Processing location | EU | EU |
+
+## Sources
+
+- [S1] Kelkoo Group Docs — GDPR Notice for Kelkoo Sales Tracking
+- [S2] Kelkoo Group Docs — How Kelkoo Sales Tracking works
+- [S3] Kelkoo Group Docs — Manual installation for Kelkoo Sales Tracking
+- [S4] Kelkoo Group Docs — Shopify/Shopify Plus installation
+- [S5] Kelkoo Group Docs — Server to server integration
+- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://docs.kelkoogroup.com/for-advertisers/kelkoo-sales-tracking/gdpr-notice-for-kelkoo-sales-tracking
+[S2]: https://docs.kelkoogroup.com/for-advertisers/kelkoo-sales-tracking/how-kelkoo-sales-tracking-works
+[S3]: https://docs.kelkoogroup.com/for-advertisers/kelkoo-sales-tracking/installation-methods/manual-installation-for-kelkoo-sales-tracking
+[S4]: https://docs.kelkoogroup.com/for-advertisers/kelkoo-sales-tracking/installation-methods/installation-guides-for-ecommerce-platforms/shopify-shopify-plus
+[S5]: https://docs.kelkoogroup.com/for-advertisers/kelkoo-sales-tracking/installation-methods/advanced-setup/server-to-server-integration
+[S6]: https://www.law.cornell.edu/uscode/text/18/2713

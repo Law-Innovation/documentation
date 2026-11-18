@@ -1,0 +1,66 @@
+---
+title: "Adjust"
+description: "How to configure Adjust at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Support marketing analytics, Customise online ads
+
+> This guide explains how to implement different privacy configurations for the Adjust Web SDK and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Adjust Web SDK for web attribution and measurement. Adjust GmbH (Berlin) belongs to AppLovin Corporation, a US company. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The URL strategy sets the endpoint and data residency; EU data residency uses `eu.adjust.com` [S1]. `Adjust.trackThirdPartySharing` with a `ThirdPartySharing` instance controls whether Adjust shares the user's data with third parties; granular options pass partner-specific consent (e.g. `google_dma` keys `ad_user_data`, `ad_personalization`) [S2][S3]. `gdprForgetMe` sends an erasure request [S2].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Attribution only; EU data residency; third-party sharing disabled; after consent. |
+| Configuration B — Higher risk | Attribution with third-party sharing to ad partners and consent signals passed; after consent. |
+
+**No configuration without prior consent.** Attribution requires identifying the device across visits.
+
+## Step 1 — Configure Adjust
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Support marketing analytics | Support marketing analytics; Customise online ads |
+| 2 | URL strategy / data residency | `Adjust.initSdk({ urlStrategy … })` [S1] | EU data residency | EU data residency |
+| 3 | Third-party sharing | `Adjust.trackThirdPartySharing(new Adjust.ThirdPartySharing(…))` [S2] | `false` | `true`, with granular partner options |
+| 4 | Google DMA consent | Granular options for `google_dma` [S3] | — | Pass `ad_user_data`, `ad_personalization` from Consenter |
+| 5 | Loading | Consenter script blocking | After consent | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** EU data residency [S1]; Adjust belongs to a US group subject to 18 U.S.C. § 2713 [S4]; list the United States. Each ad partner receiving data needs its own entry as an independent controller.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Support marketing analytics | Support marketing analytics, Customise online ads |
+| Tracking method | First party tracking (cross-session) | Third party tracking (crosssession, cross-website) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Browsing and interaction data, Device characteristics, Device identifiers, IP address | As A, plus Privacy choices, Users' profiles |
+| Legal role of data recipient | Processor | Processor (Adjust); ad partners as Individual Controller |
+| Personalisation model | No personalisation | Profile based |
+| Maximum storage duration | Per Adjust data retention settings | Per Adjust data retention settings |
+| Processing location | EU; United States | EU; United States |
+
+## Sources
+
+- [S1] Adjust Developer Hub — Web SDK privacy features (URL strategy)
+- [S2] Adjust Help — Privacy features (Web SDK)
+- [S3] Adjust Help — Privacy features (Google DMA granular options)
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://dev.adjust.com/en/sdk/web/features/privacy
+[S2]: https://help.adjust.com/en/article/privacy-features-web-sdk
+[S3]: https://help.adjust.com/en/article/privacy-features-unity-sdk
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713

@@ -1,0 +1,56 @@
+---
+title: "Radioplayer"
+description: "How to configure Radioplayer at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+> This guide explains how to reflect the Radioplayer web player in the Consenter Manager. Radioplayer's consent handling is built into the player console rather than configured by the embedding website, so this guide uses a single fixed-behaviour table.
+>
+> 1. Implement the service as described below.
+> 2. Map the implementation in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The mapping is an example, not a guarantee of legal compliance. Verify it against your implementation and current provider documentation.
+
+## At a glance
+
+**Scope.** The Radioplayer web player (console) used by broadcasters, opened from the broadcaster's website (Radioplayer Worldwide Ltd, UK [S1]). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The web player uses cookies that expire after 12 months; on load it initialises all cookies and removes those the listener does not permit [S2]. The player remembers volume, recently played and favourite stations and stores numeric identifiers to recognise the device [S3]. A broadcaster can integrate a TCF 2.0 CMP, in which case the player passes the listener's consents to ad providers in the player [S4].
+
+> ⚠ **Recommendation — cookies before choice.** Radioplayer's documentation states that all cookies are initialised when the player loads and removed afterwards if not permitted [S2]. Have your DPO or independent counsel review this behaviour, and link to the player from a Consenter-gated element if needed.
+
+## Step 1 — Implement Radioplayer
+
+| Configuration area | Fixed behaviour / required action |
+|---|---|
+| Processing purposes | Unlock additional website features |
+| Integration | Link or pop-up to the Radioplayer console |
+| Consent in the player | Radioplayer cookie dialog, or broadcaster TCF 2.0 CMP [S4] |
+| Advertising | Only with TCF consent passed to ad providers [S4] |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+| Consenter Manager field | Value to select | Basis and conditions |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Radio streaming |
+| Tracking method | Third party tracking (crosssession, cross-website) | Player cookies on Radioplayer domains [S2][S3] |
+| Identifier | Device identifiers | Numeric device identifiers [S3] |
+| Data categories | Browsing and interaction data, Device identifiers, IP address, Privacy choices | [S1][S3][S4] |
+| Legal role of data recipient | Individual Controller | Radioplayer operates the console |
+| Personalisation model | Group based (behaviour) | Recently played and favourites [S3] |
+| Maximum storage duration | 12 months [S2] | — |
+| Processing location | United Kingdom | UK company (UK adequacy decision applies) |
+
+## Sources
+
+- [S1] Radioplayer — Privacy policy (Radioplayer Worldwide Ltd)
+- [S2] Radioplayer Docs — Cookies used in the web player
+- [S3] Radioplayer — Cookies on Radioplayer web consoles
+- [S4] Radioplayer Docs — Integrating a TCF 2.0 CMP
+
+[S1]: https://radioplayer.org/privacy-policy
+[S2]: https://radioplayer-docs.netlify.app/cookies
+[S3]: https://radioplayer.co.uk/cookies
+[S4]: https://radioplayer-docs.netlify.app/cmp

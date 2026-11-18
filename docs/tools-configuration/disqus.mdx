@@ -1,0 +1,69 @@
+---
+title: "Disqus"
+description: "How to configure Disqus at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features, Customise online ads
+
+> This guide explains how to implement different privacy configurations for the Disqus comment widget and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Disqus comment embed (Disqus Inc. / Big Heads Labs Inc., San Francisco, US [S1][S2]). Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** The Norwegian DPA found that Disqus collected data through cookies placed on visitors' devices and passed it to third-party advertising partners and its parent company, and announced a fine [S3]. Publishers can disable data tracking for their forum via the **Tracking** setting under **Settings > Advanced**; users can opt out on the Data Sharing Settings page [S4]. Ads within and below comments can be switched off under **Settings > Ads**; removing ads entirely requires a paid plan [S5].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Tracking disabled in **Settings > Advanced**; ads off (paid plan); widget after Consenter consent. |
+| Configuration B — Higher risk (default behaviour) | Default tracking and ads; widget after consent. |
+
+## Step 1 — Configure Disqus
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features; Customise online ads |
+| 2 | Tracking | **Settings > Advanced > Tracking** [S4] | Disabled | Enabled |
+| 3 | Ads | **Settings > Ads** [S5] | Off (paid plan) | On |
+| 4 | Loading | Consenter script blocking / click-to-load | After consent | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Disqus is a US enterprise subject to 18 U.S.C. § 2713 [S6]; list the United States.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default behaviour) |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Unlock additional website features, Customise online ads |
+| Tracking method | Third party tracking (crosssession, cross-website) | Third party tracking (crosssession, cross-website) |
+| Identifier | Device identifiers, Authentication-derived identifiers | Device identifiers, Authentication-derived identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, IP address, User-provided data, Authentication-derived identifiers | As A, plus Users' profiles |
+| Legal role of data recipient | Joint Controller | Joint Controller; ad partners as Individual Controller |
+| Personalisation model | No personalisation | Profile based |
+| Maximum storage duration | Per Disqus cookie policy | Per Disqus cookie policy |
+| Processing location | United States | United States |
+
+**Basis.** Cross-site Disqus account and cookies [S3]; settings [S4][S5]. Joint controllership reflects that the publisher integrates a widget that collects data for Disqus's purposes; confirm with your DPO.
+
+## Sources
+
+- [S1] iubenda — Disqus and the GDPR (Big Heads Labs Inc.)
+- [S2] Bloomberg Law — Disqus faces $3 million sanction
+- [S3] Hunton — Norwegian DPA issues preliminary fine to Disqus
+- [S4] Disqus Help — How to edit your data sharing settings
+- [S5] Marko Saric — Remove Disqus (ad settings)
+- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://www.iubenda.com/en/help/23947/
+[S2]: https://news.bloomberglaw.com/privacy-and-data-security/disqus-faces-3-million-sanction-over-alleged-gdpr-breaches
+[S3]: https://www.hunton.com/privacy-and-cybersecurity-law-blog/2021/05/11/norwegian-dpa-issues-2-5m-eur-preliminary-fine-for-u-s-company-utilizing-web-tracking-ids/
+[S4]: https://help.disqus.com/terms-and-policies/how-to-edit-your-data-sharing-settings
+[S5]: https://markosaric.com/remove-disqus/
+[S6]: https://www.law.cornell.edu/uscode/text/18/2713

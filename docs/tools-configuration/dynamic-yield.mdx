@@ -1,0 +1,72 @@
+---
+title: "Dynamic Yield"
+description: "How to configure Dynamic Yield at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Personalise the website, Receive personalised marketing offers
+
+> This guide explains how to implement different privacy configurations for Dynamic Yield and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** The Dynamic Yield (Mastercard) client-side script for personalisation, testing and recommendations. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Cookies include `_dyid` (unique identifier, customer's domain), `_dyid_server` (1 year, customer's domain), `_dyjsession` (session) and `DYID` / `DYSES` on the `dynamicyield.com` domain [S1]. Dynamic Yield states it does not track users across multiple sites [S2]. With **Active Cookie Consent** enabled, users are not served personalised experiences unless they actively consent, and no personal data is processed for personalisation without consent except from strictly necessary cookies; consent is passed with `DY.userActiveConsent = { accepted: true|false }` [S3][S4]. Non-personalised campaigns can be served to users without consent [S5]. Dynamic Yield operates US and EU data centres [S5].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Active Cookie Consent on; EU data centre; personalisation only after consent; non-personalised campaigns otherwise. |
+| Configuration B — Higher risk | Script loaded after consent; full personalisation, recommendations and audience targeting; US data centre. |
+
+> ⚠ **Recommendation — script before consent.** In A the script runs before consent and Dynamic Yield still processes data "stemming from strictly necessary cookies" [S3]. Whether its cookies qualify as strictly necessary under § 25(2) TDDDG is not established by the sources. Block the script in Consenter until consent unless your DPO or independent counsel confirms otherwise.
+
+## Step 1 — Configure Dynamic Yield
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Personalise the website | Personalise the website; Receive personalised marketing offers |
+| 2 | Active Cookie Consent | Implement `DY.userActiveConsent`; preview in **Settings > Data Privacy > Active Cookie Consent**; activation by Support [S4] | On | On |
+| 3 | Non-personalised campaigns for non-consenting users | **Settings > Privacy Center** [S5] | On | — |
+| 4 | Data centre | Account setup (US or EU) [S5] | EU | US |
+| 5 | Loading | Consenter | See ⚠ recommendation | After consent |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Dynamic Yield belongs to Mastercard, a US enterprise subject to 18 U.S.C. § 2713 [S6]; list the United States as a potential access location in all configurations.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Personalise the website | Personalise the website, Receive personalised marketing offers |
+| Tracking method | First party tracking (cross-session) | Third party tracking (crosssession, cross-website) |
+| Identifier | Device identifiers | Device identifiers |
+| Data categories | Browsing and interaction data, Device identifiers, Device characteristics, Privacy choices, Users' profiles | Browsing and interaction data, Device identifiers, Device characteristics, e-commerce Activity, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | Profile based | Profile based |
+| Maximum storage duration | 1 year (`_dyid_server`) | 1 year (`_dyid_server`, `DYID`) |
+| Processing location | EU data centre; United States as potential access location | United States |
+
+**Basis.** Cookies and domains [S1]; consent signal transmitted [S4], hence "Privacy choices" in A. In B, `DYID` is set on `dynamicyield.com` [S1]; although Dynamic Yield states it does not track users across sites [S2], a cookie on its own domain is technically readable across customer sites — verify and adjust the tracking method if Dynamic Yield confirms per-site isolation.
+
+## Sources
+
+- [S1] Dynamic Yield Developer Docs — Cookies and local storage
+- [S2] Dynamic Yield Support — DYID cookie (no cross-site tracking)
+- [S3] Dynamic Yield Support — Active Cookie Consent mode
+- [S4] Dynamic Yield Developer Docs — Active Cookie Consent client-side implementation
+- [S5] Dynamic Yield Support — Privacy Center settings (data centres, non-personalised campaigns)
+- [S6] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://dy.dev/docs/cookie-management
+[S2]: https://support.dynamicyield.com/hc/en-us/articles/360023113433
+[S3]: https://support.dynamicyield.com/hc/en-us/articles/360014728858
+[S4]: https://dy.dev/docs/active-cookie-consent
+[S5]: https://support.dynamicyield.com/hc/en-us/articles/14274730414109
+[S6]: https://www.law.cornell.edu/uscode/text/18/2713

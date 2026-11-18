@@ -1,0 +1,64 @@
+---
+title: "Mailchimp"
+description: "How to configure Mailchimp at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Receive marketing offers, Receive personalised marketing offers
+
+> This guide explains how to implement different privacy configurations for Mailchimp on a website and how to reflect them in the Consenter Manager.
+>
+> 1. Configure the third-party service.
+> 2. Map the selected configuration in the Consenter Manager.
+> 3. Update your privacy policy to reflect the actual implementation.
+>
+> The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+
+## At a glance
+
+**Scope.** Mailchimp sign-up forms and the Connected Site snippet on the customer's website. Mailchimp is part of Intuit Inc., a US company. Email open and click tracking is outside the scope of the cookie banner. Sources were checked on 16 November 2026.
+
+**What the service does in this scope.** Mailchimp acts as a data processor for its users [S1]. The Connected Site snippet allows cookies, pixels and other technologies to be set on the member's connected site to facilitate certain automations [S2]. Mailchimp offers optional GDPR fields on sign-up forms with opt-in checkboxes [S3].
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | Embedded sign-up form only (no Connected Site snippet); after consent. |
+| Configuration B — Higher risk | Connected Site snippet with site tracking and pop-up forms; after consent. |
+
+**No configuration without prior consent in this guide.** Mailchimp does not publish which cookies the embedded form sets; verify in the browser. If an embedded form demonstrably sets nothing on the device, it may be loaded on the form's own legal basis after DPO review.
+
+## Step 1 — Configure Mailchimp
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Receive marketing offers | Receive marketing offers; Receive personalised marketing offers |
+| 2 | Connected Site snippet | **Website > Connected sites** | Not installed | Installed, loaded after consent [S2] |
+| 3 | Sign-up form | Form builder; GDPR fields [S3] | Embedded form with GDPR fields | Pop-up form via Connected Site |
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Intuit is a US enterprise; Mailchimp processes data in the United States (18 U.S.C. § 2713 [S4]).
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk |
+|---|---|---|
+| Processing purposes | Receive marketing offers | Receive marketing offers, Receive personalised marketing offers |
+| Tracking method | No tracking | First party tracking (cross-session) |
+| Identifier | Direct identifier (on submission) | Device identifiers, Direct identifier |
+| Data categories | User-provided data, direct identifier | Browsing and interaction data, Device identifiers, e-commerce Activity, User-provided data, direct identifier, Users' profiles |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | Profile based |
+| Maximum storage duration | Per audience retention | Per cookie inspection |
+| Processing location | United States | United States |
+
+## Sources
+
+- [S1] Consently — Is Mailchimp GDPR compliant (quoting Mailchimp's GDPR page on processor role)
+- [S2] Mailchimp — Cookie Statement (Connected Site snippet)
+- [S3] Mailchimp — Collect consent with GDPR forms
+- [S4] 18 U.S.C. § 2713 (CLOUD Act)
+
+[S1]: https://consently.net/blog/is-mailchimp-gdpr-compliant
+[S2]: https://mailchimp.com/en/legal/cookies/
+[S3]: https://mailchimp.com/es/help/collect-consent-with-gdpr-forms/
+[S4]: https://www.law.cornell.edu/uscode/text/18/2713
