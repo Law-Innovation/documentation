@@ -1,12 +1,12 @@
 {
   "title": "Configure Your Tools",
   "pages": [
+    "index",
     "---Analytics---",
     "abla-analytics",
     "adjust",
     "admo-tv",
     "adobe-analytics",
-    "adperformance-realytics",
     "alphalyr",
     "amplitude",
     "beyable-analytics",
@@ -39,7 +39,6 @@
     "chartbeat",
     "comscore",
     "doubleverify",
-    "estat-streaming",
     "infonline",
     "vg-wort",
     "---Session Recording and Heatmaps---",
@@ -144,6 +143,7 @@
     "google-maps",
     "here",
     "mapbox",
+    "maptiler",
     "openstreetmap",
     "---Social Media and Sharing---",
     "addtoany",
@@ -221,6 +221,7 @@
     "indeed",
     "prescreen",
     "---Other Tools---",
+    "friendly-captcha",
     "maxmind"
   ]
 }

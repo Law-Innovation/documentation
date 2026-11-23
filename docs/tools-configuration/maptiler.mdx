@@ -1,0 +1,70 @@
+---
+title: "MapTiler"
+description: "How to configure MapTiler at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+<Callout type="info" title="Overview">
+This guide explains how to implement different privacy configurations for MapTiler maps and how to reflect them in the Consenter Manager.
+
+1. Configure the third-party service.
+2. Map the selected configuration in the Consenter Manager.
+3. Update your privacy policy to reflect the actual implementation.
+
+The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+</Callout>
+
+## At a glance
+
+**Scope.** Interactive maps on websites rendered with MapTiler SDK JS and MapTiler Cloud. MapTiler AG is a Swiss company (Zug).
+
+**What the service does in this scope.** Map requests transmit the visitor's IP address to MapTiler. MapTiler processes the IP address of end users of maps on its customers' websites only for the time needed for a security check, for up to 2 months. By default, the SDK runs with session logic: a session starts when the SDK is initialised and ends when the page is refreshed, and the URL parameter `mtsid` is added to MapTiler Cloud API requests for session-based billing. The SDK also caches tile and font requests client-side; the cached requests persist across browser sessions and only work when sessions are enabled. Telemetry (SDK version, API key, MapTiler session ID and the features used) is enabled by default and can be switched off.
+
+**EU endpoint.** `api.maptiler.eu` keeps end users' IP addresses inside the EU. It is available on paid plans only. It does not cover account data, and the content of some requests (for example a geocoding search address) may still be passed to third-party providers outside the EU.
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Medium risk | EU endpoint; sessions, caching and telemetry switched off; map loaded after Consenter consent. |
+| Configuration B — Higher risk (default configuration) | Global endpoint `api.maptiler.com`; sessions, caching and telemetry on (SDK defaults); map loaded after Consenter consent. |
+
+**No configuration without prior consent.** Even with caching switched off, the map is loaded from MapTiler's infrastructure and transmits the visitor's IP address, and MapTiler uses Cloudflare for global API key validation and edge caching. Load the map after Consenter consent, or show a click-to-load placeholder.
+
+## Step 1 — Configure MapTiler
+
+| # | Configuration area | Where to configure it | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features | Unlock additional website features |
+| 2 | API endpoint | SDK `config.useEuEndpoints` (SDK JS 4.2.0 or later); or replace `api.maptiler.com` with `api.maptiler.eu` in request URLs | `true` / `api.maptiler.eu` (paid plan) | `api.maptiler.com` (default) |
+| 3 | Session logic (`mtsid`) | SDK `config.session` | `false` (usage billed per request) | `true` (default) |
+| 4 | Client-side caching | SDK `config.caching` | `false` | `true` (default) |
+| 5 | Telemetry | SDK `config.telemetry` | `false` | `true` (default) |
+| 6 | API key restriction | MapTiler Cloud → API keys → restrict to HTTP referrers | Restricted to your domains | Restricted to your domains |
+| 7 | Loading | Consenter script blocking or click-to-load placeholder | After consent | After consent |
+
+### Configuration A — Medium risk
+
+Set `config.useEuEndpoints = true` (or use `api.maptiler.eu` directly) on a paid plan, and switch off `session`, `caching` and `telemetry` before the map is created. The map then loads without a session ID, without persistent browser caches and without telemetry, and the visitor's IP address stays in the EU. MapTiler keeps the IP address for security checks for up to 2 months. Geocoding search content may still be passed to third-party providers outside the EU.
+
+### Configuration B — Higher risk (default configuration)
+
+Use the SDK with its defaults: the global endpoint `api.maptiler.com`, session logic (`mtsid` on every request), client-side caching of tiles and fonts that persists across browser sessions, and telemetry including the MapTiler session ID. The processing location of the global endpoint is not documented.
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** MapTiler is a Swiss company (Switzerland has an EU adequacy decision). MapTiler uses Cloudflare, a US enterprise subject to the US CLOUD Act, for API key validation and edge caching, so list the United States as a potential access location in both configurations.
+
+| Consenter Manager field | Configuration A — Medium risk | Configuration B — Higher risk (default configuration) |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Unlock additional website features |
+| Tracking method | No tracking | First party tracking (single session) |
+| Identifier | IP address | IP address, Device identifiers |
+| Data categories | IP address | IP address, Device identifiers, Device characteristics, Browsing and interaction data |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | 2 months (IP address for security checks) | 2 months (IP address for security checks); cached tiles persist across browser sessions |
+| Processing location | EU (IP addresses), Switzerland / United States (CLOUD Act) | Switzerland / United States (CLOUD Act); global endpoint location not documented |
+
+> **Note on legal role.** MapTiler's privacy policy does not state its role for end users of embedded maps. The table uses Processor; confirm the role in MapTiler's terms or DPA.
