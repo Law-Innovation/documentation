@@ -1,0 +1,67 @@
+---
+title: "Friendly Captcha"
+description: "How to configure Friendly Captcha at different risk levels and map it in the Consenter Manager."
+---
+
+Typical processing purposes: Unlock additional website features
+
+<Callout type="info" title="Overview">
+This guide explains how to implement different privacy configurations for Friendly Captcha and how to reflect them in the Consenter Manager.
+
+1. Configure the third-party service.
+2. Map the selected configuration in the Consenter Manager.
+3. Update your privacy policy to reflect the actual implementation.
+
+The configurations are comparative examples, not guarantees of legal compliance. Verify that the guide matches your product edition, implementation, and current provider documentation.
+</Callout>
+
+## At a glance
+
+**Scope.** Friendly Captcha v2 widget and server-side verification (`siteverify`) protecting website forms. Friendly Captcha GmbH is a German company.
+
+**What the service does in this scope.** The widget sends connection data, environment data, interaction data and functional data from the visitor's browser to Friendly Captcha, which estimates whether the visitor is a human or a bot and returns the result. Data that may identify the visitor, such as IP addresses, is anonymised via one-way hashing, and Friendly Captcha does not use the data to identify a natural person or for marketing purposes. Friendly Captcha does not use HTTP cookies and does not store any data in the browser's persistent storage. It acts as a data processor; the website operator is the controller.
+
+**Endpoints.** The widget uses the global endpoint (`global.frcapi.com`) by default. A dedicated EU endpoint (`eu.frcapi.com`), processed in Germany, is available on the Advanced and Enterprise plans.
+
+**Configurations included.**
+
+| Configuration | Summary |
+|---|---|
+| Configuration A — Lower risk | Widget and `siteverify` use the dedicated EU endpoint. |
+| Configuration B — Medium risk (default configuration) | Widget and `siteverify` use the global endpoint. |
+
+> ⚠ **Recommendation — no-consent use requires a self-assessed exemption.** Friendly Captcha sets no cookies and uses no persistent browser storage, and the provider states that no visitor consent is needed. The widget does, however, read environment and interaction data from the visitor's browser. Whether this access is strictly necessary for the form the visitor wants to submit (§ 25(2) No. 2 TDDDG) and which GDPR legal basis applies (typically legitimate interest in website security) are separate questions. If you load Friendly Captcha without consent, document this as a self-assessed exemption and have it reviewed by your DPO or independent legal counsel.
+
+## Step 1 — Configure Friendly Captcha
+
+| # | Configuration area | Where to configure it | Configuration A — Lower risk | Configuration B — Medium risk (default configuration) |
+|---|---|---|---|---|
+| 1 | Processing purposes | Operator decision | Unlock additional website features (form protection) | Unlock additional website features (form protection) |
+| 2 | API endpoint (dashboard) | Applications → **Manage** → API Endpoint | Dedicated EU endpoint enabled (Advanced or Enterprise plan) | Global endpoint |
+| 3 | API endpoint (widget) | `data-api-endpoint` HTML attribute or SDK `apiEndpoint` option | `eu` | `global` (default) |
+| 4 | Verification endpoint (back end) | Server-side `siteverify` request | `https://eu.frcapi.com/api/v2/captcha/siteverify` | `https://global.frcapi.com/api/v2/captcha/siteverify` |
+| 5 | Pages on which the widget loads | Website code | Only pages with a protected form | Only pages with a protected form |
+| 6 | Contract | Friendly Captcha Data Processing Agreement | Applies | Applies |
+
+### Configuration A — Lower risk
+
+Configure the application for the dedicated EU endpoint in the Friendly Captcha dashboard, set the widget to `eu`, and send `siteverify` requests to `eu.frcapi.com`. Visitor data is processed in Germany, so no transfer outside the EU takes place. No cookies or persistent browser storage are used; the IP address is hashed before storage.
+
+### Configuration B — Medium risk (default configuration)
+
+Use the widget and `siteverify` with the global endpoint, which is the default. The data processed is the same as in Configuration A, but the processing location of the global endpoint is not stated in Friendly Captcha's end-user privacy policy. Check the DPA and its sub-processor list for the hosting locations before mapping the processing location.
+
+## Step 2 — Map the configuration in the Consenter Manager
+
+**Processing location.** Friendly Captcha is a German company. For Configuration B, check the DPA for the hosting and sub-processors of the global endpoint and list any third country named there, including the United States where a US provider is involved.
+
+| Consenter Manager field | Configuration A — Lower risk | Configuration B — Medium risk (default configuration) |
+|---|---|---|
+| Processing purposes | Unlock additional website features | Unlock additional website features |
+| Tracking method | No tracking | No tracking |
+| Identifier | No identifier | No identifier |
+| Data categories | IP address anonymised, Device characteristics, Browsing and interaction data | IP address anonymised, Device characteristics, Browsing and interaction data |
+| Legal role of data recipient | Processor | Processor |
+| Personalisation model | No personalisation | No personalisation |
+| Maximum storage duration | Not documented | Not documented |
+| Processing location | Germany (EU) | Per DPA (global endpoint) |

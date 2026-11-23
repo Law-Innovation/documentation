@@ -1,6 +1,7 @@
 {
   "title": "Configure Your Tools",
   "pages": [
+    "index",
     "---Analytics---",
     "abla-analytics",
     "adjust",
@@ -142,6 +143,7 @@
     "google-maps",
     "here",
     "mapbox",
+    "maptiler",
     "openstreetmap",
     "---Social Media and Sharing---",
     "addtoany",
@@ -219,6 +221,7 @@
     "indeed",
     "prescreen",
     "---Other Tools---",
+    "friendly-captcha",
     "maxmind"
   ]
 }
